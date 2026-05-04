@@ -5,235 +5,242 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ryan's Weekly Program</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-–bg: #0e0e0f;
-–surface: #181819;
-–border: rgba(255,255,255,0.08);
-–border2: rgba(255,255,255,0.14);
-–text: #f0ede8;
-–muted: #888884;
-–faint: #444442;
-–accent: #d4f06e;
-–accent-dim: rgba(212,240,110,0.12);
-–red: #f06e6e;
-–red-dim: rgba(240,110,110,0.1);
-}
+  :root {
+    --bg: #0e0e0f;
+    --surface: #181819;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #888884;
+    --faint: #444442;
+    --accent: #d4f06e;
+    --accent-dim: rgba(212,240,110,0.12);
+    --red: #f06e6e;
+    --red-dim: rgba(240,110,110,0.1);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono", monospace;
+  }
 
-body {
-background: var(–bg);
-color: var(–text);
-font-family: ‘DM Sans’, sans-serif;
-font-size: 15px;
-line-height: 1.5;
-min-height: 100vh;
-padding-bottom: 4rem;
-}
+  html, body {
+    background: #0e0e0f !important;
+    background-color: #0e0e0f !important;
+  }
 
-header {
-padding: 1.75rem 1.25rem 1rem;
-border-bottom: 1px solid var(–border);
-margin-bottom: 1.25rem;
-}
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+  }
 
-header h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
-header p { font-size: 13px; color: var(–muted); margin-top: 2px; }
+  header {
+    padding: 1.75rem 1.25rem 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
 
-.tab-groups {
-padding: 0 1.25rem 1.25rem;
-display: flex;
-flex-direction: column;
-gap: 14px;
-}
+  header h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+  header p { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
-.group-label {
-font-size: 10px;
-font-weight: 600;
-letter-spacing: 0.09em;
-text-transform: uppercase;
-color: var(–faint);
-margin-bottom: 6px;
-}
+  .tab-groups {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
 
-.tab-row { display: flex; gap: 6px; }
+  .group-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 6px;
+  }
 
-.day-tab {
-flex: 1;
-padding: 10px 6px;
-border-radius: 10px;
-border: 1px solid var(–border2);
-background: transparent;
-font-family: ‘DM Sans’, sans-serif;
-cursor: pointer;
-transition: all 0.15s;
-text-align: center;
-line-height: 1.3;
-}
+  .tab-row { display: flex; gap: 6px; }
 
-.tab-main {
-display: block;
-font-size: 13px;
-font-weight: 600;
-color: var(–muted);
-}
+  .day-tab {
+    flex: 1;
+    padding: 10px 6px;
+    border-radius: 10px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    line-height: 1.3;
+  }
 
-.tab-sub {
-display: block;
-font-size: 10px;
-font-weight: 400;
-color: var(–faint);
-margin-top: 2px;
-}
+  .tab-main {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+  }
 
-.day-tab.active { background: var(–accent); border-color: var(–accent); }
-.day-tab.active .tab-main,
-.day-tab.active .tab-sub { color: #111; }
-.day-tab.rest-day { opacity: 0.4; }
+  .tab-sub {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--faint);
+    margin-top: 2px;
+  }
 
-.session { display: none; padding: 0 1.25rem; }
-.session.visible { display: block; }
+  .day-tab.active { background: var(--accent); border-color: var(--accent); }
+  .day-tab.active .tab-main,
+  .day-tab.active .tab-sub { color: #111; }
+  .day-tab.rest-day { opacity: 0.4; }
 
-.phase-header {
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: var(–muted);
-margin: 1.5rem 0 0.6rem;
-}
-.phase-header:first-of-type { margin-top: 0; }
+  .session { display: none; padding: 0 1.25rem; }
+  .session.visible { display: block; }
 
-.warmup-badge {
-display: inline-block;
-background: var(–accent-dim);
-color: var(–accent);
-font-size: 10px;
-font-weight: 600;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-padding: 2px 7px;
-border-radius: 4px;
-margin-left: 8px;
-vertical-align: middle;
-}
+  .phase-header {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 1.5rem 0 0.6rem;
+  }
+  .phase-header:first-of-type { margin-top: 0; }
 
-.table-card {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-}
+  .warmup-badge {
+    display: inline-block;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
 
-table {
-width: 100%;
-border-collapse: collapse;
-font-size: 14px;
-table-layout: fixed;
-}
+  .table-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
 
-thead tr { border-bottom: 1px solid var(–border); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    table-layout: fixed;
+  }
 
-th {
-padding: 8px 10px;
-text-align: left;
-font-size: 10px;
-font-weight: 600;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-color: var(–faint);
-}
+  thead tr { border-bottom: 1px solid var(--border); }
 
-td {
-padding: 11px 10px;
-border-bottom: 1px solid var(–border);
-vertical-align: top;
-}
+  th {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
 
-tr:last-child td { border-bottom: none; }
+  td {
+    padding: 11px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
 
-.col-ss  { width: 36px; color: var(–muted); font-size: 13px; font-weight: 500; }
-.col-ord { width: 34px; font-family: ‘DM Mono’, monospace; font-size: 12px; color: var(–accent); }
-.col-ex  { font-weight: 500; color: var(–text); word-break: break-word; }
-.col-ex .note { font-size: 12px; font-weight: 400; color: var(–muted); margin-top: 2px; }
-.col-rp  { width: 90px; font-size: 12px; color: var(–muted); }
+  tr:last-child td { border-bottom: none; }
 
-.rest-box {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 12px;
-padding: 2rem 1.25rem;
-text-align: center;
-color: var(–muted);
-font-size: 14px;
-line-height: 2;
-}
+  .col-ss  { width: 36px; color: var(--muted); font-size: 13px; font-weight: 500; }
+  .col-ord { width: 34px; font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
+  .col-ex  { font-weight: 500; color: var(--text); word-break: break-word; }
+  .col-ex .note { font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+  .col-rp  { width: 90px; font-size: 12px; color: var(--muted); }
 
-.flag {
-display: flex;
-align-items: flex-start;
-gap: 10px;
-background: var(–red-dim);
-border: 1px solid rgba(240,110,110,0.2);
-border-radius: 10px;
-padding: 10px 12px;
-margin-top: 1.25rem;
-font-size: 13px;
-color: var(–red);
-line-height: 1.5;
-}
+  .rest-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 1.25rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+  }
 
-.accordion {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-}
+  .flag {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--red-dim);
+    border: 1px solid rgba(240,110,110,0.2);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 1.25rem;
+    font-size: 13px;
+    color: var(--red);
+    line-height: 1.5;
+  }
 
-.accordion-trigger {
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 12px 14px;
-background: transparent;
-border: none;
-cursor: pointer;
-font-family: ‘DM Sans’, sans-serif;
-text-align: left;
-}
+  .accordion {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
 
-.accordion-trigger-left {
-display: flex;
-align-items: center;
-gap: 8px;
-}
+  .accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    text-align: left;
+  }
 
-.accordion-title {
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: var(–muted);
-}
+  .accordion-trigger-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 
-.accordion-chevron {
-font-size: 11px;
-color: var(–faint);
-transition: transform 0.2s ease;
-display: inline-block;
-}
+  .accordion-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-.accordion.open .accordion-chevron { transform: rotate(180deg); }
+  .accordion-chevron {
+    font-size: 11px;
+    color: var(--faint);
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
 
-.accordion-body {
-display: none;
-border-top: 1px solid var(–border);
-}
+  .accordion.open .accordion-chevron { transform: rotate(180deg); }
 
-.accordion.open .accordion-body { display: block; }
+  .accordion-body {
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .accordion.open .accordion-body { display: block; }
 </style>
 
 </head>
