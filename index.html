@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ryan's Weekly Program</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+–bg: #0e0e0f;
+–surface: #181819;
+–border: rgba(255,255,255,0.08);
+–border2: rgba(255,255,255,0.14);
+–text: #f0ede8;
+–muted: #888884;
+–faint: #444442;
+–accent: #d4f06e;
+–accent-dim: rgba(212,240,110,0.12);
+–red: #f06e6e;
+–red-dim: rgba(240,110,110,0.1);
+}
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘DM Sans’, sans-serif;
+font-size: 15px;
+line-height: 1.5;
+min-height: 100vh;
+padding-bottom: 4rem;
+}
+
+header {
+padding: 1.75rem 1.25rem 1rem;
+border-bottom: 1px solid var(–border);
+margin-bottom: 1.25rem;
+}
+
+header h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+header p { font-size: 13px; color: var(–muted); margin-top: 2px; }
+
+.tab-groups {
+padding: 0 1.25rem 1.25rem;
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
+
+.group-label {
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+color: var(–faint);
+margin-bottom: 6px;
+}
+
+.tab-row { display: flex; gap: 6px; }
+
+.day-tab {
+flex: 1;
+padding: 10px 6px;
+border-radius: 10px;
+border: 1px solid var(–border2);
+background: transparent;
+font-family: ‘DM Sans’, sans-serif;
+cursor: pointer;
+transition: all 0.15s;
+text-align: center;
+line-height: 1.3;
+}
+
+.tab-main {
+display: block;
+font-size: 13px;
+font-weight: 600;
+color: var(–muted);
+}
+
+.tab-sub {
+display: block;
+font-size: 10px;
+font-weight: 400;
+color: var(–faint);
+margin-top: 2px;
+}
+
+.day-tab.active { background: var(–accent); border-color: var(–accent); }
+.day-tab.active .tab-main,
+.day-tab.active .tab-sub { color: #111; }
+.day-tab.rest-day { opacity: 0.4; }
+
+.session { display: none; padding: 0 1.25rem; }
+.session.visible { display: block; }
+
+.phase-header {
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: var(–muted);
+margin: 1.5rem 0 0.6rem;
+}
+.phase-header:first-of-type { margin-top: 0; }
+
+.warmup-badge {
+display: inline-block;
+background: var(–accent-dim);
+color: var(–accent);
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+padding: 2px 7px;
+border-radius: 4px;
+margin-left: 8px;
+vertical-align: middle;
+}
+
+.table-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+overflow: hidden;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+font-size: 14px;
+table-layout: fixed;
+}
+
+thead tr { border-bottom: 1px solid var(–border); }
+
+th {
+padding: 8px 10px;
+text-align: left;
+font-size: 10px;
+font-weight: 600;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+color: var(–faint);
+}
+
+td {
+padding: 11px 10px;
+border-bottom: 1px solid var(–border);
+vertical-align: top;
+}
+
+tr:last-child td { border-bottom: none; }
+
+.col-ss  { width: 36px; color: var(–muted); font-size: 13px; font-weight: 500; }
+.col-ord { width: 34px; font-family: ‘DM Mono’, monospace; font-size: 12px; color: var(–accent); }
+.col-ex  { font-weight: 500; color: var(–text); word-break: break-word; }
+.col-ex .note { font-size: 12px; font-weight: 400; color: var(–muted); margin-top: 2px; }
+.col-rp  { width: 90px; font-size: 12px; color: var(–muted); }
+
+.rest-box {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+padding: 2rem 1.25rem;
+text-align: center;
+color: var(–muted);
+font-size: 14px;
+line-height: 2;
+}
+
+.flag {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+background: var(–red-dim);
+border: 1px solid rgba(240,110,110,0.2);
+border-radius: 10px;
+padding: 10px 12px;
+margin-top: 1.25rem;
+font-size: 13px;
+color: var(–red);
+line-height: 1.5;
+}
+
+.accordion {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+overflow: hidden;
+}
+
+.accordion-trigger {
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 14px;
+background: transparent;
+border: none;
+cursor: pointer;
+font-family: ‘DM Sans’, sans-serif;
+text-align: left;
+}
+
+.accordion-trigger-left {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.accordion-title {
+font-size: 11px;
+font-weight: 600;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: var(–muted);
+}
+
+.accordion-chevron {
+font-size: 11px;
+color: var(–faint);
+transition: transform 0.2s ease;
+display: inline-block;
+}
+
+.accordion.open .accordion-chevron { transform: rotate(180deg); }
+
+.accordion-body {
+display: none;
+border-top: 1px solid var(–border);
+}
+
+.accordion.open .accordion-body { display: block; }
+</style>
+
+</head>
+<body>
+
+<header>
+  <h1>Ryan's Weekly Program</h1>
+  <p>4 training days + active recovery</p>
+</header>
+
+<div class="tab-groups">
+  <div>
+    <div class="group-label">Lower Body</div>
+    <div class="tab-row" id="lower-tabs"></div>
+  </div>
+  <div>
+    <div class="group-label">Upper Body</div>
+    <div class="tab-row" id="upper-tabs"></div>
+  </div>
+  <div>
+    <div class="group-label">Recovery</div>
+    <div class="tab-row" id="rest-tabs"></div>
+  </div>
+</div>
+
+<div id="content"></div>
+
+<script>
+const warmup = [
+  { ss:"1", ord:"1A", ex:"Thoracic Rotations", rp:"10 / side" },
+  { ss:"",  ord:"1B", ex:"World's Greatest Stretch", rp:"5 / side" },
+  { ss:"2", ord:"2A", ex:"Side Lunge Stretch", rp:"8 / side" },
+  { ss:"",  ord:"2B", ex:"Bird-Dogs", rp:"10 / side" },
+  { ss:"3", ord:"3A", ex:"Wall Slides", rp:"12 reps" },
+  { ss:"",  ord:"3B", ex:"Wall Hip Flexor Stretch", rp:"30 sec / side" },
+];
+
+const days = [
+  {
+    id:"lower-a", group:"lower", label:"Lower A", sub:"Monday",
+    phases:[
+      { name:"Phase 1 — Heavy Strength", rows:[
+        { ss:"1", ord:"1A", ex:"Smith Machine Lunges", rp:"6, 4, 2, 1" },
+        { ss:"",  ord:"1B", ex:"Lateral Band Walks", rp:"15 steps / side" },
+        { ss:"2", ord:"2A", ex:"Single Leg Extensions", rp:"Heavy" },
+        { ss:"",  ord:"2B", ex:"Leg Raises", rp:"15 reps" },
+      ]},
+      { name:"Phase 2 — Conditioning (30 min)", rows:[
+        { ss:"Circuit", ord:"1", ex:"Sled Pushes", rp:"40 yards" },
+        { ss:"",        ord:"2", ex:"Suitcase Carries", rp:"Heavy / 30 yds / side" },
+        { ss:"",        ord:"3", ex:"Scotty Shuffler Rotation Drill", rp:"—" },
+      ]},
+      { name:"Phase 3 — Finisher", rows:[
+        { ss:"—", ord:"—", ex:"Bicycle Crunches", rp:"3 × 20 reps", note:"Slow and controlled" },
+      ]},
+    ]
+  },
+  {
+    id:"lower-b", group:"lower", label:"Lower B", sub:"Thursday",
+    phases:[
+      { name:"Phase 1 — Heavy Strength", rows:[
+        { ss:"1", ord:"1A", ex:"Offset Step-Ups", rp:"6, 4, 2, 1 / side" },
+        { ss:"",  ord:"1B", ex:"Bicycle Crunches", rp:"20 reps" },
+        { ss:"2", ord:"2A", ex:"Single Leg Leg Curls", rp:"3 × 10–12 reps" },
+        { ss:"",  ord:"2B", ex:"Lateral Band Walks", rp:"15 steps" },
+      ]},
+      { name:"Phase 2 — Conditioning (30 min)", rows:[
+        { ss:"Hybrid", ord:"—", ex:"Sled Pushes", rp:"5 min", note:"Steady vigorous effort" },
+        { ss:"",       ord:"—", ex:"Bike or Rower", rp:"5 min", note:"Alternate with sled" },
+      ]},
+      { name:"Phase 3 — Finisher", rows:[
+        { ss:"—", ord:"—", ex:"Leg Raises", rp:"3 × 15 reps", note:"Core stability" },
+      ]},
+    ]
+  },
+  {
+    id:"upper-a", group:"upper", label:"Upper A", sub:"Tuesday",
+    phases:[
+      { name:"Phase 1 — Heavy Strength", rows:[
+        { ss:"1", ord:"1A", ex:"Incline DB Press", rp:"Heavy" },
+        { ss:"",  ord:"1B", ex:"Overhead Tricep Extension", rp:"12 reps" },
+        { ss:"2", ord:"2A", ex:"Chest Supported Row", rp:"Heavy" },
+        { ss:"",  ord:"2B", ex:"Pallof Press", rp:"12 reps" },
+      ]},
+      { name:"Phase 2 — Conditioning (30 min)", rows:[
+        { ss:"Intervals", ord:"—", ex:"Assault Bike or Rower", rp:"1 min on / 1 min off", note:"Vigorous effort" },
+      ]},
+      { name:"Phase 3 — Finisher", rows:[
+        { ss:"—", ord:"—", ex:"Lateral Band Walks", rp:"3 × 15 steps", note:"Glute focus" },
+      ]},
+    ]
+  },
+  {
+    id:"upper-b", group:"upper", label:"Upper B", sub:"Friday",
+    flag:"Seated DB Overhead Press may load the lumbar under fatigue. Consider swapping to a machine press or incline variation.",
+    phases:[
+      { name:"Phase 1 — Heavy Strength", rows:[
+        { ss:"1", ord:"1A", ex:"Wide Grip Pulldowns", rp:"Heavy" },
+        { ss:"",  ord:"1B", ex:"Overhead Tricep Extension", rp:"12 reps" },
+        { ss:"2", ord:"2A", ex:"Seated DB Overhead Press ⚠", rp:"Heavy" },
+        { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"8–10 reps" },
+      ]},
+      { name:"Phase 2 — Conditioning (30 min)", rows:[
+        { ss:"Superset", ord:"1", ex:"Assault Bike", rp:"2 min / Vigorous" },
+        { ss:"",         ord:"2", ex:"Farmer's Carry", rp:"Heavy / 40 yds" },
+        { ss:"",         ord:"—", ex:"Repeat for 30 min", rp:"—" },
+      ]},
+      { name:"Phase 3 — Finisher", rows:[
+        { ss:"—", ord:"—", ex:"Face Pulls", rp:"3 × 15 reps", note:"Rear delts / posture" },
+      ]},
+    ]
+  },
+  { id:"wed", group:"rest", label:"Wed", sub:"Recovery", rest:true,
+    note:"Full system recovery\nActive Recovery Protocol\nMagnesium Glycinate" },
+  { id:"sat", group:"rest", label:"Sat", sub:"Functional", rest:true,
+    note:"Outdoor Mobility Protocol\nHiking or nature walk\nActive Recovery Drills" },
+  { id:"sun", group:"rest", label:"Sun", sub:"Rest", rest:true,
+    note:"Full system reset\nLight family walk\nFull body stretch" },
+];
+
+function makeTable(rows) {
+  return `<div class="table-card"><table>
+    <thead><tr>
+      <th class="col-ss">SS</th>
+      <th class="col-ord">Ord</th>
+      <th>Exercise</th>
+      <th class="col-rp">Reps</th>
+    </tr></thead>
+    <tbody>${rows.map(r=>`<tr>
+      <td class="col-ss">${r.ss}</td>
+      <td class="col-ord">${r.ord}</td>
+      <td class="col-ex">${r.ex}${r.note?`<div class="note">${r.note}</div>`:''}</td>
+      <td class="col-rp">${r.rp}</td>
+    </tr>`).join('')}</tbody>
+  </table></div>`;
+}
+
+let active = 'lower-a';
+
+function render() {
+  ['lower','upper','rest'].forEach(g => {
+    document.getElementById(g+'-tabs').innerHTML = days
+      .filter(d => d.group === g)
+      .map(d => `<button class="day-tab ${d.rest?'rest-day':''} ${d.id===active?'active':''}" onclick="setDay('${d.id}')">
+        <span class="tab-main">${d.label}</span>
+        <span class="tab-sub">${d.sub}</span>
+      </button>`).join('');
+  });
+
+  document.getElementById('content').innerHTML = days.map(d => {
+    if (d.rest) return `<div class="session ${d.id===active?'visible':''}" id="s-${d.id}">
+      <div class="rest-box">${d.note.split('\n').join('<br>')}</div>
+    </div>`;
+
+    return `<div class="session ${d.id===active?'visible':''}" id="s-${d.id}">
+      <div class="accordion" id="warmup-${d.id}">
+        <button class="accordion-trigger" onclick="toggleAccordion('warmup-${d.id}')">
+          <div class="accordion-trigger-left">
+            <span class="accordion-title">Pre-Flight Warm-Up</span>
+            <span class="warmup-badge">2–3 sets</span>
+          </div>
+          <span class="accordion-chevron">▼</span>
+        </button>
+        <div class="accordion-body">${makeTable(warmup)}</div>
+      </div>
+      ${d.phases.map(p=>`<div class="phase-header">${p.name}</div>${makeTable(p.rows)}`).join('')}
+      ${d.flag?`<div class="flag"><span>⚠</span><span>${d.flag}</span></div>`:''}
+    </div>`;
+  }).join('');
+}
+
+function toggleAccordion(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function setDay(id) { active = id; render(); }
+
+render();
+</script>
+
+</body>
+</html>
