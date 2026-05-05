@@ -239,13 +239,11 @@ const days = [
         { ss:"2", ord:"2A", ex:"Single Leg Extensions", rp:"Heavy" },
         { ss:"",  ord:"2B", ex:"Leg Raises", rp:"15 reps" },
       ]},
-      { name:"Phase 2 — Conditioning (30 min)", rows:[
-        { ss:"Circuit", ord:"1", ex:"Sled Pushes", rp:"40 yards" },
-        { ss:"",        ord:"2", ex:"Suitcase Carries", rp:"Heavy / 30 yds / side" },
-        { ss:"",        ord:"3", ex:"Scotty Shuffler Rotation Drill", rp:"—" },
-      ]},
-      { name:"Phase 3 — Finisher", rows:[
-        { ss:"—", ord:"—", ex:"Bicycle Crunches", rp:"3 × 20 reps", note:"Slow and controlled" },
+      { name:"Phase 2 — Conditioning + Finisher", rows:[
+        { ss:"1", ord:"1A", ex:"Sled Pushes", rp:"40 yards" },
+        { ss:"",  ord:"1B", ex:"Suitcase Carries", rp:"Heavy / 30 yds / side" },
+        { ss:"2", ord:"2A", ex:"Scotty Shuffler Rotation Drill", rp:"—" },
+        { ss:"",  ord:"2B", ex:"Bicycle Crunches", rp:"20 reps", note:"Slow and controlled" },
       ]},
     ]
   },
@@ -259,18 +257,17 @@ const days = [
         { ss:"2", ord:"2A", ex:"Single Leg Leg Curls", rp:"3 × 10–12 reps" },
         { ss:"",  ord:"2B", ex:"Lateral Band Walks", rp:"15 steps" },
       ]},
-      { name:"Phase 2 — Conditioning (30 min)", rows:[
-        { ss:"Hybrid", ord:"—", ex:"Sled Pushes", rp:"5 min", note:"Steady vigorous effort" },
-        { ss:"",       ord:"—", ex:"Bike or Rower", rp:"5 min", note:"Alternate with sled" },
-      ]},
-      { name:"Phase 3 — Finisher", rows:[
-        { ss:"—", ord:"—", ex:"Leg Raises", rp:"3 × 15 reps", note:"Core stability" },
+      { name:"Phase 2 — Conditioning + Finisher", rows:[
+        { ss:"1", ord:"1A", ex:"Sled Pushes", rp:"5 min", note:"Steady vigorous effort" },
+        { ss:"",  ord:"1B", ex:"Leg Raises", rp:"15 reps" },
+        { ss:"2", ord:"2A", ex:"Bike or Rower", rp:"5 min", note:"Alternate with sled" },
+        { ss:"",  ord:"2B", ex:"Dead Bug", rp:"10 / side", note:"Deep core, no rotation" },
       ]},
     ]
   },
   {
     id:"upper-a", group:"upper", label:"Upper A", sub:"Tuesday",
-    color:"#db2777", light:"#fdf2f8",
+    color:"#0891b2", light:"#ecfeff",
     phases:[
       { name:"Phase 1 — Heavy Strength", rows:[
         { ss:"1", ord:"1A", ex:"Incline DB Press", rp:"Heavy" },
@@ -278,32 +275,27 @@ const days = [
         { ss:"2", ord:"2A", ex:"Chest Supported Row", rp:"Heavy" },
         { ss:"",  ord:"2B", ex:"Pallof Press", rp:"12 reps" },
       ]},
-      { name:"Phase 2 — Conditioning (30 min)", rows:[
-        { ss:"Intervals", ord:"—", ex:"Assault Bike or Rower", rp:"1 min on / 1 min off", note:"Vigorous effort" },
-      ]},
-      { name:"Phase 3 — Finisher", rows:[
-        { ss:"—", ord:"—", ex:"Lateral Band Walks", rp:"3 × 15 steps", note:"Glute focus" },
+      { name:"Phase 2 — Conditioning + Finisher", rows:[
+        { ss:"1", ord:"1A", ex:"Assault Bike or Rower", rp:"1 min on / 1 min off", note:"Vigorous effort" },
+        { ss:"",  ord:"1B", ex:"Lateral Band Walks", rp:"15 steps / side", note:"Glute focus" },
       ]},
     ]
   },
   {
     id:"upper-b", group:"upper", label:"Upper B", sub:"Friday",
-    color:"#ea580c", light:"#fff7ed",
+    color:"#d97706", light:"#fffbeb",
     flag:"Seated DB Overhead Press may load the lumbar under fatigue. Consider swapping to a machine press or incline variation.",
     phases:[
       { name:"Phase 1 — Heavy Strength", rows:[
         { ss:"1", ord:"1A", ex:"Wide Grip Pulldowns", rp:"Heavy" },
         { ss:"",  ord:"1B", ex:"Overhead Tricep Extension", rp:"12 reps" },
-        { ss:"2", ord:"2A", ex:"Seated DB Overhead Press ⚠", rp:"Heavy" },
+        { ss:"2", ord:"2A", ex:"Seated DB Overhead Press", rp:"Heavy", warn:true },
         { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"8–10 reps" },
       ]},
-      { name:"Phase 2 — Conditioning (30 min)", rows:[
-        { ss:"Superset", ord:"1", ex:"Assault Bike", rp:"2 min / Vigorous" },
-        { ss:"",         ord:"2", ex:"Farmer's Carry", rp:"Heavy / 40 yds" },
-        { ss:"",         ord:"—", ex:"Repeat for 30 min", rp:"—" },
-      ]},
-      { name:"Phase 3 — Finisher", rows:[
-        { ss:"—", ord:"—", ex:"Face Pulls", rp:"3 × 15 reps", note:"Rear delts / posture" },
+      { name:"Phase 2 — Conditioning + Finisher", rows:[
+        { ss:"1", ord:"1A", ex:"Assault Bike", rp:"2 min / Vigorous" },
+        { ss:"",  ord:"1B", ex:"Farmer's Carry", rp:"Heavy / 40 yds" },
+        { ss:"",  ord:"1C", ex:"Face Pulls", rp:"15 reps", note:"Rear delts / posture" },
       ]},
     ]
   },
@@ -320,14 +312,13 @@ const days = [
         { ss:"3", ord:"3A", ex:"Smith Machine Lunges", rp:"3 × 15–20 reps", note:"Light load" },
         { ss:"",  ord:"3B", ex:"Lateral Band Walks", rp:"20 steps / side" },
       ]},
-      { name:"Phase 2 — Conditioning (20 min)", rows:[
-        { ss:"Intervals", ord:"—", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity — keep it conversational" },
-      ]},
-      { name:"Phase 3 — Finisher", rows:[
-        { ss:"1", ord:"1A", ex:"Pallof Press", rp:"3 × 12 reps / side" },
-        { ss:"",  ord:"1B", ex:"Leg Raises", rp:"3 × 15 reps" },
-        { ss:"2", ord:"2A", ex:"Bird-Dogs", rp:"3 × 10 / side", note:"Spinal reset" },
-        { ss:"",  ord:"2B", ex:"Dead Bug", rp:"3 × 10 / side", note:"Deep core, no rotation" },
+      { name:"Phase 2 — Conditioning + Finisher", rows:[
+        { ss:"1", ord:"1A", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity" },
+        { ss:"",  ord:"1B", ex:"Pallof Press", rp:"12 reps / side" },
+        { ss:"2", ord:"2A", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity" },
+        { ss:"",  ord:"2B", ex:"Bird-Dogs", rp:"10 / side", note:"Spinal reset" },
+        { ss:"3", ord:"3A", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity" },
+        { ss:"",  ord:"3B", ex:"Dead Bug", rp:"10 / side", note:"Deep core, no rotation" },
       ]},
     ]
   },
@@ -349,7 +340,7 @@ function makeTable(rows, color) {
     <tbody>${rows.map(r=>`<tr>
       <td class="col-ss">${r.ss}</td>
       <td class="col-ord" style="color:${color}">${r.ord}</td>
-      <td class="col-ex">${r.ex}${r.note?`<div class="note">${r.note}</div>`:''}</td>
+      <td class="col-ex">${r.ex}${r.warn?` <span style="color:#dc2626;font-size:13px;">⚠</span>`:''}${r.note?`<div class="note">${r.note}</div>`:''}</td>
       <td class="col-rp">${r.rp}</td>
     </tr>`).join('')}</tbody>
   </table></div>`;
