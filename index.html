@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ryan's Weekly Program</title>
 <style>
-  @font-face { font-family: "DM Sans"; src: url("DMSans-VariableFont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: swap; }
-  @font-face { font-family: "DM Sans"; src: url("DMSans-Italic-VariableFont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: italic; font-display: swap; }
+  @font-face { font-family: "DM Sans"; src: url("DMSans-VariableFont_opsz,wght.ttf") format("truetype"), url("dmsans-variablefont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: swap; }
+  @font-face { font-family: "DM Sans"; src: url("DMSans-Italic-VariableFont_opsz,wght.ttf") format("truetype"), url("dmsans-italic-variablefont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: italic; font-display: swap; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -38,6 +38,8 @@
     line-height: 1.5;
     min-height: 100vh;
     padding-bottom: 4rem;
+    max-width: 680px;
+    margin: 0 auto;
   }
 
   header {
@@ -120,7 +122,7 @@
     overflow: hidden;
   }
 
-  table { width: 100%; border-collapse: collapse; font-size: 14px; table-layout: fixed; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
   thead tr { border-bottom: 1px solid var(--border); background: var(--surface2); }
   th {
     padding: 8px 10px;
@@ -134,11 +136,11 @@
   td { padding: 11px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
   tr:last-child td { border-bottom: none; }
 
-  .col-ss  { width: 36px; color: var(--muted); font-size: 13px; font-weight: 500; }
-  .col-ord { width: 34px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--day-color); }
+  .col-ss  { width: 44px; color: var(--muted); font-size: 13px; font-weight: 500; }
+  .col-ord { width: 48px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
   .col-ex  { font-weight: 500; color: var(--text); word-break: break-word; }
   .col-ex .note { font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 2px; }
-  .col-rp  { width: 90px; font-size: 12px; color: var(--muted); }
+  .col-rp  { width: 110px; font-size: 12px; color: var(--muted); text-align: right; }
 
   .flag {
     display: flex;
