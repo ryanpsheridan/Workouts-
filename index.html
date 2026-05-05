@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -268,7 +268,7 @@ const days = [
   },
   {
     id:"upper-a", group:"upper", label:"Upper A", sub:"Tuesday",
-    color:"#0d9488", light:"#f0fdfa",
+    color:"#db2777", light:"#fdf2f8",
     phases:[
       { name:"Phase 1 — Heavy Strength", rows:[
         { ss:"1", ord:"1A", ex:"Incline DB Press", rp:"Heavy" },
@@ -336,7 +336,7 @@ function applyColor(color, light) {
   document.documentElement.style.setProperty('--day-light', light);
 }
 
-function makeTable(rows) {
+function makeTable(rows, color) {
   return `<div class="table-card"><table>
     <thead><tr>
       <th class="col-ss">SS</th>
@@ -346,7 +346,7 @@ function makeTable(rows) {
     </tr></thead>
     <tbody>${rows.map(r=>`<tr>
       <td class="col-ss">${r.ss}</td>
-      <td class="col-ord">${r.ord}</td>
+      <td class="col-ord" style="color:${color}">${r.ord}</td>
       <td class="col-ex">${r.ex}${r.note?`<div class="note">${r.note}</div>`:''}</td>
       <td class="col-rp">${r.rp}</td>
     </tr>`).join('')}</tbody>
@@ -368,25 +368,28 @@ function render() {
         const isActive = d.id === active;
         const style = isActive ? `style="background:${d.color};border-color:${d.color};"` : '';
         return `<button class="day-tab ${isActive?'active':''}" ${style} onclick="setDay('${d.id}')">
-          <span class="tab-main">${d.label}</span>
-          <span class="tab-sub">${d.sub}</span>
+          <span class="tab-main" style="${isActive?'color:#fff':'color:var(--muted)'}">${d.label}</span>
+          <span class="tab-sub" style="${isActive?'color:rgba(255,255,255,0.8)':'color:var(--faint)'}">${d.sub}</span>
         </button>`;
       }).join('');
   });
 
   document.getElementById('content').innerHTML = days.map(d => {
-    return `<div class="session ${d.id===active?'visible':''}" id="s-${d.id}">
+    const isVisible = d.id === active;
+    const c = d.color;
+    const l = d.light;
+    return `<div class="session ${isVisible?'visible':''}" id="s-${d.id}">
       <div class="accordion" id="warmup-${d.id}">
         <button class="accordion-trigger" onclick="toggleAccordion('warmup-${d.id}')">
           <div class="accordion-trigger-left">
             <span class="accordion-title">Pre-Flight Warm-Up</span>
-            <span class="warmup-badge">2–3 sets</span>
+            <span class="warmup-badge" style="background:${l};color:${c}">2–3 sets</span>
           </div>
           <span class="accordion-chevron">▼</span>
         </button>
-        <div class="accordion-body">${makeTable(warmup)}</div>
+        <div class="accordion-body">${makeTable(warmup, c)}</div>
       </div>
-      ${d.phases.map(p=>`<div class="phase-header">${p.name}</div>${makeTable(p.rows)}`).join('')}
+      ${d.phases.map(p=>`<div class="phase-header">${p.name}</div>${makeTable(p.rows, c)}`).join('')}
       ${d.flag?`<div class="flag"><span>⚠</span><span>${d.flag}</span></div>`:''}
     </div>`;
   }).join('');
