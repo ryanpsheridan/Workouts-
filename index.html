@@ -5,242 +5,189 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ryan's Weekly Program</title>
-
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg: #0e0e0f;
-    --surface: #181819;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --text: #f0ede8;
-    --muted: #888884;
-    --faint: #444442;
-    --accent: #d4f06e;
-    --accent-dim: rgba(212,240,110,0.12);
-    --red: #f06e6e;
-    --red-dim: rgba(240,110,110,0.1);
-    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono", monospace;
-  }
+:root {
+–bg: #f4f6f9;
+–surface: #ffffff;
+–surface2: #eef1f6;
+–border: #dde2ea;
+–border2: #c8d0dc;
+–text: #111827;
+–muted: #6b7280;
+–faint: #9ca3af;
+–red: #dc2626;
+–red-dim: #fef2f2;
+–red-border: #fecaca;
+–font-sans: -apple-system, BlinkMacSystemFont, “Segoe UI”, Helvetica, Arial, sans-serif;
+–font-mono: ui-monospace, “SF Mono”, “Cascadia Mono”, “Segoe UI Mono”, monospace;
+/* per-day colors — updated by JS */
+–day-color: #2563eb;
+–day-light: #eff6ff;
+}
 
-  html, body {
-    background: #0e0e0f !important;
-    background-color: #0e0e0f !important;
-  }
+html, body { background: #f4f6f9 !important; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-sans);
-    font-size: 15px;
-    line-height: 1.5;
-    min-height: 100vh;
-    padding-bottom: 4rem;
-  }
+body {
+background: var(–bg);
+color: var(–text);
+font-family: var(–font-sans);
+font-size: 15px;
+line-height: 1.5;
+min-height: 100vh;
+padding-bottom: 4rem;
+}
 
-  header {
-    padding: 1.75rem 1.25rem 1rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1.25rem;
-  }
+header {
+padding: 1.75rem 1.25rem 1rem;
+border-bottom: 1px solid var(–border);
+margin-bottom: 1.25rem;
+background: var(–surface);
+}
+header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(–text); }
+header p { font-size: 13px; color: var(–muted); margin-top: 2px; }
 
-  header h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
-  header p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.tab-groups {
+padding: 0 1.25rem 1.25rem;
+display: flex;
+flex-direction: column;
+gap: 14px;
+}
 
-  .tab-groups {
-    padding: 0 1.25rem 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
+.group-label {
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.09em;
+text-transform: uppercase;
+color: var(–faint);
+margin-bottom: 6px;
+}
 
-  .group-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--faint);
-    margin-bottom: 6px;
-  }
+.tab-row { display: flex; gap: 6px; }
 
-  .tab-row { display: flex; gap: 6px; }
+.day-tab {
+flex: 1;
+padding: 10px 6px;
+border-radius: 10px;
+border: 1px solid var(–border2);
+background: var(–surface);
+font-family: var(–font-sans);
+cursor: pointer;
+transition: all 0.15s;
+text-align: center;
+line-height: 1.3;
+}
+.tab-main { display: block; font-size: 13px; font-weight: 600; color: var(–muted); }
+.tab-sub { display: block; font-size: 10px; font-weight: 400; color: var(–faint); margin-top: 2px; }
 
-  .day-tab {
-    flex: 1;
-    padding: 10px 6px;
-    border-radius: 10px;
-    border: 1px solid var(--border2);
-    background: transparent;
-    font-family: var(--font-sans);
-    cursor: pointer;
-    transition: all 0.15s;
-    text-align: center;
-    line-height: 1.3;
-  }
+/* Each tab gets its active color via inline style set by JS */
+.day-tab.active .tab-main,
+.day-tab.active .tab-sub { color: #fff; }
 
-  .tab-main {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--muted);
-  }
+.session { display: none; padding: 0 1.25rem; }
+.session.visible { display: block; }
 
-  .tab-sub {
-    display: block;
-    font-size: 10px;
-    font-weight: 400;
-    color: var(--faint);
-    margin-top: 2px;
-  }
+.phase-header {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: var(–muted);
+margin: 1.5rem 0 0.6rem;
+}
+.phase-header:first-of-type { margin-top: 0; }
 
-  .day-tab.active { background: var(--accent); border-color: var(--accent); }
-  .day-tab.active .tab-main,
-  .day-tab.active .tab-sub { color: #111; }
-  .day-tab.rest-day { opacity: 0.4; }
+.warmup-badge {
+display: inline-block;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+padding: 2px 7px;
+border-radius: 4px;
+margin-left: 8px;
+vertical-align: middle;
+background: var(–day-light);
+color: var(–day-color);
+}
 
-  .session { display: none; padding: 0 1.25rem; }
-  .session.visible { display: block; }
+.table-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+overflow: hidden;
+}
 
-  .phase-header {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 1.5rem 0 0.6rem;
-  }
-  .phase-header:first-of-type { margin-top: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; table-layout: fixed; }
+thead tr { border-bottom: 1px solid var(–border); background: var(–surface2); }
+th {
+padding: 8px 10px;
+text-align: left;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+color: var(–faint);
+}
+td { padding: 11px 10px; border-bottom: 1px solid var(–border); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
 
-  .warmup-badge {
-    display: inline-block;
-    background: var(--accent-dim);
-    color: var(--accent);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 2px 7px;
-    border-radius: 4px;
-    margin-left: 8px;
-    vertical-align: middle;
-  }
+.col-ss  { width: 36px; color: var(–muted); font-size: 13px; font-weight: 500; }
+.col-ord { width: 34px; font-family: var(–font-mono); font-size: 12px; font-weight: 600; color: var(–day-color); }
+.col-ex  { font-weight: 500; color: var(–text); word-break: break-word; }
+.col-ex .note { font-size: 12px; font-weight: 400; color: var(–muted); margin-top: 2px; }
+.col-rp  { width: 90px; font-size: 12px; color: var(–muted); }
 
-  .table-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
+.flag {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+background: var(–red-dim);
+border: 1px solid var(–red-border);
+border-radius: 10px;
+padding: 10px 12px;
+margin-top: 1.25rem;
+font-size: 13px;
+color: var(–red);
+line-height: 1.5;
+}
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    table-layout: fixed;
-  }
-
-  thead tr { border-bottom: 1px solid var(--border); }
-
-  th {
-    padding: 8px 10px;
-    text-align: left;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--faint);
-  }
-
-  td {
-    padding: 11px 10px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-  }
-
-  tr:last-child td { border-bottom: none; }
-
-  .col-ss  { width: 36px; color: var(--muted); font-size: 13px; font-weight: 500; }
-  .col-ord { width: 34px; font-family: var(--font-mono); font-size: 12px; color: var(--accent); }
-  .col-ex  { font-weight: 500; color: var(--text); word-break: break-word; }
-  .col-ex .note { font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 2px; }
-  .col-rp  { width: 90px; font-size: 12px; color: var(--muted); }
-
-  .rest-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 2rem 1.25rem;
-    text-align: center;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 2;
-  }
-
-  .flag {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: var(--red-dim);
-    border: 1px solid rgba(240,110,110,0.2);
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin-top: 1.25rem;
-    font-size: 13px;
-    color: var(--red);
-    line-height: 1.5;
-  }
-
-  .accordion {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .accordion-trigger {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 14px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-family: var(--font-sans);
-    text-align: left;
-  }
-
-  .accordion-trigger-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .accordion-title {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .accordion-chevron {
-    font-size: 11px;
-    color: var(--faint);
-    transition: transform 0.2s ease;
-    display: inline-block;
-  }
-
-  .accordion.open .accordion-chevron { transform: rotate(180deg); }
-
-  .accordion-body {
-    display: none;
-    border-top: 1px solid var(--border);
-  }
-
-  .accordion.open .accordion-body { display: block; }
+.accordion {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 12px;
+overflow: hidden;
+}
+.accordion-trigger {
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 14px;
+background: transparent;
+border: none;
+cursor: pointer;
+font-family: var(–font-sans);
+text-align: left;
+}
+.accordion-trigger-left { display: flex; align-items: center; gap: 8px; }
+.accordion-title {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+color: var(–muted);
+}
+.accordion-chevron {
+font-size: 11px;
+color: var(–faint);
+transition: transform 0.2s ease;
+display: inline-block;
+}
+.accordion.open .accordion-chevron { transform: rotate(180deg); }
+.accordion-body { display: none; border-top: 1px solid var(–border); }
+.accordion.open .accordion-body { display: block; }
 </style>
 
 </head>
@@ -248,7 +195,7 @@
 
 <header>
   <h1>Ryan's Weekly Program</h1>
-  <p>4 training days + active recovery</p>
+  <p>5 training days + active recovery</p>
 </header>
 
 <div class="tab-groups">
@@ -261,8 +208,8 @@
     <div class="tab-row" id="upper-tabs"></div>
   </div>
   <div>
-    <div class="group-label">Recovery</div>
-    <div class="tab-row" id="rest-tabs"></div>
+    <div class="group-label">Post-Golf</div>
+    <div class="tab-row" id="golf-tabs"></div>
   </div>
 </div>
 
@@ -278,9 +225,11 @@ const warmup = [
   { ss:"",  ord:"3B", ex:"Wall Hip Flexor Stretch", rp:"30 sec / side" },
 ];
 
+// color: active tab bg, light: badge bg
 const days = [
   {
     id:"lower-a", group:"lower", label:"Lower A", sub:"Monday",
+    color:"#2563eb", light:"#eff6ff",
     phases:[
       { name:"Phase 1 — Heavy Strength", rows:[
         { ss:"1", ord:"1A", ex:"Smith Machine Lunges", rp:"6, 4, 2, 1" },
@@ -300,6 +249,7 @@ const days = [
   },
   {
     id:"lower-b", group:"lower", label:"Lower B", sub:"Thursday",
+    color:"#7c3aed", light:"#f5f3ff",
     phases:[
       { name:"Phase 1 — Heavy Strength", rows:[
         { ss:"1", ord:"1A", ex:"Offset Step-Ups", rp:"6, 4, 2, 1 / side" },
@@ -318,6 +268,7 @@ const days = [
   },
   {
     id:"upper-a", group:"upper", label:"Upper A", sub:"Tuesday",
+    color:"#0d9488", light:"#f0fdfa",
     phases:[
       { name:"Phase 1 — Heavy Strength", rows:[
         { ss:"1", ord:"1A", ex:"Incline DB Press", rp:"Heavy" },
@@ -335,6 +286,7 @@ const days = [
   },
   {
     id:"upper-b", group:"upper", label:"Upper B", sub:"Friday",
+    color:"#ea580c", light:"#fff7ed",
     flag:"Seated DB Overhead Press may load the lumbar under fatigue. Consider swapping to a machine press or incline variation.",
     phases:[
       { name:"Phase 1 — Heavy Strength", rows:[
@@ -353,13 +305,36 @@ const days = [
       ]},
     ]
   },
-  { id:"wed", group:"rest", label:"Wed", sub:"Recovery", rest:true,
-    note:"Full system recovery\nActive Recovery Protocol\nMagnesium Glycinate" },
-  { id:"sat", group:"rest", label:"Sat", sub:"Functional", rest:true,
-    note:"Outdoor Mobility Protocol\nHiking or nature walk\nActive Recovery Drills" },
-  { id:"sun", group:"rest", label:"Sun", sub:"Rest", rest:true,
-    note:"Full system reset\nLight family walk\nFull body stretch" },
+  {
+    id:"post-golf", group:"golf", label:"Post-Golf", sub:"Full Body",
+    color:"#16a34a", light:"#f0fdf4",
+    phases:[
+      { name:"Phase 1 — High Rep Full Body", rows:[
+        { ss:"1", ord:"1A", ex:"Push-Ups", rp:"3 × 20 reps" },
+        { ss:"",  ord:"1B", ex:"Pull-Ups", rp:"3 × max reps" },
+        { ss:"",  ord:"1C", ex:"Banded Shoulder Raises", rp:"3 × 15 reps" },
+        { ss:"2", ord:"2A", ex:"Incline DB Press", rp:"3 × 15 reps", note:"Moderate load" },
+        { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"3 × 15 reps" },
+        { ss:"3", ord:"3A", ex:"Smith Machine Lunges", rp:"3 × 15–20 reps", note:"Light load" },
+        { ss:"",  ord:"3B", ex:"Lateral Band Walks", rp:"20 steps / side" },
+      ]},
+      { name:"Phase 2 — Conditioning (20 min)", rows:[
+        { ss:"Intervals", ord:"—", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity — keep it conversational" },
+      ]},
+      { name:"Phase 3 — Finisher", rows:[
+        { ss:"1", ord:"1A", ex:"Pallof Press", rp:"3 × 12 reps / side" },
+        { ss:"",  ord:"1B", ex:"Leg Raises", rp:"3 × 15 reps" },
+        { ss:"2", ord:"2A", ex:"Bird-Dogs", rp:"3 × 10 / side", note:"Spinal reset" },
+        { ss:"",  ord:"2B", ex:"Dead Bug", rp:"3 × 10 / side", note:"Deep core, no rotation" },
+      ]},
+    ]
+  },
 ];
+
+function applyColor(color, light) {
+  document.documentElement.style.setProperty('--day-color', color);
+  document.documentElement.style.setProperty('--day-light', light);
+}
 
 function makeTable(rows) {
   return `<div class="table-card"><table>
@@ -381,20 +356,25 @@ function makeTable(rows) {
 let active = 'lower-a';
 
 function render() {
-  ['lower','upper','rest'].forEach(g => {
-    document.getElementById(g+'-tabs').innerHTML = days
+  const activeDay = days.find(d => d.id === active);
+  applyColor(activeDay.color, activeDay.light);
+
+  ['lower','upper','golf'].forEach(g => {
+    const el = document.getElementById(g+'-tabs');
+    if (!el) return;
+    el.innerHTML = days
       .filter(d => d.group === g)
-      .map(d => `<button class="day-tab ${d.rest?'rest-day':''} ${d.id===active?'active':''}" onclick="setDay('${d.id}')">
-        <span class="tab-main">${d.label}</span>
-        <span class="tab-sub">${d.sub}</span>
-      </button>`).join('');
+      .map(d => {
+        const isActive = d.id === active;
+        const style = isActive ? `style="background:${d.color};border-color:${d.color};"` : '';
+        return `<button class="day-tab ${isActive?'active':''}" ${style} onclick="setDay('${d.id}')">
+          <span class="tab-main">${d.label}</span>
+          <span class="tab-sub">${d.sub}</span>
+        </button>`;
+      }).join('');
   });
 
   document.getElementById('content').innerHTML = days.map(d => {
-    if (d.rest) return `<div class="session ${d.id===active?'visible':''}" id="s-${d.id}">
-      <div class="rest-box">${d.note.split('\n').join('<br>')}</div>
-    </div>`;
-
     return `<div class="session ${d.id===active?'visible':''}" id="s-${d.id}">
       <div class="accordion" id="warmup-${d.id}">
         <button class="accordion-trigger" onclick="toggleAccordion('warmup-${d.id}')">
