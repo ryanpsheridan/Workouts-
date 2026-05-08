@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,190 +9,189 @@
   @font-face { font-family: "DM Sans"; src: url("DMSans-Italic-VariableFont_opsz,wght.ttf") format("truetype"), url("dmsans-italic-variablefont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: italic; font-display: swap; }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-–bg: #f4f6f9;
-–surface: #ffffff;
-–surface2: #eef1f6;
-–border: #dde2ea;
-–border2: #c8d0dc;
-–text: #111827;
-–muted: #6b7280;
-–faint: #9ca3af;
-–red: #dc2626;
-–red-dim: #fef2f2;
-–red-border: #fecaca;
-–font-sans: “Inter”, -apple-system, BlinkMacSystemFont, “Segoe UI”, Helvetica, Arial, sans-serif;
-–font-mono: ui-monospace, “SF Mono”, “Cascadia Mono”, “Segoe UI Mono”, monospace;
-/* per-day colors — updated by JS */
-–day-color: #2563eb;
-–day-light: #eff6ff;
-}
+  :root {
+    --bg: #f4f6f9;
+    --surface: #ffffff;
+    --surface2: #eef1f6;
+    --border: #dde2ea;
+    --border2: #c8d0dc;
+    --text: #111827;
+    --muted: #6b7280;
+    --faint: #9ca3af;
+    --red: #dc2626;
+    --red-dim: #fef2f2;
+    --red-border: #fecaca;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono", monospace;
+    /* per-day colors — updated by JS */
+    --day-color: #2563eb;
+    --day-light: #eff6ff;
+  }
 
-html, body { background: #f4f6f9 !important; }
+  html, body { background: #f4f6f9 !important; }
 
-body {
-background: var(–bg);
-color: var(–text);
-font-family: var(–font-sans);
-font-size: 15px;
-line-height: 1.5;
-min-height: 100vh;
-padding-bottom: 4rem;
-max-width: 680px;
-margin: 0 auto;
-}
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
 
-header {
-padding: 1.75rem 1.25rem 1rem;
-border-bottom: 1px solid var(–border);
-margin-bottom: 1.25rem;
-background: var(–surface);
-}
-header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(–text); }
-header p { font-size: 13px; color: var(–muted); margin-top: 2px; }
+  header {
+    padding: 1.75rem 1.25rem 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+    background: var(--surface);
+  }
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+  header p { font-size: 13px; color: var(--muted); margin-top: 2px; }
 
-.tab-groups {
-padding: 0 1.25rem 1.25rem;
-display: flex;
-flex-direction: column;
-gap: 14px;
-}
+  .tab-groups {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
 
-.group-label {
-font-size: 10px;
-font-weight: 700;
-letter-spacing: 0.09em;
-text-transform: uppercase;
-color: var(–faint);
-margin-bottom: 6px;
-}
+  .group-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 6px;
+  }
 
-.tab-row { display: flex; gap: 6px; }
+  .tab-row { display: flex; gap: 6px; }
 
-.day-tab {
-flex: 1;
-padding: 10px 6px;
-border-radius: 10px;
-border: 1px solid var(–border2);
-background: var(–surface);
-font-family: var(–font-sans);
-cursor: pointer;
-transition: all 0.15s;
-text-align: center;
-line-height: 1.3;
-}
-.tab-main { display: block; font-size: 13px; font-weight: 600; color: var(–muted); }
-.tab-sub { display: block; font-size: 10px; font-weight: 400; color: var(–faint); margin-top: 2px; }
+  .day-tab {
+    flex: 1;
+    padding: 10px 6px;
+    border-radius: 10px;
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .tab-main { display: block; font-size: 13px; font-weight: 600; color: var(--muted); }
+  .tab-sub { display: block; font-size: 10px; font-weight: 400; color: var(--faint); margin-top: 2px; }
 
-/* Each tab gets its active color via inline style set by JS */
-.day-tab.active .tab-main,
-.day-tab.active .tab-sub { color: #fff; }
+  /* Each tab gets its active color via inline style set by JS */
+  .day-tab.active .tab-main,
+  .day-tab.active .tab-sub { color: #fff; }
 
-.session { display: none; padding: 0 1.25rem; }
-.session.visible { display: block; }
+  .session { display: none; padding: 0 1.25rem; }
+  .session.visible { display: block; }
 
-.phase-header {
-font-size: 11px;
-font-weight: 700;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: var(–muted);
-margin: 1.5rem 0 0.6rem;
-}
-.phase-header:first-of-type { margin-top: 0; }
+  .phase-header {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 1.5rem 0 0.6rem;
+  }
+  .phase-header:first-of-type { margin-top: 0; }
 
-.warmup-badge {
-display: inline-block;
-font-size: 10px;
-font-weight: 700;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-padding: 2px 7px;
-border-radius: 4px;
-margin-left: 8px;
-vertical-align: middle;
-background: var(–day-light);
-color: var(–day-color);
-}
+  .warmup-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+    background: var(--day-light);
+    color: var(--day-color);
+  }
 
-.table-card {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-}
+  .table-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
 
-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-thead tr { border-bottom: 1px solid var(–border); background: var(–surface2); }
-th {
-padding: 8px 10px;
-text-align: left;
-font-size: 10px;
-font-weight: 700;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-color: var(–faint);
-}
-td { padding: 11px 10px; border-bottom: 1px solid var(–border); vertical-align: top; }
-tr:last-child td { border-bottom: none; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead tr { border-bottom: 1px solid var(--border); background: var(--surface2); }
+  th {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  td { padding: 11px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
 
-.col-ss  { width: 44px; color: var(–muted); font-size: 13px; font-weight: 500; }
-.col-ord { width: 48px; font-family: var(–font-mono); font-size: 12px; font-weight: 600; }
-.col-ex  { font-weight: 500; color: var(–text); word-break: break-word; }
-.col-ex .note { font-size: 12px; font-weight: 400; color: var(–muted); margin-top: 2px; }
-.col-rp  { width: 110px; font-size: 12px; color: var(–muted); text-align: right; }
+  .col-ss  { width: 44px; color: var(--muted); font-size: 13px; font-weight: 500; }
+  .col-ord { width: 48px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
+  .col-ex  { font-weight: 500; color: var(--text); word-break: break-word; }
+  .col-ex .note { font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+  .col-rp  { width: 110px; font-size: 12px; color: var(--muted); text-align: right; }
 
-.flag {
-display: flex;
-align-items: flex-start;
-gap: 10px;
-background: var(–red-dim);
-border: 1px solid var(–red-border);
-border-radius: 10px;
-padding: 10px 12px;
-margin-top: 1.25rem;
-font-size: 13px;
-color: var(–red);
-line-height: 1.5;
-}
+  .flag {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--red-dim);
+    border: 1px solid var(--red-border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 1.25rem;
+    font-size: 13px;
+    color: var(--red);
+    line-height: 1.5;
+  }
 
-.accordion {
-background: var(–surface);
-border: 1px solid var(–border);
-border-radius: 12px;
-overflow: hidden;
-}
-.accordion-trigger {
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 12px 14px;
-background: transparent;
-border: none;
-cursor: pointer;
-font-family: var(–font-sans);
-text-align: left;
-}
-.accordion-trigger-left { display: flex; align-items: center; gap: 8px; }
-.accordion-title {
-font-size: 11px;
-font-weight: 700;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: var(–muted);
-}
-.accordion-chevron {
-font-size: 11px;
-color: var(–faint);
-transition: transform 0.2s ease;
-display: inline-block;
-}
-.accordion.open .accordion-chevron { transform: rotate(180deg); }
-.accordion-body { display: none; border-top: 1px solid var(–border); }
-.accordion.open .accordion-body { display: block; }
+  .accordion {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    text-align: left;
+  }
+  .accordion-trigger-left { display: flex; align-items: center; gap: 8px; }
+  .accordion-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .accordion-chevron {
+    font-size: 11px;
+    color: var(--faint);
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+  .accordion.open .accordion-chevron { transform: rotate(180deg); }
+  .accordion-body { display: none; border-top: 1px solid var(--border); }
+  .accordion.open .accordion-body { display: block; }
 </style>
-
 </head>
 <body>
 
@@ -239,7 +237,7 @@ const days = [
         { ss:"1", ord:"1A", ex:"Smith Machine Lunges", rp:"6, 4, 2, 1" },
         { ss:"",  ord:"1B", ex:"Lateral Band Walks", rp:"15 steps / side" },
         { ss:"2", ord:"2A", ex:"Single Leg Extensions", rp:"Heavy" },
-        { ss:"",  ord:"2B", ex:"Single Leg Press", rp:"10–12 reps / side" },
+        { ss:"",  ord:"2B", ex:"Single Leg Press", rp:"10--12 reps / side" },
       ]},
       { name:"Phase 2 — Conditioning + Finisher", rows:[
         { ss:"1", ord:"1A", ex:"Sled Pushes", rp:"40 yards" },
@@ -257,7 +255,7 @@ const days = [
         { ss:"1", ord:"1A", ex:"Offset Step-Ups", rp:"6, 4, 2, 1 / side", note:"Min. 40 lb dumbbell — hold weight in opposite hand to working leg, fingertips on rack for balance only" },
         { ss:"",  ord:"1B", ex:"Walking Lunges", rp:"25 yds", note:"Min. 25 lb dumbbells" },
         { ss:"",  ord:"1C", ex:"Bicycle Crunches", rp:"20 reps" },
-        { ss:"2", ord:"2A", ex:"Hip Thrust Machine", rp:"3 × 10–12 reps" },
+        { ss:"2", ord:"2A", ex:"Hip Thrust Machine", rp:"3 × 10--12 reps" },
         { ss:"",  ord:"2B", ex:"Lateral Band Walks or Calf Raises", rp:"15 steps / 15 reps" },
       ]},
       { name:"Phase 2 — Conditioning + Finisher", rows:[
@@ -293,7 +291,7 @@ const days = [
         { ss:"1", ord:"1A", ex:"Wide Grip Pulldowns", rp:"Heavy" },
         { ss:"",  ord:"1B", ex:"Overhead Tricep Extension", rp:"12 reps" },
         { ss:"2", ord:"2A", ex:"Seated DB Overhead Press", rp:"Heavy", warn:true },
-        { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"8–10 reps" },
+        { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"8--10 reps" },
       ]},
       { name:"Phase 2 — Conditioning + Finisher", rows:[
         { ss:"1", ord:"1A", ex:"Assault Bike", rp:"2 min / Vigorous" },
@@ -330,7 +328,7 @@ const days = [
         { ss:"",  ord:"1C", ex:"Banded Shoulder Raises", rp:"3 × 15 reps" },
         { ss:"2", ord:"2A", ex:"Incline DB Press", rp:"3 × 15 reps", note:"Moderate load" },
         { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"3 × 15 reps" },
-        { ss:"3", ord:"3A", ex:"Smith Machine Lunges", rp:"3 × 15–20 reps", note:"Light load" },
+        { ss:"3", ord:"3A", ex:"Smith Machine Lunges", rp:"3 × 15--20 reps", note:"Light load" },
         { ss:"",  ord:"3B", ex:"Lateral Band Walks", rp:"20 steps / side" },
       ]},
       { name:"Phase 2 — Conditioning + Finisher", rows:[
@@ -352,7 +350,7 @@ const days = [
         { ss:"",  ord:"1C", ex:"Banded Shoulder Raises", rp:"3 × 15 reps" },
         { ss:"2", ord:"2A", ex:"Incline DB Press", rp:"3 × 15 reps", note:"Moderate load" },
         { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"3 × 15 reps" },
-        { ss:"3", ord:"3A", ex:"Smith Machine Lunges", rp:"3 × 15–20 reps", note:"Light load" },
+        { ss:"3", ord:"3A", ex:"Smith Machine Lunges", rp:"3 × 15--20 reps", note:"Light load" },
         { ss:"",  ord:"3B", ex:"Lateral Band Walks", rp:"20 steps / side" },
       ]},
       { name:"Phase 2 — Conditioning + Finisher", rows:[
@@ -419,7 +417,7 @@ function render() {
         <button class="accordion-trigger" onclick="toggleAccordion('warmup-${d.id}')">
           <div class="accordion-trigger-left">
             <span class="accordion-title">Pre-Flight Warm-Up</span>
-            <span class="warmup-badge" style="background:${l};color:${c}">2–3 sets</span>
+            <span class="warmup-badge" style="background:${l};color:${c}">2--3 sets</span>
           </div>
           <span class="accordion-chevron">▼</span>
         </button>
@@ -439,6 +437,5 @@ function setDay(id) { active = id; render(); }
 
 render();
 </script>
-
 </body>
 </html>
