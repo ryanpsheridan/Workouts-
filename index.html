@@ -4,37 +4,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>Ryan's Weekly Program</title>
 <style>
-  @font-face { font-family: "DM Sans"; src: url("DMSans-VariableFont_opsz,wght.ttf") format("truetype"), url("dmsans-variablefont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: swap; }
-  @font-face { font-family: "DM Sans"; src: url("DMSans-Italic-VariableFont_opsz,wght.ttf") format("truetype"), url("dmsans-italic-variablefont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: italic; font-display: swap; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  @font-face { font-family: "DM Sans"; src: url("DMSans-VariableFont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: swap; }
+  @font-face { font-family: "DM Sans"; src: url("DMSans-Italic-VariableFont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: italic; font-display: swap; }
 
-:root {
-–bg: #f4f6f9;
-–surface: #ffffff;
-–surface2: #eef1f6;
-–border: #dde2ea;
-–border2: #c8d0dc;
-–text: #111827;
-–muted: #6b7280;
-–faint: #9ca3af;
-–red: #dc2626;
-–red-dim: #fef2f2;
-–red-border: #fecaca;
-–font-sans: “Inter”, -apple-system, BlinkMacSystemFont, “Segoe UI”, Helvetica, Arial, sans-serif;
-–font-mono: ui-monospace, “SF Mono”, “Cascadia Mono”, “Segoe UI Mono”, monospace;
-/* per-day colors — updated by JS */
-–day-color: #2563eb;
-–day-light: #eff6ff;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body { background: #f4f6f9 !important; }
+html, body { background: #f4f6f9 !important; color: #111827 !important; color-scheme: light !important; }
 
 body {
-background: var(–bg);
-color: var(–text);
-font-family: var(–font-sans);
+background: #f4f6f9 !important;
+color: #111827;
+font-family: “DM Sans”, -apple-system, BlinkMacSystemFont, “Segoe UI”, Helvetica, Arial, sans-serif;
 font-size: 15px;
 line-height: 1.5;
 min-height: 100vh;
@@ -45,12 +28,12 @@ margin: 0 auto;
 
 header {
 padding: 1.75rem 1.25rem 1rem;
-border-bottom: 1px solid var(–border);
+border-bottom: 1px solid #dde2ea;
 margin-bottom: 1.25rem;
-background: var(–surface);
+background: #ffffff !important;
 }
-header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(–text); }
-header p { font-size: 13px; color: var(–muted); margin-top: 2px; }
+header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: #111827 !important; }
+header p { font-size: 13px; color: #6b7280 !important; margin-top: 2px; }
 
 .tab-groups {
 padding: 0 1.25rem 1.25rem;
@@ -64,7 +47,7 @@ font-size: 10px;
 font-weight: 700;
 letter-spacing: 0.09em;
 text-transform: uppercase;
-color: var(–faint);
+color: #9ca3af !important;
 margin-bottom: 6px;
 }
 
@@ -74,20 +57,17 @@ margin-bottom: 6px;
 flex: 1;
 padding: 10px 6px;
 border-radius: 10px;
-border: 1px solid var(–border2);
-background: var(–surface);
-font-family: var(–font-sans);
+border: 1px solid #c8d0dc;
+background: #ffffff;
+font-family: “DM Sans”, -apple-system, BlinkMacSystemFont, “Segoe UI”, Helvetica, Arial, sans-serif;
 cursor: pointer;
 transition: all 0.15s;
 text-align: center;
 line-height: 1.3;
 }
-.tab-main { display: block; font-size: 13px; font-weight: 600; color: var(–muted); }
-.tab-sub { display: block; font-size: 10px; font-weight: 400; color: var(–faint); margin-top: 2px; }
 
-/* Each tab gets its active color via inline style set by JS */
-.day-tab.active .tab-main,
-.day-tab.active .tab-sub { color: #fff; }
+.tab-main { display: block; font-size: 13px; font-weight: 600; }
+.tab-sub { display: block; font-size: 10px; font-weight: 400; margin-top: 2px; }
 
 .session { display: none; padding: 0 1.25rem; }
 .session.visible { display: block; }
@@ -97,7 +77,7 @@ font-size: 11px;
 font-weight: 700;
 letter-spacing: 0.08em;
 text-transform: uppercase;
-color: var(–muted);
+color: #6b7280 !important;
 margin: 1.5rem 0 0.6rem;
 }
 .phase-header:first-of-type { margin-top: 0; }
@@ -112,19 +92,17 @@ padding: 2px 7px;
 border-radius: 4px;
 margin-left: 8px;
 vertical-align: middle;
-background: var(–day-light);
-color: var(–day-color);
 }
 
 .table-card {
-background: var(–surface);
-border: 1px solid var(–border);
+background: #ffffff !important;
+border: 1px solid #dde2ea;
 border-radius: 12px;
 overflow: hidden;
 }
 
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
-thead tr { border-bottom: 1px solid var(–border); background: var(–surface2); }
+thead tr { border-bottom: 1px solid #dde2ea; background: #eef1f6 !important; }
 th {
 padding: 8px 10px;
 text-align: left;
@@ -132,34 +110,34 @@ font-size: 10px;
 font-weight: 700;
 letter-spacing: 0.06em;
 text-transform: uppercase;
-color: var(–faint);
+color: #9ca3af !important;
 }
-td { padding: 11px 10px; border-bottom: 1px solid var(–border); vertical-align: top; }
+td { padding: 11px 10px; border-bottom: 1px solid #dde2ea; vertical-align: top; background: #ffffff !important; color: #111827 !important; }
 tr:last-child td { border-bottom: none; }
 
-.col-ss  { width: 44px; color: var(–muted); font-size: 13px; font-weight: 500; }
-.col-ord { width: 48px; font-family: var(–font-mono); font-size: 12px; font-weight: 600; }
-.col-ex  { font-weight: 500; color: var(–text); word-break: break-word; }
-.col-ex .note { font-size: 12px; font-weight: 400; color: var(–muted); margin-top: 2px; }
-.col-rp  { width: 110px; font-size: 12px; color: var(–muted); text-align: right; }
+.col-ss { width: 44px; color: #6b7280 !important; font-size: 13px; font-weight: 500; }
+.col-ord { width: 48px; font-family: ui-monospace, “SF Mono”, monospace; font-size: 12px; font-weight: 600; }
+.col-ex { font-weight: 500; color: #111827 !important; word-break: break-word; }
+.col-ex .note { font-size: 12px; font-weight: 400; color: #6b7280 !important; margin-top: 2px; }
+.col-rp { width: 110px; font-size: 12px; color: #6b7280; text-align: right; }
 
 .flag {
 display: flex;
 align-items: flex-start;
 gap: 10px;
-background: var(–red-dim);
-border: 1px solid var(–red-border);
+background: #fef2f2;
+border: 1px solid #fecaca;
 border-radius: 10px;
 padding: 10px 12px;
 margin-top: 1.25rem;
 font-size: 13px;
-color: var(–red);
+color: #dc2626;
 line-height: 1.5;
 }
 
 .accordion {
-background: var(–surface);
-border: 1px solid var(–border);
+background: #ffffff !important;
+border: 1px solid #dde2ea;
 border-radius: 12px;
 overflow: hidden;
 }
@@ -169,10 +147,10 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 padding: 12px 14px;
-background: transparent;
+background: #ffffff !important;
 border: none;
 cursor: pointer;
-font-family: var(–font-sans);
+font-family: “DM Sans”, -apple-system, BlinkMacSystemFont, “Segoe UI”, Helvetica, Arial, sans-serif;
 text-align: left;
 }
 .accordion-trigger-left { display: flex; align-items: center; gap: 8px; }
@@ -181,16 +159,16 @@ font-size: 11px;
 font-weight: 700;
 letter-spacing: 0.08em;
 text-transform: uppercase;
-color: var(–muted);
+color: #6b7280;
 }
 .accordion-chevron {
 font-size: 11px;
-color: var(–faint);
+color: #9ca3af;
 transition: transform 0.2s ease;
 display: inline-block;
 }
 .accordion.open .accordion-chevron { transform: rotate(180deg); }
-.accordion-body { display: none; border-top: 1px solid var(–border); }
+.accordion-body { display: none; border-top: 1px solid #dde2ea; }
 .accordion.open .accordion-body { display: block; }
 </style>
 
@@ -220,68 +198,67 @@ display: inline-block;
 <div id="content"></div>
 
 <script>
-const warmup = [
+var warmup = [
   { ss:"1", ord:"1A", ex:"Thoracic Rotations", rp:"10 / side" },
   { ss:"",  ord:"1B", ex:"World's Greatest Stretch", rp:"5 / side" },
   { ss:"2", ord:"2A", ex:"Side Lunge Stretch", rp:"8 / side" },
   { ss:"",  ord:"2B", ex:"Bird-Dogs", rp:"10 / side" },
   { ss:"3", ord:"3A", ex:"Wall Slides", rp:"12 reps" },
-  { ss:"",  ord:"3B", ex:"Wall Hip Flexor Stretch", rp:"30 sec / side" },
+  { ss:"",  ord:"3B", ex:"Wall Hip Flexor Stretch", rp:"30 sec / side" }
 ];
 
-// color: active tab bg, light: badge bg
-const days = [
+var days = [
   {
     id:"lower-a", group:"lower", label:"Lower A", sub:"Monday",
     color:"#2563eb", light:"#eff6ff",
     phases:[
-      { name:"Phase 1 — Heavy Strength", rows:[
+      { name:"Phase 1 - Heavy Strength", rows:[
         { ss:"1", ord:"1A", ex:"Smith Machine Lunges", rp:"6, 4, 2, 1" },
         { ss:"",  ord:"1B", ex:"Lateral Band Walks", rp:"15 steps / side" },
         { ss:"2", ord:"2A", ex:"Single Leg Extensions", rp:"Heavy" },
-        { ss:"",  ord:"2B", ex:"Single Leg Press", rp:"10--12 reps / side" },
+        { ss:"",  ord:"2B", ex:"Single Leg Press", rp:"10-12 reps / side" }
       ]},
-      { name:"Phase 2 — Conditioning + Finisher", rows:[
+      { name:"Phase 2 - Conditioning + Finisher", rows:[
         { ss:"1", ord:"1A", ex:"Sled Pushes", rp:"40 yards" },
         { ss:"",  ord:"1B", ex:"Suitcase Carries", rp:"Heavy / 30 yds / side" },
-        { ss:"2", ord:"2A", ex:"Reverse Hyperextensions", rp:"3 × 12–15 reps", note:"Hips at pad edge, not waist. Legs to parallel only — stop before lumbar takes over. Slow descent, no momentum. Light-to-moderate load. Squeeze glutes at top, not lower back." },
-        { ss:"",  ord:"2B", ex:"Bicycle Crunches", rp:"20 reps", note:"Slow and controlled" },
-      ]},
+        { ss:"2", ord:"2A", ex:"Reverse Hyperextensions", rp:"3 x 12-15 reps", note:"Hips at pad edge, not waist. Legs to parallel only - stop before lumbar takes over. Slow descent, no momentum. Light-to-moderate load. Squeeze glutes at top, not lower back." },
+        { ss:"",  ord:"2B", ex:"Bicycle Crunches", rp:"20 reps", note:"Slow and controlled" }
+      ]}
     ]
   },
   {
     id:"lower-b", group:"lower", label:"Lower B", sub:"Thursday",
     color:"#7c3aed", light:"#f5f3ff",
     phases:[
-      { name:"Phase 1 — Heavy Strength", rows:[
-        { ss:"1", ord:"1A", ex:"Offset Step-Ups", rp:"6, 4, 2, 1 / side", note:"Min. 40 lb dumbbell — hold weight in opposite hand to working leg, fingertips on rack for balance only" },
+      { name:"Phase 1 - Heavy Strength", rows:[
+        { ss:"1", ord:"1A", ex:"Offset Step-Ups", rp:"6, 4, 2, 1 / side", note:"Min. 40 lb dumbbell - hold weight in opposite hand to working leg, fingertips on rack for balance only" },
         { ss:"",  ord:"1B", ex:"Walking Lunges", rp:"25 yds", note:"Min. 25 lb dumbbells" },
         { ss:"",  ord:"1C", ex:"Bicycle Crunches", rp:"20 reps" },
-        { ss:"2", ord:"2A", ex:"Hip Thrust Machine", rp:"3 × 10--12 reps" },
-        { ss:"",  ord:"2B", ex:"Lateral Band Walks or Calf Raises", rp:"15 steps / 15 reps" },
+        { ss:"2", ord:"2A", ex:"Hip Thrust Machine", rp:"3 x 10-12 reps" },
+        { ss:"",  ord:"2B", ex:"Lateral Band Walks or Calf Raises", rp:"15 steps / 15 reps" }
       ]},
-      { name:"Phase 2 — Conditioning + Finisher", rows:[
+      { name:"Phase 2 - Conditioning + Finisher", rows:[
         { ss:"1", ord:"1A", ex:"Sled Pushes", rp:"5 min", note:"Steady vigorous effort" },
         { ss:"",  ord:"1B", ex:"Leg Raises", rp:"15 reps" },
         { ss:"2", ord:"2A", ex:"Bike or Rower", rp:"5 min", note:"Alternate with sled" },
-        { ss:"",  ord:"2B", ex:"Dead Bug", rp:"10 / side", note:"Deep core, no rotation" },
-      ]},
+        { ss:"",  ord:"2B", ex:"Dead Bug", rp:"10 / side", note:"Deep core, no rotation" }
+      ]}
     ]
   },
   {
     id:"upper-a", group:"upper", label:"Upper A", sub:"Tuesday",
     color:"#0891b2", light:"#ecfeff",
     phases:[
-      { name:"Phase 1 — Heavy Strength", rows:[
+      { name:"Phase 1 - Heavy Strength", rows:[
         { ss:"1", ord:"1A", ex:"Incline DB Press", rp:"Heavy" },
         { ss:"",  ord:"1B", ex:"Overhead Tricep Extension", rp:"12 reps" },
         { ss:"2", ord:"2A", ex:"Chest Supported Row", rp:"Heavy" },
-        { ss:"",  ord:"2B", ex:"Pallof Press", rp:"12 reps" },
+        { ss:"",  ord:"2B", ex:"Pallof Press", rp:"12 reps" }
       ]},
-      { name:"Phase 2 — Conditioning + Finisher", rows:[
+      { name:"Phase 2 - Conditioning + Finisher", rows:[
         { ss:"1", ord:"1A", ex:"Assault Bike or Rower", rp:"1 min on / 1 min off", note:"Vigorous effort" },
-        { ss:"",  ord:"1B", ex:"Lateral Band Walks", rp:"15 steps / side", note:"Glute focus" },
-      ]},
+        { ss:"",  ord:"1B", ex:"Lateral Band Walks", rp:"15 steps / side", note:"Glute focus" }
+      ]}
     ]
   },
   {
@@ -289,146 +266,128 @@ const days = [
     color:"#d97706", light:"#fffbeb",
     flag:"Seated DB Overhead Press may load the lumbar under fatigue. Consider swapping to a machine press or incline variation.",
     phases:[
-      { name:"Phase 1 — Heavy Strength", rows:[
+      { name:"Phase 1 - Heavy Strength", rows:[
         { ss:"1", ord:"1A", ex:"Wide Grip Pulldowns", rp:"Heavy" },
         { ss:"",  ord:"1B", ex:"Overhead Tricep Extension", rp:"12 reps" },
         { ss:"2", ord:"2A", ex:"Seated DB Overhead Press", rp:"Heavy", warn:true },
-        { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"8--10 reps" },
+        { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"8-10 reps" }
       ]},
-      { name:"Phase 2 — Conditioning + Finisher", rows:[
+      { name:"Phase 2 - Conditioning + Finisher", rows:[
         { ss:"1", ord:"1A", ex:"Assault Bike", rp:"2 min / Vigorous" },
         { ss:"",  ord:"1B", ex:"Farmer's Carry", rp:"Heavy / 40 yds" },
-        { ss:"",  ord:"1C", ex:"Face Pulls", rp:"15 reps", note:"Rear delts / posture" },
-      ]},
+        { ss:"",  ord:"1C", ex:"Face Pulls", rp:"15 reps", note:"Rear delts / posture" }
+      ]}
     ]
   },
   {
     id:"pre-golf", group:"golf", label:"Pre-Golf", sub:"Before Round",
     color:"#16a34a", light:"#f0fdf4",
     phases:[
-      { name:"Phase 1 — Activation", rows:[
+      { name:"Phase 1 - Activation", rows:[
         { ss:"1", ord:"1A", ex:"Lateral Band Walks", rp:"15 steps / side", note:"Glute activation" },
         { ss:"",  ord:"1B", ex:"Glute Bridges", rp:"15 reps", note:"Bodyweight or light load" },
-        { ss:"2", ord:"2A", ex:"Face Pulls", rp:"15 reps", note:"Light — shoulder priming only" },
-        { ss:"",  ord:"2B", ex:"Pallof Press", rp:"12 reps / side", note:"Core stability, no rotation" },
+        { ss:"2", ord:"2A", ex:"Face Pulls", rp:"15 reps", note:"Light - shoulder priming only" },
+        { ss:"",  ord:"2B", ex:"Pallof Press", rp:"12 reps / side", note:"Core stability, no rotation" }
       ]},
-      { name:"Phase 2 — Balance & Stability", rows:[
+      { name:"Phase 2 - Balance and Stability", rows:[
         { ss:"1", ord:"1A", ex:"Single Leg Balance", rp:"30 sec / side", note:"Eyes closed for extra challenge" },
         { ss:"",  ord:"1B", ex:"Single Leg RDL", rp:"10 reps / side", note:"Bodyweight only" },
         { ss:"2", ord:"2A", ex:"Dead Bug", rp:"10 reps / side", note:"Slow and controlled" },
-        { ss:"",  ord:"2B", ex:"Band Rotations", rp:"10 reps / side", note:"Light band — swing path primer" },
-      ]},
+        { ss:"",  ord:"2B", ex:"Band Rotations", rp:"10 reps / side", note:"Light band - swing path primer" }
+      ]}
     ]
   },
   {
     id:"post-golf", group:"golf", label:"Post-Golf", sub:"Full Body",
     color:"#16a34a", light:"#f0fdf4",
     phases:[
-      { name:"Phase 1 — High Rep Full Body", rows:[
-        { ss:"1", ord:"1A", ex:"Push-Ups", rp:"3 × 20 reps" },
-        { ss:"",  ord:"1B", ex:"Pull-Ups", rp:"3 × max reps" },
-        { ss:"",  ord:"1C", ex:"Banded Shoulder Raises", rp:"3 × 15 reps" },
-        { ss:"2", ord:"2A", ex:"Incline DB Press", rp:"3 × 15 reps", note:"Moderate load" },
-        { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"3 × 15 reps" },
-        { ss:"3", ord:"3A", ex:"Smith Machine Lunges", rp:"3 × 15--20 reps", note:"Light load" },
-        { ss:"",  ord:"3B", ex:"Lateral Band Walks", rp:"20 steps / side" },
+      { name:"Phase 1 - High Rep Full Body", rows:[
+        { ss:"1", ord:"1A", ex:"Push-Ups", rp:"3 x 20 reps" },
+        { ss:"",  ord:"1B", ex:"Pull-Ups", rp:"3 x max reps" },
+        { ss:"",  ord:"1C", ex:"Banded Shoulder Raises", rp:"3 x 15 reps" },
+        { ss:"2", ord:"2A", ex:"Incline DB Press", rp:"3 x 15 reps", note:"Moderate load" },
+        { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"3 x 15 reps" },
+        { ss:"3", ord:"3A", ex:"Smith Machine Lunges", rp:"3 x 15-20 reps", note:"Light load" },
+        { ss:"",  ord:"3B", ex:"Lateral Band Walks", rp:"20 steps / side" }
       ]},
-      { name:"Phase 2 — Conditioning + Finisher", rows:[
+      { name:"Phase 2 - Conditioning + Finisher", rows:[
         { ss:"1", ord:"1A", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity" },
         { ss:"",  ord:"1B", ex:"Pallof Press", rp:"12 reps / side" },
         { ss:"2", ord:"2A", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity" },
         { ss:"",  ord:"2B", ex:"Bird-Dogs", rp:"10 / side", note:"Spinal reset" },
         { ss:"3", ord:"3A", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity" },
-        { ss:"",  ord:"3B", ex:"Dead Bug", rp:"10 / side", note:"Deep core, no rotation" },
-      ]},
+        { ss:"",  ord:"3B", ex:"Dead Bug", rp:"10 / side", note:"Deep core, no rotation" }
+      ]}
     ]
-  },
-  {
-    color:"#16a34a", light:"#f0fdf4",
-    phases:[
-      { name:"Phase 1 — High Rep Full Body", rows:[
-        { ss:"1", ord:"1A", ex:"Push-Ups", rp:"3 × 20 reps" },
-        { ss:"",  ord:"1B", ex:"Pull-Ups", rp:"3 × max reps" },
-        { ss:"",  ord:"1C", ex:"Banded Shoulder Raises", rp:"3 × 15 reps" },
-        { ss:"2", ord:"2A", ex:"Incline DB Press", rp:"3 × 15 reps", note:"Moderate load" },
-        { ss:"",  ord:"2B", ex:"Incline DB Curls", rp:"3 × 15 reps" },
-        { ss:"3", ord:"3A", ex:"Smith Machine Lunges", rp:"3 × 15--20 reps", note:"Light load" },
-        { ss:"",  ord:"3B", ex:"Lateral Band Walks", rp:"20 steps / side" },
-      ]},
-      { name:"Phase 2 — Conditioning + Finisher", rows:[
-        { ss:"1", ord:"1A", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity" },
-        { ss:"",  ord:"1B", ex:"Pallof Press", rp:"12 reps / side" },
-        { ss:"2", ord:"2A", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity" },
-        { ss:"",  ord:"2B", ex:"Bird-Dogs", rp:"10 / side", note:"Spinal reset" },
-        { ss:"3", ord:"3A", ex:"Assault Bike or Cycling", rp:"1 min moderate / 1 min easy", note:"Low intensity" },
-        { ss:"",  ord:"3B", ex:"Dead Bug", rp:"10 / side", note:"Deep core, no rotation" },
-      ]},
-    ]
-  },
+  }
 ];
 
-function applyColor(color, light) {
-  document.documentElement.style.setProperty('--day-color', color);
-  document.documentElement.style.setProperty('--day-light', light);
-}
-
 function makeTable(rows, color) {
-  return `<div class="table-card"><table>
-    <thead><tr>
-      <th class="col-ss">SS</th>
-      <th class="col-ord">Ord</th>
-      <th>Exercise</th>
-      <th class="col-rp">Reps</th>
-    </tr></thead>
-    <tbody>${rows.map(r=>`<tr>
-      <td class="col-ss">${r.ss}</td>
-      <td class="col-ord" style="color:${color}">${r.ord}</td>
-      <td class="col-ex">${r.ex}${r.warn?` <span style="color:#dc2626;font-size:13px;">⚠</span>`:''}${r.note?`<div class="note">${r.note}</div>`:''}</td>
-      <td class="col-rp">${r.rp}</td>
-    </tr>`).join('')}</tbody>
-  </table></div>`;
+  var html = '<div class="table-card"><table><thead><tr><th class="col-ss">SS</th><th class="col-ord">Ord</th><th>Exercise</th><th class="col-rp">Reps</th></tr></thead><tbody>';
+  for (var i = 0; i < rows.length; i++) {
+    var r = rows[i];
+    var warn = r.warn ? ' <span style="color:#dc2626;font-size:13px;">&#9888;</span>' : '';
+    var note = r.note ? '<div class="note">' + r.note + '</div>' : '';
+    html += '<tr>';
+    html += '<td class="col-ss">' + r.ss + '</td>';
+    html += '<td class="col-ord" style="color:' + color + '">' + r.ord + '</td>';
+    html += '<td class="col-ex">' + r.ex + warn + note + '</td>';
+    html += '<td class="col-rp">' + r.rp + '</td>';
+    html += '</tr>';
+  }
+  html += '</tbody></table></div>';
+  return html;
 }
 
-let active = 'lower-a';
+var active = 'lower-a';
 
 function render() {
-  const activeDay = days.find(d => d.id === active);
-  applyColor(activeDay.color, activeDay.light);
+  var groups = ['lower', 'upper', 'golf'];
+  for (var g = 0; g < groups.length; g++) {
+    var grp = groups[g];
+    var el = document.getElementById(grp + '-tabs');
+    if (!el) continue;
+    var html = '';
+    for (var i = 0; i < days.length; i++) {
+      var d = days[i];
+      if (d.group !== grp) continue;
+      var isActive = d.id === active;
+      var bgStyle = isActive ? 'background:' + d.color + ';border-color:' + d.color + ';' : '';
+      var mainColor = isActive ? '#ffffff' : '#6b7280';
+      var subColor = isActive ? 'rgba(255,255,255,0.8)' : '#9ca3af';
+      html += '<button class="day-tab' + (isActive ? ' active' : '') + '" style="' + bgStyle + '" onclick="setDay(\'' + d.id + '\')">';
+      html += '<span class="tab-main" style="color:' + mainColor + '">' + d.label + '</span>';
+      html += '<span class="tab-sub" style="color:' + subColor + '">' + d.sub + '</span>';
+      html += '</button>';
+    }
+    el.innerHTML = html;
+  }
 
-  ['lower','upper','golf'].forEach(g => {
-    const el = document.getElementById(g+'-tabs');
-    if (!el) return;
-    el.innerHTML = days
-      .filter(d => d.group === g)
-      .map(d => {
-        const isActive = d.id === active;
-        const style = isActive ? `style="background:${d.color};border-color:${d.color};"` : '';
-        return `<button class="day-tab ${isActive?'active':''}" ${style} onclick="setDay('${d.id}')">
-          <span class="tab-main" style="color:${isActive?'#fff':'#6b7280'}">${d.label}</span>
-          <span class="tab-sub" style="color:${isActive?'rgba(255,255,255,0.8)':'#9ca3af'}">${d.sub}</span>
-        </button>`;
-      }).join('');
-  });
-
-  document.getElementById('content').innerHTML = days.map(d => {
-    const isVisible = d.id === active;
-    const c = d.color;
-    const l = d.light;
-    return `<div class="session ${isVisible?'visible':''}" id="s-${d.id}">
-      <div class="accordion" id="warmup-${d.id}">
-        <button class="accordion-trigger" onclick="toggleAccordion('warmup-${d.id}')">
-          <div class="accordion-trigger-left">
-            <span class="accordion-title">Pre-Flight Warm-Up</span>
-            <span class="warmup-badge" style="background:${l};color:${c}">2--3 sets</span>
-          </div>
-          <span class="accordion-chevron">▼</span>
-        </button>
-        <div class="accordion-body">${makeTable(warmup, c)}</div>
-      </div>
-      ${d.phases.map(p=>`<div class="phase-header">${p.name}</div>${makeTable(p.rows, c)}`).join('')}
-      ${d.flag?`<div class="flag"><span>⚠</span><span>${d.flag}</span></div>`:''}
-    </div>`;
-  }).join('');
+  var contentHtml = '';
+  for (var i = 0; i < days.length; i++) {
+    var d = days[i];
+    var c = d.color;
+    var l = d.light;
+    var visible = d.id === active ? ' visible' : '';
+    contentHtml += '<div class="session' + visible + '" id="s-' + d.id + '">';
+    contentHtml += '<div class="accordion" id="warmup-' + d.id + '">';
+    contentHtml += '<button class="accordion-trigger" onclick="toggleAccordion(\'warmup-' + d.id + '\')">';
+    contentHtml += '<div class="accordion-trigger-left">';
+    contentHtml += '<span class="accordion-title">Pre-Flight Warm-Up</span>';
+    contentHtml += '<span class="warmup-badge" style="background:' + l + ';color:' + c + '">2-3 sets</span>';
+    contentHtml += '</div><span class="accordion-chevron">&#9660;</span></button>';
+    contentHtml += '<div class="accordion-body">' + makeTable(warmup, c) + '</div>';
+    contentHtml += '</div>';
+    for (var p = 0; p < d.phases.length; p++) {
+      contentHtml += '<div class="phase-header">' + d.phases[p].name + '</div>';
+      contentHtml += makeTable(d.phases[p].rows, c);
+    }
+    if (d.flag) {
+      contentHtml += '<div class="flag"><span>&#9888;</span><span>' + d.flag + '</span></div>';
+    }
+    contentHtml += '</div>';
+  }
+  document.getElementById('content').innerHTML = contentHtml;
 }
 
 function toggleAccordion(id) {
