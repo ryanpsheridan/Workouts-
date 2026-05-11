@@ -204,7 +204,9 @@ var warmup = [
   { ss:"2", ord:"2A", ex:"Side Lunge Stretch", rp:"8 / side" },
   { ss:"",  ord:"2B", ex:"Bird-Dogs", rp:"10 / side" },
   { ss:"3", ord:"3A", ex:"Wall Slides", rp:"12 reps" },
-  { ss:"",  ord:"3B", ex:"Wall Hip Flexor Stretch", rp:"30 sec / side" }
+  { ss:"",  ord:"3B", ex:"Wall Hip Flexor Stretch", rp:"30 sec / side" },
+  { ss:"4", ord:"4A", ex:"Walking Lunges", rp:"10 / side", fire:true },
+  { ss:"",  ord:"4B", ex:"Lateral Band Raises", rp:"12 / side", fire:true, note:"Band anchored under foot, single arm, raise to shoulder height" }
 ];
 
 var days = [
@@ -327,11 +329,12 @@ function makeTable(rows, color) {
   for (var i = 0; i < rows.length; i++) {
     var r = rows[i];
     var warn = r.warn ? ' <span style="color:#dc2626;font-size:13px;">&#9888;</span>' : '';
+    var fire = r.fire ? ' <span style="font-size:13px;">&#128293;</span>' : '';
     var note = r.note ? '<div class="note">' + r.note + '</div>' : '';
     html += '<tr>';
     html += '<td class="col-ss">' + r.ss + '</td>';
     html += '<td class="col-ord" style="color:' + color + '">' + r.ord + '</td>';
-    html += '<td class="col-ex">' + r.ex + warn + note + '</td>';
+    html += '<td class="col-ex">' + r.ex + warn + fire + note + '</td>';
     html += '<td class="col-rp">' + r.rp + '</td>';
     html += '</tr>';
   }
