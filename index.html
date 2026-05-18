@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,168 +9,167 @@
   @font-face { font-family: "DM Sans"; src: url("DMSans-VariableFont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: swap; }
   @font-face { font-family: "DM Sans"; src: url("DMSans-Italic-VariableFont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-style: italic; font-display: swap; }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body { background: #f4f6f9 !important; color: #111827 !important; color-scheme: light !important; }
+  html, body { background: #f4f6f9 !important; color: #111827 !important; color-scheme: light !important; }
 
-body {
-background: #f4f6f9 !important;
-color: #111827;
-font-family: “DM Sans”, -apple-system, BlinkMacSystemFont, “Segoe UI”, Helvetica, Arial, sans-serif;
-font-size: 15px;
-line-height: 1.5;
-min-height: 100vh;
-padding-bottom: 4rem;
-max-width: 680px;
-margin: 0 auto;
-}
+  body {
+    background: #f4f6f9 !important;
+    color: #111827;
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
 
-header {
-padding: 1.75rem 1.25rem 1rem;
-border-bottom: 1px solid #dde2ea;
-margin-bottom: 1.25rem;
-background: #ffffff !important;
-}
-header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: #111827 !important; }
-header p { font-size: 13px; color: #6b7280 !important; margin-top: 2px; }
+  header {
+    padding: 1.75rem 1.25rem 1rem;
+    border-bottom: 1px solid #dde2ea;
+    margin-bottom: 1.25rem;
+    background: #ffffff !important;
+  }
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: #111827 !important; }
+  header p { font-size: 13px; color: #6b7280 !important; margin-top: 2px; }
 
-.tab-groups {
-padding: 0 1.25rem 1.25rem;
-display: flex;
-flex-direction: column;
-gap: 14px;
-}
+  .tab-groups {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
 
-.group-label {
-font-size: 10px;
-font-weight: 700;
-letter-spacing: 0.09em;
-text-transform: uppercase;
-color: #9ca3af !important;
-margin-bottom: 6px;
-}
+  .group-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #9ca3af !important;
+    margin-bottom: 6px;
+  }
 
-.tab-row { display: flex; gap: 6px; }
+  .tab-row { display: flex; gap: 6px; }
 
-.day-tab {
-flex: 1;
-padding: 10px 6px;
-border-radius: 10px;
-border: 1px solid #c8d0dc;
-background: #ffffff;
-font-family: “DM Sans”, -apple-system, BlinkMacSystemFont, “Segoe UI”, Helvetica, Arial, sans-serif;
-cursor: pointer;
-transition: all 0.15s;
-text-align: center;
-line-height: 1.3;
-}
+  .day-tab {
+    flex: 1;
+    padding: 10px 6px;
+    border-radius: 10px;
+    border: 1px solid #c8d0dc;
+    background: #ffffff;
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    line-height: 1.3;
+  }
 
-.tab-main { display: block; font-size: 13px; font-weight: 600; }
-.tab-sub { display: block; font-size: 10px; font-weight: 400; margin-top: 2px; }
+  .tab-main { display: block; font-size: 13px; font-weight: 600; }
+  .tab-sub { display: block; font-size: 10px; font-weight: 400; margin-top: 2px; }
 
-.session { display: none; padding: 0 1.25rem; }
-.session.visible { display: block; }
+  .session { display: none; padding: 0 1.25rem; }
+  .session.visible { display: block; }
 
-.phase-header {
-font-size: 11px;
-font-weight: 700;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: #6b7280 !important;
-margin: 1.5rem 0 0.6rem;
-}
-.phase-header:first-of-type { margin-top: 0; }
+  .phase-header {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7280 !important;
+    margin: 1.5rem 0 0.6rem;
+  }
+  .phase-header:first-of-type { margin-top: 0; }
 
-.warmup-badge {
-display: inline-block;
-font-size: 10px;
-font-weight: 700;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-padding: 2px 7px;
-border-radius: 4px;
-margin-left: 8px;
-vertical-align: middle;
-}
+  .warmup-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
 
-.table-card {
-background: #ffffff !important;
-border: 1px solid #dde2ea;
-border-radius: 12px;
-overflow: hidden;
-}
+  .table-card {
+    background: #ffffff !important;
+    border: 1px solid #dde2ea;
+    border-radius: 12px;
+    overflow: hidden;
+  }
 
-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-thead tr { border-bottom: 1px solid #dde2ea; background: #eef1f6 !important; }
-th {
-padding: 8px 10px;
-text-align: left;
-font-size: 10px;
-font-weight: 700;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-color: #9ca3af !important;
-}
-td { padding: 11px 10px; border-bottom: 1px solid #dde2ea; vertical-align: top; background: #ffffff !important; color: #111827 !important; }
-tr:last-child td { border-bottom: none; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead tr { border-bottom: 1px solid #dde2ea; background: #eef1f6 !important; }
+  th {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #9ca3af !important;
+  }
+  td { padding: 11px 10px; border-bottom: 1px solid #dde2ea; vertical-align: top; background: #ffffff !important; color: #111827 !important; }
+  tr:last-child td { border-bottom: none; }
 
-.col-ss { width: 44px; color: #6b7280 !important; font-size: 13px; font-weight: 500; }
-.col-ord { width: 48px; font-family: ui-monospace, “SF Mono”, monospace; font-size: 12px; font-weight: 600; }
-.col-ex { font-weight: 500; color: #111827 !important; word-break: break-word; }
-.col-ex .note { font-size: 12px; font-weight: 400; color: #6b7280 !important; margin-top: 2px; }
-.col-rp { width: 110px; font-size: 12px; color: #6b7280; text-align: right; }
+  .col-ss { width: 44px; color: #6b7280 !important; font-size: 13px; font-weight: 500; }
+  .col-ord { width: 48px; font-family: ui-monospace, "SF Mono", monospace; font-size: 12px; font-weight: 600; }
+  .col-ex { font-weight: 500; color: #111827 !important; word-break: break-word; }
+  .col-ex .note { font-size: 12px; font-weight: 400; color: #6b7280 !important; margin-top: 2px; }
+  .col-rp { width: 110px; font-size: 12px; color: #6b7280; text-align: right; }
 
-.flag {
-display: flex;
-align-items: flex-start;
-gap: 10px;
-background: #fef2f2;
-border: 1px solid #fecaca;
-border-radius: 10px;
-padding: 10px 12px;
-margin-top: 1.25rem;
-font-size: 13px;
-color: #dc2626;
-line-height: 1.5;
-}
+  .flag {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 1.25rem;
+    font-size: 13px;
+    color: #dc2626;
+    line-height: 1.5;
+  }
 
-.accordion {
-background: #ffffff !important;
-border: 1px solid #dde2ea;
-border-radius: 12px;
-overflow: hidden;
-}
-.accordion-trigger {
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 12px 14px;
-background: #ffffff !important;
-border: none;
-cursor: pointer;
-font-family: “DM Sans”, -apple-system, BlinkMacSystemFont, “Segoe UI”, Helvetica, Arial, sans-serif;
-text-align: left;
-}
-.accordion-trigger-left { display: flex; align-items: center; gap: 8px; }
-.accordion-title {
-font-size: 11px;
-font-weight: 700;
-letter-spacing: 0.08em;
-text-transform: uppercase;
-color: #6b7280;
-}
-.accordion-chevron {
-font-size: 11px;
-color: #9ca3af;
-transition: transform 0.2s ease;
-display: inline-block;
-}
-.accordion.open .accordion-chevron { transform: rotate(180deg); }
-.accordion-body { display: none; border-top: 1px solid #dde2ea; }
-.accordion.open .accordion-body { display: block; }
+  .accordion {
+    background: #ffffff !important;
+    border: 1px solid #dde2ea;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: #ffffff !important;
+    border: none;
+    cursor: pointer;
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    text-align: left;
+  }
+  .accordion-trigger-left { display: flex; align-items: center; gap: 8px; }
+  .accordion-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+  .accordion-chevron {
+    font-size: 11px;
+    color: #9ca3af;
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+  .accordion.open .accordion-chevron { transform: rotate(180deg); }
+  .accordion-body { display: none; border-top: 1px solid #dde2ea; }
+  .accordion.open .accordion-body { display: block; }
 </style>
-
 </head>
 <body>
 
@@ -201,9 +199,9 @@ display: inline-block;
 var warmup = [
   { ss:"1", ord:"1A", ex:"Thoracic Rotations", rp:"10 / side" },
   { ss:"",  ord:"1B", ex:"World's Greatest Stretch", rp:"5 / side" },
-  { ss:"2", ord:"2A", ex:"Side Lunge Stretch", rp:"8 / side" },
+  { ss:"2", ord:"2A", ex:"Dead Bugs", rp:"8 / side", note:"Keep back flat on ground" },
   { ss:"",  ord:"2B", ex:"Bird-Dogs", rp:"10 / side" },
-  { ss:"3", ord:"3A", ex:"Wall Slides", rp:"12 reps" },
+  { ss:"3", ord:"3A", ex:"Dead Hang", rp:"30-60 sec" },
   { ss:"",  ord:"3B", ex:"Wall Hip Flexor Stretch", rp:"30 sec / side" },
   { ss:"4", ord:"4A", ex:"Walking Lunges", rp:"10 / side", fire:true },
   { ss:"",  ord:"4B", ex:"Lateral Band Raises", rp:"12 / side", fire:true }
@@ -401,6 +399,5 @@ function setDay(id) { active = id; render(); }
 
 render();
 </script>
-
 </body>
 </html>
