@@ -222,7 +222,7 @@ var days = [
         { ss:"1", ord:"1A", ex:"Sled Pushes", rp:"40 yards" },
         { ss:"",  ord:"1B", ex:"Suitcase Carries", rp:"Heavy / 30 yds / side" },
         { ss:"2", ord:"2A", ex:"Reverse Hyperextensions", rp:"3 x 12-15 reps", note:"Hips at pad edge, not waist. Legs to parallel only - stop before lumbar takes over. Slow descent, no momentum. Light-to-moderate load. Squeeze glutes at top, not lower back." },
-        { ss:"",  ord:"2B", ex:"Bicycle Crunches", rp:"20 reps", note:"Slow and controlled" }
+        { ss:"",  ord:"2B", ex:"GHD Sit-Ups", rp:"3 x 15 reps" }
       ]}
     ]
   },
@@ -280,23 +280,25 @@ var days = [
     ]
   },
   {
-    id:"pre-golf", group:"golf", label:"Golf Mobility", sub:"Before Round",
+    id:"pre-golf", group:"golf", label:"Golf Mobility", sub:"Daily",
     color:"#16a34a", light:"#f0fdf4",
     phases:[
-      { name:"Superset 1 - 3 Sets", rows:[
+      { name:"Phase 1", rows:[
+        { ss:"1", ord:"1A", ex:"Hip Internal Rotation Static Stretch", rp:"1 x 60 sec / side", note:"90/90 position, rotate upper body toward the leg behind you. Big stretch on internal leg muscles." },
+        { ss:"",  ord:"1B", ex:"Bretzel", rp:"2 x 10 rotations / side", note:"Pull up on foot and leg, rotate upper body back and down toward floor, breathe each rep. 30s rest between sets." }
+      ]},
+      { name:"Phase 2", rows:[
+        { ss:"1", ord:"1A", ex:"Pelvic Tilts on Ground", rp:"15 reps", note:"Arch back then press low back hard into ground. 1 sec hold at bottom." },
+        { ss:"",  ord:"1B", ex:"Glute Bridge", rp:"15 reps", note:"Slow - only glutes come up, not hamstrings or lower back." }
+      ]},
+      { name:"Phase 3", rows:[
         { ss:"1", ord:"1A", ex:"Hip Drops", rp:"15 / side", note:"Pelvis rolled under, low back pressed to ground, fight for neutral pelvis each rep" },
         { ss:"",  ord:"1B", ex:"Dead Bug", rp:"10 / side", note:"Keep back flat on ground" },
         { ss:"",  ord:"1C", ex:"Bird Dog Internal Rotation", rp:"10 / side", note:"Neutral pelvis, drive leg back and internally rotate so toes point toward midline. Ankle stays bent at 90 degrees. Rotate as far as you can without losing posture." }
       ]},
-      { name:"Standalone", rows:[
-        { ss:"", ord:"", ex:"Foam Roller Hip Internal Rotation (Seated)", rp:"1 x 10 reps", note:"Sit on foam roller with feet wide, rotate knees inward to stretch internal hip rotators" },
-        { ss:"", ord:"", ex:"Cable Internal Rotation", rp:"1 x 10 / side", note:"Keep load light - lead leg initiates the movement, not upper body. Arms out, shoulder blades back and down, solid core." },
-        { ss:"", ord:"", ex:"Hip Internal Rotation Static Stretch", rp:"1 x 60 sec / side", note:"90/90 position, rotate upper body toward the leg behind you. Big stretch on internal leg muscles." },
-        { ss:"", ord:"", ex:"Bretzel", rp:"2 x 10 rotations / side", note:"Pull up on foot and leg, rotate upper body back and down toward floor, breathe each rep. 30s rest between sets." }
-      ]},
-      { name:"Superset 2 - 3 Sets", rows:[
-        { ss:"1", ord:"1A", ex:"Pelvic Tilts on Ground", rp:"15 reps", note:"Arch back then press low back hard into ground. 1 sec hold at bottom." },
-        { ss:"",  ord:"1B", ex:"Glute Bridge", rp:"15 reps", note:"Slow - only glutes come up, not hamstrings or lower back." }
+      { name:"Phase 4", rows:[
+        { ss:"1", ord:"1A", ex:"Foam Roller Hip Internal Rotation (Seated)", rp:"1 x 10 reps", note:"Sit on foam roller with feet wide, rotate knees inward to stretch internal hip rotators" },
+        { ss:"",  ord:"1B", ex:"Cable Internal Rotation", rp:"1 x 10 / side", note:"Keep load light - lead leg initiates the movement, not upper body. Arms out, shoulder blades back and down, solid core." }
       ]}
     ]
   },
