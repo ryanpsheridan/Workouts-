@@ -339,25 +339,34 @@ const DAYS = [
     ]
   },
   {
-    id: "post-golf", group: "golf", label: "Post-Golf", sub: "Full Body",
+    id: "tpi-golf", group: "golf", label: "TPI Golf", sub: "Strength & Rotation",
     color: "#16a34a", light: "#f0fdf4",
     phases: [
-      { name: "Phase 1 - High Rep Full Body", rows: [
-        { ss: "1", ord: "1A", ex: "Push-Ups", rp: "3 x 20 reps" },
-        { ss: "",  ord: "1B", ex: "Pull-Ups", rp: "3 x max reps" },
-        { ss: "",  ord: "1C", ex: "Banded Shoulder Raises", rp: "3 x 15 reps" },
-        { ss: "2", ord: "2A", ex: "Incline DB Press", rp: "3 x 15 reps", note: "Moderate load" },
-        { ss: "",  ord: "2B", ex: "Incline DB Curls", rp: "3 x 15 reps" },
-        { ss: "3", ord: "3A", ex: "Smith Machine Lunges", rp: "3 x 15-20 reps", note: "Light load" },
-        { ss: "",  ord: "3B", ex: "Lateral Band Walks", rp: "20 steps / side" }
+      { name: "Phase 1 - TPI Mobility & Activation", rows: [
+        { ss: "1", ord: "1A", ex: "Open Books (Thoracic Rotation)", rp: "10 / side", note: "Side-lying, top knee pinned at 90. Rotate upper body open, follow hand with eyes. Feel the stretch through mid-back, not low back." },
+        { ss: "",  ord: "1B", ex: "90/90 Hip Switches", rp: "10 / side", note: "Sit tall, knees at 90. Rotate both knees side to side. Keep chest up - hips do all the work." },
+        { ss: "2", ord: "2A", ex: "Cat-Cow with Rotation", rp: "8 / side", note: "From all fours, thread one arm under and reach to ceiling. Exhale as you rotate open. Feel separation between upper and lower body." },
+        { ss: "",  ord: "2B", ex: "Spiderman with Thoracic Rotation", rp: "5 / side", note: "Deep lunge, plant inside hand, rotate top hand to ceiling. Drive rotation from mid-back. Hold 2 sec at top." },
+        { ss: "3", ord: "3A", ex: "Half-Kneeling Hip Flexor Stretch with Rotation", rp: "30 sec + 5 rotations / side", note: "Squeeze back glute, tuck pelvis under, then rotate torso toward front knee. Feel hip open and thoracic engage." },
+        { ss: "",  ord: "3B", ex: "Seated Pelvic Tilts", rp: "15 reps", note: "Sit on bench, alternate between full anterior and posterior tilt. Own the feeling of pelvic control - this is your swing base." }
       ]},
-      { name: "Phase 2 - Conditioning + Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Assault Bike or Cycling", rp: "1 min moderate / 1 min easy", note: "Low intensity" },
-        { ss: "",  ord: "1B", ex: "Pallof Press", rp: "12 reps / side" },
-        { ss: "2", ord: "2A", ex: "Assault Bike or Cycling", rp: "1 min moderate / 1 min easy", note: "Low intensity" },
-        { ss: "",  ord: "2B", ex: "Bird-Dogs", rp: "10 / side", note: "Spinal reset" },
-        { ss: "3", ord: "3A", ex: "Assault Bike or Cycling", rp: "1 min moderate / 1 min easy", note: "Low intensity" },
-        { ss: "",  ord: "3B", ex: "Dead Bug", rp: "10 / side", note: "Deep core, no rotation" }
+      { name: "Phase 2 - Rotational Strength", rows: [
+        { ss: "1", ord: "1A", ex: "Half-Kneeling Cable Chop (High-to-Low)", rp: "3 x 10 / side", note: "Trail knee down. Pull from high cable across body to opposite hip. Drive with hips and core, arms just connect. Feel obliques load like the downswing." },
+        { ss: "",  ord: "1B", ex: "Half-Kneeling Cable Lift (Low-to-High)", rp: "3 x 10 / side", note: "Lead knee down. Pull from low cable up and across. This is your follow-through pattern. Chest stays tall, rotation comes from torso." },
+        { ss: "2", ord: "2A", ex: "Cable or Band Rotational Row", rp: "3 x 12 / side", note: "Split stance facing cable. Row and rotate away from anchor. Feel the back hip load, then drive through rotation. Mimics backswing loading." },
+        { ss: "",  ord: "2B", ex: "Pallof Press with Rotation", rp: "3 x 8 / side", note: "Press cable out, then slowly rotate torso toward and away from anchor. Resist the pull - build the anti-rotation strength that controls your swing." }
+      ]},
+      { name: "Phase 3 - Power & Posterior Chain", rows: [
+        { ss: "1", ord: "1A", ex: "Medicine Ball Rotational Slam", rp: "3 x 8 / side", note: "Athletic stance, load into trail hip, fire through with full rotation and slam ball into wall. Explosive. This is your speed training." },
+        { ss: "",  ord: "1B", ex: "Medicine Ball Perpendicular Throw", rp: "3 x 6 / side", note: "Stand sideways to wall. Load trail hip, separate hips from shoulders, throw through the ball. Feel ground-up sequencing: feet, hips, torso, arms." },
+        { ss: "2", ord: "2A", ex: "Single Leg Romanian Deadlift", rp: "3 x 8 / side", note: "DB or KB in opposite hand. Hinge at hip, keep back flat. Builds the posterior chain and single-leg stability every golfer needs." },
+        { ss: "",  ord: "2B", ex: "Lateral Lunge to Press", rp: "3 x 8 / side", note: "Step wide, sit into hip, drive back up and press DB overhead. Trains lateral stability and hip loading - the engine of rotation." }
+      ]},
+      { name: "Phase 4 - Core & Anti-Rotation", rows: [
+        { ss: "1", ord: "1A", ex: "Plank with Shoulder Tap", rp: "3 x 10 / side", note: "Slow and controlled. Fight rotation as you lift each hand. Wider feet = easier. Build the stable core that lets rotation happen around it." },
+        { ss: "",  ord: "1B", ex: "Dead Bug with Band Resistance", rp: "3 x 8 / side", note: "Attach band to rig overhead, hold tension. Extend opposite arm and leg. Back stays glued to floor - this is deep core." },
+        { ss: "2", ord: "2A", ex: "Bird Dog with Hip Internal Rotation", rp: "3 x 8 / side", note: "Extend leg back, then internally rotate so toes point toward midline. Hold 2 sec. Builds rotational control through the hip." },
+        { ss: "",  ord: "2B", ex: "Turkish Get-Up (Half)", rp: "2 x 3 / side", note: "KB or DB. Go to tall sit position and return. Builds shoulder stability, core control, and the body awareness every golfer needs. Keep load light to start." }
       ]}
     ]
   }
