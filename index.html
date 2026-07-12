@@ -36,7 +36,10 @@
     --line-2: #eff1f5;
     --field: #f1f3f6;
     --rail: #c3c9d4;      /* neutral left border on cards */
-    --link: #2563eb;      /* blue reserved for tappable links only */
+    --link: #2563eb;      /* blue = tappable link */
+    --done: #16a34a;      /* green = completed / progress */
+    --accent: #2563eb;    /* per-day section color, set on each panel */
+    --accent-soft: #eef4ff;
     --font: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
   }
@@ -89,9 +92,9 @@
   .day-pill:active { transform: scale(0.96); }
   .pill-main { display: block; font-size: 13.5px; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
   .pill-sub { display: block; font-size: 10px; font-weight: 600; color: var(--ink-3); margin-top: 1px; text-transform: uppercase; letter-spacing: 0.05em; }
-  .day-pill.active { background: var(--ink); border-color: var(--ink); }
+  .day-pill.active { border-color: transparent; }
   .day-pill.active .pill-main { color: #fff; }
-  .day-pill.active .pill-sub { color: rgba(255,255,255,0.72); }
+  .day-pill.active .pill-sub { color: rgba(255,255,255,0.78); }
 
   /* ---------- Day panel ---------- */
   .day-panel { display: none; padding: 0 1.25rem; }
@@ -100,75 +103,55 @@
   .day-hero { padding: 1.5rem 0 0.3rem; }
   .day-hero .kicker {
     display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent);
   }
-  .day-hero .kicker::before { content: ""; width: 20px; height: 2px; background: var(--ink-3); }
+  .day-hero .kicker::before { content: ""; width: 20px; height: 2px; background: var(--accent); border-radius: 2px; }
   .day-hero h2 { font-size: 27px; font-weight: 800; letter-spacing: -0.03em; margin-top: 9px; }
   .day-hero .focus { font-size: 14px; color: var(--ink-2); margin-top: 3px; font-weight: 500; }
 
-  .progress {
-    display: flex; align-items: center; gap: 10px;
-    margin-top: 13px; font-size: 12.5px; color: var(--ink-3); font-weight: 600;
-  }
-  .progress .bar { flex: 1; height: 4px; border-radius: 3px; background: var(--line); overflow: hidden; max-width: 160px; }
-  .progress .bar > i { display: block; height: 100%; width: 0; background: var(--ink); transition: width 0.2s ease; }
-  .progress .reset {
-    border: none; background: none; font-family: inherit; font-size: 12.5px;
-    color: var(--link); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; padding: 0;
-  }
+  .progress { display: flex; align-items: center; gap: 10px; margin-top: 13px; font-size: 12.5px; color: var(--ink-3); font-weight: 600; }
+  .progress .bar { flex: 1; height: 4px; border-radius: 3px; background: var(--line); overflow: hidden; max-width: 150px; }
+  .progress .bar > i { display: block; height: 100%; width: 0; background: var(--done); transition: width 0.25s ease; }
+  .progress .reset { border: none; background: none; font-family: inherit; font-size: 12.5px; color: var(--link); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; padding: 0; }
 
-  /* ---------- Warm-up accordion ---------- */
-  .warmup {
-    margin-top: 1.1rem; background: var(--surface);
-    border: 1px solid var(--line); border-left: 3px solid var(--rail);
-    border-radius: 0 14px 14px 0; overflow: hidden;
-  }
-  .warmup-trigger {
+  /* ---------- Section (warm-up + phases share this) ---------- */
+  .sec { margin-top: 1.5rem; }
+  .sec-head {
     width: 100%; display: flex; align-items: center; gap: 11px;
-    padding: 13px 15px; background: none; border: none; cursor: pointer;
+    padding: 2px 2px 11px; background: none; border: none; cursor: pointer;
     font-family: inherit; text-align: left; -webkit-tap-highlight-color: transparent;
   }
-  .warmup-dot {
-    width: 32px; height: 32px; flex: none; border-radius: 9px;
-    background: var(--field); color: var(--ink-2); display: grid; place-items: center; font-size: 13px;
+  .sec-chip {
+    width: 24px; height: 24px; flex: none; border-radius: 7px;
+    background: var(--accent); color: #fff; font-size: 12px; font-weight: 800; display: grid; place-items: center;
   }
-  .warmup-label { flex: 1; }
-  .warmup-label .t { display: block; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
-  .warmup-label .s { display: block; font-size: 11.5px; color: var(--ink-3); font-weight: 500; margin-top: 1px; }
-  .chev {
-    width: 9px; height: 9px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3);
-    transform: rotate(45deg); transition: transform 0.2s ease; margin-right: 4px;
+  .sec-chip.wu { font-size: 10px; }
+  .sec-title { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+  .sec-name { font-size: 13px; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: var(--ink); }
+  .sec-sub { font-size: 11.5px; font-weight: 500; color: var(--ink-3); margin-top: 1px; }
+  .sec-status { font-size: 11.5px; font-weight: 700; color: var(--ink-3); display: flex; align-items: center; }
+  .sec-check {
+    width: 18px; height: 18px; border-radius: 50%; background: var(--done); position: relative; display: inline-block;
   }
-  .warmup.open .chev { transform: rotate(-135deg); }
-  .warmup-body { display: none; padding: 0 12px 12px; }
-  .warmup.open .warmup-body { display: block; }
-
-  /* ---------- Phases ---------- */
-  .phase { margin-top: 1.7rem; }
-  .phase-head { display: flex; align-items: center; gap: 10px; margin-bottom: 0.7rem; }
-  .phase-num {
-    width: 23px; height: 23px; flex: none; border-radius: 7px;
-    background: var(--ink); color: #fff; font-size: 12px; font-weight: 800; display: grid; place-items: center;
-  }
-  .phase-name { font-size: 13px; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: var(--ink); }
+  .sec-check::after { content: ""; position: absolute; left: 6px; top: 3px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  .chev { width: 9px; height: 9px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(-135deg); transition: transform 0.2s ease; margin: 0 2px 0 2px; }
+  .sec.collapsed .chev { transform: rotate(45deg); }
+  .sec.collapsed .sec-body { display: none; }
+  .sec.collapsed .sec-head { padding-bottom: 2px; }
 
   /* ---------- Blocks & exercises ---------- */
   .stack { display: flex; flex-direction: column; gap: 10px; }
   .block {
     background: var(--surface);
     border: 1px solid var(--line); border-left: 3px solid var(--rail);
-    border-radius: 0 14px 14px 0;   /* square on the left, rounded on the right */
+    border-radius: 0 14px 14px 0;   /* square left, rounded right */
     overflow: hidden;
   }
-  .block-tag {
-    font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--ink-3); padding: 10px 14px 0 15px;
-  }
+  .block-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); padding: 10px 14px 0 15px; }
   .block-items { display: flex; flex-direction: column; }
   .block .ex + .ex { border-top: 1px solid var(--line-2); }
 
   .ex { display: grid; grid-template-columns: 22px 24px 1fr auto; gap: 10px; align-items: start; padding: 13px 14px 13px 15px; }
-  .ex--plain { grid-template-columns: 24px 1fr auto; }
 
   .ck {
     width: 22px; height: 22px; margin-top: 1px; flex: none; padding: 0;
@@ -177,11 +160,8 @@
     transition: background 0.12s ease, border-color 0.12s ease;
   }
   .ck:active { transform: scale(0.9); }
-  .ck.done { background: var(--ink); border-color: var(--ink); }
-  .ck.done::after {
-    content: ""; position: absolute; left: 7px; top: 3.5px;
-    width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg);
-  }
+  .ck.done { background: var(--done); border-color: var(--done); }
+  .ck.done::after { content: ""; position: absolute; left: 7px; top: 3.5px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
   .ex-ord { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink-3); margin-top: 3px; letter-spacing: -0.02em; }
   .ex-name { font-size: 15px; font-weight: 650; letter-spacing: -0.01em; color: var(--ink); word-break: break-word; }
@@ -189,9 +169,8 @@
   .ex-note { font-size: 12.5px; color: var(--ink-2); margin-top: 4px; line-height: 1.45; }
   .ex-reps { font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--field); border-radius: 8px; padding: 5px 9px; text-align: right; white-space: nowrap; margin-top: 1px; }
 
-  .ex.done .ex-name { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--ink-3); }
-  .ex.done .ex-note { opacity: 0.5; }
-  .ex.done .ex-reps { opacity: 0.55; }
+  /* completed exercise: mute the content, keep the green check bright */
+  .ex.done .ex-ord, .ex.done .ex-body, .ex.done .ex-reps { opacity: 0.42; transition: opacity 0.15s ease; }
 
   /* ---------- Footer ---------- */
   footer { padding: 2.4rem 1.25rem 0; text-align: center; }
@@ -259,6 +238,7 @@ const WARMUPS = {
 const DAYS = [
   {
     id: "lower-a", label: "Lower A", sub: "Mon", focus: "Power, rotation & the GHD finisher",
+    color: "#2563eb", soft: "#eef4ff",
     phases: [
       { name: "Power & Prime", rows: [
         { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=YLPQsdRDmB0" target="_blank">Box Jumps</a>', rp: "3 x 4", note: "Done first, while you're fresh. Step down every rep, land soft and quiet. Height is secondary to control." },
@@ -281,6 +261,7 @@ const DAYS = [
   },
   {
     id: "upper-a", label: "Upper A", sub: "Tue", focus: "Pull-biased, TRX & the pull-up giant set",
+    color: "#0891b2", soft: "#e2f7fb",
     phases: [
       { name: "Power & Prime", rows: [
         { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=EsAhU1jHpiQ" target="_blank">Med Ball Slams</a>', rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep. Gets the heart rate up before you touch a weight." },
@@ -302,6 +283,7 @@ const DAYS = [
   },
   {
     id: "lower-b", label: "Lower B", sub: "Thu", focus: "Unilateral, sprint & the heavy sled",
+    color: "#7c3aed", soft: "#f1ecfe",
     phases: [
       { name: "Power & Prime", rows: [
         { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=GR5JVcHHS_Q" target="_blank">Broad Jumps</a>', rp: "3 x 4", note: "Fresh legs first. Stick and hold each landing before resetting - a soft, balanced landing beats distance." },
@@ -324,6 +306,7 @@ const DAYS = [
   },
   {
     id: "upper-b", label: "Upper B", sub: "Fri", focus: "Press, carries & arms in motion",
+    color: "#059669", soft: "#dff5ec",
     phases: [
       { name: "Power & Prime", rows: [
         { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=D3puZb7vzjQ" target="_blank">Med Ball Perpendicular Throw</a>', rp: "3 x 6 / side", note: "Stand sideways to the wall, load the trail hip, throw through the ball. Ground-up sequencing: feet, hips, torso, arms - pure swing power." },
@@ -349,6 +332,7 @@ let activeId = DAYS[0].id;
 let STATE = {};
 try { STATE = JSON.parse(localStorage.getItem("wp-v1")) || {}; } catch (e) { STATE = {}; }
 function save() { try { localStorage.setItem("wp-v1", JSON.stringify(STATE)); } catch (e) {} }
+function dayFromKey(key) { return key.split("#")[0]; }
 
 function groupRows(rows) {
   const groups = [];
@@ -361,13 +345,6 @@ function groupRows(rows) {
 
 function exHtml(r, key) {
   const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
-  if (!key) {
-    return `<div class="ex ex--plain">
-      <div class="ex-ord">${r.ord}</div>
-      <div class="ex-body"><div class="ex-name">${r.ex}</div>${note}</div>
-      <div class="ex-reps">${r.rp}</div>
-    </div>`;
-  }
   const on = STATE[key] ? " done" : "";
   return `<div class="ex${on}">
     <button class="ck${on}" data-key="${key}" aria-label="Mark complete" aria-pressed="${!!STATE[key]}"></button>
@@ -378,7 +355,7 @@ function exHtml(r, key) {
 }
 
 function blockHtml(group, prefix) {
-  const items = group.map(r => exHtml(r, prefix ? `${prefix}#${r.ord}` : null)).join("");
+  const items = group.map(r => exHtml(r, `${prefix}#${r.ord}`)).join("");
   if (group.length === 1) return `<div class="block">${items}</div>`;
   const tag = group.length >= 4 ? "Giant set" : group.length === 3 ? "Tri-set" : "Superset";
   return `<div class="block"><div class="block-tag">${tag}</div><div class="block-items">${items}</div></div>`;
@@ -386,6 +363,19 @@ function blockHtml(group, prefix) {
 
 function stackHtml(rows, prefix) {
   return `<div class="stack">${groupRows(rows).map(g => blockHtml(g, prefix)).join("")}</div>`;
+}
+
+function sectionHtml(secId, chip, chipClass, title, sub, rows, prefix) {
+  const subHtml = sub ? `<span class="sec-sub">${sub}</span>` : "";
+  return `<section class="sec" id="sec-${secId}">
+    <button class="sec-head" aria-expanded="true" aria-controls="body-${secId}">
+      <span class="sec-chip ${chipClass}">${chip}</span>
+      <span class="sec-title"><span class="sec-name">${title}</span>${subHtml}</span>
+      <span class="sec-status" data-status="${secId}"></span>
+      <span class="chev"></span>
+    </button>
+    <div class="sec-body" id="body-${secId}">${stackHtml(rows, prefix)}</div>
+  </section>`;
 }
 
 function buildUI() {
@@ -397,66 +387,87 @@ function buildUI() {
   ).join("");
 
   document.getElementById("content").innerHTML = DAYS.map(d => {
-    const phases = d.phases.map((p, i) =>
-      `<section class="phase">
-        <div class="phase-head"><span class="phase-num">${i + 1}</span><span class="phase-name">${p.name}</span></div>
-        ${stackHtml(p.rows, `${d.id}#${i}`)}
-      </section>`
+    const warmup = WARMUPS[d.id] || [];
+    const warmSec = sectionHtml(`${d.id}-wu`, "&#9650;", "wu", "Pre-Flight Warm-Up", "Pick what your body needs &middot; 2-3 sets", warmup, `${d.id}#wu`);
+    const phaseSecs = d.phases.map((p, i) =>
+      sectionHtml(`${d.id}-p${i}`, i + 1, "", p.name, "", p.rows, `${d.id}#${i}`)
     ).join("");
 
-    const warmup = WARMUPS[d.id] || [];
-
-    return `<div class="day-panel" role="tabpanel" id="s-${d.id}">
+    return `<div class="day-panel" role="tabpanel" id="s-${d.id}" style="--accent:${d.color};--accent-soft:${d.soft}">
       <div class="day-hero">
         <span class="kicker">${d.sub} &middot; Session</span>
         <h2>${d.label}</h2>
         <div class="focus">${d.focus}</div>
         <div class="progress">
-          <span id="pg-${d.id}">0 / 0</span>
+          <span id="pg-${d.id}">0 / 0 done</span>
           <span class="bar"><i id="bar-${d.id}"></i></span>
           <button class="reset" data-day="${d.id}" style="display:none">Reset</button>
         </div>
       </div>
-      <div class="warmup" id="warmup-${d.id}">
-        <button class="warmup-trigger" aria-expanded="false" aria-controls="warmup-body-${d.id}">
-          <span class="warmup-dot">&#9650;</span>
-          <span class="warmup-label">
-            <span class="t">Pre-Flight Warm-Up</span>
-            <span class="s">Pick what your body needs &middot; 2-3 sets</span>
-          </span>
-          <span class="chev"></span>
-        </button>
-        <div class="warmup-body" id="warmup-body-${d.id}">${stackHtml(warmup, null)}</div>
-      </div>
-      ${phases}
+      ${warmSec}
+      ${phaseSecs}
     </div>`;
   }).join("");
 
+  // Initial state: collapse any section already fully checked; set statuses.
+  document.querySelectorAll(".sec").forEach(sec => {
+    if (refreshSection(sec.id.replace("sec-", ""))) collapse(sec, true);
+  });
   DAYS.forEach(d => updateProgress(d.id));
+}
+
+function sectionEl(secId) { return document.getElementById("sec-" + secId); }
+
+function refreshSection(secId) {
+  const sec = sectionEl(secId);
+  if (!sec) return false;
+  const total = sec.querySelectorAll(".ck").length;
+  const done = sec.querySelectorAll(".ck.done").length;
+  const st = sec.querySelector("[data-status]");
+  const complete = total > 0 && done === total;
+  if (st) {
+    if (complete) st.innerHTML = '<span class="sec-check"></span>';
+    else if (done > 0) st.textContent = `${done} / ${total}`;
+    else st.textContent = "";
+  }
+  return complete;
+}
+
+function collapse(sec, on) {
+  sec.classList.toggle("collapsed", on);
+  const head = sec.querySelector(".sec-head");
+  if (head) head.setAttribute("aria-expanded", String(!on));
 }
 
 function updateProgress(dayId) {
   const panel = document.getElementById("s-" + dayId);
   if (!panel) return;
-  const total = panel.querySelectorAll(".ck").length;
-  const done = panel.querySelectorAll(".ck.done").length;
+  // Day progress counts working sets only (warm-up is pick-and-choose).
+  const cks = [...panel.querySelectorAll(".ck")].filter(c => c.dataset.key.indexOf("#wu#") < 0);
+  const done = cks.filter(c => c.classList.contains("done")).length;
   const pg = document.getElementById("pg-" + dayId);
   const bar = document.getElementById("bar-" + dayId);
   const reset = panel.querySelector(".reset");
-  if (pg) pg.textContent = `${done} / ${total} done`;
-  if (bar) bar.style.width = total ? `${(done / total) * 100}%` : "0";
-  if (reset) reset.style.display = done > 0 ? "" : "none";
+  if (pg) pg.textContent = `${done} / ${cks.length} done`;
+  if (bar) bar.style.width = cks.length ? `${(done / cks.length) * 100}%` : "0";
+  if (reset) reset.style.display = panel.querySelectorAll(".ck.done").length > 0 ? "" : "none";
 }
 
 function toggleCk(ck) {
   const key = ck.dataset.key;
   const done = ck.classList.toggle("done");
-  ck.setAttribute("aria-pressed", done);
+  ck.setAttribute("aria-pressed", String(done));
   const ex = ck.closest(".ex");
   if (ex) ex.classList.toggle("done", done);
   if (done) STATE[key] = 1; else delete STATE[key];
   save();
-  updateProgress(key.split("#")[0]);
+  const sec = ck.closest(".sec");
+  const secId = sec.id.replace("sec-", "");
+  const complete = refreshSection(secId);
+  updateProgress(dayFromKey(key));
+  // Auto-collapse a section once every item in it is checked (slight delay so
+  // the green check registers first). Un-checking never force-expands.
+  if (complete) setTimeout(() => { if (refreshSection(secId)) collapse(sec, true); }, 380);
 }
 
 function resetDay(dayId) {
@@ -470,15 +481,21 @@ function resetDay(dayId) {
     delete STATE[ck.dataset.key];
   });
   save();
+  panel.querySelectorAll(".sec").forEach(sec => {
+    collapse(sec, false);
+    refreshSection(sec.id.replace("sec-", ""));
+  });
   updateProgress(dayId);
 }
 
 function setDay(id) {
   activeId = id;
+  const day = DAYS.find(d => d.id === id);
   document.querySelectorAll(".day-pill").forEach(pill => {
     const on = pill.dataset.day === id;
     pill.classList.toggle("active", on);
     pill.setAttribute("aria-selected", on);
+    pill.style.background = on ? day.color : "";
   });
   document.querySelectorAll(".day-panel").forEach(panel => {
     panel.classList.toggle("visible", panel.id === `s-${id}`);
@@ -493,11 +510,10 @@ document.addEventListener("click", e => {
   if (ck) { toggleCk(ck); return; }
   const reset = e.target.closest(".reset");
   if (reset) { resetDay(reset.dataset.day); return; }
-  const trigger = e.target.closest(".warmup-trigger");
-  if (trigger) {
-    const warmup = trigger.closest(".warmup");
-    const open = warmup.classList.toggle("open");
-    trigger.setAttribute("aria-expanded", open);
+  const head = e.target.closest(".sec-head");
+  if (head) {
+    const sec = head.closest(".sec");
+    collapse(sec, !sec.classList.contains("collapsed"));
   }
 });
 
