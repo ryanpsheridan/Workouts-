@@ -121,20 +121,14 @@
     padding: 2px 2px 11px; background: none; border: none; cursor: pointer;
     font-family: inherit; text-align: left; -webkit-tap-highlight-color: transparent;
   }
-  .sec-chip {
-    width: 24px; height: 24px; flex: none; border-radius: 7px;
-    background: var(--accent); color: #fff; font-size: 12px; font-weight: 800; display: grid; place-items: center;
-  }
-  .sec-chip.wu { font-size: 10px; }
+  .sec-num { flex: none; font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0; min-width: 20px; }
   .sec-title { flex: 1; display: flex; flex-direction: column; min-width: 0; }
   .sec-name { font-size: 13px; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: var(--ink); }
   .sec-sub { font-size: 11.5px; font-weight: 500; color: var(--ink-3); margin-top: 1px; }
   .sec-status { font-size: 11.5px; font-weight: 700; color: var(--ink-3); display: flex; align-items: center; }
-  .sec-check {
-    width: 18px; height: 18px; border-radius: 50%; background: var(--done); position: relative; display: inline-block;
-  }
+  .sec-check { width: 18px; height: 18px; border-radius: 50%; background: var(--done); position: relative; display: inline-block; }
   .sec-check::after { content: ""; position: absolute; left: 6px; top: 3px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
-  .chev { width: 9px; height: 9px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(-135deg); transition: transform 0.2s ease; margin: 0 2px 0 2px; }
+  .chev { width: 9px; height: 9px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(-135deg); transition: transform 0.2s ease; margin: 0 2px; }
   .sec.collapsed .chev { transform: rotate(45deg); }
   .sec.collapsed .sec-body { display: none; }
   .sec.collapsed .sec-head { padding-bottom: 2px; }
@@ -165,9 +159,18 @@
 
   .ex-ord { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink-3); margin-top: 3px; letter-spacing: -0.02em; }
   .ex-name { font-size: 15px; font-weight: 650; letter-spacing: -0.01em; color: var(--ink); word-break: break-word; }
-  .ex-name a { color: var(--link); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
   .ex-note { font-size: 12.5px; color: var(--ink-2); margin-top: 4px; line-height: 1.45; }
   .ex-reps { font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--field); border-radius: 8px; padding: 5px 9px; text-align: right; white-space: nowrap; margin-top: 1px; }
+
+  /* how-to link, moved off the title into a consistent chip at the card foot */
+  .ex-demo {
+    display: inline-flex; align-items: center; gap: 7px; margin-top: 10px;
+    padding: 5px 11px 5px 10px; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--surface); font-size: 11px; font-weight: 700; letter-spacing: 0.02em;
+    color: var(--link); text-decoration: none; -webkit-tap-highlight-color: transparent;
+  }
+  .ex-demo::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 8px; border-color: transparent transparent transparent var(--link); }
+  .ex-demo:active { background: var(--field); }
 
   /* completed exercise: mute the content, keep the green check bright */
   .ex.done .ex-ord, .ex.done .ex-body, .ex.done .ex-reps { opacity: 0.42; transition: opacity 0.15s ease; }
@@ -195,13 +198,14 @@
 <script>
 // Warm-ups are unique per day and prep the muscles left sore by the PREVIOUS
 // session. Weekly order: Lower A -> Upper A -> Lower B -> Upper B -> repeat.
+// ex = plain name; link = optional how-to URL rendered as a chip at card foot.
 const WARMUPS = {
   "lower-a": [ // prior day: Upper B (chest, front delts, traps, upper back, arms)
-    { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=rDviWORCWEw" target="_blank">Open Books</a>', rp: "8 / side", note: "Opens the upper back and chest still tight from yesterday's presses. Follow the hand with your eyes." },
+    { ss: "1", ord: "1A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the upper back and chest still tight from yesterday's presses. Follow the hand with your eyes." },
     { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Wake the rear delts and undo the pressing posture from Upper B." },
-    { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=qq_Z7sAmVrA" target="_blank">90/90 Hip Switches</a>', rp: "8 / side", note: "Internal + external hip rotation - the range golf demands. Chest tall, hips do the work." },
+    { ss: "2", ord: "2A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands. Chest tall, hips do the work." },
     { ss: "",  ord: "2B", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top." },
-    { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=wPM8icPu6H8" target="_blank">Glute Bridge (2 sec hold)</a>', rp: "12 reps", note: "Fire the glutes before they carry the whole session." },
+    { ss: "3", ord: "3A", ex: "Glute Bridge (2 sec hold)", link: "https://www.youtube.com/watch?v=wPM8icPu6H8", rp: "12 reps", note: "Fire the glutes before they carry the whole session." },
     { ss: "",  ord: "3B", ex: "Walking Lunges", rp: "10 / side", note: "Light and smooth - potentiate the legs for the day." },
     { ss: "4", ord: "4A", ex: "Lateral Band Walks", rp: "15 steps / side", note: "Switch on the glute med for all the single-leg work ahead." }
   ],
@@ -210,27 +214,27 @@ const WARMUPS = {
     { ss: "",  ord: "1B", ex: "Scapular Pull-Ups", rp: "8 reps", note: "Hang and shrug the shoulder blades down - primes the back for the pull-up work." },
     { ss: "2", ord: "2A", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delt + mid-back activation before you press or row." },
     { ss: "",  ord: "2B", ex: "Thoracic Rotations", rp: "10 / side", note: "Free up the mid-back so the shoulders move clean." },
-    { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=qq_Z7sAmVrA" target="_blank">90/90 Hip Switches</a>', rp: "8 / side", note: "Loosen the hips Lower A hammered yesterday, and keep the golf rotation ticking over." },
+    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips Lower A hammered yesterday, and keep the golf rotation ticking over." },
     { ss: "",  ord: "3B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors cooked by yesterday's lunges." },
-    { ss: "4", ord: "4A", ex: '<a href="https://www.youtube.com/watch?v=g_BYB0R-4Ws" target="_blank">Bird-Dogs</a>', rp: "10 / side", note: "Gentle core switch-on, back stays flat." }
+    { ss: "4", ord: "4A", ex: "Bird-Dogs", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "10 / side", note: "Gentle core switch-on, back stays flat." }
   ],
   "lower-b": [ // prior day: Upper A (upper back, lats, biceps, chest)
-    { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=YPTKZy_kKt8" target="_blank">Cat-Cow with Rotation</a>', rp: "8 / side", note: "Unwind the upper back and lats from yesterday's pulling. Exhale as you rotate open." },
+    { ss: "1", ord: "1A", ex: "Cat-Cow with Rotation", link: "https://www.youtube.com/watch?v=YPTKZy_kKt8", rp: "8 / side", note: "Unwind the upper back and lats from yesterday's pulling. Exhale as you rotate open." },
     { ss: "",  ord: "1B", ex: "Thoracic Rotations", rp: "10 / side", note: "Keep freeing the mid-back before you load the legs." },
     { ss: "2", ord: "2A", ex: "Hip Internal Rotation Stretch", rp: "30 sec / side", note: "Seated or on all fours, rotate the shin inward and sink into the back of the hip. Straight at the internal-rotation range golf hammers." },
-    { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=1U2RPN5vAWQ" target="_blank">Bretzel</a>', rp: "5 breaths / side", note: "Your golf-trainer move - t-spine and hip in one. Breathe and sink deeper each rep." },
+    { ss: "",  ord: "2B", ex: "Bretzel", link: "https://www.youtube.com/watch?v=1U2RPN5vAWQ", rp: "5 breaths / side", note: "Your golf-trainer move - t-spine and hip in one. Breathe and sink deeper each rep." },
     { ss: "3", ord: "3A", ex: "Adductor Rocks", rp: "10 reps", note: "On all fours, rock the hips back to open the groin for step-ups and single-leg work." },
     { ss: "",  ord: "3B", ex: "Cossack Squats", rp: "6 / side", note: "Slow and controlled - lateral hip and ankle mobility." },
-    { ss: "4", ord: "4A", ex: '<a href="https://www.youtube.com/watch?v=wPM8icPu6H8" target="_blank">Glute Bridge (2 sec hold)</a>', rp: "12 reps", note: "Activate the glutes before the heavier lower work." }
+    { ss: "4", ord: "4A", ex: "Glute Bridge (2 sec hold)", link: "https://www.youtube.com/watch?v=wPM8icPu6H8", rp: "12 reps", note: "Activate the glutes before the heavier lower work." }
   ],
   "upper-b": [ // prior day: Lower B (glutes, quads, hamstrings, calves)
     { ss: "1", ord: "1A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress and pre-stretch the lats for the pulling to come." },
     { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delts and mid-back on before you press." },
     { ss: "2", ord: "2A", ex: "Shoulder CARs", rp: "5 / side", note: "Take each shoulder slowly through its full circle - the best prep before pressing." },
     { ss: "",  ord: "2B", ex: "Thoracic Rotations", rp: "10 / side", note: "Rotate the mid-back so the press stays out of the low back." },
-    { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=qq_Z7sAmVrA" target="_blank">90/90 Hip Switches</a>', rp: "8 / side", note: "Loosen the hips and glutes still cooked from Lower B, keep golf rotation moving." },
+    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips and glutes still cooked from Lower B, keep golf rotation moving." },
     { ss: "",  ord: "3B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors after all of yesterday's sled and step-ups." },
-    { ss: "4", ord: "4A", ex: '<a href="https://www.youtube.com/watch?v=g_BYB0R-4Ws" target="_blank">Dead Bug</a>', rp: "8 / side", note: "Deep core wake-up, back glued to the floor." }
+    { ss: "4", ord: "4A", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." }
   ]
 };
 
@@ -241,16 +245,16 @@ const DAYS = [
     color: "#2563eb", soft: "#eef4ff",
     phases: [
       { name: "Power & Prime", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=YLPQsdRDmB0" target="_blank">Box Jumps</a>', rp: "3 x 4", note: "Done first, while you're fresh. Step down every rep, land soft and quiet. Height is secondary to control." },
-        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=W_4eq6r00zw" target="_blank">Med Ball Rotational Slam</a>', rp: "3 x 5 / side", note: "Load the trail hip, fire through with full rotation and slam. Explosive - swing speed, and it spikes the heart rate early." }
+        { ss: "1", ord: "1A", ex: "Box Jumps", link: "https://www.youtube.com/watch?v=YLPQsdRDmB0", rp: "3 x 4", note: "Done first, while you're fresh. Step down every rep, land soft and quiet. Height is secondary to control." },
+        { ss: "",  ord: "1B", ex: "Med Ball Rotational Slam", link: "https://www.youtube.com/watch?v=W_4eq6r00zw", rp: "3 x 5 / side", note: "Load the trail hip, fire through with full rotation and slam. Explosive - swing speed, and it spikes the heart rate early." }
       ]},
       { name: "Strength", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==" target="_blank">Twisting Lunges with 45 lb plate</a>', rp: "4 x 8 / side", note: "Your favorite - rotate the plate over the front leg. Rotation under load." },
+        { ss: "1", ord: "1A", ex: "Twisting Lunges with 45 lb plate", link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", rp: "4 x 8 / side", note: "Your favorite - rotate the plate over the front leg. Rotation under load." },
         { ss: "",  ord: "1B", ex: "Suitcase Carry", rp: "Heavy / 30 yds / side", note: "Grip + anti-lean core. Stand tall, don't tip toward the weight. Plate/DB is right there from the lunges." },
         { ss: "2", ord: "2A", ex: "Smith Machine Lunges OR Hack Squat", rp: "6, 4, 2, 1", note: "Heavy quad strength." },
         { ss: "",  ord: "2B", ex: "Lateral Band Walks", rp: "15 steps / side" },
-        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank">Single-Leg DB RDL</a>', rp: "3 x 8 / side", note: "Your favorite. Hinge at the hip, flat back, feel the hamstring and glute load plus the balance demand." },
-        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=tKmTgQ_YajY" target="_blank">Half-Kneeling Cable Chop (High-to-Low)</a>', rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect. Cable station is right beside you." },
+        { ss: "3", ord: "3A", ex: "Single-Leg DB RDL", link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Your favorite. Hinge at the hip, flat back, feel the hamstring and glute load plus the balance demand." },
+        { ss: "",  ord: "3B", ex: "Half-Kneeling Cable Chop (High-to-Low)", link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect. Cable station is right beside you." },
         { ss: "4", ord: "4A", ex: "Sled Push (Forward + Backward)", rp: "4 x 40 yds", note: "Light-to-moderate so you can do both directions - forward drives the quads, backward is knee-friendly and jacks the heart rate." }
       ]},
       { name: "Finisher", rows: [
@@ -264,7 +268,7 @@ const DAYS = [
     color: "#0891b2", soft: "#e2f7fb",
     phases: [
       { name: "Power & Prime", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=EsAhU1jHpiQ" target="_blank">Med Ball Slams</a>', rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep. Gets the heart rate up before you touch a weight." },
+        { ss: "1", ord: "1A", ex: "Med Ball Slams", link: "https://www.youtube.com/watch?v=EsAhU1jHpiQ", rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep. Gets the heart rate up before you touch a weight." },
         { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Push hard enough to leave the floor (or drive the hands off a box). Calisthenics power - land soft into the next rep." }
       ]},
       { name: "Strength", rows: [
@@ -286,16 +290,16 @@ const DAYS = [
     color: "#7c3aed", soft: "#f1ecfe",
     phases: [
       { name: "Power & Prime", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=GR5JVcHHS_Q" target="_blank">Broad Jumps</a>', rp: "3 x 4", note: "Fresh legs first. Stick and hold each landing before resetting - a soft, balanced landing beats distance." },
-        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=G5tsTOqrkec" target="_blank">Skater Bounds</a>', rp: "3 x 5 / side", note: "Lateral bound, stick the landing on one leg. Balance + athleticism - your body needs these even if they aren't your favorite. Two moves, done early, in and out." }
+        { ss: "1", ord: "1A", ex: "Broad Jumps", link: "https://www.youtube.com/watch?v=GR5JVcHHS_Q", rp: "3 x 4", note: "Fresh legs first. Stick and hold each landing before resetting - a soft, balanced landing beats distance." },
+        { ss: "",  ord: "1B", ex: "Skater Bounds", link: "https://www.youtube.com/watch?v=G5tsTOqrkec", rp: "3 x 5 / side", note: "Lateral bound, stick the landing on one leg. Balance + athleticism - your body needs these even if they aren't your favorite. Two moves, done early, in and out." }
       ]},
       { name: "Strength", rows: [
         { ss: "1", ord: "1A", ex: "Offset Step-Ups", rp: "4 x 6 / side", note: "Your combo. Big toe glued down, feel the front glute load, slow on the way down." },
         { ss: "",  ord: "1B", ex: "Walking Lunges", rp: "25 yds", note: "Stay low and smooth straight off the step-ups." },
         { ss: "2", ord: "2A", ex: "Single-Leg Press (Machine)", rp: "3 x 10-12 / side", note: "Press through the toes - quad focus." },
         { ss: "",  ord: "2B", ex: "Calf Raises OR Lateral Band Walks", rp: "15 reps / 15 steps" },
-        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank">Single-Leg DB RDL</a>', rp: "3 x 8 / side", note: "Hamstring, glute, and balance. DB in the hand opposite the working leg." },
-        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=HXrLaqNIkTs" target="_blank">Pallof Press (with hold)</a>', rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull. Anti-rotation core that keeps your swing on plane." },
+        { ss: "3", ord: "3A", ex: "Single-Leg DB RDL", link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Hamstring, glute, and balance. DB in the hand opposite the working leg." },
+        { ss: "",  ord: "3B", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull. Anti-rotation core that keeps your swing on plane." },
         { ss: "4", ord: "4A", ex: "Suitcase Carry", rp: "Heavy / 30 yds / side", note: "Grip + oblique, one side at a time. Stand tall against the load." }
       ]},
       { name: "Finisher", rows: [
@@ -309,11 +313,11 @@ const DAYS = [
     color: "#059669", soft: "#dff5ec",
     phases: [
       { name: "Power & Prime", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=D3puZb7vzjQ" target="_blank">Med Ball Perpendicular Throw</a>', rp: "3 x 6 / side", note: "Stand sideways to the wall, load the trail hip, throw through the ball. Ground-up sequencing: feet, hips, torso, arms - pure swing power." },
+        { ss: "1", ord: "1A", ex: "Med Ball Perpendicular Throw", link: "https://www.youtube.com/watch?v=D3puZb7vzjQ", rp: "3 x 6 / side", note: "Stand sideways to the wall, load the trail hip, throw through the ball. Ground-up sequencing: feet, hips, torso, arms - pure swing power." },
         { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Leave the floor, land soft. Upper-body power while you're fresh." }
       ]},
       { name: "Strength", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=LN1zCeoIfbE" target="_blank">Half-Kneeling Landmine Press</a>', rp: "3 x 8 / side", note: "Replaces the old seated DB overhead press - far easier on the low back, and the half-kneel forces core + anti-lean. Golf-friendly overhead strength." },
+        { ss: "1", ord: "1A", ex: "Half-Kneeling Landmine Press", link: "https://www.youtube.com/watch?v=LN1zCeoIfbE", rp: "3 x 8 / side", note: "Replaces the old seated DB overhead press - far easier on the low back, and the half-kneel forces core + anti-lean. Golf-friendly overhead strength." },
         { ss: "",  ord: "1B", ex: "Chin-Ups", rp: "3 x AMRAP", note: "Underhand grip - your most bicep-dominant pull, placed early while you're strong since arms are the weak point. Band-assist to hit honest reps." },
         { ss: "2", ord: "2A", ex: "Incline DB Press", rp: "3 x 8-10", note: "Moderate load - front delts already take a beating all week, so quality over ego here." },
         { ss: "",  ord: "2B", ex: "Hanging TRX Row", rp: "3 x 10", note: "Straps are right there - pull the chest to the handles." },
@@ -345,11 +349,12 @@ function groupRows(rows) {
 
 function exHtml(r, key) {
   const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
+  const demo = r.link ? `<a class="ex-demo" href="${r.link}" target="_blank" rel="noopener">Watch demo</a>` : "";
   const on = STATE[key] ? " done" : "";
   return `<div class="ex${on}">
     <button class="ck${on}" data-key="${key}" aria-label="Mark complete" aria-pressed="${!!STATE[key]}"></button>
     <div class="ex-ord">${r.ord}</div>
-    <div class="ex-body"><div class="ex-name">${r.ex}</div>${note}</div>
+    <div class="ex-body"><div class="ex-name">${r.ex}</div>${note}${demo}</div>
     <div class="ex-reps">${r.rp}</div>
   </div>`;
 }
@@ -365,11 +370,11 @@ function stackHtml(rows, prefix) {
   return `<div class="stack">${groupRows(rows).map(g => blockHtml(g, prefix)).join("")}</div>`;
 }
 
-function sectionHtml(secId, chip, chipClass, title, sub, rows, prefix) {
+function sectionHtml(secId, num, title, sub, rows, prefix) {
   const subHtml = sub ? `<span class="sec-sub">${sub}</span>` : "";
   return `<section class="sec" id="sec-${secId}">
     <button class="sec-head" aria-expanded="true" aria-controls="body-${secId}">
-      <span class="sec-chip ${chipClass}">${chip}</span>
+      <span class="sec-num">${num}</span>
       <span class="sec-title"><span class="sec-name">${title}</span>${subHtml}</span>
       <span class="sec-status" data-status="${secId}"></span>
       <span class="chev"></span>
@@ -388,9 +393,9 @@ function buildUI() {
 
   document.getElementById("content").innerHTML = DAYS.map(d => {
     const warmup = WARMUPS[d.id] || [];
-    const warmSec = sectionHtml(`${d.id}-wu`, "&#9650;", "wu", "Pre-Flight Warm-Up", "Pick what your body needs &middot; 2-3 sets", warmup, `${d.id}#wu`);
+    const warmSec = sectionHtml(`${d.id}-wu`, "00", "Pre-Flight Warm-Up", "Pick what your body needs &middot; 2-3 sets", warmup, `${d.id}#wu`);
     const phaseSecs = d.phases.map((p, i) =>
-      sectionHtml(`${d.id}-p${i}`, i + 1, "", p.name, "", p.rows, `${d.id}#${i}`)
+      sectionHtml(`${d.id}-p${i}`, "0" + (i + 1), p.name, "", p.rows, `${d.id}#${i}`)
     ).join("");
 
     return `<div class="day-panel" role="tabpanel" id="s-${d.id}" style="--accent:${d.color};--accent-soft:${d.soft}">
