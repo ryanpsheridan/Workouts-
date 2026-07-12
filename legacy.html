@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Ryan's Weekly Program</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Cg fill='%23fff'%3E%3Crect x='5' y='7' width='4' height='18' rx='1.5'/%3E%3Crect x='9' y='9.5' width='3' height='13' rx='1'/%3E%3Crect x='20' y='9.5' width='3' height='13' rx='1'/%3E%3Crect x='23' y='7' width='4' height='18' rx='1.5'/%3E%3Crect x='12' y='13' width='8' height='6' rx='1'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Workouts">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+  @font-face {
+    font-family: "DM Sans";
+    src: url("DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "DM Sans";
+    src: url("DMSans-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  :root {
+    --bg-page: #f4f6f9;
+    --bg-card: #ffffff;
+    --bg-thead: #eef1f6;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --text-muted: #9ca3af;
+    --border: #dde2ea;
+    --border-tab: #c8d0dc;
+    --font-sans: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg-page) !important;
+    color: var(--text-primary) !important;
+    color-scheme: light !important;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    min-height: 100vh;
+    padding-bottom: 4rem;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  header {
+    padding: 1.75rem 1.25rem 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+    background: var(--bg-card) !important;
+  }
+  header h1 { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--text-primary) !important; }
+  header p { font-size: 13px; color: var(--text-secondary) !important; margin-top: 2px; }
+
+  .tab-groups {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .group-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-muted) !important;
+    margin-bottom: 6px;
+  }
+
+  .tab-row { display: flex; gap: 6px; }
+
+  .day-tab {
+    flex: 1;
+    padding: 10px 6px;
+    border-radius: 10px;
+    border: 1px solid var(--border-tab);
+    background: var(--bg-card);
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .tab-main { display: block; font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+  .tab-sub { display: block; font-size: 10px; font-weight: 400; margin-top: 2px; color: var(--text-muted); }
+  .day-tab.active .tab-main { color: #ffffff; }
+  .day-tab.active .tab-sub { color: rgba(255, 255, 255, 0.8); }
+
+  .session { display: none; padding: 0 1.25rem; }
+  .session.visible { display: block; }
+
+  .phase-header {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary) !important;
+    margin: 1.5rem 0 0.6rem;
+  }
+  .phase-header:first-of-type { margin-top: 0; }
+
+  .warmup-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .table-card {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead tr { border-bottom: 1px solid var(--border); background: var(--bg-thead) !important; }
+  th {
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted) !important;
+  }
+  td {
+    padding: 11px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  .col-ss { width: 44px; color: var(--text-secondary) !important; font-size: 13px; font-weight: 500; }
+  .col-ord { width: 48px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
+  .col-ex { font-weight: 500; color: var(--text-primary) !important; word-break: break-word; }
+  .col-ex .note { font-size: 12px; font-weight: 400; color: var(--text-secondary) !important; margin-top: 2px; }
+  .col-rp { width: 110px; font-size: 12px; color: var(--text-secondary); text-align: right; }
+
+  .flag {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-top: 1.25rem;
+    font-size: 13px;
+    color: #dc2626;
+    line-height: 1.5;
+  }
+
+  .accordion {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: var(--bg-card) !important;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+  }
+  .accordion-trigger-left { display: flex; align-items: center; gap: 8px; }
+  .accordion-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .accordion-chevron {
+    font-size: 11px;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+  .accordion.open .accordion-chevron { transform: rotate(180deg); }
+  .accordion-body { display: none; border-top: 1px solid var(--border); }
+  .accordion.open .accordion-body { display: block; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Ryan's Weekly Program <span style="font-size:11px;font-weight:600;color:var(--text-muted);border:1px solid var(--border-tab);border-radius:5px;padding:2px 6px;vertical-align:middle;margin-left:4px;">ARCHIVED</span></h1>
+  <p>5 training days + active recovery &middot; <a href="index.html" style="color:#2563eb;text-decoration:underline;">Back to current program &rarr;</a></p>
+</header>
+
+<nav class="tab-groups" aria-label="Workout days">
+  <div>
+    <div class="group-label">Lower Body</div>
+    <div class="tab-row" role="tablist" id="lower-tabs"></div>
+  </div>
+  <div>
+    <div class="group-label">Upper Body</div>
+    <div class="tab-row" role="tablist" id="upper-tabs"></div>
+  </div>
+  <div>
+    <div class="group-label">Golf</div>
+    <div class="tab-row" role="tablist" id="golf-tabs"></div>
+  </div>
+</nav>
+
+<main id="content"></main>
+
+<script>
+const WARMUP = [
+  { ss: "1", ord: "1A", ex: "Thoracic Rotations", rp: "10 / side" },
+  { ss: "",  ord: "1B", ex: "World's Greatest Stretch", rp: "5 / side" },
+  { ss: "2", ord: "2A", ex: "Dead Bugs", rp: "8 / side", note: "Keep back flat on ground" },
+  { ss: "",  ord: "2B", ex: "Bird-Dogs", rp: "10 / side" },
+  { ss: "3", ord: "3A", ex: "Dead Hang", rp: "30-60 sec" },
+  { ss: "",  ord: "3B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side" },
+  { ss: "4", ord: "4A", ex: "Walking Lunges", rp: "10 / side", fire: true },
+  { ss: "",  ord: "4B", ex: "Lateral Band Raises", rp: "12 / side", fire: true }
+];
+
+const DAYS = [
+  {
+    id: "lower-a", group: "lower", label: "Lower A", sub: "Monday",
+    color: "#2563eb", light: "#eff6ff",
+    phases: [
+      { name: "Phase 1 - Heavy Strength", rows: [
+        { ss: "1", ord: "1A", ex: 'Smith Machine Lunges OR <a href="https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==" target="_blank" style="color:#2563eb;text-decoration:underline;">Twisting Lunges with 45 lb plate</a>', rp: "6, 4, 2, 1" },
+        { ss: "",  ord: "1B", ex: "Lateral Band Walks", rp: "15 steps / side" },
+        { ss: "2", ord: "2A", ex: "Single Leg Extensions OR Hack Squat", rp: "Heavy" },
+        { ss: "",  ord: "2B", ex: "Single Leg Press", rp: "10-12 reps / side" }
+      ]},
+      { name: "Phase 2 - Conditioning + Finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Sled Pushes", rp: "40 yards" },
+        { ss: "",  ord: "1B", ex: "Suitcase Carries", rp: "Heavy / 30 yds / side" },
+        { ss: "2", ord: "2A", ex: "Reverse Hyperextensions", rp: "3 x 12-15 reps", note: "Hips at pad edge, not waist. Legs to parallel only - stop before lumbar takes over. Slow descent, no momentum. Light-to-moderate load. Squeeze glutes at top, not lower back." },
+        { ss: "",  ord: "2B", ex: "GHD Sit-Ups", rp: "3 x 15 reps" },
+        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=YLPQsdRDmB0" target="_blank" style="color:#2563eb;text-decoration:underline;">Box Jumps</a>', rp: "3 x 5 reps", note: "Step down rather than jump down - focus on a soft, quiet landing. Height is secondary to control." },
+        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=G5tsTOqrkec" target="_blank" style="color:#2563eb;text-decoration:underline;">Skater Bounds</a>', rp: "3 x 6 / side", note: "Lateral bound side to side, stick the landing on one leg before pushing off again." },
+        { ss: "4", ord: "4A", ex: '<a href="https://www.youtube.com/watch?v=GR5JVcHHS_Q" target="_blank" style="color:#2563eb;text-decoration:underline;">Broad Jumps</a>', rp: "3 x 5 reps", note: "Stick and hold each landing before resetting. Distance is secondary to a soft landing." }
+      ]}
+    ]
+  },
+  {
+    id: "lower-b", group: "lower", label: "Lower B", sub: "Thursday",
+    color: "#7c3aed", light: "#f5f3ff",
+    phases: [
+      { name: "Phase 1 - Heavy Strength", rows: [
+        { ss: "1", ord: "1A", ex: "Offset Step-Ups", rp: "6, 4, 2, 1 / side", note: "Feel your belly button turn toward your inner thigh, keep your big toe glued down, and sense a deep stretch in the back of your working hip as you slowly lower." },
+        { ss: "",  ord: "1B", ex: "Walking Lunges", rp: "25 yds", note: "Stay low, keep it smooth, and feel your front glute load with every step." },
+        { ss: "",  ord: "1C", ex: "Bicycle Crunches", rp: "20 reps" },
+        { ss: "2", ord: "2A", ex: "Single Leg Press, Machine", rp: "3 x 10-12 reps", note: "Press through toes - quad workout" },
+        { ss: "",  ord: "2B", ex: "Lateral Band Walks or Calf Raises", rp: "15 steps / 15 reps" }
+      ]},
+      { name: "Phase 2 - Conditioning + Finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Sled Pushes", rp: "5 min", note: "Steady vigorous effort" },
+        { ss: "",  ord: "1B", ex: "Leg Raises", rp: "15 reps" },
+        { ss: "2", ord: "2A", ex: "Bike or Rower", rp: "5 min", note: "Alternate with sled" },
+        { ss: "",  ord: "2B", ex: "Dead Bug", rp: "10 / side", note: "Deep core, no rotation" },
+        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=tZSYZdtbONc" target="_blank" style="color:#7c3aed;text-decoration:underline;">Squat Jumps</a>', rp: "3 x 8 reps", note: "Bodyweight only. Control the landing fully before the next rep." },
+        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=McBg7nru_hI" target="_blank" style="color:#7c3aed;text-decoration:underline;">Lateral Bounds</a>', rp: "3 x 6 / side", note: "Push off the outside leg, land soft on the opposite leg, hold briefly before the next rep." },
+        { ss: "4", ord: "4A", ex: '<a href="https://www.youtube.com/watch?v=7WgzHOQGgYw" target="_blank" style="color:#7c3aed;text-decoration:underline;">Single-Leg Hops</a>', rp: "2 x 6 / side", note: "Small range, quiet landings. Build ankle and knee stability before adding height or distance." }
+      ]}
+    ]
+  },
+  {
+    id: "upper-a", group: "upper", label: "Upper A", sub: "Tuesday",
+    color: "#0891b2", light: "#ecfeff",
+    phases: [
+      { name: "Phase 1 - Heavy Strength", rows: [
+        { ss: "1", ord: "1A", ex: "Incline DB Press", rp: "Heavy" },
+        { ss: "",  ord: "1B", ex: "Lateral Band Raises", rp: "12 / side" },
+        { ss: "2", ord: "2A", ex: "Hanging TRX Row", rp: "Heavy" },
+        { ss: "",  ord: "2B", ex: "TRX Tricep Extension", rp: "12 reps" },
+        { ss: "3", ord: "3A", ex: "Swimming Circles", rp: "3 x 10 reps", note: "Lie face down, arms extended. Make small circles with arms while lifting chest and legs off the ground. Strengthens the entire posterior chain - lower back, glutes, and shoulders." },
+        { ss: "",  ord: "3B", ex: "Push-Up Variations", rp: "3 x 10 reps", note: 'Pick one: Diamond / Wide-Grip / <a href="https://www.youtube.com/watch?v=eZNvTorsU6I" target="_blank" style="color:#0891b2;text-decoration:underline;">Archer</a> / Decline' }
+      ]},
+      { name: "Phase 2 - Conditioning + Finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Assault Bike or Rower", rp: "1 min on / 1 min off", note: "Vigorous effort" },
+        { ss: "",  ord: "1B", ex: "Bicep Curl Variant", rp: "3 x 12-15 reps", note: "Pick one: Incline DB Curls / Hammer Curls / Cable Curls / Preacher Curls / Concentration Curls" },
+        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=EsAhU1jHpiQ" target="_blank" style="color:#0891b2;text-decoration:underline;">Med Ball Slams</a>', rp: "3 x 8 reps", note: "Explosive overhead slam without loading the spine in flexion. Full effort down, reset each rep." }
+      ]}
+    ]
+  },
+  {
+    id: "upper-b", group: "upper", label: "Upper B", sub: "Friday",
+    color: "#d97706", light: "#fffbeb",
+    flag: "Seated DB Overhead Press may load the lumbar under fatigue. Consider swapping to a machine press or incline variation.",
+    phases: [
+      { name: "Phase 1 - Heavy Strength", rows: [
+        { ss: "1", ord: "1A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide Grip / Neutral Grip — back to back" },
+        { ss: "",  ord: "1B", ex: "Overhead Tricep Extension", rp: "12 reps" },
+        { ss: "2", ord: "2A", ex: "Seated DB Overhead Press", rp: "Heavy", warn: true },
+        { ss: "",  ord: "2B", ex: "Incline DB Curls", rp: "8-10 reps" }
+      ]},
+      { name: "Phase 2 - Conditioning + Finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Assault Bike or GHD Sit-Ups", rp: "2 min / Vigorous" },
+        { ss: "",  ord: "1B", ex: "Farmer's Carry", rp: "Heavy / 40 yds" },
+        { ss: "",  ord: "1C", ex: "Face Pulls", rp: "15 reps", note: "Rear delts / posture" },
+        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=EsAhU1jHpiQ" target="_blank" style="color:#d97706;text-decoration:underline;">Med Ball Slams</a>', rp: "3 x 8 reps", note: "Explosive overhead slam without loading the spine in flexion. Full effort down, reset each rep." }
+      ]}
+    ]
+  },
+  {
+    id: "tpi-light", group: "golf", label: "TPI Light", sub: "Day Before Play",
+    color: "#16a34a", light: "#f0fdf4",
+    phases: [
+      { name: "Phase 1 - Mobility & Rotation Flow", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=rDviWORCWEw" target="_blank" style="color:#16a34a;text-decoration:underline;">Open Books (Thoracic Rotation)</a>', rp: "8 / side", note: "Side-lying, top knee pinned at 90. Rotate upper body open, follow hand with eyes. Breathe into each rep - no forcing." },
+        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=qq_Z7sAmVrA" target="_blank" style="color:#16a34a;text-decoration:underline;">90/90 Hip Switches</a>', rp: "10 / side", note: "Sit tall, knees at 90. Rotate both knees side to side. Keep chest up - hips do all the work. Smooth and controlled." },
+        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=1U2RPN5vAWQ" target="_blank" style="color:#16a34a;text-decoration:underline;">Bretzel</a>', rp: "8 rotations / side", note: "Pull up on foot and leg, rotate upper body back and down toward floor. Breathe and sink deeper each rep." },
+        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=il1AhduOqfA" target="_blank" style="color:#16a34a;text-decoration:underline;">Spiderman with Thoracic Rotation</a>', rp: "5 / side", note: "Deep lunge, plant inside hand, rotate top hand to ceiling. Drive rotation from mid-back. Hold 2 sec at top." }
+      ]},
+      { name: "Phase 2 - Glute & Core Activation", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=n8DU1desCy8" target="_blank" style="color:#16a34a;text-decoration:underline;">Pelvic Tilts on Ground</a>', rp: "12 reps", note: "Arch back then press low back hard into ground. Own the feeling of pelvic control - this drives your swing." },
+        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=wPM8icPu6H8" target="_blank" style="color:#16a34a;text-decoration:underline;">Glute Bridge with 2 sec Hold</a>', rp: "12 reps", note: "Squeeze glutes hard at top. Only glutes lift you - not hamstrings or low back. Feel the connection to your trail hip." },
+        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=g_BYB0R-4Ws" target="_blank" style="color:#16a34a;text-decoration:underline;">Dead Bug</a>', rp: "8 / side", note: "Slow tempo. Back stays glued to floor. This is your deep core wake-up." },
+        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=M-qIBLafIC8" target="_blank" style="color:#16a34a;text-decoration:underline;">Bird Dog with Hip Internal Rotation</a>', rp: "8 / side", note: "Extend leg back, internally rotate so toes point toward midline. Hold 2 sec. Feel hip rotational control engage." }
+      ]},
+      { name: "Phase 3 - Light Rotation & Feel", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=tKmTgQ_YajY" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Cable Chop (High-to-Low)</a>', rp: "1 x 10 / side", note: "Light weight. Focus on feeling the obliques load and the separation between upper and lower body. Groove the pattern, not the load." },
+        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=bcw8Ti9xcHg" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Cable Lift (Low-to-High)</a>', rp: "1 x 10 / side", note: "Light weight. This is your follow-through pattern. Chest stays tall, let the hips and core do the work." },
+        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=HXrLaqNIkTs" target="_blank" style="color:#16a34a;text-decoration:underline;">Pallof Press with Hold</a>', rp: "1 x 8 / side", note: "Press out, hold 3 sec. Feel the core brace against the pull. Anti-rotation is what keeps your swing on plane." },
+        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=GMJ-deyA1hQ" target="_blank" style="color:#16a34a;text-decoration:underline;">Standing Hip Drops</a>', rp: "10 / side", note: "Stand on step, drop one hip below level then drive it back up. Feel the lateral hip stability that controls your pelvis through the swing." }
+      ]}
+    ]
+  },
+  {
+    id: "tpi-full", group: "golf", label: "TPI Full", sub: "Strength & Power",
+    color: "#16a34a", light: "#f0fdf4",
+    phases: [
+      { name: "Phase 1 - TPI Mobility & Activation", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=rDviWORCWEw" target="_blank" style="color:#16a34a;text-decoration:underline;">Open Books (Thoracic Rotation)</a>', rp: "10 / side", note: "Side-lying, top knee pinned at 90. Rotate upper body open, follow hand with eyes. Feel the stretch through mid-back, not low back." },
+        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=qq_Z7sAmVrA" target="_blank" style="color:#16a34a;text-decoration:underline;">90/90 Hip Switches</a>', rp: "10 / side", note: "Sit tall, knees at 90. Rotate both knees side to side. Keep chest up - hips do all the work." },
+        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=YPTKZy_kKt8" target="_blank" style="color:#16a34a;text-decoration:underline;">Cat-Cow with Rotation</a>', rp: "8 / side", note: "From all fours, thread one arm under and reach to ceiling. Exhale as you rotate open. Feel separation between upper and lower body." },
+        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=il1AhduOqfA" target="_blank" style="color:#16a34a;text-decoration:underline;">Spiderman with Thoracic Rotation</a>', rp: "5 / side", note: "Deep lunge, plant inside hand, rotate top hand to ceiling. Drive rotation from mid-back. Hold 2 sec at top." },
+        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=Cz-wzyBG51k" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Hip Flexor Stretch with Rotation</a>', rp: "30 sec + 5 rotations / side", note: "Squeeze back glute, tuck pelvis under, then rotate torso toward front knee. Feel hip open and thoracic engage." },
+        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=SlzYz7SQns4" target="_blank" style="color:#16a34a;text-decoration:underline;">Seated Pelvic Tilts</a>', rp: "15 reps", note: "Sit on bench, alternate between full anterior and posterior tilt. Own the feeling of pelvic control - this is your swing base." }
+      ]},
+      { name: "Phase 2 - Rotational Strength", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=tKmTgQ_YajY" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Cable Chop (High-to-Low)</a>', rp: "3 x 10 / side", note: "Trail knee down. Pull from high cable across body to opposite hip. Drive with hips and core, arms just connect. Feel obliques load like the downswing." },
+        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=bcw8Ti9xcHg" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Cable Lift (Low-to-High)</a>', rp: "3 x 10 / side", note: "Lead knee down. Pull from low cable up and across. This is your follow-through pattern. Chest stays tall, rotation comes from torso." },
+        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=rG2UTOn0D4c" target="_blank" style="color:#16a34a;text-decoration:underline;">Cable or Band Rotational Row</a>', rp: "3 x 12 / side", note: "Split stance facing cable. Row and rotate away from anchor. Feel the back hip load, then drive through rotation. Mimics backswing loading." },
+        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=_2xWmYNnFS8" target="_blank" style="color:#16a34a;text-decoration:underline;">Pallof Press with Rotation</a>', rp: "3 x 8 / side", note: "Press cable out, then slowly rotate torso toward and away from anchor. Resist the pull - build the anti-rotation strength that controls your swing." }
+      ]},
+      { name: "Phase 3 - Power & Posterior Chain", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=W_4eq6r00zw" target="_blank" style="color:#16a34a;text-decoration:underline;">Medicine Ball Rotational Slam</a>', rp: "3 x 8 / side", note: "Athletic stance, load into trail hip, fire through with full rotation and slam ball into wall. Explosive. This is your speed training." },
+        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=D3puZb7vzjQ" target="_blank" style="color:#16a34a;text-decoration:underline;">Medicine Ball Perpendicular Throw</a>', rp: "3 x 6 / side", note: "Stand sideways to wall. Load trail hip, separate hips from shoulders, throw through the ball. Feel ground-up sequencing: feet, hips, torso, arms." },
+        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" style="color:#16a34a;text-decoration:underline;">Single Leg Romanian Deadlift</a>', rp: "3 x 8 / side", note: "DB or KB in opposite hand. Hinge at hip, keep back flat. Builds the posterior chain and single-leg stability every golfer needs." },
+        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=_Y0w8b4ldgA" target="_blank" style="color:#16a34a;text-decoration:underline;">Lateral Lunge to Press</a>', rp: "3 x 8 / side", note: "Step wide, sit into hip, drive back up and press DB overhead. Trains lateral stability and hip loading - the engine of rotation." }
+      ]},
+      { name: "Phase 4 - Core & Anti-Rotation", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=eT93C-xUZI8" target="_blank" style="color:#16a34a;text-decoration:underline;">Plank with Shoulder Tap</a>', rp: "3 x 10 / side", note: "Slow and controlled. Fight rotation as you lift each hand. Wider feet = easier. Build the stable core that lets rotation happen around it." },
+        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=nha5Hz5_SOs" target="_blank" style="color:#16a34a;text-decoration:underline;">Dead Bug with Band Resistance</a>', rp: "3 x 8 / side", note: "Attach band to rig overhead, hold tension. Extend opposite arm and leg. Back stays glued to floor - this is deep core." },
+        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=M-qIBLafIC8" target="_blank" style="color:#16a34a;text-decoration:underline;">Bird Dog with Hip Internal Rotation</a>', rp: "3 x 8 / side", note: "Extend leg back, then internally rotate so toes point toward midline. Hold 2 sec. Builds rotational control through the hip." },
+        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=w2CAHDUeR3M" target="_blank" style="color:#16a34a;text-decoration:underline;">Turkish Get-Up (Half)</a>', rp: "2 x 3 / side", note: "KB or DB. Go to tall sit position and return. Builds shoulder stability, core control, and the body awareness every golfer needs. Keep load light to start." }
+      ]}
+    ]
+  }
+];
+
+function buildTable(rows, color) {
+  const rowsHtml = rows.map(r => {
+    const warn = r.warn ? ' <span style="color:#dc2626;font-size:13px;">&#9888;</span>' : '';
+    const fire = r.fire ? ' <span style="font-size:13px;">&#128293;</span>' : '';
+    const note = r.note ? `<div class="note">${r.note}</div>` : '';
+    return `<tr>
+      <td class="col-ss">${r.ss}</td>
+      <td class="col-ord" style="color:${color}">${r.ord}</td>
+      <td class="col-ex">${r.ex}${warn}${fire}${note}</td>
+      <td class="col-rp">${r.rp}</td>
+    </tr>`;
+  }).join('');
+
+  return `<div class="table-card"><table>
+    <thead><tr><th class="col-ss">SS</th><th class="col-ord">Ord</th><th>Exercise</th><th class="col-rp">Reps</th></tr></thead>
+    <tbody>${rowsHtml}</tbody>
+  </table></div>`;
+}
+
+let activeId = "lower-a";
+
+function buildUI() {
+  for (const group of ["lower", "upper", "golf"]) {
+    const container = document.getElementById(`${group}-tabs`);
+    if (!container) continue;
+    container.innerHTML = DAYS
+      .filter(d => d.group === group)
+      .map(d => `<button class="day-tab" role="tab" aria-selected="false" data-day="${d.id}" data-color="${d.color}">
+        <span class="tab-main">${d.label}</span>
+        <span class="tab-sub">${d.sub}</span>
+      </button>`)
+      .join('');
+  }
+
+  document.getElementById("content").innerHTML = DAYS.map(d => {
+    const isTPI = d.id === "tpi-light" || d.id === "tpi-full";
+    const phases = isTPI
+      ? d.phases.map((p, i) =>
+        `<div class="accordion" id="phase-${d.id}-${i}" style="margin-top:${i === 0 ? '0' : '10px'}">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls="phase-body-${d.id}-${i}">
+            <div class="accordion-trigger-left">
+              <span class="accordion-title">${p.name}</span>
+            </div>
+            <span class="accordion-chevron">&#9660;</span>
+          </button>
+          <div class="accordion-body" id="phase-body-${d.id}-${i}">${buildTable(p.rows, d.color)}</div>
+        </div>`
+      ).join('')
+      : d.phases.map(p =>
+        `<div class="phase-header">${p.name}</div>${buildTable(p.rows, d.color)}`
+      ).join('');
+    const flag = d.flag
+      ? `<div class="flag"><span>&#9888;</span><span>${d.flag}</span></div>`
+      : '';
+    return `<div class="session" role="tabpanel" id="s-${d.id}">
+      <div class="accordion" id="warmup-${d.id}">
+        <button class="accordion-trigger" aria-expanded="false" aria-controls="warmup-body-${d.id}">
+          <div class="accordion-trigger-left">
+            <span class="accordion-title">Pre-Flight Warm-Up</span>
+            <span class="warmup-badge" style="background:${d.light};color:${d.color}">2-3 sets</span>
+          </div>
+          <span class="accordion-chevron">&#9660;</span>
+        </button>
+        <div class="accordion-body" id="warmup-body-${d.id}">${buildTable(WARMUP, d.color)}</div>
+      </div>
+      ${phases}
+      ${flag}
+    </div>`;
+  }).join('');
+}
+
+function setDay(id) {
+  activeId = id;
+  const day = DAYS.find(d => d.id === id);
+
+  document.querySelectorAll(".day-tab").forEach(tab => {
+    const isActive = tab.dataset.day === id;
+    tab.classList.toggle("active", isActive);
+    tab.setAttribute("aria-selected", isActive);
+    tab.style.background = isActive ? day.color : "";
+    tab.style.borderColor = isActive ? day.color : "";
+  });
+
+  document.querySelectorAll(".session").forEach(panel => {
+    panel.classList.toggle("visible", panel.id === `s-${id}`);
+  });
+}
+
+document.addEventListener("click", e => {
+  const tab = e.target.closest(".day-tab");
+  if (tab) {
+    setDay(tab.dataset.day);
+    return;
+  }
+
+  const trigger = e.target.closest(".accordion-trigger");
+  if (trigger) {
+    const accordion = trigger.closest(".accordion");
+    const isOpen = accordion.classList.toggle("open");
+    trigger.setAttribute("aria-expanded", isOpen);
+  }
+});
+
+buildUI();
+setDay(activeId);
+</script>
+</body>
+</html>

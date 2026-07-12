@@ -215,7 +215,7 @@
 
 <header>
   <h1>Ryan's Weekly Program</h1>
-  <p>5 training days + active recovery</p>
+  <p>4 training days &middot; 2 upper / 2 lower &middot; golf woven in</p>
 </header>
 
 <nav class="tab-groups" aria-label="Workout days">
@@ -227,24 +227,27 @@
     <div class="group-label">Upper Body</div>
     <div class="tab-row" role="tablist" id="upper-tabs"></div>
   </div>
-  <div>
-    <div class="group-label">Golf</div>
-    <div class="tab-row" role="tablist" id="golf-tabs"></div>
-  </div>
 </nav>
 
 <main id="content"></main>
+
+<footer style="padding:1.5rem 1.25rem 0;text-align:center;">
+  <a href="legacy.html" style="font-size:12px;color:var(--text-muted);text-decoration:underline;">View previous program (archived) &rarr;</a>
+</footer>
 
 <script>
 const WARMUP = [
   { ss: "1", ord: "1A", ex: "Thoracic Rotations", rp: "10 / side" },
   { ss: "",  ord: "1B", ex: "World's Greatest Stretch", rp: "5 / side" },
-  { ss: "2", ord: "2A", ex: "Dead Bugs", rp: "8 / side", note: "Keep back flat on ground" },
-  { ss: "",  ord: "2B", ex: "Bird-Dogs", rp: "10 / side" },
-  { ss: "3", ord: "3A", ex: "Dead Hang", rp: "30-60 sec" },
+  { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=qq_Z7sAmVrA" target="_blank" style="color:#4b5563;text-decoration:underline;">90/90 Hip Switches</a>', rp: "8 / side", note: "Internal + external hip rotation. Keep the chest tall and let the hips do the work - hits the internal hip your swing hammers." },
+  { ss: "",  ord: "2B", ex: "Hip Internal Rotation Stretch", rp: "30 sec / side", note: "Seated or on all fours, rotate the shin inward and sink into the back of the hip. Straight at the internal-rotation range golf demands." },
+  { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=1U2RPN5vAWQ" target="_blank" style="color:#4b5563;text-decoration:underline;">Bretzel</a>', rp: "5 breaths / side", note: "Your golf-trainer move. Pull up on the foot, rotate the upper back toward the floor. Breathe and sink deeper each rep." },
   { ss: "",  ord: "3B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side" },
-  { ss: "4", ord: "4A", ex: "Walking Lunges", rp: "10 / side", fire: true },
-  { ss: "",  ord: "4B", ex: "Lateral Band Raises", rp: "12 / side", fire: true }
+  { ss: "4", ord: "4A", ex: "Dead Bugs", rp: "8 / side", note: "Keep back flat on ground" },
+  { ss: "",  ord: "4B", ex: "Bird-Dogs", rp: "10 / side" },
+  { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine and wake up the grip. Climber staple." },
+  { ss: "6", ord: "6A", ex: "Walking Lunges", rp: "10 / side", fire: true },
+  { ss: "",  ord: "6B", ex: "Lateral Band Raises", rp: "12 / side", fire: true }
 ];
 
 const DAYS = [
@@ -252,20 +255,23 @@ const DAYS = [
     id: "lower-a", group: "lower", label: "Lower A", sub: "Monday",
     color: "#2563eb", light: "#eff6ff",
     phases: [
-      { name: "Phase 1 - Heavy Strength", rows: [
-        { ss: "1", ord: "1A", ex: 'Smith Machine Lunges OR <a href="https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==" target="_blank" style="color:#2563eb;text-decoration:underline;">Twisting Lunges with 45 lb plate</a>', rp: "6, 4, 2, 1" },
-        { ss: "",  ord: "1B", ex: "Lateral Band Walks", rp: "15 steps / side" },
-        { ss: "2", ord: "2A", ex: "Single Leg Extensions OR Hack Squat", rp: "Heavy" },
-        { ss: "",  ord: "2B", ex: "Single Leg Press", rp: "10-12 reps / side" }
+      { name: "Phase 1 - Power & Prime", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=YLPQsdRDmB0" target="_blank" style="color:#2563eb;text-decoration:underline;">Box Jumps</a>', rp: "3 x 4", note: "Done first, while you are fresh. Step down every rep, land soft and quiet. Height is secondary to control." },
+        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=W_4eq6r00zw" target="_blank" style="color:#2563eb;text-decoration:underline;">Med Ball Rotational Slam</a>', rp: "3 x 5 / side", note: "Load the trail hip, fire through with full rotation and slam. Explosive - this is swing speed and it spikes the heart rate early." }
       ]},
-      { name: "Phase 2 - Conditioning + Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Sled Pushes", rp: "40 yards" },
-        { ss: "",  ord: "1B", ex: "Suitcase Carries", rp: "Heavy / 30 yds / side" },
-        { ss: "2", ord: "2A", ex: "Reverse Hyperextensions", rp: "3 x 12-15 reps", note: "Hips at pad edge, not waist. Legs to parallel only - stop before lumbar takes over. Slow descent, no momentum. Light-to-moderate load. Squeeze glutes at top, not lower back." },
-        { ss: "",  ord: "2B", ex: "GHD Sit-Ups", rp: "3 x 15 reps" },
-        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=YLPQsdRDmB0" target="_blank" style="color:#2563eb;text-decoration:underline;">Box Jumps</a>', rp: "3 x 5 reps", note: "Step down rather than jump down - focus on a soft, quiet landing. Height is secondary to control." },
-        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=G5tsTOqrkec" target="_blank" style="color:#2563eb;text-decoration:underline;">Skater Bounds</a>', rp: "3 x 6 / side", note: "Lateral bound side to side, stick the landing on one leg before pushing off again." },
-        { ss: "4", ord: "4A", ex: '<a href="https://www.youtube.com/watch?v=GR5JVcHHS_Q" target="_blank" style="color:#2563eb;text-decoration:underline;">Broad Jumps</a>', rp: "3 x 5 reps", note: "Stick and hold each landing before resetting. Distance is secondary to a soft landing." }
+      { name: "Phase 2 - Strength Supersets", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==" target="_blank" style="color:#2563eb;text-decoration:underline;">Twisting Lunges with 45 lb plate</a>', rp: "4 x 8 / side", note: "Your favorite - rotate the plate over the front leg. Rotation under load." },
+        { ss: "",  ord: "1B", ex: "Suitcase Carry", rp: "Heavy / 30 yds / side", note: "Grip + anti-lean core. Stand tall, do not tip toward the weight. Plate/DB is right there from the lunges." },
+        { ss: "2", ord: "2A", ex: "Smith Machine Lunges OR Hack Squat", rp: "6, 4, 2, 1", note: "Heavy quad strength." },
+        { ss: "",  ord: "2B", ex: "Lateral Band Walks", rp: "15 steps / side" },
+        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" style="color:#2563eb;text-decoration:underline;">Single-Leg DB RDL</a>', rp: "3 x 8 / side", note: "Your favorite. Hinge at the hip, flat back, feel the hamstring and glute load and the balance demand." },
+        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=tKmTgQ_YajY" target="_blank" style="color:#2563eb;text-decoration:underline;">Half-Kneeling Cable Chop (High-to-Low)</a>', rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect. Cable station is right beside you." }
+      ]},
+      { name: "Phase 3 - Conditioning + Finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Sled Push (Forward + Backward)", rp: "4 x 40 yds", note: "Keep it light-to-moderate so you can do both directions - forward drives the quads, backward is knee-friendly and jacks the heart rate." },
+        { ss: "",  ord: "1B", ex: "Dead Hang", rp: "30-60 sec", note: "Grip + spinal decompress between sled trips." },
+        { ss: "2", ord: "2A", ex: "GHD Sit-Ups", rp: "3 x 15", note: "Your favorite combo - same machine as the reverse hypers, so flow straight between them." },
+        { ss: "",  ord: "2B", ex: "GHD Reverse Hyperextension", rp: "3 x 12-15", note: "Legs to parallel only, squeeze the glutes at the top - not the low back. Slow, no momentum, light-to-moderate load." }
       ]}
     ]
   },
@@ -273,21 +279,23 @@ const DAYS = [
     id: "lower-b", group: "lower", label: "Lower B", sub: "Thursday",
     color: "#7c3aed", light: "#f5f3ff",
     phases: [
-      { name: "Phase 1 - Heavy Strength", rows: [
-        { ss: "1", ord: "1A", ex: "Offset Step-Ups", rp: "6, 4, 2, 1 / side", note: "Feel your belly button turn toward your inner thigh, keep your big toe glued down, and sense a deep stretch in the back of your working hip as you slowly lower." },
-        { ss: "",  ord: "1B", ex: "Walking Lunges", rp: "25 yds", note: "Stay low, keep it smooth, and feel your front glute load with every step." },
-        { ss: "",  ord: "1C", ex: "Bicycle Crunches", rp: "20 reps" },
-        { ss: "2", ord: "2A", ex: "Single Leg Press, Machine", rp: "3 x 10-12 reps", note: "Press through toes - quad workout" },
-        { ss: "",  ord: "2B", ex: "Lateral Band Walks or Calf Raises", rp: "15 steps / 15 reps" }
+      { name: "Phase 1 - Power & Prime", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=GR5JVcHHS_Q" target="_blank" style="color:#7c3aed;text-decoration:underline;">Broad Jumps</a>', rp: "3 x 4", note: "Fresh legs first. Stick and hold each landing before resetting. A soft, balanced landing beats distance." },
+        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=G5tsTOqrkec" target="_blank" style="color:#7c3aed;text-decoration:underline;">Skater Bounds</a>', rp: "3 x 5 / side", note: "Lateral bound, stick the landing on one leg. Balance + athleticism - your body needs these even if they aren't your favorite. Two moves, done early, in and out." }
       ]},
-      { name: "Phase 2 - Conditioning + Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Sled Pushes", rp: "5 min", note: "Steady vigorous effort" },
-        { ss: "",  ord: "1B", ex: "Leg Raises", rp: "15 reps" },
-        { ss: "2", ord: "2A", ex: "Bike or Rower", rp: "5 min", note: "Alternate with sled" },
-        { ss: "",  ord: "2B", ex: "Dead Bug", rp: "10 / side", note: "Deep core, no rotation" },
-        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=tZSYZdtbONc" target="_blank" style="color:#7c3aed;text-decoration:underline;">Squat Jumps</a>', rp: "3 x 8 reps", note: "Bodyweight only. Control the landing fully before the next rep." },
-        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=McBg7nru_hI" target="_blank" style="color:#7c3aed;text-decoration:underline;">Lateral Bounds</a>', rp: "3 x 6 / side", note: "Push off the outside leg, land soft on the opposite leg, hold briefly before the next rep." },
-        { ss: "4", ord: "4A", ex: '<a href="https://www.youtube.com/watch?v=7WgzHOQGgYw" target="_blank" style="color:#7c3aed;text-decoration:underline;">Single-Leg Hops</a>', rp: "2 x 6 / side", note: "Small range, quiet landings. Build ankle and knee stability before adding height or distance." }
+      { name: "Phase 2 - Strength Supersets", rows: [
+        { ss: "1", ord: "1A", ex: "Offset Step-Ups", rp: "4 x 6 / side", note: "Your combo. Big toe glued down, feel the front glute load, slow on the way down." },
+        { ss: "",  ord: "1B", ex: "Walking Lunges", rp: "25 yds", note: "Stay low and smooth straight off the step-ups." },
+        { ss: "2", ord: "2A", ex: "Single-Leg Press (Machine)", rp: "3 x 10-12 / side", note: "Press through the toes - quad focus." },
+        { ss: "",  ord: "2B", ex: "Calf Raises OR Lateral Band Walks", rp: "15 reps / 15 steps" },
+        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" style="color:#7c3aed;text-decoration:underline;">Single-Leg DB RDL</a>', rp: "3 x 8 / side", note: "Hamstring, glute, and balance. DB in the opposite hand of the working leg." },
+        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=HXrLaqNIkTs" target="_blank" style="color:#7c3aed;text-decoration:underline;">Pallof Press (with hold)</a>', rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull. Anti-rotation core that keeps your swing on plane." }
+      ]},
+      { name: "Phase 3 - Conditioning + Finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Heavy Sled Push", rp: "6 x 20 yds", note: "This is your heavier sled day - load it up and grind. A real leg killer, so keep the trips short and forward-only." },
+        { ss: "",  ord: "1B", ex: "Suitcase Carry", rp: "Heavy / 30 yds / side", note: "Grip + oblique. Carry it back to the sled." },
+        { ss: "2", ord: "2A", ex: "Hanging Leg Raises", rp: "3 x 12", note: "Control the lower - no swing. Your abs rarely get sore, so make these strict and full-range." },
+        { ss: "",  ord: "2B", ex: "Bicycle Crunches", rp: "3 x 20" }
       ]}
     ]
   },
@@ -295,96 +303,48 @@ const DAYS = [
     id: "upper-a", group: "upper", label: "Upper A", sub: "Tuesday",
     color: "#0891b2", light: "#ecfeff",
     phases: [
-      { name: "Phase 1 - Heavy Strength", rows: [
-        { ss: "1", ord: "1A", ex: "Incline DB Press", rp: "Heavy" },
-        { ss: "",  ord: "1B", ex: "Lateral Band Raises", rp: "12 / side" },
-        { ss: "2", ord: "2A", ex: "Hanging TRX Row", rp: "Heavy" },
-        { ss: "",  ord: "2B", ex: "TRX Tricep Extension", rp: "12 reps" },
-        { ss: "3", ord: "3A", ex: "Swimming Circles", rp: "3 x 10 reps", note: "Lie face down, arms extended. Make small circles with arms while lifting chest and legs off the ground. Strengthens the entire posterior chain - lower back, glutes, and shoulders." },
-        { ss: "",  ord: "3B", ex: "Push-Up Variations", rp: "3 x 10 reps", note: 'Pick one: Diamond / Wide-Grip / <a href="https://www.youtube.com/watch?v=eZNvTorsU6I" target="_blank" style="color:#0891b2;text-decoration:underline;">Archer</a> / Decline' }
+      { name: "Phase 1 - Power & Prime", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=EsAhU1jHpiQ" target="_blank" style="color:#0891b2;text-decoration:underline;">Med Ball Slams</a>', rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep. Gets the heart rate up before you touch a weight." },
+        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Push hard enough to leave the floor (or off a box for the hands). Calisthenics power - land soft into the next rep." }
       ]},
-      { name: "Phase 2 - Conditioning + Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Assault Bike or Rower", rp: "1 min on / 1 min off", note: "Vigorous effort" },
-        { ss: "",  ord: "1B", ex: "Bicep Curl Variant", rp: "3 x 12-15 reps", note: "Pick one: Incline DB Curls / Hammer Curls / Cable Curls / Preacher Curls / Concentration Curls" },
-        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=EsAhU1jHpiQ" target="_blank" style="color:#0891b2;text-decoration:underline;">Med Ball Slams</a>', rp: "3 x 8 reps", note: "Explosive overhead slam without loading the spine in flexion. Full effort down, reset each rep." }
+      { name: "Phase 2 - Strength Supersets", rows: [
+        { ss: "1", ord: "1A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups (underhand) - that is where the biceps you want to build actually drive. Loop a light band under one foot so you push past the first few reps instead of stalling out - that is how you finally progress here." },
+        { ss: "",  ord: "1B", ex: "Incline DB Press", rp: "Heavy / 6-8", note: "Your press for the day - DB rack sits right by the rig." },
+        { ss: "2", ord: "2A", ex: "Hanging TRX Row", rp: "Heavy / 3 x 10", note: "TRX set short, squeeze the shoulder blades. Walk the feet forward to make it harder." },
+        { ss: "",  ord: "2B", ex: "Feet-Elevated Push-Ups (feet on box)", rp: "3 x 10-12", note: "The military push-up with feet up that felt so effective - box is right under the TRX. Loads the upper chest and front delts." },
+        { ss: "3", ord: "3A", ex: "Swimming Circles", rp: "3 x 10", note: "Face down, lift chest and legs, small circles with the arms. Your posture reset for all the laptop hours." },
+        { ss: "",  ord: "3B", ex: "TRX Bicep Curl", rp: "3 x 12-15", note: "Same straps - lean back, keep the elbows high, curl your body up. Biceps woven right into the flow, not a dead-end block." }
+      ]},
+      { name: "Phase 3 - Conditioning + Finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 40s hard / 20s easy", note: "Pick a different machine than last time - variety kills the boredom." },
+        { ss: "",  ord: "1B", ex: "Hammer Curls", rp: "3 x 12", note: "Knock out a set between intervals - forearm + bicep while the legs recover, so the arm work never becomes its own boring dead time." },
+        { ss: "2", ord: "2A", ex: "Overhead Tricep Extension (rope)", rp: "3 x 12", note: "Your favorite - elbows tucked, full stretch overhead." }
       ]}
     ]
   },
   {
     id: "upper-b", group: "upper", label: "Upper B", sub: "Friday",
     color: "#d97706", light: "#fffbeb",
-    flag: "Seated DB Overhead Press may load the lumbar under fatigue. Consider swapping to a machine press or incline variation.",
     phases: [
-      { name: "Phase 1 - Heavy Strength", rows: [
-        { ss: "1", ord: "1A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide Grip / Neutral Grip — back to back" },
-        { ss: "",  ord: "1B", ex: "Overhead Tricep Extension", rp: "12 reps" },
-        { ss: "2", ord: "2A", ex: "Seated DB Overhead Press", rp: "Heavy", warn: true },
-        { ss: "",  ord: "2B", ex: "Incline DB Curls", rp: "8-10 reps" }
+      { name: "Phase 1 - Power & Prime", rows: [
+        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=D3puZb7vzjQ" target="_blank" style="color:#d97706;text-decoration:underline;">Med Ball Perpendicular Throw</a>', rp: "3 x 6 / side", note: "Stand sideways to the wall, load the trail hip, throw through the ball. Ground-up sequencing: feet, hips, torso, arms - pure swing power." },
+        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Leave the floor, land soft. Upper-body power while you are fresh." }
       ]},
-      { name: "Phase 2 - Conditioning + Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Assault Bike or GHD Sit-Ups", rp: "2 min / Vigorous" },
-        { ss: "",  ord: "1B", ex: "Farmer's Carry", rp: "Heavy / 40 yds" },
-        { ss: "",  ord: "1C", ex: "Face Pulls", rp: "15 reps", note: "Rear delts / posture" },
-        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=EsAhU1jHpiQ" target="_blank" style="color:#d97706;text-decoration:underline;">Med Ball Slams</a>', rp: "3 x 8 reps", note: "Explosive overhead slam without loading the spine in flexion. Full effort down, reset each rep." }
+      { name: "Phase 2 - Strength Supersets", rows: [
+        { ss: "1", ord: "1A", ex: "Half-Kneeling Landmine Press", rp: "3 x 8 / side", note: "Replaces the old seated DB overhead press - far easier on the low back, and the half-kneel forces core + anti-lean. Golf-friendly overhead strength." },
+        { ss: "",  ord: "1B", ex: "Chin-Ups", rp: "3 x AMRAP", note: "Underhand grip - your most bicep-dominant pull, placed early while you are strong since arms are the weak point. Band-assist to hit honest reps." },
+        { ss: "2", ord: "2A", ex: "Incline DB Press", rp: "3 x 8-10", note: "Moderate load - front delts already take a beating all week, so quality over ego here." },
+        { ss: "",  ord: "2B", ex: "Hanging TRX Row", rp: "3 x 10", note: "Straps are right there - pull the chest to the handles." },
+        { ss: "3", ord: "3A", ex: "Incline DB Curls", rp: "3 x 8-10", note: "Your favorite curl - elbows back, full stretch at the bottom." },
+        { ss: "",  ord: "3B", ex: "Farmer's Carry", rp: "Heavy / 40 yds", note: "Carry between curl sets - grip, forearms, traps, and heart rate all at once, so the arm work never feels like standing-around isolation." }
+      ]},
+      { name: "Phase 3 - Conditioning + Finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 30s hard / 30s easy", note: "Rotate the machine week to week." },
+        { ss: "",  ord: "1B", ex: "Face Pulls", rp: "3 x 15", note: "Rear delts + posture, done between intervals." },
+        { ss: "2", ord: "2A", ex: "Overhead Tricep Extension (rope)", rp: "3 x 12", note: "Finish the arms - full overhead stretch." }
       ]}
     ]
   },
-  {
-    id: "tpi-light", group: "golf", label: "TPI Light", sub: "Day Before Play",
-    color: "#16a34a", light: "#f0fdf4",
-    phases: [
-      { name: "Phase 1 - Mobility & Rotation Flow", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=rDviWORCWEw" target="_blank" style="color:#16a34a;text-decoration:underline;">Open Books (Thoracic Rotation)</a>', rp: "8 / side", note: "Side-lying, top knee pinned at 90. Rotate upper body open, follow hand with eyes. Breathe into each rep - no forcing." },
-        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=qq_Z7sAmVrA" target="_blank" style="color:#16a34a;text-decoration:underline;">90/90 Hip Switches</a>', rp: "10 / side", note: "Sit tall, knees at 90. Rotate both knees side to side. Keep chest up - hips do all the work. Smooth and controlled." },
-        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=1U2RPN5vAWQ" target="_blank" style="color:#16a34a;text-decoration:underline;">Bretzel</a>', rp: "8 rotations / side", note: "Pull up on foot and leg, rotate upper body back and down toward floor. Breathe and sink deeper each rep." },
-        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=il1AhduOqfA" target="_blank" style="color:#16a34a;text-decoration:underline;">Spiderman with Thoracic Rotation</a>', rp: "5 / side", note: "Deep lunge, plant inside hand, rotate top hand to ceiling. Drive rotation from mid-back. Hold 2 sec at top." }
-      ]},
-      { name: "Phase 2 - Glute & Core Activation", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=n8DU1desCy8" target="_blank" style="color:#16a34a;text-decoration:underline;">Pelvic Tilts on Ground</a>', rp: "12 reps", note: "Arch back then press low back hard into ground. Own the feeling of pelvic control - this drives your swing." },
-        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=wPM8icPu6H8" target="_blank" style="color:#16a34a;text-decoration:underline;">Glute Bridge with 2 sec Hold</a>', rp: "12 reps", note: "Squeeze glutes hard at top. Only glutes lift you - not hamstrings or low back. Feel the connection to your trail hip." },
-        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=g_BYB0R-4Ws" target="_blank" style="color:#16a34a;text-decoration:underline;">Dead Bug</a>', rp: "8 / side", note: "Slow tempo. Back stays glued to floor. This is your deep core wake-up." },
-        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=M-qIBLafIC8" target="_blank" style="color:#16a34a;text-decoration:underline;">Bird Dog with Hip Internal Rotation</a>', rp: "8 / side", note: "Extend leg back, internally rotate so toes point toward midline. Hold 2 sec. Feel hip rotational control engage." }
-      ]},
-      { name: "Phase 3 - Light Rotation & Feel", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=tKmTgQ_YajY" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Cable Chop (High-to-Low)</a>', rp: "1 x 10 / side", note: "Light weight. Focus on feeling the obliques load and the separation between upper and lower body. Groove the pattern, not the load." },
-        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=bcw8Ti9xcHg" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Cable Lift (Low-to-High)</a>', rp: "1 x 10 / side", note: "Light weight. This is your follow-through pattern. Chest stays tall, let the hips and core do the work." },
-        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=HXrLaqNIkTs" target="_blank" style="color:#16a34a;text-decoration:underline;">Pallof Press with Hold</a>', rp: "1 x 8 / side", note: "Press out, hold 3 sec. Feel the core brace against the pull. Anti-rotation is what keeps your swing on plane." },
-        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=GMJ-deyA1hQ" target="_blank" style="color:#16a34a;text-decoration:underline;">Standing Hip Drops</a>', rp: "10 / side", note: "Stand on step, drop one hip below level then drive it back up. Feel the lateral hip stability that controls your pelvis through the swing." }
-      ]}
-    ]
-  },
-  {
-    id: "tpi-full", group: "golf", label: "TPI Full", sub: "Strength & Power",
-    color: "#16a34a", light: "#f0fdf4",
-    phases: [
-      { name: "Phase 1 - TPI Mobility & Activation", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=rDviWORCWEw" target="_blank" style="color:#16a34a;text-decoration:underline;">Open Books (Thoracic Rotation)</a>', rp: "10 / side", note: "Side-lying, top knee pinned at 90. Rotate upper body open, follow hand with eyes. Feel the stretch through mid-back, not low back." },
-        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=qq_Z7sAmVrA" target="_blank" style="color:#16a34a;text-decoration:underline;">90/90 Hip Switches</a>', rp: "10 / side", note: "Sit tall, knees at 90. Rotate both knees side to side. Keep chest up - hips do all the work." },
-        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=YPTKZy_kKt8" target="_blank" style="color:#16a34a;text-decoration:underline;">Cat-Cow with Rotation</a>', rp: "8 / side", note: "From all fours, thread one arm under and reach to ceiling. Exhale as you rotate open. Feel separation between upper and lower body." },
-        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=il1AhduOqfA" target="_blank" style="color:#16a34a;text-decoration:underline;">Spiderman with Thoracic Rotation</a>', rp: "5 / side", note: "Deep lunge, plant inside hand, rotate top hand to ceiling. Drive rotation from mid-back. Hold 2 sec at top." },
-        { ss: "3", ord: "3A", ex: '<a href="https://www.youtube.com/watch?v=Cz-wzyBG51k" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Hip Flexor Stretch with Rotation</a>', rp: "30 sec + 5 rotations / side", note: "Squeeze back glute, tuck pelvis under, then rotate torso toward front knee. Feel hip open and thoracic engage." },
-        { ss: "",  ord: "3B", ex: '<a href="https://www.youtube.com/watch?v=SlzYz7SQns4" target="_blank" style="color:#16a34a;text-decoration:underline;">Seated Pelvic Tilts</a>', rp: "15 reps", note: "Sit on bench, alternate between full anterior and posterior tilt. Own the feeling of pelvic control - this is your swing base." }
-      ]},
-      { name: "Phase 2 - Rotational Strength", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=tKmTgQ_YajY" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Cable Chop (High-to-Low)</a>', rp: "3 x 10 / side", note: "Trail knee down. Pull from high cable across body to opposite hip. Drive with hips and core, arms just connect. Feel obliques load like the downswing." },
-        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=bcw8Ti9xcHg" target="_blank" style="color:#16a34a;text-decoration:underline;">Half-Kneeling Cable Lift (Low-to-High)</a>', rp: "3 x 10 / side", note: "Lead knee down. Pull from low cable up and across. This is your follow-through pattern. Chest stays tall, rotation comes from torso." },
-        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=rG2UTOn0D4c" target="_blank" style="color:#16a34a;text-decoration:underline;">Cable or Band Rotational Row</a>', rp: "3 x 12 / side", note: "Split stance facing cable. Row and rotate away from anchor. Feel the back hip load, then drive through rotation. Mimics backswing loading." },
-        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=_2xWmYNnFS8" target="_blank" style="color:#16a34a;text-decoration:underline;">Pallof Press with Rotation</a>', rp: "3 x 8 / side", note: "Press cable out, then slowly rotate torso toward and away from anchor. Resist the pull - build the anti-rotation strength that controls your swing." }
-      ]},
-      { name: "Phase 3 - Power & Posterior Chain", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=W_4eq6r00zw" target="_blank" style="color:#16a34a;text-decoration:underline;">Medicine Ball Rotational Slam</a>', rp: "3 x 8 / side", note: "Athletic stance, load into trail hip, fire through with full rotation and slam ball into wall. Explosive. This is your speed training." },
-        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=D3puZb7vzjQ" target="_blank" style="color:#16a34a;text-decoration:underline;">Medicine Ball Perpendicular Throw</a>', rp: "3 x 6 / side", note: "Stand sideways to wall. Load trail hip, separate hips from shoulders, throw through the ball. Feel ground-up sequencing: feet, hips, torso, arms." },
-        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=Zfr6wizR8rs" target="_blank" style="color:#16a34a;text-decoration:underline;">Single Leg Romanian Deadlift</a>', rp: "3 x 8 / side", note: "DB or KB in opposite hand. Hinge at hip, keep back flat. Builds the posterior chain and single-leg stability every golfer needs." },
-        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=_Y0w8b4ldgA" target="_blank" style="color:#16a34a;text-decoration:underline;">Lateral Lunge to Press</a>', rp: "3 x 8 / side", note: "Step wide, sit into hip, drive back up and press DB overhead. Trains lateral stability and hip loading - the engine of rotation." }
-      ]},
-      { name: "Phase 4 - Core & Anti-Rotation", rows: [
-        { ss: "1", ord: "1A", ex: '<a href="https://www.youtube.com/watch?v=eT93C-xUZI8" target="_blank" style="color:#16a34a;text-decoration:underline;">Plank with Shoulder Tap</a>', rp: "3 x 10 / side", note: "Slow and controlled. Fight rotation as you lift each hand. Wider feet = easier. Build the stable core that lets rotation happen around it." },
-        { ss: "",  ord: "1B", ex: '<a href="https://www.youtube.com/watch?v=nha5Hz5_SOs" target="_blank" style="color:#16a34a;text-decoration:underline;">Dead Bug with Band Resistance</a>', rp: "3 x 8 / side", note: "Attach band to rig overhead, hold tension. Extend opposite arm and leg. Back stays glued to floor - this is deep core." },
-        { ss: "2", ord: "2A", ex: '<a href="https://www.youtube.com/watch?v=M-qIBLafIC8" target="_blank" style="color:#16a34a;text-decoration:underline;">Bird Dog with Hip Internal Rotation</a>', rp: "3 x 8 / side", note: "Extend leg back, then internally rotate so toes point toward midline. Hold 2 sec. Builds rotational control through the hip." },
-        { ss: "",  ord: "2B", ex: '<a href="https://www.youtube.com/watch?v=w2CAHDUeR3M" target="_blank" style="color:#16a34a;text-decoration:underline;">Turkish Get-Up (Half)</a>', rp: "2 x 3 / side", note: "KB or DB. Go to tall sit position and return. Builds shoulder stability, core control, and the body awareness every golfer needs. Keep load light to start." }
-      ]}
-    ]
-  }
 ];
 
 function buildTable(rows, color) {
@@ -409,7 +369,7 @@ function buildTable(rows, color) {
 let activeId = "lower-a";
 
 function buildUI() {
-  for (const group of ["lower", "upper", "golf"]) {
+  for (const group of ["lower", "upper"]) {
     const container = document.getElementById(`${group}-tabs`);
     if (!container) continue;
     container.innerHTML = DAYS
@@ -422,22 +382,9 @@ function buildUI() {
   }
 
   document.getElementById("content").innerHTML = DAYS.map(d => {
-    const isTPI = d.id === "tpi-light" || d.id === "tpi-full";
-    const phases = isTPI
-      ? d.phases.map((p, i) =>
-        `<div class="accordion" id="phase-${d.id}-${i}" style="margin-top:${i === 0 ? '0' : '10px'}">
-          <button class="accordion-trigger" aria-expanded="false" aria-controls="phase-body-${d.id}-${i}">
-            <div class="accordion-trigger-left">
-              <span class="accordion-title">${p.name}</span>
-            </div>
-            <span class="accordion-chevron">&#9660;</span>
-          </button>
-          <div class="accordion-body" id="phase-body-${d.id}-${i}">${buildTable(p.rows, d.color)}</div>
-        </div>`
-      ).join('')
-      : d.phases.map(p =>
-        `<div class="phase-header">${p.name}</div>${buildTable(p.rows, d.color)}`
-      ).join('');
+    const phases = d.phases.map(p =>
+      `<div class="phase-header">${p.name}</div>${buildTable(p.rows, d.color)}`
+    ).join('');
     const flag = d.flag
       ? `<div class="flag"><span>&#9888;</span><span>${d.flag}</span></div>`
       : '';
