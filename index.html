@@ -225,8 +225,8 @@
   .ck.done::after { content: ""; position: absolute; left: 7px; top: 3.5px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
   .ex + .ex { margin-top: 18px; }
-  .ex-name { font-size: 15px; font-weight: 650; letter-spacing: -0.01em; color: var(--ink); word-break: break-word; }
-  .ex-note { font-size: 12.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.45; cursor: pointer; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+  .ex-name { font-size: 16.5px; font-weight: 650; letter-spacing: -0.01em; color: var(--ink); word-break: break-word; }
+  .ex-note { font-size: 13.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.5; cursor: pointer; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
   .ex-note.open { display: block; -webkit-line-clamp: none; overflow: visible; }
 
   /* reps + demo sit in one left-aligned badge row below the description */
@@ -281,43 +281,43 @@
 // session. Weekly flow: Lower A -> Upper A -> Lower B -> Upper B -> repeat.
 // Every warm-up finishes with a bar hang. ex = plain name; link = how-to URL.
 const WARMUPS = {
-  "lower-a": [ // prior: Upper B (chest, front delts, traps, upper back, arms)
-    { ss: "1", ord: "1A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the upper back and chest still tight from yesterday's presses. Follow the hand with your eyes." },
-    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Wake the rear delts and undo the pressing posture from Upper B." },
+  "lower-a": [ // prior: Upper B (pull day) -> lats, upper back, biceps, forearms
+    { ss: "1", ord: "1A", ex: "Cat-Cow with Rotation", link: "https://www.youtube.com/watch?v=YPTKZy_kKt8", rp: "8 / side", note: "Unwind the lats and upper back from yesterday's pulling. Exhale as you rotate open." },
+    { ss: "",  ord: "1B", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "More t-spine rotation to free up after all the pull-ups and rows." },
     { ss: "2", ord: "2A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands. Chest tall, hips do the work." },
     { ss: "",  ord: "2B", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top." },
     { ss: "3", ord: "3A", ex: "Glute Bridge (2 sec hold)", link: "https://www.youtube.com/watch?v=wPM8icPu6H8", rp: "12 reps", note: "Fire the glutes before they carry the whole session." },
     { ss: "",  ord: "3B", ex: "Walking Lunges", rp: "10 / side", note: "Light and smooth - potentiate the legs for the day." },
     { ss: "",  ord: "3C", ex: "Lateral Band Walks", rp: "15 steps / side", note: "Switch on the glute med for all the single-leg work ahead." },
-    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Hang from the bar - decompress the spine, open the shoulders, and wake up the grip. A climber staple." }
+    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Hang from the bar - decompress the spine and give the grip and lats one more stretch after yesterday's pulling." }
   ],
-  "upper-a": [ // prior: Lower A (glutes, quads, hip flexors, low back)
-    { ss: "1", ord: "1A", ex: "Scapular Pull-Ups", rp: "8 reps", note: "Hang and shrug the shoulder blades down - primes the back for the pull-up work." },
-    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delt + mid-back activation before you press or row." },
-    { ss: "2", ord: "2A", ex: "Thoracic Rotations", rp: "10 / side", note: "Free up the mid-back so the shoulders move clean." },
+  "upper-a": [ // today: PRESS/carries/arms. prior: Lower A -> glutes, quads, hip flexors
+    { ss: "1", ord: "1A", ex: "Shoulder CARs", rp: "5 / side", note: "Take each shoulder slowly through its full circle - the best prep before pressing." },
+    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delts + mid-back on to balance all the pressing to come." },
+    { ss: "2", ord: "2A", ex: "Thoracic Rotations", rp: "10 / side", note: "Free up the mid-back so the press stays off the low back." },
     { ss: "",  ord: "2B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips Lower A hammered yesterday, and keep the golf rotation ticking over." },
     { ss: "3", ord: "3A", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors cooked by yesterday's lunges." },
     { ss: "",  ord: "3B", ex: "Bird-Dogs", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "10 / side", note: "Gentle core switch-on, back stays flat." },
-    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Finish by hanging from the bar - decompress the spine, pre-stretch the lats for pulling, and wake up the grip." }
+    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Hang from the bar - decompress the spine and wake up the grip for the carries." }
   ],
-  "lower-b": [ // prior: Upper A (upper back, lats, biceps, chest)
-    { ss: "1", ord: "1A", ex: "Cat-Cow with Rotation", link: "https://www.youtube.com/watch?v=YPTKZy_kKt8", rp: "8 / side", note: "Unwind the upper back and lats from yesterday's pulling. Exhale as you rotate open." },
-    { ss: "",  ord: "1B", ex: "Thoracic Rotations", rp: "10 / side", note: "Keep freeing the mid-back before you load the legs." },
+  "lower-b": [ // prior: Upper A (press day) -> chest, front delts, triceps, traps
+    { ss: "1", ord: "1A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Open the chest and upper back that got tight from yesterday's presses. Follow the hand with your eyes." },
+    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Wake the rear delts to undo the pressing posture from Upper A." },
     { ss: "2", ord: "2A", ex: "Hip Internal Rotation Stretch", rp: "30 sec / side", note: "Seated or on all fours, rotate the shin inward and sink into the back of the hip. Straight at the internal-rotation range golf hammers." },
     { ss: "",  ord: "2B", ex: "Bretzel", link: "https://www.youtube.com/watch?v=1U2RPN5vAWQ", rp: "5 breaths / side", note: "Your golf-trainer move - t-spine and hip in one. Breathe and sink deeper each rep." },
     { ss: "3", ord: "3A", ex: "Adductor Rocks", link: "https://www.youtube.com/watch?v=yF8o6I6aSZg", rp: "10 reps", note: "On all fours, rock the hips back to open the groin for step-ups and single-leg work." },
     { ss: "",  ord: "3B", ex: "Cossack Squats", link: "https://www.youtube.com/watch?v=j-595dZdDkA", rp: "6 / side", note: "Slow and controlled - lateral hip and ankle mobility." },
     { ss: "4", ord: "4A", ex: "Glute Bridge (2 sec hold)", link: "https://www.youtube.com/watch?v=wPM8icPu6H8", rp: "12 reps", note: "Activate the glutes before the heavier lower work." },
-    { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Finish by hanging from the bar - decompress the spine and wake up the grip. A climber staple." }
+    { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Hang from the bar - decompress the spine and wake up the grip. A climber staple." }
   ],
-  "upper-b": [ // prior: Lower B (glutes, quads, hamstrings, calves)
-    { ss: "1", ord: "1A", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delts and mid-back on before you press." },
-    { ss: "",  ord: "1B", ex: "Shoulder CARs", rp: "5 / side", note: "Take each shoulder slowly through its full circle - the best prep before pressing." },
-    { ss: "2", ord: "2A", ex: "Thoracic Rotations", rp: "10 / side", note: "Rotate the mid-back so the press stays out of the low back." },
-    { ss: "",  ord: "2B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips and glutes still cooked from Lower B, keep golf rotation moving." },
-    { ss: "3", ord: "3A", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors after all of yesterday's sled and step-ups." },
-    { ss: "",  ord: "3B", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." },
-    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Finish by hanging from the bar - decompress the spine, pre-stretch the lats, and wake up the grip." }
+  "upper-b": [ // today: PULL/giant set/TRX. prior: Lower B -> glutes, quads, hamstrings, calves
+    { ss: "1", ord: "1A", ex: "Dead Hang", rp: "30-60 sec", note: "Hang from the bar - decompress the spine and pre-stretch the lats for the pull-up giant set." },
+    { ss: "",  ord: "1B", ex: "Scapular Pull-Ups", rp: "8 reps", note: "Hang and shrug the shoulder blades down - primes the back for all the pulling." },
+    { ss: "2", ord: "2A", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delt + mid-back activation before the rows and pull-ups." },
+    { ss: "",  ord: "2B", ex: "Thoracic Rotations", rp: "10 / side", note: "Free up the mid-back so the shoulders move clean." },
+    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips and glutes still cooked from Lower B, keep golf rotation moving." },
+    { ss: "",  ord: "3B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors after all of yesterday's sled and step-ups." },
+    { ss: "4", ord: "4A", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." }
   ]
 };
 
@@ -346,24 +346,24 @@ const DAYS = [
     ]
   },
   {
-    id: "upper-a", label: "Upper A", focus: "Pull-biased, TRX & the pull-up giant set",
+    id: "upper-a", label: "Upper A", focus: "Press, carries & arms in motion",
     color: "#0891b2", soft: "#e2f7fb",
     phases: [
       { name: "Power & Prime", rows: [
-        { ss: "1", ord: "1A", ex: "Med Ball Slams", link: "https://www.youtube.com/watch?v=EsAhU1jHpiQ", rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep. Gets the heart rate up before you touch a weight." },
-        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Push hard enough to leave the floor (or drive the hands off a box). Calisthenics power - land soft into the next rep." }
+        { ss: "1", ord: "1A", ex: "Med Ball Perpendicular Throw", link: "https://www.youtube.com/watch?v=D3puZb7vzjQ", rp: "3 x 6 / side", note: "Stand sideways to the wall, load the trail hip, throw through the ball. Ground-up sequencing: feet, hips, torso, arms - pure swing power." },
+        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Leave the floor, land soft. Upper-body power while you're fresh." }
       ]},
       { name: "Strength", rows: [
-        { ss: "1", ord: "1A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups (underhand) - that's where the biceps you want to build actually drive. Loop a light band under a foot so you push past the first few reps instead of stalling - that's how you finally progress here." },
-        { ss: "",  ord: "1B", ex: "Overhead Tricep Extension (rope)", rp: "3 x 12", note: "Your go-to pairing with the pull-ups - pull then push, no wasted rest. Elbows tucked, full stretch overhead." },
-        { ss: "2", ord: "2A", ex: "Hanging TRX Row", rp: "Heavy / 3 x 10", note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder." },
-        { ss: "",  ord: "2B", ex: "Feet-Elevated Push-Ups (feet on box)", rp: "3 x 10-12", note: "The military push-up with feet up that felt so effective - box sits right under the TRX. Loads the upper chest and front delts." },
-        { ss: "3", ord: "3A", ex: "Swimming Circles", rp: "3 x 10", note: "Face down, lift chest and legs, small circles with the arms. Your posture reset for all the laptop hours." },
-        { ss: "",  ord: "3B", ex: "TRX Bicep Curl", rp: "3 x 12-15", note: "Same straps - lean back, elbows high, curl your body up. Biceps woven into the flow, not a dead-end block." }
+        { ss: "1", ord: "1A", ex: "Half-Kneeling Landmine Press", link: "https://www.youtube.com/watch?v=LN1zCeoIfbE", rp: "3 x 8 / side", note: "Replaces the old seated DB overhead press - far easier on the low back, and the half-kneel forces core + anti-lean. Golf-friendly overhead strength." },
+        { ss: "",  ord: "1B", ex: "Chin-Ups", rp: "3 x AMRAP", note: "Underhand grip - your most bicep-dominant pull, placed early while you're strong since arms are the weak point. Band-assist to hit honest reps." },
+        { ss: "2", ord: "2A", ex: "Incline DB Press", rp: "3 x 8-10", note: "Moderate load - front delts already take a beating all week, so quality over ego here." },
+        { ss: "",  ord: "2B", ex: "Hanging TRX Row", rp: "3 x 10", note: "Straps are right there - pull the chest to the handles." },
+        { ss: "3", ord: "3A", ex: "Incline DB Curls", rp: "3 x 8-10", note: "Your favorite curl - elbows back, full stretch at the bottom." },
+        { ss: "",  ord: "3B", ex: "Farmer's Carry", rp: "Heavy / 40 yds", note: "Carry between curl sets - grip, forearms, traps, and heart rate at once, so the arm work never feels like standing-around isolation." }
       ]},
       { name: "Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 40s hard / 20s easy", note: "Pick a different machine than last time - variety kills the boredom." },
-        { ss: "",  ord: "1B", ex: "Hammer Curls", rp: "3 x 12", note: "One set between intervals - forearm + bicep while the legs recover, so the arm work is never its own boring dead time." }
+        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 30s hard / 30s easy", note: "Rotate the machine week to week." },
+        { ss: "",  ord: "1B", ex: "Face Pulls", rp: "3 x 15", note: "Rear delts + posture, done between intervals to close out the week." }
       ]}
     ]
   },
@@ -391,24 +391,24 @@ const DAYS = [
     ]
   },
   {
-    id: "upper-b", label: "Upper B", focus: "Press, carries & arms in motion",
+    id: "upper-b", label: "Upper B", focus: "Pull-biased, TRX & the pull-up giant set",
     color: "#059669", soft: "#dff5ec",
     phases: [
       { name: "Power & Prime", rows: [
-        { ss: "1", ord: "1A", ex: "Med Ball Perpendicular Throw", link: "https://www.youtube.com/watch?v=D3puZb7vzjQ", rp: "3 x 6 / side", note: "Stand sideways to the wall, load the trail hip, throw through the ball. Ground-up sequencing: feet, hips, torso, arms - pure swing power." },
-        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Leave the floor, land soft. Upper-body power while you're fresh." }
+        { ss: "1", ord: "1A", ex: "Med Ball Slams", link: "https://www.youtube.com/watch?v=EsAhU1jHpiQ", rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep. Gets the heart rate up before you touch a weight." },
+        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Push hard enough to leave the floor (or drive the hands off a box). Calisthenics power - land soft into the next rep." }
       ]},
       { name: "Strength", rows: [
-        { ss: "1", ord: "1A", ex: "Half-Kneeling Landmine Press", link: "https://www.youtube.com/watch?v=LN1zCeoIfbE", rp: "3 x 8 / side", note: "Replaces the old seated DB overhead press - far easier on the low back, and the half-kneel forces core + anti-lean. Golf-friendly overhead strength." },
-        { ss: "",  ord: "1B", ex: "Chin-Ups", rp: "3 x AMRAP", note: "Underhand grip - your most bicep-dominant pull, placed early while you're strong since arms are the weak point. Band-assist to hit honest reps." },
-        { ss: "2", ord: "2A", ex: "Incline DB Press", rp: "3 x 8-10", note: "Moderate load - front delts already take a beating all week, so quality over ego here." },
-        { ss: "",  ord: "2B", ex: "Hanging TRX Row", rp: "3 x 10", note: "Straps are right there - pull the chest to the handles." },
-        { ss: "3", ord: "3A", ex: "Incline DB Curls", rp: "3 x 8-10", note: "Your favorite curl - elbows back, full stretch at the bottom." },
-        { ss: "",  ord: "3B", ex: "Farmer's Carry", rp: "Heavy / 40 yds", note: "Carry between curl sets - grip, forearms, traps, and heart rate at once, so the arm work never feels like standing-around isolation." }
+        { ss: "1", ord: "1A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups (underhand) - that's where the biceps you want to build actually drive. Loop a light band under a foot so you push past the first few reps instead of stalling - that's how you finally progress here." },
+        { ss: "",  ord: "1B", ex: "Overhead Tricep Extension (rope)", rp: "3 x 12", note: "Your go-to pairing with the pull-ups - pull then push, no wasted rest. Elbows tucked, full stretch overhead." },
+        { ss: "2", ord: "2A", ex: "Hanging TRX Row", rp: "Heavy / 3 x 10", note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder." },
+        { ss: "",  ord: "2B", ex: "Feet-Elevated Push-Ups (feet on box)", rp: "3 x 10-12", note: "The military push-up with feet up that felt so effective - box sits right under the TRX. Loads the upper chest and front delts." },
+        { ss: "3", ord: "3A", ex: "Swimming Circles", rp: "3 x 10", note: "Face down, lift chest and legs, small circles with the arms. Your posture reset for all the laptop hours." },
+        { ss: "",  ord: "3B", ex: "TRX Bicep Curl", rp: "3 x 12-15", note: "Same straps - lean back, elbows high, curl your body up. Biceps woven into the flow, not a dead-end block." }
       ]},
       { name: "Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 30s hard / 30s easy", note: "Rotate the machine week to week." },
-        { ss: "",  ord: "1B", ex: "Face Pulls", rp: "3 x 15", note: "Rear delts + posture, done between intervals to close out the week." }
+        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 40s hard / 20s easy", note: "Pick a different machine than last time - variety kills the boredom." },
+        { ss: "",  ord: "1B", ex: "Hammer Curls", rp: "3 x 12", note: "One set between intervals - forearm + bicep while the legs recover, so the arm work is never its own boring dead time." }
       ]}
     ]
   }
@@ -613,7 +613,7 @@ function autoAdvance(sec) {
     const nxt = nextSection(sec);
     if (nxt) {
       collapse(nxt, false);
-      const y = nxt.getBoundingClientRect().top + window.scrollY - 58;
+      const y = nxt.getBoundingClientRect().top + window.scrollY - 82;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
     updateStarter(panelDay(sec));
@@ -687,7 +687,7 @@ document.addEventListener("click", e => {
     const target = secs.find(s => !isComplete(s)) || secs[0];
     focusSection(target);
     updateStarter(dayId);
-    const y = target.getBoundingClientRect().top + window.scrollY - 58;
+    const y = target.getBoundingClientRect().top + window.scrollY - 82;
     window.scrollTo({ top: y, behavior: "smooth" });
     return;
   }
