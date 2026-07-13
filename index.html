@@ -99,7 +99,7 @@
   .day-hero { padding: 1.55rem 0 0.3rem; }
   .day-rule { display: block; width: 26px; height: 3px; border-radius: 2px; background: var(--accent); margin-bottom: 13px; }
   .day-hero h2 { font-size: 27px; font-weight: 800; letter-spacing: -0.03em; }
-  .day-hero .focus { font-size: 14px; color: var(--ink-2); margin-top: 3px; font-weight: 500; }
+  .day-hero .focus { font-size: 16.5px; color: var(--ink-2); margin-top: 5px; font-weight: 500; line-height: 1.35; }
 
   .progress { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12.5px; color: var(--ink-3); font-weight: 600; }
   .progress .bar { flex: 1; height: 4px; border-radius: 3px; background: var(--line); overflow: hidden; max-width: 150px; }
@@ -143,7 +143,7 @@
     overflow: hidden;
   }
 
-  .grp { display: grid; grid-template-columns: 22px 1fr; gap: 12px; padding: 13px 14px 14px 15px; align-items: start; }
+  .grp { display: grid; grid-template-columns: 1fr 22px; gap: 12px; padding: 13px 15px 14px; align-items: start; }
   .grp + .grp { border-top: 1px solid var(--line); }
   .grp-main { min-width: 0; }
   .grp-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 9px; }
@@ -159,12 +159,13 @@
   .ck.done { background: var(--done); border-color: var(--done); }
   .ck.done::after { content: ""; position: absolute; left: 7px; top: 3.5px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
-  .ex { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: start; }
+  .ex { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; }
   .ex + .ex { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line-2); }
   .ex-ord { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink-3); margin-top: 3px; letter-spacing: -0.02em; }
   .ex-name { font-size: 15px; font-weight: 650; letter-spacing: -0.01em; color: var(--ink); word-break: break-word; }
-  .ex-note { font-size: 12.5px; color: var(--ink-2); margin-top: 4px; line-height: 1.45; }
-  .ex-reps { font-size: 12px; font-weight: 600; color: var(--ink-2); background: var(--field); border-radius: 8px; padding: 5px 9px; text-align: right; white-space: nowrap; margin-top: 1px; }
+  .ex-reps { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ink-2); margin-top: 3px; letter-spacing: -0.01em; }
+  .ex-note { font-size: 12.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.45; cursor: pointer; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+  .ex-note.open { display: block; -webkit-line-clamp: none; overflow: visible; }
 
   /* how-to link lives in a consistent chip at the card foot, off the title */
   .ex-demo {
@@ -364,12 +365,12 @@ function groupRows(rows) {
 }
 
 function exRowHtml(r) {
+  const reps = r.rp ? `<div class="ex-reps">${r.rp}</div>` : "";
   const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
   const demo = r.link ? `<a class="ex-demo" href="${r.link}" target="_blank" rel="noopener">Watch demo</a>` : "";
   return `<div class="ex">
     <div class="ex-ord">${r.ord}</div>
-    <div class="ex-body"><div class="ex-name">${r.ex}</div>${note}${demo}</div>
-    <div class="ex-reps">${r.rp}</div>
+    <div class="ex-body"><div class="ex-name">${r.ex}</div>${reps}${note}${demo}</div>
   </div>`;
 }
 
@@ -380,8 +381,8 @@ function groupHtml(group, key) {
   const tag = isSS ? `<div class="grp-tag">${group.length >= 4 ? "Giant set" : group.length === 3 ? "Tri-set" : "Superset"}</div>` : "";
   const rows = group.map(exRowHtml).join("");
   return `<div class="grp${on}">
-    <button class="ck${on}" data-key="${key}" aria-label="Mark complete" aria-pressed="${!!STATE[key]}"></button>
     <div class="grp-main">${tag}${rows}</div>
+    <button class="ck${on}" data-key="${key}" aria-label="Mark complete" aria-pressed="${!!STATE[key]}"></button>
   </div>`;
 }
 
@@ -624,6 +625,8 @@ document.addEventListener("click", e => {
   }
   const ck = e.target.closest(".ck");
   if (ck) { toggleCk(ck); return; }
+  const note = e.target.closest(".ex-note");
+  if (note) { note.classList.toggle("open"); return; }
   const all = e.target.closest(".sec-all");
   if (all) { toggleSectionAll(all.dataset.sec); return; }
   const reset = e.target.closest(".reset");
