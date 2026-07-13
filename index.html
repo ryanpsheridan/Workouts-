@@ -163,13 +163,16 @@
   .ex + .ex { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line-2); }
   .ex-ord { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink-3); margin-top: 3px; letter-spacing: -0.02em; }
   .ex-name { font-size: 15px; font-weight: 650; letter-spacing: -0.01em; color: var(--ink); word-break: break-word; }
-  .ex-reps { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ink-2); margin-top: 3px; letter-spacing: -0.01em; }
   .ex-note { font-size: 12.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.45; cursor: pointer; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
   .ex-note.open { display: block; -webkit-line-clamp: none; overflow: visible; }
 
+  /* reps + demo sit in one left-aligned badge row below the description */
+  .ex-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
+  .ex-reps { display: inline-flex; align-items: center; padding: 5px 11px; border: 1px solid var(--line); border-radius: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink-2); white-space: nowrap; }
+
   /* how-to link lives in a consistent chip at the card foot, off the title */
   .ex-demo {
-    display: inline-flex; align-items: center; gap: 7px; margin-top: 10px;
+    display: inline-flex; align-items: center; gap: 7px;
     padding: 5px 11px 5px 10px; border: 1px solid var(--line); border-radius: 8px;
     background: var(--surface); font-size: 11px; font-weight: 700; letter-spacing: 0.02em;
     color: var(--link); text-decoration: none; -webkit-tap-highlight-color: transparent;
@@ -199,7 +202,6 @@
 
 <header class="app-header">
   <h1>Ryan's Program</h1>
-  <p>4 training days &middot; upper / lower &middot; golf woven in</p>
 </header>
 
 <nav class="day-nav" id="day-nav" aria-label="Training days"></nav>
@@ -365,12 +367,13 @@ function groupRows(rows) {
 }
 
 function exRowHtml(r) {
-  const reps = r.rp ? `<div class="ex-reps">${r.rp}</div>` : "";
   const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
+  const reps = r.rp ? `<span class="ex-reps">${r.rp}</span>` : "";
   const demo = r.link ? `<a class="ex-demo" href="${r.link}" target="_blank" rel="noopener">Watch demo</a>` : "";
+  const meta = (reps || demo) ? `<div class="ex-meta">${reps}${demo}</div>` : "";
   return `<div class="ex">
     <div class="ex-ord">${r.ord}</div>
-    <div class="ex-body"><div class="ex-name">${r.ex}</div>${reps}${note}${demo}</div>
+    <div class="ex-body"><div class="ex-name">${r.ex}</div>${note}${meta}</div>
   </div>`;
 }
 
