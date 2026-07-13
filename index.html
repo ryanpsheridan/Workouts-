@@ -146,7 +146,7 @@
   .grp { display: grid; grid-template-columns: 1fr 22px; gap: 12px; padding: 13px 15px 14px; align-items: start; }
   .grp + .grp { border-top: 1px solid var(--line); }
   .grp-main { min-width: 0; }
-  .grp-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 9px; }
+  .grp-tag { font-size: 16.5px; font-weight: 500; color: var(--ink-2); line-height: 1.35; margin-bottom: 11px; }
   .grp.done .grp-main { opacity: 0.42; transition: opacity 0.15s ease; }
 
   .ck {
@@ -159,26 +159,24 @@
   .ck.done { background: var(--done); border-color: var(--done); }
   .ck.done::after { content: ""; position: absolute; left: 7px; top: 3.5px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
-  .ex { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; }
-  .ex + .ex { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line-2); }
-  .ex-ord { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink-3); margin-top: 3px; letter-spacing: -0.02em; }
+  .ex + .ex { margin-top: 15px; }
   .ex-name { font-size: 15px; font-weight: 650; letter-spacing: -0.01em; color: var(--ink); word-break: break-word; }
   .ex-note { font-size: 12.5px; color: var(--ink-2); margin-top: 5px; line-height: 1.45; cursor: pointer; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
   .ex-note.open { display: block; -webkit-line-clamp: none; overflow: visible; }
 
   /* reps + demo sit in one left-aligned badge row below the description */
   .ex-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
-  .ex-reps { display: inline-flex; align-items: center; padding: 5px 11px; border: 1px solid var(--line); border-radius: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink-2); white-space: nowrap; }
+  .ex-reps { display: inline-flex; align-items: center; padding: 5px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--field); font-size: 11px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink-2); white-space: nowrap; }
 
   /* how-to link lives in a consistent chip at the card foot, off the title */
   .ex-demo {
     display: inline-flex; align-items: center; gap: 7px;
-    padding: 5px 11px 5px 10px; border: 1px solid var(--line); border-radius: 8px;
-    background: var(--surface); font-size: 11px; font-weight: 700; letter-spacing: 0.02em;
+    padding: 5px 11px 5px 10px; border: 1px solid #d7e3fb; border-radius: 8px;
+    background: #eef4ff; font-size: 11px; font-weight: 700; letter-spacing: 0.02em;
     color: var(--link); text-decoration: none; -webkit-tap-highlight-color: transparent;
   }
   .ex-demo::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 8px; border-color: transparent transparent transparent var(--link); }
-  .ex-demo:active { background: var(--field); }
+  .ex-demo:active { background: #e2ecfe; }
 
   /* section-level "mark all" bar at card foot */
   .sec-all {
@@ -372,8 +370,7 @@ function exRowHtml(r) {
   const demo = r.link ? `<a class="ex-demo" href="${r.link}" target="_blank" rel="noopener">Watch demo</a>` : "";
   const meta = (reps || demo) ? `<div class="ex-meta">${reps}${demo}</div>` : "";
   return `<div class="ex">
-    <div class="ex-ord">${r.ord}</div>
-    <div class="ex-body"><div class="ex-name">${r.ex}</div>${note}${meta}</div>
+    <div class="ex-name">${r.ex}</div>${note}${meta}
   </div>`;
 }
 
