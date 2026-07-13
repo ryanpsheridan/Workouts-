@@ -138,7 +138,7 @@
   .day-nav {
     position: sticky; top: 0; z-index: 20;
     display: flex; gap: 7px;
-    padding: 11px 1.25rem;
+    padding: calc(11px + env(safe-area-inset-top)) 1.25rem 11px;
     overflow-x: auto; scrollbar-width: none;
     background: var(--nav-bg);
     -webkit-backdrop-filter: saturate(180%) blur(12px);
