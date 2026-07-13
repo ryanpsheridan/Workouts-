@@ -106,6 +106,16 @@
   .progress .bar > i { display: block; height: 100%; width: 0; background: var(--done); transition: width 0.25s ease; }
   .progress .reset { border: none; background: none; font-family: inherit; font-size: 12.5px; color: var(--link); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; padding: 0; }
 
+  /* ---------- Get started ---------- */
+  .starter {
+    width: 100%; margin: 1.4rem 0 0; padding: 15px; border: none; border-radius: 12px;
+    background: var(--accent); color: #fff; font-family: inherit; font-size: 15px; font-weight: 700;
+    letter-spacing: -0.01em; cursor: pointer; -webkit-tap-highlight-color: transparent;
+    transition: transform 0.12s ease;
+  }
+  .starter:active { transform: scale(0.99); }
+  .starter[hidden] { display: none; }
+
   /* ---------- Section (warm-up + phases share this) ---------- */
   .sec { margin-top: 1.4rem; }
   .sec-head {
@@ -129,7 +139,7 @@
   .card {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 14px;   /* uniform border, all corners rounded */
+    border-radius: 14px;
     overflow: hidden;
   }
 
@@ -202,7 +212,7 @@
 <script>
 // Warm-ups are unique per day and prep the muscles left sore by the PREVIOUS
 // session. Weekly flow: Lower A -> Upper A -> Lower B -> Upper B -> repeat.
-// ex = plain name; link = optional how-to URL rendered as a chip at card foot.
+// Every warm-up finishes with a bar hang. ex = plain name; link = how-to URL.
 const WARMUPS = {
   "lower-a": [ // prior: Upper B (chest, front delts, traps, upper back, arms)
     { ss: "1", ord: "1A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the upper back and chest still tight from yesterday's presses. Follow the hand with your eyes." },
@@ -211,16 +221,16 @@ const WARMUPS = {
     { ss: "",  ord: "2B", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top." },
     { ss: "3", ord: "3A", ex: "Glute Bridge (2 sec hold)", link: "https://www.youtube.com/watch?v=wPM8icPu6H8", rp: "12 reps", note: "Fire the glutes before they carry the whole session." },
     { ss: "",  ord: "3B", ex: "Walking Lunges", rp: "10 / side", note: "Light and smooth - potentiate the legs for the day." },
-    { ss: "4", ord: "4A", ex: "Lateral Band Walks", rp: "15 steps / side", note: "Switch on the glute med for all the single-leg work ahead." }
+    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Finish by hanging from the bar - decompress the spine, open the shoulders, and wake up the grip. A climber staple." }
   ],
   "upper-a": [ // prior: Lower A (glutes, quads, hip flexors, low back)
-    { ss: "1", ord: "1A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, wake up the grip, and pre-stretch the lats for pulling. Climber staple." },
-    { ss: "",  ord: "1B", ex: "Scapular Pull-Ups", rp: "8 reps", note: "Hang and shrug the shoulder blades down - primes the back for the pull-up work." },
-    { ss: "2", ord: "2A", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delt + mid-back activation before you press or row." },
-    { ss: "",  ord: "2B", ex: "Thoracic Rotations", rp: "10 / side", note: "Free up the mid-back so the shoulders move clean." },
-    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips Lower A hammered yesterday, and keep the golf rotation ticking over." },
-    { ss: "",  ord: "3B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors cooked by yesterday's lunges." },
-    { ss: "4", ord: "4A", ex: "Bird-Dogs", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "10 / side", note: "Gentle core switch-on, back stays flat." }
+    { ss: "1", ord: "1A", ex: "Scapular Pull-Ups", rp: "8 reps", note: "Hang and shrug the shoulder blades down - primes the back for the pull-up work." },
+    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delt + mid-back activation before you press or row." },
+    { ss: "2", ord: "2A", ex: "Thoracic Rotations", rp: "10 / side", note: "Free up the mid-back so the shoulders move clean." },
+    { ss: "",  ord: "2B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips Lower A hammered yesterday, and keep the golf rotation ticking over." },
+    { ss: "3", ord: "3A", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors cooked by yesterday's lunges." },
+    { ss: "",  ord: "3B", ex: "Bird-Dogs", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "10 / side", note: "Gentle core switch-on, back stays flat." },
+    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Finish by hanging from the bar - decompress the spine, pre-stretch the lats for pulling, and wake up the grip." }
   ],
   "lower-b": [ // prior: Upper A (upper back, lats, biceps, chest)
     { ss: "1", ord: "1A", ex: "Cat-Cow with Rotation", link: "https://www.youtube.com/watch?v=YPTKZy_kKt8", rp: "8 / side", note: "Unwind the upper back and lats from yesterday's pulling. Exhale as you rotate open." },
@@ -229,16 +239,17 @@ const WARMUPS = {
     { ss: "",  ord: "2B", ex: "Bretzel", link: "https://www.youtube.com/watch?v=1U2RPN5vAWQ", rp: "5 breaths / side", note: "Your golf-trainer move - t-spine and hip in one. Breathe and sink deeper each rep." },
     { ss: "3", ord: "3A", ex: "Adductor Rocks", link: "https://www.youtube.com/watch?v=yF8o6I6aSZg", rp: "10 reps", note: "On all fours, rock the hips back to open the groin for step-ups and single-leg work." },
     { ss: "",  ord: "3B", ex: "Cossack Squats", link: "https://www.youtube.com/watch?v=j-595dZdDkA", rp: "6 / side", note: "Slow and controlled - lateral hip and ankle mobility." },
-    { ss: "4", ord: "4A", ex: "Glute Bridge (2 sec hold)", link: "https://www.youtube.com/watch?v=wPM8icPu6H8", rp: "12 reps", note: "Activate the glutes before the heavier lower work." }
+    { ss: "4", ord: "4A", ex: "Glute Bridge (2 sec hold)", link: "https://www.youtube.com/watch?v=wPM8icPu6H8", rp: "12 reps", note: "Activate the glutes before the heavier lower work." },
+    { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Finish by hanging from the bar - decompress the spine and wake up the grip. A climber staple." }
   ],
   "upper-b": [ // prior: Lower B (glutes, quads, hamstrings, calves)
-    { ss: "1", ord: "1A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress and pre-stretch the lats for the pulling to come." },
-    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delts and mid-back on before you press." },
-    { ss: "2", ord: "2A", ex: "Shoulder CARs", rp: "5 / side", note: "Take each shoulder slowly through its full circle - the best prep before pressing." },
-    { ss: "",  ord: "2B", ex: "Thoracic Rotations", rp: "10 / side", note: "Rotate the mid-back so the press stays out of the low back." },
-    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips and glutes still cooked from Lower B, keep golf rotation moving." },
-    { ss: "",  ord: "3B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors after all of yesterday's sled and step-ups." },
-    { ss: "4", ord: "4A", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." }
+    { ss: "1", ord: "1A", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delts and mid-back on before you press." },
+    { ss: "",  ord: "1B", ex: "Shoulder CARs", rp: "5 / side", note: "Take each shoulder slowly through its full circle - the best prep before pressing." },
+    { ss: "2", ord: "2A", ex: "Thoracic Rotations", rp: "10 / side", note: "Rotate the mid-back so the press stays out of the low back." },
+    { ss: "",  ord: "2B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips and glutes still cooked from Lower B, keep golf rotation moving." },
+    { ss: "3", ord: "3A", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors after all of yesterday's sled and step-ups." },
+    { ss: "",  ord: "3B", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." },
+    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Finish by hanging from the bar - decompress the spine, pre-stretch the lats, and wake up the grip." }
   ]
 };
 
@@ -340,6 +351,7 @@ let STATE = {};
 try { STATE = JSON.parse(localStorage.getItem("wp-v1")) || {}; } catch (e) { STATE = {}; }
 function save() { try { localStorage.setItem("wp-v1", JSON.stringify(STATE)); } catch (e) {} }
 function dayFromKey(key) { return key.split("#")[0]; }
+function panelDay(el) { return el.closest(".day-panel").id.slice(2); }
 
 function groupRows(rows) {
   const groups = [];
@@ -413,16 +425,18 @@ function buildUI() {
           <button class="reset" data-day="${d.id}" style="display:none">Reset</button>
         </div>
       </div>
+      <button class="starter" data-day="${d.id}">Get started</button>
       ${warmSec}
       ${phaseSecs}
     </div>`;
   }).join("");
 
-  // Focus flow: open only the first not-yet-complete section in each day.
+  // Everything starts collapsed; the "Get started" button opens the first one.
   DAYS.forEach(d => {
     const panel = document.getElementById("s-" + d.id);
     initDay(panel);
     updateProgress(d.id);
+    updateStarter(d.id);
   });
 }
 
@@ -479,11 +493,27 @@ function nextSection(sec) {
   return secs[secs.indexOf(sec) + 1] || null;
 }
 
+// All sections start collapsed (the "Get started" button opens the first).
 function initDay(panel) {
+  panel.querySelectorAll(".sec").forEach(s => {
+    refreshSection(s.id.replace("sec-", ""));
+    collapse(s, true);
+  });
+}
+
+// The "Get started" / "Resume" button shows only when nothing is open yet and
+// the day isn't already finished.
+function updateStarter(dayId) {
+  const panel = document.getElementById("s-" + dayId);
+  if (!panel) return;
+  const starter = panel.querySelector(".starter");
+  if (!starter) return;
   const secs = [...panel.querySelectorAll(".sec")];
-  secs.forEach(s => refreshSection(s.id.replace("sec-", "")));
-  const open = secs.find(s => !isComplete(s)) || null;
-  secs.forEach(s => collapse(s, s !== open));
+  const anyOpen = secs.some(s => !s.classList.contains("collapsed"));
+  const phases = secs.filter(s => !s.id.endsWith("-wu"));
+  const allDone = phases.length > 0 && phases.every(s => isComplete(s));
+  starter.hidden = anyOpen || allDone;
+  starter.textContent = panel.querySelectorAll(".ck.done").length > 0 ? "Resume" : "Get started";
 }
 
 function updateProgress(dayId) {
@@ -518,6 +548,7 @@ function autoAdvance(sec) {
       const y = nxt.getBoundingClientRect().top + window.scrollY - 58;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
+    updateStarter(panelDay(sec));
   }, 380);
 }
 
@@ -528,6 +559,7 @@ function toggleCk(ck) {
   const secId = sec.id.replace("sec-", "");
   const complete = refreshSection(secId);
   updateProgress(dayFromKey(ck.dataset.key));
+  updateStarter(dayFromKey(ck.dataset.key));
   if (complete) autoAdvance(sec);
 }
 
@@ -540,7 +572,9 @@ function toggleSectionAll(secId) {
   cks.forEach(c => setCk(c, !allDone));
   save();
   const complete = refreshSection(secId);
-  updateProgress(dayFromKey(cks[0].dataset.key));
+  const dayId = dayFromKey(cks[0].dataset.key);
+  updateProgress(dayId);
+  updateStarter(dayId);
   if (complete) autoAdvance(sec);
 }
 
@@ -549,10 +583,12 @@ function resetDay(dayId) {
   if (!panel) return;
   panel.querySelectorAll(".ck.done").forEach(ck => setCk(ck, false));
   save();
-  panel.querySelectorAll(".sec").forEach(s => refreshSection(s.id.replace("sec-", "")));
-  const secs = [...panel.querySelectorAll(".sec")];
-  secs.forEach((s, i) => collapse(s, i !== 0));
+  panel.querySelectorAll(".sec").forEach(s => {
+    refreshSection(s.id.replace("sec-", ""));
+    collapse(s, true);
+  });
   updateProgress(dayId);
+  updateStarter(dayId);
 }
 
 function setDay(id) {
@@ -573,6 +609,18 @@ function setDay(id) {
 document.addEventListener("click", e => {
   const pill = e.target.closest(".day-pill");
   if (pill) { setDay(pill.dataset.day); return; }
+  const starter = e.target.closest(".starter");
+  if (starter) {
+    const dayId = starter.dataset.day;
+    const panel = document.getElementById("s-" + dayId);
+    const secs = [...panel.querySelectorAll(".sec")];
+    const target = secs.find(s => !isComplete(s)) || secs[0];
+    focusSection(target);
+    updateStarter(dayId);
+    const y = target.getBoundingClientRect().top + window.scrollY - 58;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    return;
+  }
   const ck = e.target.closest(".ck");
   if (ck) { toggleCk(ck); return; }
   const all = e.target.closest(".sec-all");
@@ -584,6 +632,7 @@ document.addEventListener("click", e => {
     const sec = head.closest(".sec");
     if (sec.classList.contains("collapsed")) focusSection(sec);
     else collapse(sec, true);
+    updateStarter(panelDay(sec));
   }
 });
 
