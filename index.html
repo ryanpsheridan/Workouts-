@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <title>Ryan's Program</title>
 <script>(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Cg fill='%23fff'%3E%3Crect x='5' y='7' width='4' height='18' rx='1.5'/%3E%3Crect x='9' y='9.5' width='3' height='13' rx='1'/%3E%3Crect x='20' y='9.5' width='3' height='13' rx='1'/%3E%3Crect x='23' y='7' width='4' height='18' rx='1.5'/%3E%3Crect x='12' y='13' width='8' height='6' rx='1'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23059669' stroke-width='2.25' stroke-linejoin='round' stroke-linecap='round'%3E%3Crect x='5' y='7' width='4' height='18' rx='1.5'/%3E%3Crect x='9.5' y='10' width='2.5' height='12' rx='1'/%3E%3Crect x='20' y='10' width='2.5' height='12' rx='1'/%3E%3Crect x='23' y='7' width='4' height='18' rx='1.5'/%3E%3Cline x1='12.5' y1='16' x2='19.5' y2='16'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="Workouts">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,10 +129,11 @@
     flex: none; width: 38px; height: 38px; border-radius: 50%;
     border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
     display: grid; place-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent;
-    transition: transform 0.12s ease;
+    transition: transform 0.12s ease, background-color 0.18s ease, border-color 0.18s ease;
   }
-  .theme-toggle:active { transform: scale(0.92); }
-  .theme-toggle svg { width: 18px; height: 18px; }
+  .theme-toggle:active { transform: scale(0.9); }
+  .theme-toggle svg { width: 18px; height: 18px; transition: opacity 0.12s ease, transform 0.12s ease; }
+  .theme-toggle svg.swap { opacity: 0; transform: rotate(-25deg) scale(0.7); }
 
   /* ---------- Sticky day nav ---------- */
   .day-nav {
@@ -152,14 +153,16 @@
     border: 1px solid var(--line); background: var(--surface);
     font-family: inherit; cursor: pointer; text-align: center; line-height: 1.15;
     font-size: 13.5px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em;
-    transition: transform 0.12s ease; -webkit-tap-highlight-color: transparent;
+    transition: transform 0.12s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    -webkit-tap-highlight-color: transparent;
   }
   .day-pill:active { transform: scale(0.96); }
   .day-pill.active { border-color: transparent; color: #fff; }
 
   /* ---------- Day panel ---------- */
   .day-panel { display: none; padding: 0 1.25rem; }
-  .day-panel.visible { display: block; }
+  .day-panel.visible { display: block; animation: panelIn 0.18s ease; }
+  @keyframes panelIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
 
   .day-hero { padding: 1.55rem 0 0.3rem; }
   .day-rule { display: block; width: 26px; height: 3px; border-radius: 2px; background: var(--accent); margin-bottom: 13px; }
@@ -169,16 +172,17 @@
   .progress { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12.5px; color: var(--ink-3); font-weight: 400; }
   .progress .bar { flex: 1; height: 4px; border-radius: 3px; background: var(--line); overflow: hidden; max-width: 150px; }
   .progress .bar > i { display: block; height: 100%; width: 0; background: var(--done); transition: width 0.25s ease; }
-  .progress .reset { border: none; background: none; font-family: inherit; font-size: 12.5px; color: var(--link); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; padding: 0; }
+  .progress .reset { border: none; background: none; font-family: inherit; font-size: 12.5px; color: var(--link); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; padding: 0; transition: opacity 0.1s ease; }
+  .progress .reset:active { opacity: 0.55; }
 
   /* ---------- Get started ---------- */
   .starter {
     width: 100%; margin: 1.4rem 0 0; padding: 15px; border: none; border-radius: 12px;
     background: var(--accent); color: #fff; font-family: inherit; font-size: 15px; font-weight: 400;
     letter-spacing: -0.01em; cursor: pointer; -webkit-tap-highlight-color: transparent;
-    transition: transform 0.12s ease;
+    transition: transform 0.1s ease, opacity 0.12s ease;
   }
-  .starter:active { transform: scale(0.99); }
+  .starter:active { transform: scale(0.98); opacity: 0.9; }
   .starter[hidden] { display: none; }
 
   /* ---------- Section (warm-up + phases share this) ---------- */
@@ -193,11 +197,21 @@
   .sec-name { font-size: 13px; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: var(--ink); }
   .sec-sub { font-size: 11.5px; font-weight: 400; color: var(--ink-3); margin-top: 1px; }
   .sec-status { font-size: 11.5px; font-weight: 400; color: var(--ink-3); display: flex; align-items: center; }
-  .sec-check { width: 18px; height: 18px; border-radius: 50%; background: var(--done); position: relative; display: inline-block; }
+  .sec-check { width: 18px; height: 18px; border-radius: 50%; background: var(--done); position: relative; display: inline-block; animation: ckPop 0.22s ease; }
+  @keyframes ckPop { 0% { transform: scale(0.7); opacity: 0.5; } 65% { transform: scale(1.12); } 100% { transform: scale(1); opacity: 1; } }
   .sec-check::after { content: ""; position: absolute; left: 6px; top: 3px; width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
-  .chev { width: 9px; height: 9px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(-135deg); transition: transform 0.2s ease; margin: 0 2px; }
+  .chev { width: 9px; height: 9px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(-135deg); transition: transform 0.22s ease; margin: 0 2px; }
   .sec.collapsed .chev { transform: rotate(45deg); }
-  .sec.collapsed .sec-body { display: none; }
+  .sec-head { transition: opacity 0.1s ease; }
+  .sec-head:active { opacity: 0.55; }
+  .sec-body {
+    display: grid;
+    grid-template-rows: 1fr;
+    opacity: 1;
+    transition: grid-template-rows 0.26s ease, opacity 0.2s ease;
+  }
+  .sec-body > .card { overflow: hidden; min-height: 0; }
+  .sec.collapsed .sec-body { grid-template-rows: 0fr; opacity: 0; }
   .sec.collapsed .sec-head { padding-bottom: 2px; }
 
   /* ---------- One card per section; one checkbox per group ---------- */
@@ -219,10 +233,10 @@
     width: 22px; height: 22px; margin-top: 1px; flex: none; padding: 0;
     border-radius: 50%; border: 1.5px solid var(--ck-border); background: var(--surface);
     cursor: pointer; position: relative; -webkit-tap-highlight-color: transparent;
-    transition: background 0.12s ease, border-color 0.12s ease;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
   }
-  .ck:active { transform: scale(0.9); }
-  .ck.done { background: var(--done); border-color: var(--done); }
+  .ck:active { transform: scale(0.88); }
+  .ck.done { background: var(--done); border-color: var(--done); animation: ckPop 0.22s ease; }
   .ck.done::after { content: ""; position: absolute; left: 7px; top: 3.5px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
 
   .ex + .ex { margin-top: 18px; }
@@ -240,9 +254,10 @@
     padding: 5px 11px 5px 10px; border: 1px solid var(--link-border); border-radius: 8px;
     background: var(--link-soft); font-size: 11px; font-weight: 400; letter-spacing: 0.02em;
     color: var(--link); text-decoration: none; -webkit-tap-highlight-color: transparent;
+    transition: background 0.12s ease, transform 0.1s ease;
   }
   .ex-demo::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 8px; border-color: transparent transparent transparent var(--link); }
-  .ex-demo:active { background: var(--link-soft-active); }
+  .ex-demo:active { background: var(--link-soft-active); transform: scale(0.97); }
 
   /* section-level "mark all" bar at card foot */
   .sec-all {
@@ -250,9 +265,10 @@
     padding: 13px; background: var(--field); border: none; border-top: 1px solid var(--line);
     font-family: inherit; font-size: 12.5px; font-weight: 400; letter-spacing: 0.02em;
     color: var(--ink-2); cursor: pointer; -webkit-tap-highlight-color: transparent;
+    transition: background 0.12s ease, color 0.15s ease;
   }
   .sec-all:active { background: var(--field-active); }
-  .sec-all-ck { width: 16px; height: 16px; flex: none; border-radius: 50%; border: 1.5px solid var(--ink-3); position: relative; }
+  .sec-all-ck { width: 16px; height: 16px; flex: none; border-radius: 50%; border: 1.5px solid var(--ink-3); position: relative; transition: background 0.15s ease, border-color 0.15s ease; }
   .sec-all.done { color: var(--done); }
   .sec-all.done .sec-all-ck { background: var(--done); border-color: var(--done); }
   .sec-all.done .sec-all-ck::after { content: ""; position: absolute; left: 5px; top: 2.5px; width: 3.5px; height: 7px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
@@ -717,15 +733,26 @@ function effectiveTheme() {
   if (attr) return attr;
   return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
-function updateThemeIcon() {
+function updateThemeIcon(animate) {
   const btn = document.getElementById("theme-toggle");
-  if (btn) btn.innerHTML = effectiveTheme() === "dark" ? SUN : MOON;
+  if (!btn) return;
+  const html = effectiveTheme() === "dark" ? SUN : MOON;
+  if (!animate) { btn.innerHTML = html; return; }
+  const svg = btn.querySelector("svg");
+  if (svg) svg.classList.add("swap");
+  setTimeout(() => {
+    btn.innerHTML = html;
+    requestAnimationFrame(() => {
+      const s = btn.querySelector("svg");
+      if (s) s.classList.remove("swap");
+    });
+  }, 110);
 }
 function toggleTheme() {
   const next = effectiveTheme() === "dark" ? "light" : "dark";
   document.documentElement.setAttribute("data-theme", next);
   try { localStorage.setItem("theme", next); } catch (e) {}
-  updateThemeIcon();
+  updateThemeIcon(true);
 }
 
 buildUI();
