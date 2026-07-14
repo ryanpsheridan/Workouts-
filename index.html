@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark">
 <title>Ryan's Program</title>
 <script>(function(){try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23059669' stroke-width='2.25' stroke-linejoin='round' stroke-linecap='round'%3E%3Crect x='5' y='7' width='4' height='18' rx='1.5'/%3E%3Crect x='9.5' y='10' width='2.5' height='12' rx='1'/%3E%3Crect x='20' y='10' width='2.5' height='12' rx='1'/%3E%3Crect x='23' y='7' width='4' height='18' rx='1.5'/%3E%3Cline x1='12.5' y1='16' x2='19.5' y2='16'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23000'/%3E%3Cg fill='%23fff'%3E%3Crect x='5' y='7' width='4' height='18' rx='1.5'/%3E%3Crect x='9' y='9.5' width='3' height='13' rx='1'/%3E%3Crect x='20' y='9.5' width='3' height='13' rx='1'/%3E%3Crect x='23' y='7' width='4' height='18' rx='1.5'/%3E%3Crect x='12' y='13' width='8' height='6' rx='1'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="Workouts">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -176,14 +176,23 @@
   .progress .reset:active { opacity: 0.55; }
 
   /* ---------- Get started ---------- */
+  /* Collapses via grid-template-rows (like the accordion) instead of an
+     instant display:none, so it shrinks away in step with the section
+     opening below it rather than causing two separate layout jumps. */
+  .starter-wrap {
+    display: grid; grid-template-rows: 1fr; opacity: 1; margin-top: 1.4rem;
+    transition: grid-template-rows 0.28s ease, opacity 0.2s ease, margin-top 0.28s ease;
+  }
+  .starter-wrap > .starter { overflow: hidden; min-height: 0; }
+  .starter-wrap.hidden { grid-template-rows: 0fr; opacity: 0; margin-top: 0; pointer-events: none; }
+  .starter-wrap.hidden .starter { padding-top: 0; padding-bottom: 0; }
   .starter {
-    width: 100%; margin: 1.4rem 0 0; padding: 15px; border: none; border-radius: 12px;
+    width: 100%; padding: 15px; border: none; border-radius: 12px;
     background: var(--accent); color: #fff; font-family: inherit; font-size: 15px; font-weight: 400;
     letter-spacing: -0.01em; cursor: pointer; -webkit-tap-highlight-color: transparent;
-    transition: transform 0.1s ease, opacity 0.12s ease;
+    transition: transform 0.1s ease, opacity 0.12s ease, padding 0.28s ease;
   }
   .starter:active { transform: scale(0.98); opacity: 0.9; }
-  .starter[hidden] { display: none; }
 
   /* ---------- Section (warm-up + phases share this) ---------- */
   .sec { margin-top: 1.4rem; }
@@ -510,7 +519,9 @@ function buildUI() {
           <button class="reset" data-day="${d.id}" style="display:none">Reset</button>
         </div>
       </div>
-      <button class="starter" data-day="${d.id}">Get started</button>
+      <div class="starter-wrap" id="starter-wrap-${d.id}">
+        <button class="starter" data-day="${d.id}">Get started</button>
+      </div>
       ${warmSec}
       ${phaseSecs}
     </div>`;
@@ -591,13 +602,14 @@ function initDay(panel) {
 function updateStarter(dayId) {
   const panel = document.getElementById("s-" + dayId);
   if (!panel) return;
+  const wrap = panel.querySelector(".starter-wrap");
   const starter = panel.querySelector(".starter");
-  if (!starter) return;
+  if (!wrap || !starter) return;
   const secs = [...panel.querySelectorAll(".sec")];
   const anyOpen = secs.some(s => !s.classList.contains("collapsed"));
   const phases = secs.filter(s => !s.id.endsWith("-wu"));
   const allDone = phases.length > 0 && phases.every(s => isComplete(s));
-  starter.hidden = anyOpen || allDone;
+  wrap.classList.toggle("hidden", anyOpen || allDone);
   starter.textContent = panel.querySelectorAll(".ck.done").length > 0 ? "Resume" : "Get started";
 }
 
