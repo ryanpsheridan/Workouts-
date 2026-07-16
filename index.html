@@ -262,7 +262,7 @@
 
   /* chiropractor posture-cue icon - sits right after the reps badge, tinted to the day's accent color */
   .ex-posture { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); color: var(--accent); }
-  .ex-posture svg { width: 13px; height: 13px; }
+  .ex-posture svg { width: 14px; height: 14px; }
 
   /* how-to link lives in a consistent chip at the card foot, off the title */
   .ex-demo {
@@ -463,8 +463,8 @@ function groupRows(rows) {
   return groups;
 }
 
-// Chiropractor's posture cue: a small head-and-neck profile, quicker to spot than re-reading the note.
-const POSTURE_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="11" cy="7" r="4.2"/><polygon points="14,5.6 17.2,7.3 14,9.2"/><path d="M8.5 10.5 h5 l3 9.5 h-13 z"/></svg>';
+// Chiropractor's posture cue: a small head-and-neck profile with a cervical "focus" mark, quicker to spot than re-reading the note.
+const POSTURE_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="7.6" r="4.3"/><path d="M14.6,6.2 L16.4,7.6 L14.6,9"/><path d="M10.3,7.6 C11.3,7.5 11.9,8.3 11.6,9.2 C11.4,9.8 10.7,10 10.2,9.6"/><path d="M9.3,11.7 C9,14.2 9,17 9.3,20"/><path d="M13,10.9 C13.5,13.2 13.7,16.4 13.4,20"/><path d="M9.3,20 L13.4,20"/><circle cx="7.6" cy="16.5" r="0.55" fill="currentColor" stroke="none"/><path d="M5.6,16.5 H4.4 M6.3,15.1 L5.5,14.3 M6.3,17.9 L5.5,18.7 M7.6,15.3 V14.1 M7.6,17.7 V18.9"/></svg>';
 
 function exRowHtml(r) {
   const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
