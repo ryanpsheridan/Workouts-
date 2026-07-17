@@ -126,23 +126,21 @@
   a { color: var(--link); }
 
   /* ---------- Header ---------- */
-  /* Positioned + z-index'd above .app-menu so the header (transparent except for its
-     own text/button) stays on top when the menu opens - its round button background
-     already matches --surface, so it reads as part of the menu with no seam. */
+  /* Positioned + z-index'd above .app-menu so the header (fully transparent except its
+     own text/icon glyphs) stays on top when the menu opens, with no seam against it. */
   .app-header { position: relative; z-index: 41; padding: calc(1.6rem + env(safe-area-inset-top)) 1.25rem 0.9rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .app-header h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; text-transform: lowercase; }
+  .app-header h1 { font-size: 22px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; text-transform: lowercase; }
   .menu-toggle {
-    flex: none; width: 38px; height: 38px; border-radius: 50%;
-    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
+    flex: none; width: 38px; height: 38px; border: none; background: none; color: var(--ink);
     display: grid; place-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent;
-    transition: transform 0.12s ease, background-color 0.18s ease, border-color 0.18s ease;
+    transition: transform 0.12s ease;
   }
   .menu-toggle:active { transform: scale(0.9); }
 
   /* Two bars that rotate in place into an X - same button element in both states, not a swap */
-  .menu-toggle-bars { position: relative; width: 16px; height: 10px; }
+  .menu-toggle-bars { position: relative; width: 18px; height: 10px; }
   .menu-toggle-bars span {
-    position: absolute; left: 0; width: 16px; height: 2px; border-radius: 1px;
+    position: absolute; left: 0; width: 18px; height: 2px; border-radius: 1px;
     background: currentColor; transition: transform 0.25s ease, top 0.25s ease;
   }
   .menu-toggle-bars span:first-child { top: 0; }
