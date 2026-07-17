@@ -466,7 +466,7 @@ function exRowHtml(r) {
   const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
   const reps = r.rp ? `<span class="ex-reps">${r.rp}</span>` : "";
   const posture = r.posture ? `<span class="ex-posture" title="Chiropractor cue: ${r.posture}">Posture</span>` : "";
-  const demo = r.link ? `<a class="ex-demo" href="${r.link}" target="_blank" rel="noopener">Watch demo</a>` : "";
+  const demo = r.link ? `<a class="ex-demo" href="${r.link}" target="_blank" rel="noopener">Demo</a>` : "";
   const meta = (reps || posture || demo) ? `<div class="ex-meta">${reps}${posture}${demo}</div>` : "";
   return `<div class="ex">
     <div class="ex-name">${r.ex}</div>${note}${meta}
