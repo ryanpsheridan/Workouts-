@@ -138,6 +138,29 @@
   .theme-toggle svg { width: 18px; height: 18px; transition: opacity 0.12s ease, transform 0.12s ease; }
   .theme-toggle svg.swap { opacity: 0; transform: rotate(-25deg) scale(0.7); }
 
+  /* ---------- Hamburger menu ---------- */
+  .menu-wrap { position: relative; flex: none; }
+  .menu-overlay { position: fixed; inset: 0; z-index: 29; display: none; }
+  .app-menu {
+    position: fixed; top: calc(env(safe-area-inset-top) + 60px); right: 1.25rem; z-index: 30;
+    width: 216px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); overflow: hidden; transform-origin: top right;
+    opacity: 0; transform: scale(0.95) translateY(-4px); pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .app-menu.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
+  .menu-item {
+    width: 100%; display: flex; align-items: center; gap: 11px; padding: 13px 15px;
+    border: none; background: none; font-family: inherit; font-size: 14px; font-weight: 400;
+    color: var(--ink); text-decoration: none; text-align: left; cursor: pointer;
+    -webkit-tap-highlight-color: transparent; transition: background-color 0.1s ease;
+  }
+  .menu-item + .menu-item { border-top: 1px solid var(--line); }
+  .menu-item:active { background: var(--field-active); }
+  .menu-item-icon { flex: none; width: 18px; height: 18px; display: grid; place-items: center; color: var(--ink-2); }
+  .menu-item-icon svg { width: 18px; height: 18px; transition: opacity 0.12s ease, transform 0.12s ease; }
+  .menu-item-icon svg.swap { opacity: 0; transform: rotate(-25deg) scale(0.7); }
+
   /* ---------- Sticky day nav ---------- */
   .day-nav {
     position: sticky; top: 0; z-index: 20;
@@ -299,7 +322,26 @@
 
 <header class="app-header">
   <h1>Ryan's Program</h1>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode"></button>
+  <div class="menu-wrap">
+    <button class="theme-toggle" id="menu-toggle" aria-label="Open menu" aria-haspopup="true" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="menu-overlay" id="menu-overlay"></div>
+    <div class="app-menu" id="app-menu" role="menu">
+      <button class="menu-item" id="menu-theme" role="menuitem">
+        <span class="menu-item-icon" id="menu-theme-icon"></span>
+        <span id="menu-theme-label">Dark Mode</span>
+      </button>
+      <a class="menu-item" role="menuitem" href="https://www.google.com/fit/" target="_blank" rel="noopener">
+        <span class="menu-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg></span>
+        <span>Google Fit</span>
+      </a>
+      <a class="menu-item" role="menuitem" href="https://open.spotify.com" target="_blank" rel="noopener">
+        <span class="menu-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+        <span>Spotify</span>
+      </a>
+    </div>
+  </div>
 </header>
 
 <nav class="day-nav" id="day-nav" aria-label="Training days"></nav>
@@ -713,8 +755,14 @@ function setDay(id) {
 }
 
 document.addEventListener("click", e => {
-  const tt = e.target.closest("#theme-toggle");
-  if (tt) { toggleTheme(); return; }
+  const menuToggle = e.target.closest("#menu-toggle");
+  if (menuToggle) { toggleMenu(); return; }
+  const overlay = e.target.closest("#menu-overlay");
+  if (overlay) { closeMenu(); return; }
+  const themeItem = e.target.closest("#menu-theme");
+  if (themeItem) { toggleTheme(); closeMenu(); return; }
+  const menuLink = e.target.closest(".app-menu a.menu-item");
+  if (menuLink) { closeMenu(); return; }
   const pill = e.target.closest(".day-pill");
   if (pill) { setDay(pill.dataset.day); return; }
   const starter = e.target.closest(".starter");
@@ -755,16 +803,20 @@ function effectiveTheme() {
   return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 function updateThemeIcon(animate) {
-  const btn = document.getElementById("theme-toggle");
-  if (!btn) return;
-  const html = effectiveTheme() === "dark" ? SUN : MOON;
-  if (!animate) { btn.innerHTML = html; return; }
-  const svg = btn.querySelector("svg");
+  const icon = document.getElementById("menu-theme-icon");
+  const label = document.getElementById("menu-theme-label");
+  if (!icon) return;
+  const dark = effectiveTheme() === "dark";
+  const html = dark ? SUN : MOON;
+  const text = dark ? "Light Mode" : "Dark Mode";
+  if (!animate) { icon.innerHTML = html; if (label) label.textContent = text; return; }
+  const svg = icon.querySelector("svg");
   if (svg) svg.classList.add("swap");
   setTimeout(() => {
-    btn.innerHTML = html;
+    icon.innerHTML = html;
+    if (label) label.textContent = text;
     requestAnimationFrame(() => {
-      const s = btn.querySelector("svg");
+      const s = icon.querySelector("svg");
       if (s) s.classList.remove("swap");
     });
   }, 110);
@@ -774,6 +826,22 @@ function toggleTheme() {
   document.documentElement.setAttribute("data-theme", next);
   try { localStorage.setItem("theme", next); } catch (e) {}
   updateThemeIcon(true);
+}
+
+// ---------- Hamburger menu ----------
+function openMenu() {
+  document.getElementById("app-menu").classList.add("open");
+  document.getElementById("menu-overlay").style.display = "block";
+  document.getElementById("menu-toggle").setAttribute("aria-expanded", "true");
+}
+function closeMenu() {
+  document.getElementById("app-menu").classList.remove("open");
+  document.getElementById("menu-overlay").style.display = "none";
+  document.getElementById("menu-toggle").setAttribute("aria-expanded", "false");
+}
+function toggleMenu() {
+  const open = document.getElementById("app-menu").classList.contains("open");
+  if (open) closeMenu(); else openMenu();
 }
 
 buildUI();
