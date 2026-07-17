@@ -260,8 +260,10 @@
   .ex-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
   .ex-reps { display: inline-flex; align-items: center; padding: 5px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--field); font-size: 11px; font-weight: 400; letter-spacing: 0.02em; color: var(--ink-2); white-space: nowrap; }
 
-  /* chiropractor posture-cue badge - sits right after the reps badge, tinted to the day's accent color */
-  .ex-posture { display: inline-flex; align-items: center; padding: 5px 11px; border-radius: 8px; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); font-size: 11px; font-weight: 400; letter-spacing: 0.02em; color: var(--accent); white-space: nowrap; }
+  /* chiropractor posture-cue badge - sits right after the reps badge, tinted to the day's accent color.
+     Mixed against --surface (not --accent-soft, which is a fixed light pastel per day) so it fades
+     correctly in dark mode too, matching the muted feel of .ex-demo. */
+  .ex-posture { display: inline-flex; align-items: center; padding: 5px 11px; border-radius: 8px; background: color-mix(in srgb, var(--accent) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--surface)); font-size: 11px; font-weight: 400; letter-spacing: 0.02em; color: var(--accent); white-space: nowrap; }
 
   /* how-to link lives in a consistent chip at the card foot, off the title */
   .ex-demo {
