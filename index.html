@@ -126,17 +126,29 @@
   a { color: var(--link); }
 
   /* ---------- Header ---------- */
-  .app-header { padding: calc(1.6rem + env(safe-area-inset-top)) 1.25rem 0.9rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .app-header h1 { font-size: 25px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
-  .theme-toggle {
+  /* Positioned + z-index'd above .app-menu so the header (transparent except for its
+     own text/button) stays on top when the menu opens - its round button background
+     already matches --surface, so it reads as part of the menu with no seam. */
+  .app-header { position: relative; z-index: 41; padding: calc(1.6rem + env(safe-area-inset-top)) 1.25rem 0.9rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .app-header h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; text-transform: lowercase; }
+  .menu-toggle {
     flex: none; width: 38px; height: 38px; border-radius: 50%;
     border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
     display: grid; place-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent;
     transition: transform 0.12s ease, background-color 0.18s ease, border-color 0.18s ease;
   }
-  .theme-toggle:active { transform: scale(0.9); }
-  .theme-toggle svg { width: 18px; height: 18px; transition: opacity 0.12s ease, transform 0.12s ease; }
-  .theme-toggle svg.swap { opacity: 0; transform: rotate(-25deg) scale(0.7); }
+  .menu-toggle:active { transform: scale(0.9); }
+
+  /* Two bars that rotate in place into an X - same button element in both states, not a swap */
+  .menu-toggle-bars { position: relative; width: 16px; height: 10px; }
+  .menu-toggle-bars span {
+    position: absolute; left: 0; width: 16px; height: 2px; border-radius: 1px;
+    background: currentColor; transition: transform 0.25s ease, top 0.25s ease;
+  }
+  .menu-toggle-bars span:first-child { top: 0; }
+  .menu-toggle-bars span:last-child { top: 8px; }
+  .menu-toggle.open .menu-toggle-bars span:first-child { top: 4px; transform: rotate(45deg); }
+  .menu-toggle.open .menu-toggle-bars span:last-child { top: 4px; transform: rotate(-45deg); }
 
   /* ---------- Hamburger menu (full-screen takeover) ---------- */
   .app-menu {
@@ -146,21 +158,11 @@
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
   }
   .app-menu.open { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 0.2s ease, transform 0.2s ease; }
-  .menu-top { flex: none; display: flex; align-items: center; justify-content: space-between; padding: calc(1.6rem + env(safe-area-inset-top)) 1.25rem 0; }
-  .menu-brand { font-size: 15px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
-  .menu-close {
-    flex: none; width: 38px; height: 38px; border-radius: 50%;
-    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
-    display: grid; place-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent;
-    transition: transform 0.12s ease;
-  }
-  .menu-close:active { transform: scale(0.9); }
-  .menu-close svg { width: 18px; height: 18px; }
   .menu-items { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.9rem; padding: 2rem 1.25rem; }
   .menu-item {
     display: inline-flex; align-items: center; gap: 7px;
     border: none; background: none; font-family: inherit;
-    font-size: 27px; font-weight: 700; letter-spacing: -0.02em;
+    font-size: 27px; font-weight: 400; letter-spacing: -0.02em;
     color: var(--ink); text-decoration: none; cursor: pointer;
     -webkit-tap-highlight-color: transparent; transition: opacity 0.1s ease;
   }
@@ -327,19 +329,13 @@
 <body>
 
 <header class="app-header">
-  <h1>Ryan's Program</h1>
-  <button class="theme-toggle" id="menu-toggle" aria-label="Open menu" aria-haspopup="true" aria-expanded="false">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+  <h1>gympro</h1>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-haspopup="true" aria-expanded="false">
+    <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span></span>
   </button>
 </header>
 
 <div class="app-menu" id="app-menu" role="dialog" aria-modal="true" aria-label="Menu">
-  <div class="menu-top">
-    <span class="menu-brand">Ryan's Program</span>
-    <button class="menu-close" id="menu-close" aria-label="Close menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-  </div>
   <div class="menu-items">
     <button class="menu-item" id="menu-theme"><span id="menu-theme-label">Dark Mode</span></button>
     <a class="menu-item" href="https://www.google.com/fit/" target="_blank" rel="noopener">
@@ -471,7 +467,7 @@ const DAYS = [
       ]},
       { name: "Finisher", rows: [
         { ss: "1", ord: "1A", ex: "Heavy Sled Push", rp: "6 x 20 yds", note: "Your heavier sled day - load it up and grind, forward only. A real leg killer, so keep the trips short." },
-        { ss: "2", ord: "2A", ex: "Hanging Leg Raises", rp: "3 x 12", note: "Control the lower - no swing. Your abs rarely get sore, so make these strict and full-range." }
+        { ss: "2", ord: "2A", ex: "Weighted Knee Crunches", rp: "3 x 8-10", note: "Captain's chair, dumbbell pinned between your feet. Curl the knees up and crunch the abs at the top - control the lower, no swing. The load is why these finally leave you sore." }
       ]}
     ]
   },
@@ -766,8 +762,6 @@ function setDay(id) {
 document.addEventListener("click", e => {
   const menuToggle = e.target.closest("#menu-toggle");
   if (menuToggle) { toggleMenu(); return; }
-  const menuClose = e.target.closest("#menu-close");
-  if (menuClose) { closeMenu(); return; }
   const themeItem = e.target.closest("#menu-theme");
   if (themeItem) { toggleTheme(); closeMenu(); return; }
   const menuLink = e.target.closest(".app-menu a.menu-item");
@@ -824,10 +818,12 @@ function toggleTheme() {
 // ---------- Hamburger menu ----------
 function openMenu() {
   document.getElementById("app-menu").classList.add("open");
+  document.getElementById("menu-toggle").classList.add("open");
   document.getElementById("menu-toggle").setAttribute("aria-expanded", "true");
 }
 function closeMenu() {
   document.getElementById("app-menu").classList.remove("open");
+  document.getElementById("menu-toggle").classList.remove("open");
   document.getElementById("menu-toggle").setAttribute("aria-expanded", "false");
 }
 function toggleMenu() {
