@@ -694,8 +694,22 @@ function autoAdvance(sec) {
   }, 380);
 }
 
+// Checking a group glides down to the next unchecked one in the section,
+// with the same timing/easing as the section-complete auto-advance.
+function scrollToNextGroup(ck, sec) {
+  const grps = [...sec.querySelectorAll(".grp")];
+  const nxt = grps.slice(grps.indexOf(ck.closest(".grp")) + 1)
+    .find(g => !g.classList.contains("done"));
+  if (!nxt) return;
+  setTimeout(() => {
+    const y = nxt.getBoundingClientRect().top + window.scrollY - 82;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }, 380);
+}
+
 function toggleCk(ck) {
-  setCk(ck, !ck.classList.contains("done"));
+  const on = !ck.classList.contains("done");
+  setCk(ck, on);
   save();
   const sec = ck.closest(".sec");
   const secId = sec.id.replace("sec-", "");
@@ -703,6 +717,7 @@ function toggleCk(ck) {
   updateProgress(dayFromKey(ck.dataset.key));
   updateStarter(dayFromKey(ck.dataset.key));
   if (complete) autoAdvance(sec);
+  else if (on) scrollToNextGroup(ck, sec);
 }
 
 function toggleSectionAll(secId) {
