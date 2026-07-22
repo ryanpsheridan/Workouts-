@@ -672,6 +672,11 @@ function updateProgress(dayId) {
   if (reset) reset.style.display = panel.querySelectorAll(".ck.done").length > 0 ? "" : "none";
 }
 
+function stickyNavOffset() {
+  const nav = document.getElementById("day-nav");
+  return (nav ? nav.getBoundingClientRect().height : 60) + 12;
+}
+
 function setCk(ck, on) {
   ck.classList.toggle("done", on);
   ck.setAttribute("aria-pressed", String(on));
@@ -687,8 +692,14 @@ function autoAdvance(sec) {
     const nxt = nextSection(sec);
     if (nxt) {
       collapse(nxt, false);
-      const y = nxt.getBoundingClientRect().top + window.scrollY - 82;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      // Wait for sec's collapse animation (0.26s) to finish shrinking before
+      // measuring nxt's position, otherwise the scroll target is computed
+      // while sec is still tall and the page keeps shifting after we land,
+      // making the snap overshoot past nxt's header.
+      setTimeout(() => {
+        const y = nxt.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }, 270);
     }
     updateStarter(panelDay(sec));
   }, 380);
@@ -702,7 +713,7 @@ function scrollToNextGroup(ck, sec) {
     .find(g => !g.classList.contains("done"));
   if (!nxt) return;
   setTimeout(() => {
-    const y = nxt.getBoundingClientRect().top + window.scrollY - 82;
+    const y = nxt.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
     window.scrollTo({ top: y, behavior: "smooth" });
   }, 380);
 }
@@ -780,7 +791,7 @@ document.addEventListener("click", e => {
     const target = secs.find(s => !isComplete(s)) || secs[0];
     focusSection(target);
     updateStarter(dayId);
-    const y = target.getBoundingClientRect().top + window.scrollY - 82;
+    const y = target.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
     window.scrollTo({ top: y, behavior: "smooth" });
     return;
   }
