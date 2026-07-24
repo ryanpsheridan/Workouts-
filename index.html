@@ -481,6 +481,30 @@ const DAYS = [
         { ss: "",  ord: "1B", ex: "Hammer Curls", rp: "3 x 12", note: "One set between intervals - forearm + bicep while the legs recover, so the arm work is never its own boring dead time." }
       ]}
     ]
+  },
+  {
+    id: "pre-golf", label: "Pre-Golf", focus: "Unloaded mobility only - no heavy work, no overhead load before you play",
+    color: "#ca8a04", soft: "#fdf3d9",
+    phases: [
+      { name: "Back", sub: "Tight from yesterday's load", rows: [
+        { ss: "1", ord: "1A", ex: "Cat-Cow", rp: "10 slow reps", note: "Slow spinal flexion and extension - ease into range before anything else." },
+        { ss: "2", ord: "2A", ex: "Thoracic Rotations (Quadruped)", rp: "10 / side", note: "Free up the mid-back that took the load yesterday." },
+        { ss: "3", ord: "3A", ex: "World's Greatest Stretch", rp: "6 / side", note: "Full hip opener with a thoracic reach at the top." },
+        { ss: "4", ord: "4A", ex: "Child's Pose to Cobra Flow", rp: "8 reps", note: "Gentle spinal wave - reach long in child's pose, then open the chest into cobra." },
+        { ss: "5", ord: "5A", ex: "Foam Roll: Upper/Mid Back & Lats", rp: "60 sec each", note: "Slow rolls, pause on anything tight. Skip the low back." }
+      ]},
+      { name: "Hamstrings", sub: "Tight from golf", rows: [
+        { ss: "1", ord: "1A", ex: "Foam Roll Hamstrings", rp: "60 sec / leg", note: "Slow rolls to release what the round will keep asking from these." },
+        { ss: "2", ord: "2A", ex: "Standing Hamstring Stretch OR Half-Kneeling Hip Flexor + Hamstring Reach", rp: "30 sec / side, 2 rounds", note: "Pick whichever feels better today - both open the same chain." },
+        { ss: "3", ord: "3A", ex: "Leg Swings (Front-to-Back)", rp: "10 / leg", note: "Dynamic range to get blood moving before the static holds settle in." },
+        { ss: "4", ord: "4A", ex: "Banded Hamstring Pulls OR Light RDL (bar only)", rp: "2 x 10", note: "Slow and controlled - stop well short of anything pulling on the back." }
+      ]},
+      { name: "Finish", sub: "Loosen & open the hips for the round", rows: [
+        { ss: "1", ord: "1A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
+        { ss: "2", ord: "2A", ex: "Walking Lunges with a Twist", rp: "10 / side", note: "Add a slow twist over the front leg to open the t-spine before you play. Keep the lead knee tracking over your toes, don't let it cave inward." },
+        { ss: "3", ord: "3A", ex: "Easy Bike or Rower", rp: "5 min", note: "Just enough to get blood flowing - conversational pace, not a warm-up sweat." }
+      ]}
+    ]
   }
 ];
 
@@ -548,9 +572,9 @@ function buildUI() {
 
   document.getElementById("content").innerHTML = DAYS.map(d => {
     const warmup = WARMUPS[d.id] || [];
-    const warmSec = sectionHtml(`${d.id}-wu`, "00", "Pre-flight warm-up", "", warmup, `${d.id}#wu`);
+    const warmSec = warmup.length ? sectionHtml(`${d.id}-wu`, "00", "Pre-flight warm-up", "", warmup, `${d.id}#wu`) : "";
     const phaseSecs = d.phases.map((p, i) =>
-      sectionHtml(`${d.id}-p${i}`, "0" + (i + 1), p.name, "", p.rows, `${d.id}#${i}`)
+      sectionHtml(`${d.id}-p${i}`, "0" + (i + 1), p.name, p.sub || "", p.rows, `${d.id}#${i}`)
     ).join("");
 
     return `<div class="day-panel" role="tabpanel" id="s-${d.id}" style="--accent:${d.color};--accent-soft:${d.soft}">
