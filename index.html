@@ -817,8 +817,16 @@ document.addEventListener("click", e => {
     const target = secs.find(s => !isComplete(s)) || secs[0];
     focusSection(target);
     updateStarter(dayId);
-    const y = target.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
-    window.scrollTo({ top: y, behavior: "smooth" });
+    // Wait for the section-open animation (0.26s) to finish before measuring,
+    // same as autoAdvance - otherwise the still-expanding layout throws the
+    // scroll target off.
+    setTimeout(() => {
+      const grps = [...target.querySelectorAll(".grp")];
+      const nextGrp = grps.find(g => !g.classList.contains("done"));
+      const el = nextGrp || target;
+      const y = el.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }, 270);
     return;
   }
   const ck = e.target.closest(".ck");
