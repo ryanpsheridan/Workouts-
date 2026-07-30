@@ -209,8 +209,9 @@
   .day-hero .focus { font-size: 16.5px; color: var(--ink-2); margin-top: 5px; font-weight: 400; line-height: 1.35; }
 
   .progress { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12.5px; color: var(--ink-3); font-weight: 400; }
-  .progress .bar { flex: 1; height: 4px; border-radius: 3px; background: var(--line); overflow: hidden; max-width: 150px; }
-  .progress .bar > i { display: block; height: 100%; width: 0; background: var(--done); transition: width 0.25s ease; }
+  .progress .bar { position: relative; flex: 1; height: 4px; border-radius: 3px; background: var(--line); max-width: 150px; }
+  .progress .bar > i.fill { display: block; height: 100%; width: 0; border-radius: 3px; background: var(--done); transition: width 0.25s ease; }
+  .progress .bar-tick { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--surface); z-index: 1; }
   .progress .reset { border: none; background: none; font-family: inherit; font-size: 12.5px; color: var(--link); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; padding: 0; transition: opacity 0.1s ease; }
   .progress .reset:active { opacity: 0.55; }
 
@@ -378,42 +379,42 @@
 // Every warm-up finishes with a bar hang. ex = plain name; link = how-to URL.
 const WARMUPS = {
   "lower-a": [ // prior: Upper B (pull day) -> lats, upper back, biceps, forearms
-    { ss: "1", ord: "1A", ex: "Toe Rockback to Deep Squat", rp: "8 reps", note: "Kneel with toes tucked under, hands on the ground. Lift the knees and rock back onto your heels into a deep squat, then forward again - stretches the toes/ankles on the way back, the rounded lower back on the way down." },
-    { ss: "",  ord: "1B", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "More t-spine rotation to free up after all the pull-ups and rows." },
-    { ss: "2", ord: "2A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands. Chest tall, hips do the work." },
+    { ss: "1", ord: "1A", ex: "Toe Rockback to Deep Squat", rp: "8 reps", note: "Kneel, toes tucked, hands down. Rock back onto heels into a deep squat, then forward - stretches ankles back, low back down." },
+    { ss: "",  ord: "1B", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Frees up t-spine rotation after yesterday's pulling." },
+    { ss: "2", ord: "2A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation. Chest tall, hips do the work." },
     { ss: "",  ord: "2B", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top." },
-    { ss: "",  ord: "2C", ex: "Bretzel", link: "https://www.youtube.com/watch?v=1U2RPN5vAWQ", rp: "5 breaths / side", note: "Your golf-trainer move - t-spine and hip in one. Perfect prep for the twisting lunges and chops ahead." },
-    { ss: "3", ord: "3A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "10 / side", note: "Same glutes and hamstrings as the double-leg version, but one foot down forces each side to work full - fire them before they carry the whole session." },
-    { ss: "",  ord: "3B", ex: "Walking Lunges", rp: "10 / side", note: "Light and smooth - potentiate the legs for the day. Keep the lead knee tracking over your toes, don't let it cave inward." },
-    { ss: "",  ord: "3C", ex: "Lateral Band Walks", rp: "15 steps / side", note: "Switch on the glute med for all the single-leg work ahead." },
-    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Hang from the bar - decompress the spine and give the grip and lats one more stretch after yesterday's pulling." }
+    { ss: "",  ord: "2C", ex: "Bretzel", link: "https://www.youtube.com/watch?v=1U2RPN5vAWQ", rp: "5 breaths / side", note: "T-spine and hip in one - prep for the twisting lunges and chops ahead." },
+    { ss: "3", ord: "3A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "10 / side", note: "One foot down forces each side to work full before the session." },
+    { ss: "",  ord: "3B", ex: "Walking Lunges", rp: "10 / side", note: "Light and smooth. Keep the lead knee tracking over your toes." },
+    { ss: "",  ord: "3C", ex: "Lateral Band Walks", rp: "15 steps / side", note: "Switches on the glute med for the single-leg work ahead." },
+    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, stretch grip and lats." }
   ],
   "upper-a": [ // today: PRESS/carries/arms. prior: Lower A -> glutes, quads, hip flexors
-    { ss: "1", ord: "1A", ex: "Shoulder CARs", rp: "5 / side", note: "Take each shoulder slowly through its full circle - the best prep before pressing." },
-    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delts + mid-back on to balance all the pressing to come. Chiropractor cue: shoulder blades back.", posture: "Shoulder blades back" },
-    { ss: "2", ord: "2A", ex: "Thoracic Rotations", rp: "10 / side", note: "Free up the mid-back so the press stays off the low back." },
-    { ss: "",  ord: "2B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips Lower A hammered yesterday, and keep the golf rotation ticking over." },
-    { ss: "3", ord: "3A", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors cooked by yesterday's lunges." },
+    { ss: "1", ord: "1A", ex: "Shoulder CARs", rp: "5 / side", note: "Slow full circles each shoulder - best prep before pressing." },
+    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delts + mid-back on to balance the pressing ahead.", posture: "Shoulder blades back" },
+    { ss: "2", ord: "2A", ex: "Thoracic Rotations", rp: "10 / side", note: "Frees the mid-back so the press stays off the low back." },
+    { ss: "",  ord: "2B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosens hips from yesterday, keeps golf rotation moving." },
+    { ss: "3", ord: "3A", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Opens hip flexors from yesterday's lunges." },
     { ss: "",  ord: "3B", ex: "Bird-Dogs", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "10 / side", note: "Gentle core switch-on, back stays flat." },
-    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Hang from the bar - decompress the spine and wake up the grip for the carries." }
+    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, wake up the grip for the carries." }
   ],
   "lower-b": [ // prior: Upper A (press day) -> chest, front delts, triceps, traps
-    { ss: "1", ord: "1A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Open the chest and upper back that got tight from yesterday's presses. Follow the hand with your eyes." },
-    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Wake the rear delts to undo the pressing posture from Upper A. Chiropractor cue: shoulder blades back.", posture: "Shoulder blades back" },
-    { ss: "2", ord: "2A", ex: "Hip Internal Rotation Stretch", rp: "30 sec / side", note: "Seated or on all fours, rotate the shin inward and sink into the back of the hip. Straight at the internal-rotation range golf hammers." },
-    { ss: "",  ord: "2B", ex: "Bretzel", link: "https://www.youtube.com/watch?v=1U2RPN5vAWQ", rp: "5 breaths / side", note: "Your golf-trainer move - t-spine and hip in one. Breathe and sink deeper each rep." },
-    { ss: "3", ord: "3A", ex: "Adductor Rocks", link: "https://www.youtube.com/watch?v=yF8o6I6aSZg", rp: "10 reps", note: "On all fours, rock the hips back to open the groin for step-ups and single-leg work." },
+    { ss: "1", ord: "1A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the chest/upper back tight from yesterday's presses." },
+    { ss: "",  ord: "1B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Wakes rear delts, undoes yesterday's pressing posture.", posture: "Shoulder blades back" },
+    { ss: "2", ord: "2A", ex: "Hip Internal Rotation Stretch", rp: "30 sec / side", note: "Rotate the shin inward, sink into the back of the hip - the range golf hammers." },
+    { ss: "",  ord: "2B", ex: "Bretzel", link: "https://www.youtube.com/watch?v=1U2RPN5vAWQ", rp: "5 breaths / side", note: "T-spine and hip in one. Breathe and sink deeper each rep." },
+    { ss: "3", ord: "3A", ex: "Adductor Rocks", link: "https://www.youtube.com/watch?v=yF8o6I6aSZg", rp: "10 reps", note: "Rock hips back on all fours - opens the groin for step-ups." },
     { ss: "",  ord: "3B", ex: "Cossack Squats", link: "https://www.youtube.com/watch?v=j-595dZdDkA", rp: "6 / side", note: "Slow and controlled - lateral hip and ankle mobility." },
-    { ss: "4", ord: "4A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "10 / side", note: "Same glutes and hamstrings, one foot down so each side works full - activate before the heavier lower work." },
-    { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Hang from the bar - decompress the spine and wake up the grip. A climber staple." }
+    { ss: "4", ord: "4A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "10 / side", note: "Activates glutes/hamstrings before the heavier lower work." },
+    { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, wake up the grip." }
   ],
   "upper-b": [ // today: PULL/giant set/TRX. prior: Lower B -> glutes, quads, hamstrings, calves
-    { ss: "1", ord: "1A", ex: "Dead Hang", rp: "30-60 sec", note: "Hang from the bar - decompress the spine and pre-stretch the lats for the pull-up giant set." },
-    { ss: "",  ord: "1B", ex: "Scapular Pull-Ups", rp: "8 reps", note: "Hang and shrug the shoulder blades down - primes the back for all the pulling. Chiropractor cue: shoulder blades back, head back.", posture: "Shoulder blades back, head back" },
-    { ss: "2", ord: "2A", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delt + mid-back activation before the rows and pull-ups. Chiropractor cue: shoulder blades back.", posture: "Shoulder blades back" },
-    { ss: "",  ord: "2B", ex: "Thoracic Rotations", rp: "10 / side", note: "Free up the mid-back so the shoulders move clean." },
-    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosen the hips and glutes still cooked from Lower B, keep golf rotation moving." },
-    { ss: "",  ord: "3B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Open the hip flexors after all of yesterday's sled and step-ups." },
+    { ss: "1", ord: "1A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, pre-stretch the lats for the giant set." },
+    { ss: "",  ord: "1B", ex: "Scapular Pull-Ups", rp: "8 reps", note: "Hang and shrug the shoulder blades down - primes the back for pulling.", posture: "Shoulder blades back, head back" },
+    { ss: "2", ord: "2A", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delt + mid-back activation before rows and pull-ups.", posture: "Shoulder blades back" },
+    { ss: "",  ord: "2B", ex: "Thoracic Rotations", rp: "10 / side", note: "Frees the mid-back so the shoulders move clean." },
+    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosens hips still cooked from Lower B." },
+    { ss: "",  ord: "3B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Opens hip flexors after yesterday's sled and step-ups." },
     { ss: "4", ord: "4A", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." }
   ]
 };
@@ -424,21 +425,21 @@ const DAYS = [
     color: "#2563eb", soft: "#eef4ff",
     phases: [
       { name: "Power & prime", rows: [
-        { ss: "1", ord: "1A", ex: "Box Jumps", link: "https://www.youtube.com/watch?v=YLPQsdRDmB0", rp: "3 x 4", note: "Done first, while you're fresh. Step down every rep, land soft and quiet. Height is secondary to control." },
-        { ss: "",  ord: "1B", ex: "Med Ball Rotational Slam", link: "https://www.youtube.com/watch?v=W_4eq6r00zw", rp: "3 x 5 / side", note: "Load the trail hip, fire through with full rotation and slam. Explosive - swing speed, and it spikes the heart rate early." }
+        { ss: "1", ord: "1A", ex: "Box Jumps", link: "https://www.youtube.com/watch?v=YLPQsdRDmB0", rp: "3 x 4", note: "Done first, while fresh. Step down every rep, land soft and quiet - control over height." },
+        { ss: "",  ord: "1B", ex: "Med Ball Rotational Slam OR Cable Rotational Chop", link: "https://www.youtube.com/watch?v=W_4eq6r00zw", rp: "3 x 5 / side", note: "Load the trail hip, fire through with full rotation. Explosive - spikes the heart rate early." }
       ]},
       { name: "Strength", rows: [
-        { ss: "1", ord: "1A", ex: "Smith Machine Lunges OR Hack Squat", rp: "6, 4, 2, 1", note: "Heavy quad strength. On the lunge, keep the lead knee tracking over your toes, don't let it cave inward." },
+        { ss: "1", ord: "1A", ex: "Smith Machine Lunges OR Hack Squat", rp: "6, 4, 2, 1", note: "Heavy quad strength. Keep the lead knee tracking over your toes, don't let it cave inward." },
         { ss: "",  ord: "1B", ex: "Lateral Band Walks", rp: "15 steps / side" },
-        { ss: "2", ord: "2A", ex: "Twisting Lunges with 45 lb plate", link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", rp: "4 x 8 / side", note: "Your favorite - rotate the plate over the front leg. Rotation under load. Keep the lead knee tracking over your toes, don't let it cave inward." },
-        { ss: "",  ord: "2B", ex: "Suitcase Carry", rp: "Heavy / 30 yds / side", note: "Grip + anti-lean core. Stand tall, don't tip toward the weight. Plate/DB is right there from the lunges. Chiropractor cue: shoulder blades back, head back.", posture: "Shoulder blades back, head back" },
-        { ss: "3", ord: "3A", ex: "Single-Leg DB RDL", link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Your favorite. Hinge at the hip, flat back, feel the hamstring and glute load plus the balance demand." },
-        { ss: "",  ord: "3B", ex: "Half-Kneeling Cable Chop (High-to-Low)", link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect. Cable station is right beside you." }
+        { ss: "2", ord: "2A", ex: "Twisting Lunges with 45 lb plate", link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", rp: "4 x 8 / side", note: "Rotate the plate over the front leg - rotation under load. Keep the lead knee tracking over your toes." },
+        { ss: "",  ord: "2B", ex: "Suitcase Carry", rp: "Heavy / 30 yds / side", note: "Grip + anti-lean core. Stand tall, don't tip toward the weight.", posture: "Shoulder blades back, head back" },
+        { ss: "3", ord: "3A", ex: "Single-Leg DB RDL", link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Hinge at the hip, flat back - hamstring, glute, and balance." },
+        { ss: "",  ord: "3B", ex: "Half-Kneeling Cable Chop (High-to-Low)", link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect." }
       ]},
       { name: "Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "GHD Sit-Ups", rp: "3 x 15", note: "Your favorite combo - same machine as the reverse hypers, so flow straight between the two." },
-        { ss: "",  ord: "1B", ex: "GHD Reverse Hyperextension", rp: "3 x 12-15", note: "Legs to parallel only, squeeze the glutes at the top - not the low back. Slow, no momentum, light-to-moderate load." },
-        { ss: "",  ord: "1C", ex: "Sled Push (Forward + Backward)", rp: "4 x 40 yds", note: "Closes out the tri-set - light-to-moderate so you can do both directions - forward drives the quads, backward is knee-friendly and jacks the heart rate." }
+        { ss: "1", ord: "1A", ex: "GHD Sit-Ups", rp: "3 x 15", note: "Same machine as the reverse hypers - flow straight between the two." },
+        { ss: "",  ord: "1B", ex: "GHD Reverse Hyperextension", rp: "3 x 12-15", note: "Legs to parallel, squeeze the glutes at the top - not the low back. Slow, no momentum." },
+        { ss: "",  ord: "1C", ex: "Sled Push (Forward + Backward) OR Heavy Kettlebell Swings", rp: "4 x 40 yds", note: "Forward drives the quads, backward is knee-friendly and jacks the heart rate. Swap in KB swings if the sled's taken." }
       ]}
     ]
   },
@@ -447,20 +448,21 @@ const DAYS = [
     color: "#0891b2", soft: "#e2f7fb",
     phases: [
       { name: "Power & prime", rows: [
-        { ss: "1", ord: "1A", ex: "Med Ball Perpendicular Throw", link: "https://www.youtube.com/watch?v=D3puZb7vzjQ", rp: "3 x 6 / side", note: "Stand sideways to the wall, load the trail hip, throw through the ball. Ground-up sequencing: feet, hips, torso, arms - pure swing power." },
-        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Leave the floor, land soft. Upper-body power while you're fresh." }
+        { ss: "1", ord: "1A", ex: "Med Ball Perpendicular Throw", link: "https://www.youtube.com/watch?v=D3puZb7vzjQ", rp: "3 x 6 / side", note: "Stand sideways to the wall, load the trail hip, throw through the ball - feet, hips, torso, arms." },
+        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "2 x 5", note: "Leave the floor, land soft - upper-body power while fresh." }
       ]},
       { name: "Strength", rows: [
-        { ss: "1", ord: "1A", ex: "Chin-Ups", rp: "3 x AMRAP", note: "Underhand grip - your most bicep-dominant pull, placed early while you're strong since arms are the weak point. Band-assist to hit honest reps. Chiropractor cue: shoulder blades back, head back.", posture: "Shoulder blades back, head back" },
-        { ss: "",  ord: "1B", ex: "Incline DB Press", rp: "3 x 8-10", note: "Moderate load - front delts already take a beating all week, so quality over ego here." },
-        { ss: "2", ord: "2A", ex: "Half-Kneeling Landmine Press", link: "https://www.youtube.com/watch?v=LN1zCeoIfbE", rp: "3 x 8 / side", note: "Replaces the old seated DB overhead press - far easier on the low back, and the half-kneel forces core + anti-lean. Golf-friendly overhead strength. Press with the arm on the same side as your down (kneeling) knee - the up knee (foot planted) is the opposite side." },
-        { ss: "",  ord: "2B", ex: "Hanging TRX Row", rp: "3 x 10", note: "Straps are right there - pull the chest to the handles. Chiropractor cue: shoulder blades back, head back.", posture: "Shoulder blades back, head back" },
-        { ss: "3", ord: "3A", ex: "Alternating Incline Curl-to-Press", rp: "3 x 8 / side", note: "One arm at a time: curl from a full stretch (elbows back), then keep it moving and press the DB straight up to the ceiling. Lower back down the same path, then switch sides. Biceps and shoulders in one clean flow." },
-        { ss: "",  ord: "3B", ex: "Farmer's Carry", rp: "Heavy / 40 yds", note: "Carry between curl sets - grip, forearms, traps, and heart rate at once, so the arm work never feels like standing-around isolation." }
+        { ss: "1", ord: "1A", ex: "Chin-Ups", rp: "3 x AMRAP", note: "Underhand grip, your most bicep-dominant pull - placed early while strong. Band-assist for honest reps.", posture: "Shoulder blades back, head back" },
+        { ss: "",  ord: "1B", ex: "Incline DB Press", rp: "3 x 8-10", note: "Moderate load - front delts take a beating all week, quality over ego." },
+        { ss: "2", ord: "2A", ex: "Half-Kneeling Landmine Press", link: "https://www.youtube.com/watch?v=LN1zCeoIfbE", rp: "3 x 8 / side", note: "Half-kneel forces core + anti-lean - golf-friendly overhead strength. Press with the arm on the same side as your down (kneeling) knee." },
+        { ss: "",  ord: "2B", ex: "Hanging TRX Row", rp: "3 x 10", note: "Straps are right there - pull the chest to the handles.", posture: "Shoulder blades back, head back" },
+        { ss: "3", ord: "3A", ex: "Alternating Incline Curl-to-Press", rp: "3 x 8 / side", note: "One arm at a time: curl from a full stretch, keep it moving into a straight overhead press. Lower the same path, then switch." },
+        { ss: "",  ord: "3B", ex: "Farmer's Carry", rp: "Heavy / 40 yds", note: "Grip, forearms, traps, and heart rate between curl sets." },
+        { ss: "",  ord: "3C", ex: "Hanging Leg Raise", rp: "3 x 10-12", note: "Straight or bent knees - control the descent, no swing. Core insurance before the finisher." }
       ]},
       { name: "Finisher", rows: [
         { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 30s hard / 30s easy", note: "Rotate the machine week to week." },
-        { ss: "",  ord: "1B", ex: "Lying Plate Pass", rp: "3 x 10", note: "Lie on your back holding a plate. Lower it behind your head, then lift up and pass it onto your shins, lower the legs, and reverse. Slow and controlled - low back stays glued to the floor. Done between intervals to close out the week." }
+        { ss: "",  ord: "1B", ex: "Lying Plate Pass", rp: "3 x 10", note: "Lower the plate behind your head, lift and pass it onto your shins, lower the legs, reverse. Low back glued to the floor." }
       ]}
     ]
   },
@@ -469,21 +471,21 @@ const DAYS = [
     color: "#7c3aed", soft: "#f1ecfe",
     phases: [
       { name: "Power & prime", rows: [
-        { ss: "1", ord: "1A", ex: "Broad Jumps", link: "https://www.youtube.com/watch?v=GR5JVcHHS_Q", rp: "3 x 4", note: "Fresh legs first. Stick and hold each landing before resetting - a soft, balanced landing beats distance." },
-        { ss: "",  ord: "1B", ex: "Skater Bounds", link: "https://www.youtube.com/watch?v=G5tsTOqrkec", rp: "3 x 5 / side", note: "Lateral bound, stick the landing on one leg. Balance + athleticism - your body needs these even if they aren't your favorite. Two moves, done early, in and out." }
+        { ss: "1", ord: "1A", ex: "Broad Jumps", link: "https://www.youtube.com/watch?v=GR5JVcHHS_Q", rp: "3 x 4", note: "Fresh legs first. Stick and hold each landing - control beats distance." },
+        { ss: "",  ord: "1B", ex: "Skater Bounds", link: "https://www.youtube.com/watch?v=G5tsTOqrkec", rp: "3 x 5 / side", note: "Lateral bound, stick the landing on one leg - balance and athleticism." }
       ]},
       { name: "Strength", rows: [
         { ss: "1", ord: "1A", ex: "Offset Step-Ups", rp: "4 x 6 / side", note: "Push through heel on the way up." },
-        { ss: "",  ord: "1B", ex: "Walking Lunges", rp: "25 yds", note: "Stay low and smooth straight off the step-ups. Keep the lead knee tracking over your toes, don't let it cave inward." },
+        { ss: "",  ord: "1B", ex: "Walking Lunges", rp: "25 yds", note: "Stay low and smooth off the step-ups. Keep the lead knee tracking over your toes." },
         { ss: "2", ord: "2A", ex: "Single-Leg Press (Machine)", rp: "3 x 10-12 / side", note: "Press through the toes - quad focus." },
         { ss: "",  ord: "2B", ex: "Calf Raises OR Lateral Band Walks", rp: "15 reps / 15 steps" },
         { ss: "3", ord: "3A", ex: "Single-Leg DB RDL", link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Hamstring, glute, and balance. DB in the hand opposite the working leg." },
-        { ss: "",  ord: "3B", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull. Anti-rotation core that keeps your swing on plane." },
-        { ss: "",  ord: "3C", ex: "Suitcase Carry", rp: "Heavy / 30 yds / side", note: "Third in the superset - grip + oblique, one side at a time. Stand tall against the load. Chiropractor cue: shoulder blades back, head back.", posture: "Shoulder blades back, head back" }
+        { ss: "",  ord: "3B", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull - anti-rotation core for the swing." },
+        { ss: "",  ord: "3C", ex: "Suitcase Carry", rp: "Heavy / 30 yds / side", note: "Grip + oblique, one side at a time. Stand tall against the load.", posture: "Shoulder blades back, head back" }
       ]},
       { name: "Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Heavy Sled Push", rp: "6 x 20 yds", note: "Your heavier sled day - load it up and grind, forward only. A real leg killer, so keep the trips short." },
-        { ss: "2", ord: "2A", ex: "Weighted Knee Crunches", rp: "3 x 8-10", note: "Captain's chair, dumbbell pinned between your feet. Curl the knees up and crunch the abs at the top - control the lower, no swing. The load is why these finally leave you sore." }
+        { ss: "1", ord: "1A", ex: "Heavy Sled Push OR Weighted Step-Ups (fast tempo)", rp: "6 x 20 yds", note: "Load it up and grind, forward only - a real leg killer, keep trips short. Swap to step-ups if the sled's taken." },
+        { ss: "2", ord: "2A", ex: "Hanging Leg Raise OR Captain's Chair Knee Raise", rp: "3 x 10-12", note: "Curl the knees to the chest, control the lower - no swing. Loaded lower-ab work that actually leaves you sore." }
       ]}
     ]
   },
@@ -492,20 +494,21 @@ const DAYS = [
     color: "#059669", soft: "#dff5ec",
     phases: [
       { name: "Power & prime", rows: [
-        { ss: "1", ord: "1A", ex: "Med Ball Slams", link: "https://www.youtube.com/watch?v=EsAhU1jHpiQ", rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep. Gets the heart rate up before you touch a weight." },
-        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "3 x 5", note: "Push hard enough to leave the floor (or drive the hands off a box). Calisthenics power - land soft into the next rep." }
+        { ss: "1", ord: "1A", ex: "Med Ball Slams", link: "https://www.youtube.com/watch?v=EsAhU1jHpiQ", rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep - heart rate up before you touch a weight." },
+        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "2 x 5", note: "Push hard enough to leave the floor - land soft into the next rep." }
       ]},
       { name: "Strength", rows: [
-        { ss: "1", ord: "1A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups (underhand) - that's where the biceps you want to build actually drive. Loop a light band under a foot so you push past the first few reps instead of stalling - that's how you finally progress here. Chiropractor cue: shoulder blades back, head back.", posture: "Shoulder blades back, head back" },
-        { ss: "",  ord: "1B", ex: "Overhead Tricep Extension (rope)", rp: "3 x 12", note: "Your go-to pairing with the pull-ups - pull then push, no wasted rest. Elbows tucked, full stretch overhead." },
-        { ss: "2", ord: "2A", ex: "Hanging TRX Row", rp: "Heavy / 3 x 10", note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder. Chiropractor cue: shoulder blades back, head back.", posture: "Shoulder blades back, head back" },
-        { ss: "",  ord: "2B", ex: "Feet-Elevated Push-Ups (feet on box)", rp: "3 x 10-12", note: "The military push-up with feet up that felt so effective - box sits right under the TRX. Loads the upper chest and front delts." },
-        { ss: "3", ord: "3A", ex: "Swimming Circles", rp: "3 x 10", note: "Face down, lift chest and legs, small circles with the arms. Your posture reset for all the laptop hours. Chiropractor cue: shoulder blades back, head back.", posture: "Shoulder blades back, head back" },
-        { ss: "",  ord: "3B", ex: "TRX Bicep Curl", rp: "3 x 12-15", note: "Same straps - lean back, elbows high, curl your body up. Biceps woven into the flow, not a dead-end block." }
+        { ss: "1", ord: "1A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups - that's where the biceps drive. Loop a light band under a foot to push past the first few reps.", posture: "Shoulder blades back, head back" },
+        { ss: "",  ord: "1B", ex: "Overhead Tricep Extension (rope)", rp: "3 x 12", note: "Pull then push, no wasted rest. Elbows tucked, full stretch overhead." },
+        { ss: "2", ord: "2A", ex: "Hanging TRX Row", rp: "Heavy / 3 x 10", note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder.", posture: "Shoulder blades back, head back" },
+        { ss: "",  ord: "2B", ex: "Feet-Elevated Push-Ups (feet on box)", rp: "3 x 10-12", note: "Box sits under the TRX - loads the upper chest and front delts." },
+        { ss: "",  ord: "2C", ex: "Hanging Leg Raise", rp: "3 x 10-12", note: "Same bar as the giant set - straight or bent knees, control the descent." },
+        { ss: "3", ord: "3A", ex: "Swimming Circles", rp: "3 x 10", note: "Face down, lift chest and legs, small circles with the arms - posture reset for the laptop hours.", posture: "Shoulder blades back, head back" },
+        { ss: "",  ord: "3B", ex: "TRX Bicep Curl", rp: "3 x 12-15", note: "Lean back, elbows high, curl your body up - biceps woven into the flow." }
       ]},
       { name: "Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 40s hard / 20s easy", note: "Pick a different machine than last time - variety kills the boredom." },
-        { ss: "",  ord: "1B", ex: "Hammer Curls", rp: "3 x 12", note: "One set between intervals - forearm + bicep while the legs recover, so the arm work is never its own boring dead time." }
+        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 40s hard / 20s easy", note: "Pick a different machine than last time." },
+        { ss: "",  ord: "1B", ex: "Hammer Curls", rp: "3 x 12", note: "One set between intervals - forearm and bicep while the legs recover." }
       ]}
     ]
   },
@@ -606,6 +609,17 @@ function buildUI() {
       sectionHtml(`${d.id}-p${i}`, "0" + (i + 1), p.name, p.sub || "", p.rows, `${d.id}#${i}`)
     ).join("");
 
+    // Tick marks divide the bar at each phase boundary (warm-up excluded, same as the count)
+    // so the bar doubles as a "which section am I in" indicator, not just a done/total ratio.
+    const phaseGroupCounts = d.phases.map(p => groupRows(p.rows).length);
+    const totalGroups = phaseGroupCounts.reduce((a, b) => a + b, 0);
+    let acc = 0;
+    const ticks = phaseGroupCounts.slice(0, -1).map(c => {
+      acc += c;
+      const pct = totalGroups ? (acc / totalGroups) * 100 : 0;
+      return `<i class="bar-tick" style="left:${pct}%"></i>`;
+    }).join("");
+
     return `<div class="day-panel" role="tabpanel" id="s-${d.id}" style="--accent:${d.color};--accent-soft:${d.soft}">
       <div class="day-hero">
         <span class="day-rule"></span>
@@ -613,7 +627,7 @@ function buildUI() {
         <div class="focus">${d.focus}</div>
         <div class="progress">
           <span id="pg-${d.id}">0 / 0 done</span>
-          <span class="bar"><i id="bar-${d.id}"></i></span>
+          <span class="bar"><i class="fill" id="bar-${d.id}"></i>${ticks}</span>
           <button class="reset" data-day="${d.id}" style="display:none">Reset</button>
         </div>
       </div>
