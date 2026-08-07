@@ -304,17 +304,11 @@
      AA floor. The accent still carries the day-coding through the border and background. */
   .ex-posture { display: inline-flex; align-items: center; padding: 5px 11px; border-radius: 8px; background: color-mix(in srgb, var(--accent) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--surface)); font-size: 14px; font-weight: 400; letter-spacing: 0.01em; color: var(--ink); white-space: nowrap; }
 
-  /* Brace reminder. Its own full-width line rather than a fourth chip in the meta row - it is the thing
-     most worth reading, and rotating copy outgrows a nowrap badge. Copy rotates daily (see BRACE_CUES):
-     a fixed string becomes wallpaper within a couple of weeks, which is the failure mode this is for. */
-  .ex-brace {
-    display: flex; gap: 9px; align-items: flex-start;
-    margin-top: 9px; padding: 9px 12px 9px 11px;
-    border-radius: 9px; border-left: 3px solid var(--accent);
-    background: color-mix(in srgb, var(--accent) 10%, var(--surface));
-    font-size: 14px; line-height: 1.45; color: var(--ink);
-  }
-  .ex-brace-t { font-weight: 650; letter-spacing: 0.02em; text-transform: uppercase; font-size: 11.5px; color: var(--ink-2); padding-top: 2px; white-space: nowrap; }
+  /* Brace reminder rides at the front of the description rather than in its own container - one less
+     block per card, and it reads as part of the coaching note instead of an interruption. Copy rotates
+     daily (see BRACE_CUES): a fixed string becomes wallpaper within a couple of weeks, which is the
+     failure mode this exists for. */
+  .ex-brace { font-weight: 650; color: var(--ink); }
 
   /* how-to link lives in a consistent chip at the card foot, off the title */
   .ex-demo {
@@ -606,16 +600,19 @@ function braceCue() {
 }
 
 function exRowHtml(r) {
-  const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
+  // Brace cue leads the description so it survives the 2-line clamp - it is the part worth seeing
+  // without a tap, and the exercise note is one tap away as before.
+  const braceLead = r.brace ? `<strong class="ex-brace">Brace:</strong> ${braceCue()} ` : "";
+  const noteBody = `${braceLead}${r.note || ""}`.trim();
+  const note = noteBody ? `<div class="ex-note">${noteBody}</div>` : "";
   const reps = r.rp ? `<span class="ex-reps">${r.rp}</span>` : "";
   // The cue itself is the label. It used to read "Posture" with the text in a title attribute, which
   // never renders on touch - i.e. it was invisible on the only device this gets used on.
   const posture = r.posture ? `<span class="ex-posture" title="Chiropractor cue">${r.posture}</span>` : "";
   const demo = r.link ? `<a class="ex-demo" href="${r.link}" target="_blank" rel="noopener">Demo</a>` : "";
   const meta = (reps || posture || demo) ? `<div class="ex-meta">${reps}${posture}${demo}</div>` : "";
-  const brace = r.brace ? `<div class="ex-brace"><span class="ex-brace-t">Brace</span><span>${braceCue()}</span></div>` : "";
   return `<div class="ex">
-    <div class="ex-name">${r.ex}</div>${note}${brace}${meta}
+    <div class="ex-name">${r.ex}</div>${note}${meta}
   </div>`;
 }
 
