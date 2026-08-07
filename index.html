@@ -430,7 +430,7 @@ const WARMUPS = {
 
 const DAYS = [
   {
-    id: "lower-a", label: "Lower A", focus: "Power, rotation & the GHD finisher",
+    id: "lower-a", label: "Lower A", focus: "Power, rotation & the GHD core block",
     color: "#2563eb", soft: "#eef4ff",
     phases: [
       { name: "Power & prime", rows: [
@@ -441,14 +441,16 @@ const DAYS = [
         { ss: "1", ord: "1A", ex: "Smith Machine Lunges OR Hack Squat", rp: "6, 4, 2, 1", note: "Heavy quad strength. Keep the lead knee tracking over your toes, don't let it cave inward." },
         { ss: "",  ord: "1B", ex: "Lateral Band Walks", rp: "15 steps / side" },
         { ss: "2", ord: "2A", ex: "Twisting Lunges with 45 lb plate", link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", rp: "4 x 8 / side", note: "Rotate the plate over the front leg - rotation under load. Keep the lead knee tracking over your toes." },
-        { ss: "",  ord: "2B", ex: "Side Plank (top leg raised)", rp: "30-40 sec / side", note: "Same anti-lean core the carry was here for, with nothing hanging off the shoulders. Stack the hips, don't let them sag back. Carries now live on Upper A only." },
+        { ss: "",  ord: "2B", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "30-40 sec / side", note: "Same anti-lean core the carry was here for, with nothing hanging off the shoulders. Stack the hips, don't let them sag back. Carries now live on Upper A only." },
         { ss: "3", ord: "3A", ex: "Single-Leg DB RDL", link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Hinge at the hip, flat back - hamstring, glute, and balance." },
         { ss: "",  ord: "3B", ex: "Half-Kneeling Cable Chop (High-to-Low)", link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect." }
       ]},
-      { name: "Finisher", rows: [
+      { name: "Core", sub: "Priority block - happens before conditioning, not after", rows: [
         { ss: "1", ord: "1A", ex: "GHD Sit-Ups", rp: "3 x 15", note: "Same machine as the reverse hypers - flow straight between the two." },
-        { ss: "",  ord: "1B", ex: "GHD Reverse Hyperextension", rp: "3 x 12-15", note: "Legs to parallel, squeeze the glutes at the top - not the low back. Slow, no momentum." },
-        { ss: "",  ord: "1C", ex: "Sled Push (Forward + Backward) OR Heavy Kettlebell Swings", rp: "4 x 40 yds", note: "Forward drives the quads, backward is knee-friendly and jacks the heart rate. Swap in KB swings if the sled's taken." }
+        { ss: "",  ord: "1B", ex: "GHD Reverse Hyperextension", rp: "3 x 12-15", note: "Legs to parallel, squeeze the glutes at the top - not the low back. Slow, no momentum." }
+      ]},
+      { name: "Finisher", sub: "Conditioning - cut this first when time is short", rows: [
+        { ss: "1", ord: "1A", ex: "Sled Push (Forward + Backward) OR Heavy Kettlebell Swings", rp: "4 x 40 yds", note: "Forward drives the quads, backward is knee-friendly and jacks the heart rate. Swap in KB swings if the sled's taken." }
       ]}
     ]
   },
@@ -469,9 +471,12 @@ const DAYS = [
         { ss: "",  ord: "3B", ex: "Farmer's Carry", rp: "45s / 3 x 30 yds", note: "Was 3 x 80 yds on three separate days - nine long trips a week, with no recovery for the traps in between. Now the only carry day. Set them down the moment posture changes, even at 20 yds. Once the neck is quiet, add a second day or more weight - never longer trips.", posture: "Shoulder blades back, head back" },
         { ss: "",  ord: "3C", ex: "Hanging Leg Raise", rp: "3 x 10-12", note: "Straight or bent knees - control the descent, no swing. Core insurance before the finisher." }
       ]},
-      { name: "Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 30s hard / 30s easy", note: "Rotate the machine week to week." },
-        { ss: "",  ord: "1B", ex: "Lying Plate Pass", rp: "3 x 10", note: "Lower the plate behind your head, lift and pass it onto your shins, lower the legs, reverse. Low back glued to the floor." }
+      { name: "Core", sub: "Priority block - happens before conditioning, not after", rows: [
+        { ss: "1", ord: "1A", ex: "Lying Plate Pass", rp: "3 x 10", note: "Lower the plate behind your head, lift and pass it onto your shins, lower the legs, reverse. Low back glued to the floor." },
+        { ss: "",  ord: "1B", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull. Anti-rotation was only running once a week - this is the second dose, and it's the quality the swing leans on hardest." }
+      ]},
+      { name: "Finisher", sub: "Conditioning - cut this first when time is short", rows: [
+        { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 30s hard / 30s easy", note: "Rotate the machine week to week." }
       ]}
     ]
   },
@@ -492,9 +497,12 @@ const DAYS = [
         { ss: "",  ord: "3B", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull - anti-rotation core for the swing." },
         { ss: "",  ord: "3C", ex: "TRX Y-Fly OR Prone Y Raise", link: "https://www.youtube.com/watch?v=YsJ3QUfzU48", rp: "3 x 12", note: "Arms overhead in a Y, thumbs up, drive from below the shoulder blades - no shrug, neck stays long. Builds the lower traps that are supposed to hold the shoulder blade down, instead of adding load for the upper traps to hold up.", posture: "Shoulder blades back" }
       ]},
-      { name: "Finisher", rows: [
-        { ss: "1", ord: "1A", ex: "Heavy Sled Push OR Weighted Step-Ups (fast tempo)", rp: "6 x 20 yds", note: "Load it up and grind, forward only - a real leg killer, keep trips short. Swap to step-ups if the sled's taken." },
-        { ss: "2", ord: "2A", ex: "Hanging Leg Raise OR Captain's Chair Knee Raise", rp: "3 x 10-12", note: "Curl the knees to the chest, control the lower - no swing. Loaded lower-ab work that actually leaves you sore." }
+      { name: "Core", sub: "Priority block - happens before conditioning, not after", rows: [
+        { ss: "1", ord: "1A", ex: "Hanging Leg Raise OR Captain's Chair Knee Raise", rp: "3 x 10-12", note: "Curl the knees to the chest, control the lower - no swing. Loaded lower-ab work that actually leaves you sore." },
+        { ss: "",  ord: "1B", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "30-40 sec / side", note: "Anti-lean core, the other half of what the carries used to cover. Stack the hips, don't let them sag back." }
+      ]},
+      { name: "Finisher", sub: "Conditioning - cut this first when time is short", rows: [
+        { ss: "1", ord: "1A", ex: "Heavy Sled Push OR Weighted Step-Ups (fast tempo)", rp: "6 x 20 yds", note: "Load it up and grind, forward only - a real leg killer, keep trips short. Swap to step-ups if the sled's taken." }
       ]}
     ]
   },
@@ -512,10 +520,13 @@ const DAYS = [
         { ss: "2", ord: "2A", ex: "Hanging TRX Row", rp: "Heavy / 3 x 10", note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder.", posture: "Shoulder blades back, head back" },
         { ss: "",  ord: "2B", ex: "Feet-Elevated Push-Ups (feet on box)", rp: "3 x 10-12", note: "Box sits under the TRX - loads the upper chest and front delts." },
         { ss: "",  ord: "2C", ex: "Hanging Leg Raise", rp: "3 x 10-12", note: "Same bar as the giant set - straight or bent knees, control the descent." },
-        { ss: "3", ord: "3A", ex: "Swimming Circles", rp: "3 x 10", note: "Face down, lift chest and legs, small circles with the arms - posture reset for the laptop hours.", posture: "Shoulder blades back, head back" },
-        { ss: "",  ord: "3B", ex: "TRX Bicep Curl", rp: "3 x 12-15", note: "Lean back, elbows high, curl your body up - biceps woven into the flow." }
+        { ss: "3", ord: "3A", ex: "TRX Bicep Curl", rp: "3 x 12-15", note: "Lean back, elbows high, curl your body up - biceps woven into the flow." }
       ]},
-      { name: "Finisher", rows: [
+      { name: "Core", sub: "Priority block - happens before conditioning, not after", rows: [
+        { ss: "1", ord: "1A", ex: "Ab Wheel Rollout (from knees)", link: "https://www.youtube.com/watch?v=j6lR4u193gE", rp: "3 x 8-10", note: "Tuck the pelvis under and squeeze the glutes before you roll, and only go as far as you can hold that. The moment the low back arches, you've passed your range - shorten it. Roll to a wall and step it back as you get stronger. This is the one core lift you can actually progress week to week." },
+        { ss: "",  ord: "1B", ex: "Swimming Circles", rp: "3 x 10", note: "Face down, lift chest and legs, small circles with the arms - the extension side of the trunk, and a posture reset for the laptop hours.", posture: "Shoulder blades back, head back" }
+      ]},
+      { name: "Finisher", sub: "Conditioning - cut this first when time is short", rows: [
         { ss: "1", ord: "1A", ex: "Assault Bike / Row / Ski Erg", rp: "5 x 40s hard / 20s easy", note: "Pick a different machine than last time." },
         { ss: "",  ord: "1B", ex: "Hammer Curls", rp: "3 x 12", note: "One set between intervals - forearm and bicep while the legs recover." }
       ]}
