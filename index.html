@@ -302,13 +302,10 @@
      correctly in dark mode too, matching the muted feel of .ex-demo.
      Text is --ink, not --accent: accent-on-accent-tint measured 2.8-4.2:1 in dark mode, under the 4.5:1
      AA floor. The accent still carries the day-coding through the border and background. */
-  .ex-posture { display: inline-flex; align-items: center; padding: 5px 11px; border-radius: 8px; background: color-mix(in srgb, var(--accent) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--surface)); font-size: 14px; font-weight: 400; letter-spacing: 0.01em; color: var(--ink); white-space: nowrap; }
-
-  /* Brace reminder rides at the front of the description rather than in its own container - one less
-     block per card, and it reads as part of the coaching note instead of an interruption. Copy rotates
-     daily (see BRACE_CUES): a fixed string becomes wallpaper within a couple of weeks, which is the
-     failure mode this exists for. */
-  .ex-brace { font-weight: 650; color: var(--ink); }
+  /* Brace shares the posture pill exactly - both are short coaching cues, so they read as one category
+     rather than two competing treatments. Brace copy rotates daily (see BRACE_CUES): a fixed string
+     becomes wallpaper within a couple of weeks, which is the failure mode it exists for. */
+  .ex-posture, .ex-brace { display: inline-flex; align-items: center; padding: 5px 11px; border-radius: 8px; background: color-mix(in srgb, var(--accent) 14%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--surface)); font-size: 14px; font-weight: 400; letter-spacing: 0.01em; color: var(--ink); white-space: nowrap; }
 
   /* how-to link lives in a consistent chip at the card foot, off the title */
   .ex-demo {
@@ -585,30 +582,30 @@ function groupRows(rows) {
 // Brace reminders rotate by day rather than sitting fixed - the same sentence every session stops being
 // read after a couple of weeks. Keyed to the date so the wording is stable for a whole workout and only
 // changes between sessions; a per-render rotation would reshuffle text while you're looking at it.
+// Kept to badge length on purpose - these sit in a nowrap pill, and a cue you glance at between sets
+// has to land in one look. Longer coaching belongs in the note.
 const BRACE_CUES = [
-  "Ribs down, belly tight - brace like you're about to take a punch.",
-  "Set the brace before the first rep, not once it starts getting hard.",
-  "Tight through the middle, and keep breathing - don't hold your breath.",
-  "Lock the ribcage down over the pelvis. No arching to find extra range.",
-  "Brace first, then move. If the low back leads the rep, reset and start again.",
-  "Squeeze the glutes and the abs together - that's the whole trunk, not just the front."
+  "Ribs down, belly tight",
+  "Brace before the first rep",
+  "Tight middle, keep breathing",
+  "Ribs stacked over hips",
+  "Brace first, then move",
+  "Squeeze abs and glutes"
 ];
 function braceCue() {
   return BRACE_CUES[Math.floor(Date.now() / 864e5) % BRACE_CUES.length];
 }
 
 function exRowHtml(r) {
-  // Brace cue leads the description so it survives the 2-line clamp - it is the part worth seeing
-  // without a tap, and the exercise note is one tap away as before.
-  const braceLead = r.brace ? `<strong class="ex-brace">Brace:</strong> ${braceCue()} ` : "";
-  const noteBody = `${braceLead}${r.note || ""}`.trim();
-  const note = noteBody ? `<div class="ex-note">${noteBody}</div>` : "";
+  const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
   const reps = r.rp ? `<span class="ex-reps">${r.rp}</span>` : "";
+  // Brace sits ahead of the posture pill - it is the cue most often forgotten, so it reads first.
+  const brace = r.brace ? `<span class="ex-brace" title="Core cue">${braceCue()}</span>` : "";
   // The cue itself is the label. It used to read "Posture" with the text in a title attribute, which
   // never renders on touch - i.e. it was invisible on the only device this gets used on.
   const posture = r.posture ? `<span class="ex-posture" title="Chiropractor cue">${r.posture}</span>` : "";
   const demo = r.link ? `<a class="ex-demo" href="${r.link}" target="_blank" rel="noopener">Demo</a>` : "";
-  const meta = (reps || posture || demo) ? `<div class="ex-meta">${reps}${posture}${demo}</div>` : "";
+  const meta = (reps || brace || posture || demo) ? `<div class="ex-meta">${reps}${brace}${posture}${demo}</div>` : "";
   return `<div class="ex">
     <div class="ex-name">${r.ex}</div>${note}${meta}
   </div>`;
