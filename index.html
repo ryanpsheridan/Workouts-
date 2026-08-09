@@ -394,8 +394,7 @@ const WARMUPS = {
     { ss: "",  ord: "2C", ex: "90/90 Hip Lift-Off", link: "https://www.youtube.com/watch?v=sLWSmo0uk2E", rp: "5 x 5 sec / side", note: "From the 90/90 you're already sitting in: lift the back knee and shin off the floor and hold, without leaning. Turns the passive range you just opened into range you actually own. This is the one that changes internal rotation long-term - stretching alone mostly rents it.", posture: "Shoulder blades back" },
     { ss: "",  ord: "2D", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top - prep for the twisting lunges and chops ahead." },
     { ss: "3", ord: "3A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "10 / side", note: "One foot down forces each side to work full before the session." },
-    { ss: "",  ord: "3B", ex: "Walking Lunges", rp: "10 / side", note: "Light and smooth. Keep the lead knee tracking over your toes." },
-    { ss: "",  ord: "3C", ex: "Lateral Band Walks", rp: "15 steps / side", note: "Switches on the glute med for the single-leg work ahead." },
+    { ss: "",  ord: "3B", ex: "Lateral Band Walks", rp: "15 steps / side", note: "Switches on the glute med for the single-leg work ahead." },
     { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, stretch grip and lats. If the neck is sore, hang active - shoulders pulled down away from the ears." }
   ],
   "upper-a": [ // today: PRESS/carries/arms. prior: Lower A -> glutes, quads, hip flexors
@@ -441,17 +440,16 @@ const DAYS = [
     id: "lower-a", label: "Lower A", focus: "Power, rotation & the GHD core block",
     color: "#2563eb", soft: "#eef4ff",
     phases: [
-      { name: "Power & prime", rows: [
+      { name: "Power & prime", sub: "Golf tomorrow? Skip this block - the landings cost the most", rows: [
         { ss: "1", ord: "1A", ex: "Box Jumps", link: "https://www.youtube.com/watch?v=YLPQsdRDmB0", rp: "3 x 4", note: "Done first, while fresh. Step down every rep, land soft and quiet - control over height." },
         { ss: "",  ord: "1B", ex: "Med Ball Rotational Slam OR Cable Rotational Chop", link: "https://www.youtube.com/watch?v=W_4eq6r00zw", rp: "3 x 5 / side", note: "Load the trail hip, fire through with full rotation. Explosive - spikes the heart rate early." }
       ]},
-      { name: "Strength", rows: [
+      { name: "Strength", sub: "Golf tomorrow? First two groups only, same weight - cut sets, never load", rows: [
         { ss: "1", ord: "1A", ex: "Smith Machine Lunges OR Hack Squat", brace: true, rp: "6, 4, 2, 1", note: "Heavy quad strength. Keep the lead knee tracking over your toes, don't let it cave inward." },
         { ss: "",  ord: "1B", ex: "Lateral Band Walks", rp: "15 steps / side" },
         { ss: "2", ord: "2A", ex: "Twisting Lunges with 45 lb plate", brace: true, link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", rp: "4 x 8 / side", note: "Rotate the plate over the front leg - rotation under load. Keep the lead knee tracking over your toes." },
         { ss: "",  ord: "2B", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "30-40 sec / side", note: "Same anti-lean core the carry was here for, with nothing hanging off the shoulders. Stack the hips, don't let them sag back. Carries now live on Upper A only." },
-        { ss: "3", ord: "3A", ex: "Single-Leg DB RDL", brace: true, link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Hinge at the hip, flat back - hamstring, glute, and balance." },
-        { ss: "",  ord: "3B", ex: "Half-Kneeling Cable Chop (High-to-Low)", brace: true, link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect." }
+        { ss: "3", ord: "3A", ex: "Half-Kneeling Cable Chop (High-to-Low)", brace: true, link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect. Single-Leg RDLs used to sit here; they run on Lower B only now, so the deepest hamstring stretch of the week happens once instead of twice. Reverse hypers in the core block still cover the posterior chain today." }
       ]},
       { name: "Core", sub: "Priority block - happens before conditioning, not after", rows: [
         { ss: "1", ord: "1A", ex: "GHD Sit-Ups", rp: "3 x 15", note: "Same machine as the reverse hypers - flow straight between the two." },
@@ -492,11 +490,11 @@ const DAYS = [
     id: "lower-b", label: "Lower B", focus: "Unilateral, sprint & the heavy sled",
     color: "#7c3aed", soft: "#f1ecfe",
     phases: [
-      { name: "Power & prime", rows: [
+      { name: "Power & prime", sub: "Golf tomorrow? Skip this block - the landings cost the most", rows: [
         { ss: "1", ord: "1A", ex: "Broad Jumps", link: "https://www.youtube.com/watch?v=GR5JVcHHS_Q", rp: "3 x 4", note: "Fresh legs first. Stick and hold each landing - control beats distance." },
         { ss: "",  ord: "1B", ex: "Skater Bounds", link: "https://www.youtube.com/watch?v=G5tsTOqrkec", rp: "3 x 5 / side", note: "Lateral bound, stick the landing on one leg - balance and athleticism." }
       ]},
-      { name: "Strength", rows: [
+      { name: "Strength", sub: "Golf tomorrow? First two groups only, same weight - cut sets, never load", rows: [
         { ss: "1", ord: "1A", ex: "Offset Step-Ups", brace: true, rp: "4 x 6 / side", note: "Push through heel on the way up." },
         { ss: "",  ord: "1B", ex: "Walking Lunges", brace: true, rp: "25 yds", note: "Stay low and smooth off the step-ups. Keep the lead knee tracking over your toes." },
         { ss: "2", ord: "2A", ex: "Single-Leg Press (Machine)", rp: "3 x 10-12 / side", note: "Press through the toes - quad focus." },
