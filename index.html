@@ -429,6 +429,16 @@ const WARMUPS = {
     { ss: "4", ord: "4A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosens hips still cooked from Lower B. Sit up on a block or plate if you can't stay upright hands-free. Extra reps on the tighter side." },
     { ss: "",  ord: "4B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Opens hip flexors after yesterday's sled and step-ups." },
     { ss: "5", ord: "5A", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." }
+  ],
+  "cindy": [ // sits outside the weekly rotation, so this preps the three movements rather than the previous day
+    { ss: "1", ord: "1A", ex: "Easy Bike or Rower", rp: "3 min", note: "Conversational pace. The first two rounds of Cindy get used as a warm-up if you skip this, and those are the rounds you want back at minute 18." },
+    { ss: "2", ord: "2A", ex: "Shoulder CARs", rp: "5 / side", note: "Slow full circles - the shoulders take both the pulling and the pressing today." },
+    { ss: "",  ord: "2B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delts and mid-back on before a hundred-plus push-ups go through the front.", posture: "Shoulder blades back" },
+    { ss: "",  ord: "2C", ex: "Wrist Rocks", rp: "30 sec each way", note: "On all fours, palms flat, rock forward over the hands then back - fingers forward, then turn the hands out and repeat. Floor push-ups hold the wrist at end range for 20 minutes; this is the joint that complains first." },
+    { ss: "3", ord: "3A", ex: "Toe Rockback to Deep Squat", rp: "8 reps", note: "Kneel, toes tucked, hands down. Rock back onto the heels into a deep squat and forward again - buys the ankle range that keeps the air squats hitting depth late in the AMRAP." },
+    { ss: "",  ord: "3B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Opens the hips before 300-odd squats. Sit up on a block or a plate if you can't stay upright hands-free." },
+    { ss: "4", ord: "4A", ex: "Scapular Pull-Ups", rp: "8 reps", note: "Hang and shrug the blades down without bending the arms - sets the shoulder position every pull-up starts from.", posture: "Head back, shoulder blades back" },
+    { ss: "",  ord: "4B", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine and wake the grip. If the neck is sore, hang active - shoulders pulled down away from the ears." }
   ]
 };
 
@@ -548,6 +558,32 @@ const DAYS = [
         { ss: "1", ord: "1A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
         { ss: "2", ord: "2A", ex: "Walking Lunges with a Twist", rp: "10 / side", note: "Add a slow twist over the front leg to open the t-spine before you play. Keep the lead knee tracking over your toes, don't let it cave inward." },
         { ss: "3", ord: "3A", ex: "Easy Bike or Rower", rp: "5 min", note: "Just enough to get blood flowing - conversational pace, not a warm-up sweat." }
+      ]}
+    ]
+  },
+  {
+    id: "cindy", label: "Cindy", focus: "The CrossFit benchmark - 20-min AMRAP of 5 pull-ups, 10 push-ups, 15 air squats",
+    color: "#dc2626", soft: "#fdeaea",
+    phases: [
+      { name: "Pick the scale", sub: "One easy round now - the scale gets chosen here, not at minute twelve", rows: [
+        { ss: "1", ord: "1A", ex: "Pull-Ups (pick your scale)", rp: "3 reps", note: "Whatever version lets you do 5 unbroken in round one AND still string 3 together at minute 15 - that's the right scale. Options, hardest first: strict pull-ups, band around the knee, TRX or ring rows with the feet walked forward, jumping pull-ups with a slow negative. Pick one and stay on it the whole 20 - swapping mid-workout makes the score mean nothing next time.", posture: "Head back, shoulder blades back" },
+        { ss: "",  ord: "1B", ex: "Push-Ups (pick your scale)", rp: "5 reps", note: "Chest to the floor, elbows back at roughly 45 degrees, body in one line - no sagging hips, no head leading. If that breaks down before 10, set a barbell in the rack at hip height and press from the incline. Knees on the floor is the other option, but the incline keeps the plank honest.", brace: true },
+        { ss: "",  ord: "1C", ex: "Air Squats", rp: "8 reps", note: "Hip crease below the knee, stand all the way tall at the top. The reps that get skimmed late in the AMRAP are the depth ones - decide now that they count." }
+      ]},
+      { name: "Cindy", sub: "20-min AMRAP - 5 / 10 / 15, straight through. Golf tomorrow? Cap it at 10 minutes; the grip and legs are what the round needs", rows: [
+        { ss: "1", ord: "1A", ex: "Pull-Ups", rp: "5", note: "Break these before they break you - going 3 and 2 from round one beats holding on for unbroken sets until the grip quits at minute eight. This is the movement that decides the score." },
+        { ss: "",  ord: "1B", ex: "Push-Ups", rp: "10", note: "Same idea: 5 and 5 with a two-second reset keeps the chest touching the floor for all 20 minutes. Failing mid-set costs more than the pause you avoided.", brace: true },
+        { ss: "",  ord: "1C", ex: "Air Squats", rp: "15", note: "The rest station, not a sprint - breathe here and walk to the bar already recovered. A round is roughly a minute at a steady pace; 15+ rounds is a strong day, 10 is a real workout." }
+      ]},
+      { name: "Log it", sub: "It's a benchmark - the number is the whole point", rows: [
+        { ss: "1", ord: "1A", ex: "Write down rounds + reps and the scale you used", rp: "30 sec", note: "Format is rounds + leftover reps, e.g. \"12 + 7\". Note the scale next to it (band colour, ring-row angle, strict) - a score without the scale can't be compared to the next one." }
+      ]},
+      { name: "Cool-down", sub: "Chest, lats and quads take it - five minutes here", rows: [
+        { ss: "1", ord: "1A", ex: "Easy Bike or Walk", rp: "3-5 min", note: "Keep moving until the breathing settles. Lying on the floor feels better for 60 seconds and worse for the rest of the day." },
+        { ss: "2", ord: "2A", ex: "TRX Chest Opener", rp: "30-45 sec x 2", note: "Handles long, arms wide in a T, lean through and let the chest sink between them - the direction the push-ups just spent 20 minutes closing." },
+        { ss: "",  ord: "2B", ex: "Dead Hang", rp: "30-60 sec", note: "Opens the lats back up and decompresses the spine after all the pulling. If the neck is sore, hang active - shoulders pulled down away from the ears." },
+        { ss: "3", ord: "3A", ex: "Couch Stretch", rp: "30-45 sec / side", note: "Back knee down, shin up a bench, hips driven forward - the quads did 200-plus squats and they'll be the loudest tomorrow." },
+        { ss: "",  ord: "3B", ex: "Wrist Flexor Stretch", rp: "30 sec / side", note: "Arm straight, palm up, ease the fingers back toward the floor. Ten seconds each side is enough to matter after that much time on the hands." }
       ]}
     ]
   }
