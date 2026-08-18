@@ -46,18 +46,16 @@ const WARMUPS = {
     { ss: "",  ord: "4B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Opens hip flexors after yesterday's sled and step-ups." },
     { ss: "5", ord: "5A", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." }
   ],
-  "cindy": [ // sits outside the weekly rotation, so this preps the three movements rather than the previous day, and finishes on one easy round to lock the scale in
-    { ss: "1", ord: "1A", ex: "Easy Bike or Rower", rp: "3 min", note: "Conversational pace. Skip it and the first two rounds become the warm-up instead - on a fixed interval that rest is gone for good, and it's the rest you want back in the last three rounds." },
-    { ss: "2", ord: "2A", ex: "Shoulder CARs", rp: "5 / side", note: "Slow full circles - the shoulders take both the pulling and the pressing today." },
-    { ss: "",  ord: "2B", ex: "Band Pull-Aparts", rp: "15 reps", note: "Rear delts and mid-back on before a hundred-plus push-ups go through the front.", posture: "Shoulder blades back" },
-    { ss: "",  ord: "2C", ex: "Wrist Rocks", rp: "30 sec each way", note: "On all fours, palms flat, rock forward over the hands then back - fingers forward, then turn the hands out and repeat. Floor push-ups hold the wrist at end range round after round; this is the joint that complains first." },
-    { ss: "3", ord: "3A", ex: "Toe Rockback to Deep Squat", rp: "8 reps", note: "Kneel, toes tucked, hands down. Rock back onto the heels into a deep squat and forward again - buys the ankle range that keeps the air squats hitting depth in the late rounds." },
-    { ss: "",  ord: "3B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Opens the hips before 300-odd squats. Sit up on a block or a plate if you can't stay upright hands-free." },
-    { ss: "4", ord: "4A", ex: "Scapular Pull-Ups", rp: "8 reps", note: "Hang and shrug the blades down without bending the arms - sets the shoulder position every pull-up starts from.", posture: "Head back, shoulder blades back" },
-    { ss: "",  ord: "4B", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine and wake the grip. If the neck is sore, hang active - shoulders pulled down away from the ears." },
-    { ss: "5", ord: "5A", ex: "Pull-Ups (pick your scale)", rp: "3 reps", note: "One easy round of the workout finishes the warm-up - the scale gets chosen here, not at round nine. Whatever version lets you do 5 unbroken in round one AND still string 3 together in the last few rounds is the right scale. Options, hardest first: strict pull-ups, band around the knee, TRX or ring rows with the feet walked forward, jumping pull-ups with a slow negative. Pick one and stay on it - swapping mid-workout makes the score mean nothing next time.", posture: "Head back, shoulder blades back" },
-    { ss: "",  ord: "5B", ex: "Push-Ups (pick your scale)", rp: "5 reps", note: "Chest to the floor, elbows back at roughly 45 degrees, body in one line - no sagging hips, no head leading. If that breaks down before 10, set a barbell in the rack at hip height and press from the incline. Knees on the floor is the other option, but the incline keeps the plank honest." },
-    { ss: "",  ord: "5C", ex: "Air Squats", rp: "8 reps", note: "Hip crease below the knee, stand all the way tall at the top. The reps that get skimmed once the clock is tight are the depth ones - decide now that they count." }
+  "light-upper": [ // easy day, no prior day to undo - just wake the shoulders up before light press/pull
+    { ss: "1", ord: "1A", ex: "Wall Angels", rp: "10 reps", note: "Back to the wall, low back flat. Slide arms overhead and back down. Gets the shoulder blades moving without loading anything.", posture: "Head back, shoulder blades back" },
+    { ss: "",  ord: "1B", ex: "Shoulder CARs", rp: "5 / side", note: "Slow full circles - just greasing the joint, not chasing a stretch." },
+    { ss: "2", ord: "2A", ex: "Band Pull-Aparts", rp: "12 reps", note: "Light activation for the upper back before anything pushes or pulls.", posture: "Shoulder blades back" },
+    { ss: "",  ord: "2B", ex: "Dead Hang", rp: "20-30 sec", note: "Easy hang, not a max effort - just decompresses the spine and opens the lats." }
+  ],
+  "light-lower": [ // easy day, no prior day to undo - short and easy, saves the tank for light squats/hinges
+    { ss: "1", ord: "1A", ex: "Toe Rockback to Deep Squat", rp: "6 reps", note: "Kneel, toes tucked, hands down. Rock back onto heels into a deep squat, then forward - just enough to open the ankles and hips before squatting light." },
+    { ss: "",  ord: "1B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "6 / side", note: "A few easy reps each way, not chasing a deep stretch today." },
+    { ss: "2", ord: "2A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "8 / side", note: "Light activation so the glutes take their share of the squats and hinges." }
   ]
 };
 
@@ -155,6 +153,40 @@ const DAYS = [
     ]
   },
   {
+    id: "light-upper", label: "Light Upper", focus: "Blood flow only - light press & pull, nothing that leaves you sore for golf",
+    color: "#f59e0b", soft: "#fef3d9",
+    phases: [
+      { name: "Light strength", sub: "Half the usual weight, every set stops 3-4 reps short of failure - smooth reps, no grinding", rows: [
+        { ss: "1", ord: "1A", ex: "Incline DB Press (light)", rp: "3 x 12", note: "Light dumbbells, controlled up and down - this is blood flow, not a workout to beat next time." },
+        { ss: "",  ord: "1B", ex: "Hanging TRX Row (light)", rp: "3 x 12", note: "Straps set long so it's an easy pull. Match the press set for set - press and pull stay balanced today.", posture: "Head back, shoulder blades back" },
+        { ss: "2", ord: "2A", ex: "Band-Assisted or Ring Rows", rp: "2 x 10", note: "Easy pulling volume, well short of grip or lat fatigue - nothing that'll bother a golf grip tomorrow." },
+        { ss: "",  ord: "2B", ex: "Standing Band Raises (light band)", rp: "2 x 15", note: "Side delts, light band, no swing. Stop the moment the traps take over.", posture: "Shoulder blades back" },
+        { ss: "3", ord: "3A", ex: "Face Pulls (light band)", rp: "2 x 15", note: "Rear delts and upper back - undoes the desk, doesn't load anything that gets sore." }
+      ]},
+      { name: "Easy finisher", sub: "One easy pass, not a metabolic finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Pallof Press (light, no hold)", rp: "8 / side", note: "Light band, smooth reps - core stays switched on without any grind." },
+        { ss: "",  ord: "1B", ex: "Easy Bike or Walk", rp: "5 min", note: "Conversational pace to close it out - legs and grip both stay fresh for tomorrow." }
+      ]}
+    ]
+  },
+  {
+    id: "light-lower", label: "Light Lower", focus: "Easy squat & hinge pattern - light loads, full range, nothing eccentric-heavy",
+    color: "#14b8a6", soft: "#e1f7f4",
+    phases: [
+      { name: "Light strength", sub: "Half the usual weight, every set stops 3-4 reps short of failure - full depth, easy effort", rows: [
+        { ss: "1", ord: "1A", ex: "Goblet Squat (light)", rp: "3 x 12", note: "Light KB or DB, full depth but easy pace - grooves the pattern without loading the eccentric that leaves you sore." },
+        { ss: "",  ord: "1B", ex: "Lateral Band Walks", rp: "12 steps / side", note: "Light band, glutes switched on without any real load." },
+        { ss: "2", ord: "2A", ex: "Leg Press (light) OR Bodyweight Step-Ups", rp: "3 x 12 / side", note: "Slow and controlled, nowhere near failure - quads get worked, not wrecked." },
+        { ss: "",  ord: "2B", ex: "Calf Raises", rp: "2 x 15", note: "Bodyweight or light, smooth tempo." },
+        { ss: "3", ord: "3A", ex: "Bird-Dog", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Gentle core switch-on, back stays flat - no loaded hinge today to keep the hamstrings out of it." }
+      ]},
+      { name: "Easy finisher", sub: "One easy pass, not a metabolic finisher", rows: [
+        { ss: "1", ord: "1A", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Easy core work, low back glued to the floor." },
+        { ss: "",  ord: "1B", ex: "Easy Bike or Walk", rp: "5 min", note: "Conversational pace - done and loose for tomorrow, not cooked." }
+      ]}
+    ]
+  },
+  {
     id: "pre-golf", label: "Pre-Golf", focus: "Unloaded mobility only - no heavy work, no overhead load before you play",
     color: "#ca8a04", soft: "#fdf3d9",
     phases: [
@@ -177,25 +209,6 @@ const DAYS = [
         { ss: "1", ord: "1A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
         { ss: "2", ord: "2A", ex: "Walking Lunges with a Twist", rp: "10 / side", note: "Add a slow twist over the front leg to open the t-spine before you play. Keep the lead knee tracking over your toes, don't let it cave inward." },
         { ss: "3", ord: "3A", ex: "Easy Bike or Rower", rp: "5 min", note: "Just enough to get blood flowing - conversational pace, not a warm-up sweat." }
-      ]}
-    ]
-  },
-  {
-    id: "cindy", label: "Cindy", focus: "The CrossFit benchmark on a clock - 5 pull-ups, 10 push-ups, 15 air squats every 1:30",
-    color: "#dc2626", soft: "#fdeaea",
-    phases: [
-      { name: "Cindy", sub: "Every 1:30 x 13 rounds (19:30) - one full round on the buzzer, rest is whatever's left of the interval. Golf tomorrow? Stop at 7 rounds; the grip and legs are what the round needs", rows: [
-        { ss: "1", ord: "1A", ex: "Pull-Ups", rp: "5", note: "Break these before they break you - going 3 and 2 from round one beats holding on for unbroken sets until the grip quits halfway. On the interval this is the movement that decides whether you get any rest at all." },
-        { ss: "",  ord: "1B", ex: "Push-Ups", rp: "10", note: "Same idea: 5 and 5 with a two-second reset keeps the chest touching the floor for all 13 rounds. Failing mid-set costs more than the pause you avoided.", brace: true },
-        { ss: "",  ord: "1C", ex: "Air Squats", rp: "15", note: "Steady and full depth - the rest is at the end of the round now, not in the squats. A round runs about a minute at a working pace, so a clean one buys you 30 seconds back; when the rest disappears entirely, that's the round to note." },
-        { ss: "2", ord: "2A", ex: "Log the rounds you held and the scale you used", rp: "30 sec", note: "The interval turns this into a pass/fail per round: write down how many of the 13 you finished inside 1:30 and where the rest ran out, e.g. \"13/13, no rest from round 10\". Note the scale next to it (band colour, ring-row angle, strict) - a score without the scale can't be compared to the next one." }
-      ]},
-      { name: "Cool-down", sub: "Chest, lats and quads take it - five minutes here", rows: [
-        { ss: "1", ord: "1A", ex: "Easy Bike or Walk", rp: "3-5 min", note: "Keep moving until the breathing settles. Lying on the floor feels better for 60 seconds and worse for the rest of the day." },
-        { ss: "2", ord: "2A", ex: "TRX Chest Opener", rp: "30-45 sec x 2", note: "Handles long, arms wide in a T, lean through and let the chest sink between them - the direction the push-ups just spent thirteen rounds closing." },
-        { ss: "",  ord: "2B", ex: "Dead Hang", rp: "30-60 sec", note: "Opens the lats back up and decompresses the spine after all the pulling. If the neck is sore, hang active - shoulders pulled down away from the ears." },
-        { ss: "3", ord: "3A", ex: "Couch Stretch", rp: "30-45 sec / side", note: "Back knee down, shin up a bench, hips driven forward - the quads did close to 200 squats and they'll be the loudest tomorrow." },
-        { ss: "",  ord: "3B", ex: "Wrist Flexor Stretch", rp: "30 sec / side", note: "Arm straight, palm up, ease the fingers back toward the floor. Ten seconds each side is enough to matter after that much time on the hands." }
       ]}
     ]
   }
