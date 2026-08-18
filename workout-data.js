@@ -8,7 +8,12 @@ const WARMUPS = {
     { ss: "",  ord: "2D", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top - prep for the twisting lunges and chops ahead." },
     { ss: "3", ord: "3A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "10 / side", note: "One foot down forces each side to work full before the session." },
     { ss: "",  ord: "3B", ex: "Lateral Band Walks", rp: "15 steps / side", note: "Switches on the glute med for the single-leg work ahead." },
-    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, stretch grip and lats. If the neck is sore, hang active - shoulders pulled down away from the ears." }
+    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, stretch grip and lats. If the neck is sore, hang active - shoulders pulled down away from the ears." },
+    { ss: "5", ord: "5A", ex: "Squat Rock (Deep Squat to Hands-Behind Roll)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps/day", note: "Deep squat, feet flat, hands planted flat on the floor behind the hips - rock/roll the knees forward while keeping the hands down, bear-crawl style, then back to the squat. Great warm-up and activation for the belly pooch/core." },
+    { ss: "6", ord: "6A", ex: "Wide-Legged Standing Forward Fold", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "60 sec/day", note: "Feet wide, hands clasped behind the back, fold forward - releases tight hamstrings." },
+    { ss: "7", ord: "7A", ex: "Reverse Tabletop Hip Lifts", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "30 reps", note: "Reverse plank pulses - lift the hips up and down. Strengthens the core and relaxes the lower back." },
+    { ss: "8", ord: "8A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
+    { ss: "9", ord: "9A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
   ],
   "upper-a": [ // today: PRESS/carries/arms. prior: Lower A -> glutes, quads, hip flexors
     { ss: "1", ord: "1A", ex: "Foam Roll Thoracic Extensions", rp: "5 reps x 3 spots", note: "Roller across the mid-back, hands behind the head, ribs down. Extend back over it, come up, move the roller an inch, repeat. Extension - the direction the desk takes away." },
@@ -21,7 +26,10 @@ const WARMUPS = {
     { ss: "4", ord: "4A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosens hips from yesterday, keeps golf rotation moving. Sit up on a block or plate if you can't stay upright hands-free. Extra reps on the tighter side." },
     { ss: "",  ord: "4B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Opens hip flexors from yesterday's lunges." },
     { ss: "",  ord: "4C", ex: "Bird-Dogs", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "10 / side", note: "Gentle core switch-on, back stays flat." },
-    { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, wake up the grip for the carries. If the neck is sore, hang active - shoulders pulled down away from the ears, not shrugged up around them." }
+    { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, wake up the grip for the carries. If the neck is sore, hang active - shoulders pulled down away from the ears, not shrugged up around them." },
+    { ss: "6", ord: "6A", ex: "Reverse Tabletop Hip Lifts", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "30 reps", note: "Reverse plank pulses - lift the hips up and down. Strengthens the core and relaxes the lower back before pressing." },
+    { ss: "7", ord: "7A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
+    { ss: "8", ord: "8A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
   ],
   "lower-b": [ // prior: Upper A (press day) -> chest, front delts, triceps, traps
     { ss: "1", ord: "1A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the chest/upper back tight from yesterday's presses." },
@@ -33,7 +41,11 @@ const WARMUPS = {
     { ss: "",  ord: "3B", ex: "Cossack Squats", link: "https://www.youtube.com/watch?v=j-595dZdDkA", rp: "6 / side", note: "Slow and controlled - lateral hip and ankle mobility." },
     { ss: "4", ord: "4A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "10 / side", note: "Activates glutes/hamstrings before the heavier lower work." },
     { ss: "",  ord: "4B", ex: "Hip Airplanes", link: "https://www.youtube.com/watch?v=4XCbYaQGF2o", rp: "5 / side", note: "Stand on one leg, hinge to a flat-back tabletop, then rotate the pelvis open and closed over the planted hip. Slow - this is internal rotation under load on a single leg, which is exactly what the backswing asks of the trail hip. Hold a rack or wall if you wobble.", posture: "Shoulder blades back" },
-    { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, wake up the grip. If the neck is sore, hang active - shoulders pulled down away from the ears." }
+    { ss: "5", ord: "5A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, wake up the grip. If the neck is sore, hang active - shoulders pulled down away from the ears." },
+    { ss: "6", ord: "6A", ex: "Squat Rock (Deep Squat to Hands-Behind Roll)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps/day", note: "Deep squat, feet flat, hands planted flat on the floor behind the hips - rock/roll the knees forward while keeping the hands down, bear-crawl style, then back to the squat. Great warm-up and activation for the belly pooch/core." },
+    { ss: "7", ord: "7A", ex: "Wide-Legged Standing Forward Fold", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "60 sec/day", note: "Feet wide, hands clasped behind the back, fold forward - releases tight hamstrings before the step-ups and RDLs." },
+    { ss: "8", ord: "8A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
+    { ss: "9", ord: "9A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
   ],
   "upper-b": [ // today: PULL/giant set/TRX. prior: Lower B -> glutes, quads, hamstrings, calves
     { ss: "1", ord: "1A", ex: "Foam Roll Thoracic Extensions", rp: "5 reps x 3 spots", note: "Roller across the mid-back, hands behind the head, ribs down. Extend back over it, shift an inch, repeat - work up toward the shoulder blades." },
@@ -44,18 +56,27 @@ const WARMUPS = {
     { ss: "",  ord: "3B", ex: "Thoracic Rotations", rp: "10 / side", note: "Frees the mid-back so the shoulders move clean." },
     { ss: "4", ord: "4A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Loosens hips still cooked from Lower B. Sit up on a block or plate if you can't stay upright hands-free. Extra reps on the tighter side." },
     { ss: "",  ord: "4B", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Opens hip flexors after yesterday's sled and step-ups." },
-    { ss: "5", ord: "5A", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." }
+    { ss: "5", ord: "5A", ex: "Dead Bug", link: "https://www.youtube.com/watch?v=g_BYB0R-4Ws", rp: "8 / side", note: "Deep core wake-up, back glued to the floor." },
+    { ss: "6", ord: "6A", ex: "Reverse Tabletop Hip Lifts", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "30 reps", note: "Reverse plank pulses - lift the hips up and down. Strengthens the core and relaxes the lower back before the pull-up giant set." },
+    { ss: "7", ord: "7A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
+    { ss: "8", ord: "8A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
   ],
   "light-upper": [ // easy day, no prior day to undo - just wake the shoulders up before light press/pull
     { ss: "1", ord: "1A", ex: "Wall Angels", rp: "10 reps", note: "Back to the wall, low back flat. Slide arms overhead and back down. Gets the shoulder blades moving without loading anything.", posture: "Head back, shoulder blades back" },
     { ss: "",  ord: "1B", ex: "Shoulder CARs", rp: "5 / side", note: "Slow full circles - just greasing the joint, not chasing a stretch." },
     { ss: "2", ord: "2A", ex: "Band Pull-Aparts", rp: "12 reps", note: "Light activation for the upper back before anything pushes or pulls.", posture: "Shoulder blades back" },
-    { ss: "",  ord: "2B", ex: "Dead Hang", rp: "20-30 sec", note: "Easy hang, not a max effort - just decompresses the spine and opens the lats." }
+    { ss: "",  ord: "2B", ex: "Dead Hang", rp: "20-30 sec", note: "Easy hang, not a max effort - just decompresses the spine and opens the lats." },
+    { ss: "3", ord: "3A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
+    { ss: "4", ord: "4A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
   ],
   "light-lower": [ // easy day, no prior day to undo - short and easy, saves the tank for light squats/hinges
     { ss: "1", ord: "1A", ex: "Toe Rockback to Deep Squat", rp: "6 reps", note: "Kneel, toes tucked, hands down. Rock back onto heels into a deep squat, then forward - just enough to open the ankles and hips before squatting light." },
     { ss: "",  ord: "1B", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "6 / side", note: "A few easy reps each way, not chasing a deep stretch today." },
-    { ss: "2", ord: "2A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "8 / side", note: "Light activation so the glutes take their share of the squats and hinges." }
+    { ss: "2", ord: "2A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "8 / side", note: "Light activation so the glutes take their share of the squats and hinges." },
+    { ss: "3", ord: "3A", ex: "Squat Rock (Deep Squat to Hands-Behind Roll)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps/day", note: "Deep squat, feet flat, hands planted flat on the floor behind the hips - rock/roll the knees forward while keeping the hands down, bear-crawl style, then back to the squat. Great warm-up and activation for the belly pooch/core." },
+    { ss: "4", ord: "4A", ex: "Wide-Legged Standing Forward Fold", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "60 sec/day", note: "Feet wide, hands clasped behind the back, fold forward - releases tight hamstrings." },
+    { ss: "5", ord: "5A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
+    { ss: "6", ord: "6A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
   ]
 };
 
