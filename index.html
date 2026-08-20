@@ -122,6 +122,18 @@
   }
   .menu-item:active { opacity: 0.55; }
 
+  /* ---------- Program toggle (inside the menu) ---------- */
+  .program-toggle-wrap { display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 0 1.25rem; }
+  .program-toggle-label { font-size: 11.5px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+  .program-toggle { display: flex; gap: 6px; padding: 4px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
+  .program-btn {
+    padding: 9px 16px; border-radius: 9px; border: none; background: none;
+    font-family: inherit; font-size: 13.5px; font-weight: 400; color: var(--ink-2);
+    cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color 0.18s ease, color 0.18s ease;
+  }
+  .program-btn.active { background: var(--ink); color: var(--surface); }
+  .program-btn:active { opacity: 0.8; }
+
   /* ---------- Sticky day nav ---------- */
   .day-nav {
     position: sticky; top: 0; z-index: 20;
@@ -305,6 +317,10 @@
 
 <div class="app-menu" id="app-menu" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="menu-items">
+    <div class="program-toggle-wrap">
+      <span class="program-toggle-label">Program</span>
+      <div class="program-toggle" id="program-toggle" role="tablist"></div>
+    </div>
     <a class="menu-item" href="exercises.html">Exercise Library</a>
     <a class="menu-item" href="legacy.html">Previous Program</a>
   </div>
@@ -316,6 +332,10 @@
 
 <script src="workout-data.js"></script>
 <script>
+let currentProgram = localStorage.getItem("wp-program");
+if (!PROGRAMS[currentProgram]) currentProgram = DEFAULT_PROGRAM;
+function getDays() { return PROGRAMS[currentProgram].days.map(id => ALL_DAYS.find(d => d.id === id)); }
+let DAYS = getDays();
 let activeId = DAYS[0].id;
 let STATE = {};
 try { STATE = JSON.parse(localStorage.getItem("wp-v1")) || {}; } catch (e) { STATE = {}; }
@@ -443,6 +463,22 @@ function buildUI() {
     updateProgress(d.id);
     updateStarter(d.id);
   });
+}
+
+function renderProgramToggle() {
+  document.getElementById("program-toggle").innerHTML = Object.keys(PROGRAMS).map(id =>
+    `<button class="program-btn${id === currentProgram ? " active" : ""}" role="tab" aria-selected="${id === currentProgram}" data-program="${id}">${PROGRAMS[id].label}</button>`
+  ).join("");
+}
+
+function setProgram(id) {
+  if (id === currentProgram || !PROGRAMS[id]) return;
+  currentProgram = id;
+  try { localStorage.setItem("wp-program", id); } catch (e) {}
+  DAYS = getDays();
+  renderProgramToggle();
+  buildUI();
+  setDay(DAYS[0].id);
 }
 
 function sectionEl(secId) { return document.getElementById("sec-" + secId); }
@@ -643,6 +679,8 @@ document.addEventListener("click", e => {
   if (menuToggle) { toggleMenu(); return; }
   const menuLink = e.target.closest(".app-menu a.menu-item");
   if (menuLink) { closeMenu(); return; }
+  const programBtn = e.target.closest(".program-btn");
+  if (programBtn) { setProgram(programBtn.dataset.program); return; }
   const pill = e.target.closest(".day-pill");
   if (pill) { setDay(pill.dataset.day); return; }
   const starter = e.target.closest(".starter");
@@ -698,6 +736,7 @@ function toggleMenu() {
   if (open) closeMenu(); else openMenu();
 }
 
+renderProgramToggle();
 buildUI();
 setDay(activeId);
 </script>
