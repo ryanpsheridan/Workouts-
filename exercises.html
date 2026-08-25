@@ -322,8 +322,10 @@ function buildLibrary() {
     if (r.rp) entry.reps.add(r.rp);
   }
 
+  // ALL_DAYS, not the per-program subset - the library covers every exercise in the
+  // file regardless of which program is currently selected on the index page.
   Object.keys(WARMUPS).forEach(dayId => WARMUPS[dayId].forEach(addRow));
-  DAYS.forEach(d => d.phases.forEach(p => p.rows.forEach(addRow)));
+  ALL_DAYS.forEach(d => d.phases.forEach(p => p.rows.forEach(addRow)));
 
   return [...byName.values()].sort((a, b) => a.name.localeCompare(b.name));
 }
