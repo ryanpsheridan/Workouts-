@@ -130,8 +130,11 @@
      separately-bordered pills below it. Same family, clearly one tier up, and the
      selected segment stays neutral so the accent colour keeps meaning "current day"
      instead of competing across two rows. */
+  /* Room above, tight below: the switcher and the tabs are one navigation cluster,
+     so proximity should bind them to each other and separate the pair from the
+     header - not wedge the biggest gap on the screen between them. */
   .program-switch {
-    display: flex; gap: 3px; margin: 0.15rem 1.25rem 0.4rem;
+    display: flex; gap: 3px; margin: 1.25rem 1.25rem 0.55rem;
     padding: 3px; border-radius: 12px;
     background: var(--line-2); border: 1px solid var(--line);
   }
@@ -148,10 +151,14 @@
   .program-btn.active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.45); }
 
   /* ---------- Sticky day nav ---------- */
+  /* Pins BELOW the safe-area inset rather than padding up into it. Carrying that
+     inset in the padding meant a standalone-PWA notch (~59px) sat in the resting
+     layout as dead space between the switcher and the tabs, even though it only
+     does any work once the bar is pinned. .safe-cap paints that strip instead. */
   .day-nav {
-    position: sticky; top: 0; z-index: 20;
+    position: sticky; top: env(safe-area-inset-top); z-index: 20;
     display: flex; gap: 7px;
-    padding: calc(11px + env(safe-area-inset-top)) 1.25rem 11px;
+    padding: 11px 1.25rem;
     overflow-x: auto; scrollbar-width: none;
     background: var(--nav-bg);
     -webkit-backdrop-filter: saturate(180%) blur(12px);
@@ -159,6 +166,18 @@
     border-bottom: 1px solid var(--line);
   }
   .day-nav::-webkit-scrollbar { display: none; }
+  /* Holds the status-bar strip in standalone PWA mode, where black-translucent lets
+     the page scroll under the clock and notch. Always mounted: it collapses to 0
+     height wherever there's no inset (any desktop browser, Safari tabs), and at rest
+     it only ever covers the header's own top padding. */
+  .safe-cap {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 21;
+    height: env(safe-area-inset-top);
+    background: var(--nav-bg);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    backdrop-filter: saturate(180%) blur(12px);
+    pointer-events: none;
+  }
   /* A one-day program (Golf) has nothing to switch between - a lone tab is a dead
      control, so the bar comes out and the day hero carries the title on its own. */
   .day-nav.hidden { display: none; }
@@ -310,6 +329,8 @@
 </style>
 </head>
 <body>
+
+<div class="safe-cap" aria-hidden="true"></div>
 
 <header class="app-header">
   <h1>gympro</h1>
@@ -588,9 +609,14 @@ function updateProgress(dayId) {
   if (reset) reset.style.display = panel.querySelectorAll(".ck.done").length > 0 ? "" : "none";
 }
 
+// The nav now pins at top: env(safe-area-inset-top) rather than 0, so a scroll
+// target has to clear the inset as well as the bar itself. Hidden nav (Golf) gives
+// height 0 and still clears the inset, which is what you want under a notch.
 function stickyNavOffset() {
   const nav = document.getElementById("day-nav");
-  return (nav ? nav.getBoundingClientRect().height : 60) + 12;
+  if (!nav) return 72;
+  const inset = parseFloat(getComputedStyle(nav).top) || 0;
+  return nav.getBoundingClientRect().height + inset + 12;
 }
 
 function setCk(ck, on) {
