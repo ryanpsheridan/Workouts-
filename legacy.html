@@ -57,6 +57,24 @@
     margin: 0 auto;
   }
 
+
+  /* Keyboard focus had no visible indicator anywhere: tap highlights are suppressed
+     app-wide and most controls carry no border, so a keyboard or Switch Control user
+     had nothing to track. :focus-visible never fires for touch or mouse, so this
+     costs the normal path nothing. */
+  :focus-visible { outline: 2px solid #6ea8ff; outline-offset: 2px; }
+
+  /* Honour the OS "reduce motion" setting - this page smooth-scrolls between
+     sections and animates panels in. The JS scroll calls check the same setting. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   header {
     padding: 1.75rem 1.25rem 1rem;
     border-bottom: 1px solid var(--border);

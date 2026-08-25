@@ -64,6 +64,23 @@
 
   a { color: var(--link); }
 
+  /* Keyboard focus had no visible indicator anywhere: tap highlights are suppressed
+     app-wide and most controls carry no border, so a keyboard or Switch Control user
+     had nothing to track. :focus-visible never fires for touch or mouse, so this
+     costs the normal path nothing. */
+  :focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+  /* Honour the OS "reduce motion" setting - this page smooth-scrolls between
+     sections and animates panels in. The JS scroll calls check the same setting. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* ---------- Header ---------- */
   .app-header { position: relative; z-index: 41; padding: calc(1.6rem + env(safe-area-inset-top)) 1.25rem 0.9rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .app-header h1 { font-size: 22px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; text-transform: lowercase; }
@@ -77,15 +94,26 @@
   .header-left { flex: none; display: flex; align-items: center; gap: 10px; }
 
   /* ---------- Search ---------- */
+  /* Pins below the safe-area inset rather than padding up into it - carrying the
+     inset in the resting padding parked a notch-sized dead gap under the header.
+     (A .search-wrap.stuck rule used to try to undo that, but nothing ever set the
+     class.) .safe-cap paints the status-bar strip instead. */
   .search-wrap {
-    position: sticky; top: 0; z-index: 20;
-    padding: calc(11px + env(safe-area-inset-top)) 1.25rem 11px;
+    position: sticky; top: env(safe-area-inset-top); z-index: 20;
+    padding: 11px 1.25rem;
     background: var(--nav-bg);
     -webkit-backdrop-filter: saturate(180%) blur(12px);
     backdrop-filter: saturate(180%) blur(12px);
     border-bottom: 1px solid var(--line);
   }
-  .search-wrap.stuck { padding-top: 11px; }
+  .safe-cap {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 21;
+    height: env(safe-area-inset-top);
+    background: var(--nav-bg);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    backdrop-filter: saturate(180%) blur(12px);
+    pointer-events: none;
+  }
   .search-box {
     position: relative; display: flex; align-items: center;
   }
@@ -99,6 +127,7 @@
     transition: background-color 0.15s ease, border-color 0.15s ease;
   }
   #search:focus { outline: none; background: var(--surface); border-color: var(--link-border); }
+  #search:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
   #search::placeholder { color: var(--ink-3); }
   #search::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
   .clear-search {
@@ -173,6 +202,8 @@
 </style>
 </head>
 <body>
+
+<div class="safe-cap" aria-hidden="true"></div>
 
 <header class="app-header">
   <div class="header-left">

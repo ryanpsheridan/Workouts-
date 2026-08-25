@@ -71,6 +71,23 @@
 
   a { color: var(--link); }
 
+  /* Keyboard focus had no visible indicator anywhere: tap highlights are suppressed
+     app-wide and most controls carry no border, so a keyboard or Switch Control user
+     had nothing to track. :focus-visible never fires for touch or mouse, so this
+     costs the normal path nothing. */
+  :focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+  /* Honour the OS "reduce motion" setting - this page smooth-scrolls between
+     sections and animates panels in. The JS scroll calls check the same setting. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   /* ---------- Header ---------- */
   /* Positioned + z-index'd above .app-menu so the header (fully transparent except its
      own text/icon glyphs) stays on top when the menu opens, with no seam against it. */
@@ -206,6 +223,7 @@
   .progress .bar-tick { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--surface); z-index: 1; }
   .progress .reset { border: none; background: none; font-family: inherit; font-size: 12.5px; color: var(--link); text-decoration: underline; text-underline-offset: 2px; cursor: pointer; padding: 0; transition: opacity 0.1s ease; }
   .progress .reset:active { opacity: 0.55; }
+  .progress .reset.armed { color: #f0a72e; }
 
   /* ---------- Get started ---------- */
   /* Collapses via grid-template-rows (like the accordion) instead of an
@@ -356,7 +374,7 @@
   </div>
 </div>
 
-<nav class="day-nav" id="day-nav" aria-label="Training days"></nav>
+<nav class="day-nav" id="day-nav" role="tablist" aria-label="Training days"></nav>
 
 <main id="content"></main>
 
@@ -448,7 +466,7 @@ function buildUI() {
   const nav = document.getElementById("day-nav");
   nav.classList.toggle("hidden", DAYS.length < 2);
   nav.innerHTML = DAYS.map(d =>
-    `<button class="day-pill" role="tab" aria-selected="false" data-day="${d.id}">${d.label}</button>`
+    `<button class="day-pill" role="tab" id="tab-${d.id}" aria-controls="s-${d.id}" aria-selected="false" data-day="${d.id}">${d.label}</button>`
   ).join("");
 
   document.getElementById("content").innerHTML = DAYS.map(d => {
@@ -469,7 +487,7 @@ function buildUI() {
       return `<i class="bar-tick" style="left:${pct}%"></i>`;
     }).join("");
 
-    return `<div class="day-panel" role="tabpanel" id="s-${d.id}" style="--accent:${d.color};--accent-soft:${d.soft}">
+    return `<div class="day-panel" role="tabpanel" id="s-${d.id}" aria-labelledby="tab-${d.id}" style="--accent:${d.color};--accent-soft:${d.soft}">
       <div class="day-hero">
         <span class="day-rule"></span>
         <h2>${d.label}</h2>
@@ -611,6 +629,7 @@ function updateProgress(dayId) {
   const pg = document.getElementById("pg-" + dayId);
   const bar = document.getElementById("bar-" + dayId);
   const reset = panel.querySelector(".reset");
+  if (reset && resetArmed === dayId && !panel.querySelector(".ck.done")) disarmReset();
   if (pg) pg.textContent = `${done} / ${cks.length} done`;
   if (bar) bar.style.width = cks.length ? `${(done / cks.length) * 100}%` : "0";
   if (reset) reset.style.display = panel.querySelectorAll(".ck.done").length > 0 ? "" : "none";
@@ -619,6 +638,13 @@ function updateProgress(dayId) {
 // The nav now pins at top: env(safe-area-inset-top) rather than 0, so a scroll
 // target has to clear the inset as well as the bar itself. Hidden nav (Golf) gives
 // height 0 and still clears the inset, which is what you want under a notch.
+// CSS scroll-behavior doesn't reach scrollTo({behavior}), so the reduced-motion
+// preference has to be checked here too. Read live rather than cached - the OS
+// setting can change while the page is open.
+function scrollMode() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+}
+
 function stickyNavOffset() {
   const nav = document.getElementById("day-nav");
   if (!nav) return 72;
@@ -647,7 +673,7 @@ function autoAdvance(sec) {
       // making the snap overshoot past nxt's header.
       setTimeout(() => {
         const y = nxt.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
-        window.scrollTo({ top: y, behavior: "smooth" });
+        window.scrollTo({ top: y, behavior: scrollMode() });
       }, 270);
     }
     updateStarter(panelDay(sec));
@@ -663,7 +689,7 @@ function scrollToNextGroup(ck, sec) {
   if (!nxt) return;
   setTimeout(() => {
     const y = nxt.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
-    window.scrollTo({ top: y, behavior: "smooth" });
+    window.scrollTo({ top: y, behavior: scrollMode() });
   }, 380);
 }
 
@@ -723,6 +749,25 @@ function setDay(id) {
   window.scrollTo({ top: 0 });
 }
 
+// Reset wipes a day with no undo and sits a thumb-width from the progress bar, so
+// it asks once. Second tap inside the window commits; anything else stands it down.
+let resetArmed = null;
+let resetTimer = null;
+function disarmReset() {
+  clearTimeout(resetTimer);
+  if (!resetArmed) return;
+  const btn = document.querySelector('.reset[data-day="' + resetArmed + '"]');
+  if (btn) { btn.textContent = "Reset"; btn.classList.remove("armed"); }
+  resetArmed = null;
+}
+function armReset(btn) {
+  disarmReset();
+  resetArmed = btn.dataset.day;
+  btn.textContent = "Tap to confirm";
+  btn.classList.add("armed");
+  resetTimer = setTimeout(disarmReset, 4000);
+}
+
 document.addEventListener("click", e => {
   const menuToggle = e.target.closest("#menu-toggle");
   if (menuToggle) { toggleMenu(); return; }
@@ -748,7 +793,7 @@ document.addEventListener("click", e => {
       const nextGrp = grps.find(g => !g.classList.contains("done"));
       const el = nextGrp || target;
       const y = el.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
-      window.scrollTo({ top: y, behavior: "smooth" });
+      window.scrollTo({ top: y, behavior: scrollMode() });
     }, 270);
     return;
   }
@@ -759,7 +804,12 @@ document.addEventListener("click", e => {
   const all = e.target.closest(".sec-all");
   if (all) { toggleSectionAll(all.dataset.sec); return; }
   const reset = e.target.closest(".reset");
-  if (reset) { resetDay(reset.dataset.day); return; }
+  if (reset) {
+    if (resetArmed === reset.dataset.day) { const d = resetArmed; disarmReset(); resetDay(d); }
+    else armReset(reset);
+    return;
+  }
+  disarmReset();
   const head = e.target.closest(".sec-head");
   if (head) {
     const sec = head.closest(".sec");
