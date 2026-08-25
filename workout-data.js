@@ -246,9 +246,13 @@ const ALL_DAYS = [
   }
 ];
 
-// Which days show up, and in what order, per program. Pre-Golf rides along in both.
+// Which days show up, and in what order, per program. Key order is switcher order.
+// Pre-Golf is its own program rather than a tab tacked onto the end of the other
+// two - it isn't a training day, and it was the one tab that meant something
+// different from every tab beside it.
 const PROGRAMS = {
-  "full-body": { label: "Full Body", days: ["full-body-a", "full-body-b", "full-body-c", "pre-golf"] },
-  "split": { label: "Upper / Lower Split", days: ["lower-a", "upper-a", "lower-b", "upper-b", "pre-golf"] }
+  "split": { label: "Upper / Lower", days: ["lower-a", "upper-a", "lower-b", "upper-b"] },
+  "full-body": { label: "Full Body", days: ["full-body-a", "full-body-b", "full-body-c"] },
+  "golf": { label: "Golf", days: ["pre-golf"] }
 };
-const DEFAULT_PROGRAM = "full-body";
+const DEFAULT_PROGRAM = "split";

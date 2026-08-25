@@ -122,17 +122,30 @@
   }
   .menu-item:active { opacity: 0.55; }
 
-  /* ---------- Program toggle (inside the menu) ---------- */
-  .program-toggle-wrap { display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 0 1.25rem; }
-  .program-toggle-label { font-size: 11.5px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
-  .program-toggle { display: flex; gap: 6px; padding: 4px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); }
-  .program-btn {
-    padding: 9px 16px; border-radius: 9px; border: none; background: none;
-    font-family: inherit; font-size: 13.5px; font-weight: 400; color: var(--ink-2);
-    cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background-color 0.18s ease, color 0.18s ease;
+  /* ---------- Program switcher ---------- */
+  /* Sits above the day nav in normal flow, so it scrolls away while the day tabs
+     pin to the top - the program is a decision you make once on arrival, the day
+     is the one you keep reaching for mid-session.
+     Styled as a grouped track (one container, segments inside) rather than the
+     separately-bordered pills below it. Same family, clearly one tier up, and the
+     selected segment stays neutral so the accent colour keeps meaning "current day"
+     instead of competing across two rows. */
+  .program-switch {
+    display: flex; gap: 3px; margin: 0.15rem 1.25rem 0.4rem;
+    padding: 3px; border-radius: 12px;
+    background: var(--line-2); border: 1px solid var(--line);
   }
-  .program-btn.active { background: var(--ink); color: var(--surface); }
-  .program-btn:active { opacity: 0.8; }
+  .program-btn {
+    flex: 1 1 0; min-width: 0;
+    padding: 11px 6px; border-radius: 9px;
+    border: none; background: none; font-family: inherit;
+    font-size: 13px; font-weight: 400; letter-spacing: -0.01em; line-height: 1.25;
+    color: var(--ink-2); white-space: nowrap; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
+  }
+  .program-btn:active { transform: scale(0.97); }
+  .program-btn.active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.45); }
 
   /* ---------- Sticky day nav ---------- */
   .day-nav {
@@ -146,6 +159,9 @@
     border-bottom: 1px solid var(--line);
   }
   .day-nav::-webkit-scrollbar { display: none; }
+  /* A one-day program (Golf) has nothing to switch between - a lone tab is a dead
+     control, so the bar comes out and the day hero carries the title on its own. */
+  .day-nav.hidden { display: none; }
   .day-pill {
     flex: 1 0 auto; min-width: 74px;
     padding: 11px 13px; border-radius: 10px;
@@ -317,14 +333,12 @@
 
 <div class="app-menu" id="app-menu" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="menu-items">
-    <div class="program-toggle-wrap">
-      <span class="program-toggle-label">Program</span>
-      <div class="program-toggle" id="program-toggle" role="tablist"></div>
-    </div>
     <a class="menu-item" href="exercises.html">Exercise Library</a>
     <a class="menu-item" href="legacy.html">Previous Program</a>
   </div>
 </div>
+
+<div class="program-switch" id="program-switch" role="radiogroup" aria-label="Program"></div>
 
 <nav class="day-nav" id="day-nav" aria-label="Training days"></nav>
 
@@ -415,7 +429,9 @@ function sectionHtml(secId, num, title, sub, rows, prefix) {
 }
 
 function buildUI() {
-  document.getElementById("day-nav").innerHTML = DAYS.map(d =>
+  const nav = document.getElementById("day-nav");
+  nav.classList.toggle("hidden", DAYS.length < 2);
+  nav.innerHTML = DAYS.map(d =>
     `<button class="day-pill" role="tab" aria-selected="false" data-day="${d.id}">${d.label}</button>`
   ).join("");
 
@@ -465,9 +481,9 @@ function buildUI() {
   });
 }
 
-function renderProgramToggle() {
-  document.getElementById("program-toggle").innerHTML = Object.keys(PROGRAMS).map(id =>
-    `<button class="program-btn${id === currentProgram ? " active" : ""}" role="tab" aria-selected="${id === currentProgram}" data-program="${id}">${PROGRAMS[id].label}</button>`
+function renderProgramSwitch() {
+  document.getElementById("program-switch").innerHTML = Object.keys(PROGRAMS).map(id =>
+    `<button class="program-btn${id === currentProgram ? " active" : ""}" role="radio" aria-checked="${id === currentProgram}" data-program="${id}">${PROGRAMS[id].label}</button>`
   ).join("");
 }
 
@@ -476,7 +492,7 @@ function setProgram(id) {
   currentProgram = id;
   try { localStorage.setItem("wp-program", id); } catch (e) {}
   DAYS = getDays();
-  renderProgramToggle();
+  renderProgramSwitch();
   buildUI();
   setDay(DAYS[0].id);
 }
@@ -736,7 +752,7 @@ function toggleMenu() {
   if (open) closeMenu(); else openMenu();
 }
 
-renderProgramToggle();
+renderProgramSwitch();
 buildUI();
 setDay(activeId);
 </script>
