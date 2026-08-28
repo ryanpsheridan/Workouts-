@@ -54,6 +54,24 @@ const WARMUPS = {
     { ss: "4", ord: "4A", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Opens hip flexors after yesterday's sled and step-ups." },
     { ss: "5", ord: "5A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
     { ss: "6", ord: "6A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
+  ],
+  // The VO2 days keep a short warm-up on purpose. Their first phase is an eight-minute
+  // ramp on the machine, which is the real warm-up for a cardio session - this is just
+  // the joints that have to be open before you ask for speed.
+  "vo2-intervals": [
+    { ss: "1", ord: "1A", ex: "Leg Swings (Front-to-Back)", rp: "10 / leg", note: "Hold something, swing loose and relaxed. Opens the hips through the range you're about to use for twenty-odd minutes." },
+    { ss: "2", ord: "2A", ex: "Toe Rockback to Deep Squat", rp: "8 reps", note: "Kneel, toes tucked, hands down. Rock back onto heels into a deep squat, then forward - ankles first, because stiff ankles are what turn an incline walk into shin pain." },
+    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "6 / side", note: "Quick and easy today - this is a cardio day, so treat this as a joint check, not a stretching session." }
+  ],
+  "vo2-bursts": [
+    { ss: "1", ord: "1A", ex: "Leg Swings (Front-to-Back)", rp: "10 / leg", note: "Hold something, swing loose. Short bursts ask for range fast, so have it before the first one." },
+    { ss: "2", ord: "2A", ex: "Toe Rockback to Deep Squat", rp: "8 reps", note: "Kneel, toes tucked, hands down. Rock back onto heels into a deep squat, then forward - ankles and low back open before you start changing pace every 30 seconds." },
+    { ss: "3", ord: "3A", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a reach at the top. One pass each side is enough." }
+  ],
+  "vo2-circuit": [
+    { ss: "1", ord: "1A", ex: "Leg Swings (Front-to-Back)", rp: "10 / leg", note: "Hold something, swing loose - hips open before the swings and step-ups." },
+    { ss: "2", ord: "2A", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top." },
+    { ss: "3", ord: "3A", ex: "Band Pull-Aparts", rp: "12 reps", note: "The slams and the rower both pull on the mid-back. Two minutes here saves the shoulders later.", posture: "Shoulder blades back" }
   ]
 };
 
@@ -243,16 +261,85 @@ const ALL_DAYS = [
         { ss: "3", ord: "3A", ex: "Easy Bike or Rower", rp: "5 min", note: "Just enough to get blood flowing - conversational pace, not a warm-up sweat." }
       ]}
     ]
+  },
+  {
+    id: "vo2-intervals", label: "Intervals", focus: "Four hard blocks on one machine - the classic VO2 max session",
+    color: "#dc2626", soft: "#fde8e8",
+    phases: [
+      { name: "Ramp up", sub: "Eight minutes of on-ramp - the one part of an interval day you never skip", rows: [
+        { ss: "1", ord: "1A", ex: "Easy Bike, Row or Incline Walk", rp: "5 min", note: "Pick one machine and stay on it for the whole session - swapping halfway throws away the pacing you just learned. Conversational the entire five minutes: full sentences, no strain." },
+        { ss: "2", ord: "2A", ex: "Pick-Ups", rp: "3 x 20 sec", note: "Same machine. Lift to roughly the effort the hard blocks will ask for, hold 20 sec, drop back to easy for 40. Three of them. This is what keeps the first interval from feeling like a wall." }
+      ]},
+      { name: "The intervals", sub: "4 rounds - 3 min hard, 3 min easy. Grow the hard block to 4 min before you add rounds.", rows: [
+        { ss: "1", ord: "1A", tag: "Round 1", ex: "Hard Block", rp: "3 min", note: "Same machine you ramped up on. Hard means three or four words out, not a sentence. If you could hold a conversation it's too easy; if you can't say anything by minute two you went out too fast. On a watch it's roughly 85-90% of max heart rate. Pick a pace you believe you can repeat four times and hold exactly that - round 4 is the one that earns the adaptation, and going out hot is how you lose it." },
+        { ss: "",  ord: "1B", ex: "Easy Spin", rp: "3 min", note: "Same machine, easy. Keep moving, don't sit down. Easy enough that your breathing is back under control before the next block starts - if it isn't, the next block was going to be too fast anyway." },
+        { ss: "2", ord: "2A", tag: "Round 2", ex: "Hard Block", rp: "3 min", note: "Should feel like round 1 felt. Noticeably easier means round 1 was soft - nudge the pace up here, not on round 4." },
+        { ss: "",  ord: "2B", ex: "Easy Spin", rp: "3 min" },
+        { ss: "3", ord: "3A", tag: "Round 3", ex: "Hard Block", rp: "3 min", note: "The one that starts arguing back. The job is holding the effort you already picked, not adding to it. Count breaths or strokes if the clock stops helping." },
+        { ss: "",  ord: "3B", ex: "Easy Spin", rp: "3 min" },
+        { ss: "4", ord: "4A", tag: "Round 4", ex: "Hard Block", rp: "3 min", note: "Last one - match round 1 and you paced the session right. Finish with plenty left over and the fix is a fifth round next time, or 4 min blocks, before it's more speed. The cool-down below is your easy block." }
+      ]},
+      { name: "Cool down", sub: "Five easy minutes, then two on the floor", rows: [
+        { ss: "1", ord: "1A", ex: "Easy Bike, Row or Incline Walk", rp: "5 min", note: "Same machine, easy. Stopping dead after the last block is what leaves you wrecked for the rest of the day - spin it out and you're fine by dinner." },
+        { ss: "2", ord: "2A", ex: "Recovery Breathing", rp: "2 min", note: "Sit or lie down. In through the nose for 4, out through the mouth for 6 - longer out than in. Pulls the heart rate down faster than sitting and scrolling. While you're there, note the machine and the pace you held: that's the number to beat next time." }
+      ]}
+    ]
+  },
+  {
+    id: "vo2-bursts", label: "30/30s", focus: "Twenty short bursts - the least intimidating way to touch top-end",
+    color: "#ea580c", soft: "#fdece0",
+    phases: [
+      { name: "Ramp up", sub: "The bursts start fast, so nothing here should", rows: [
+        { ss: "1", ord: "1A", ex: "Easy Bike, Row or Incline Walk", rp: "5 min", note: "One machine for the whole session. Conversational, full sentences - all this does is get blood into the legs." },
+        { ss: "2", ord: "2A", ex: "Pick-Ups", rp: "3 x 20 sec", note: "Lift to roughly burst pace for 20 sec, back to easy for 40, three times. Half the point is rehearsing the gear change you're about to make forty times." }
+      ]},
+      { name: "The bursts", sub: "Two blocks of 10. New to this? One block is a full session - come back and add the second.", rows: [
+        { ss: "1", ord: "1A", tag: "Block 1", ex: "30 Seconds Hard", rp: "10 rounds", note: "Harder than the interval day - 30 seconds is short enough to push into can't-talk territory. Not a sprint off the line though: the first two find the gear, the last two defend it. Burst 10 should look like burst 1. If bursts 8, 9 and 10 fall apart, the first ones were too fast." },
+        { ss: "",  ord: "1B", ex: "30 Seconds Easy", rp: "after each", note: "Legs still turning over, light and slow. The clock doesn't stop - 30 seconds is all the recovery there is, and that incomplete recovery is the whole reason this session works." },
+        { ss: "2", ord: "2A", tag: "Between blocks", ex: "Easy Bike, Row or Incline Walk", rp: "3 min", note: "Off the gas completely. Get your breathing back to where you could hold a conversation before block 2 starts." },
+        { ss: "3", ord: "3A", tag: "Block 2", ex: "30 Seconds Hard", rp: "10 rounds", note: "Same ten, same effort. Only start this if block 1 finished clean - if burst 8 was your honest limit, stop there and take the win. This one works because you can repeat it every week, not because you survived it once." },
+        { ss: "",  ord: "3B", ex: "30 Seconds Easy", rp: "after each" }
+      ]},
+      { name: "Cool down", sub: "Five easy minutes, then two on the floor", rows: [
+        { ss: "1", ord: "1A", ex: "Easy Bike, Row or Incline Walk", rp: "5 min", note: "Easy, same machine. Twenty gear changes leave the legs full - spinning them out is what stops tomorrow feeling heavy." },
+        { ss: "2", ord: "2A", ex: "Recovery Breathing", rp: "2 min", note: "Sit or lie down. In through the nose for 4, out through the mouth for 6. Note how many bursts held their pace - when all twenty do, that's your cue to go faster, not longer." }
+      ]}
+    ]
+  },
+  {
+    id: "vo2-circuit", label: "Circuit", focus: "Five stations, three rounds - nothing to pace, everything gets moving",
+    color: "#db2777", soft: "#fce7f1",
+    phases: [
+      { name: "Ramp up", sub: "Short - the first round is half a warm-up anyway", rows: [
+        { ss: "1", ord: "1A", ex: "Easy Bike, Row or Incline Walk", rp: "5 min", note: "Conversational. Set the stations up while you're catching your breath between rounds, not now." },
+        { ss: "2", ord: "2A", ex: "Pick-Ups", rp: "2 x 20 sec", note: "Two is enough here - the circuit builds its own ramp across round 1." }
+      ]},
+      { name: "The circuit", sub: "3 rounds, straight through the five. New to this? Two rounds is a session.", rows: [
+        { ss: "1", ord: "1A", ex: "Rower OR Bike", rp: "60 sec", note: "Moderate-hard, not your best 60 seconds - this station sets the tone for the round. On the rower it's legs, then back, then arms; pulling with the arms first is what makes rowing feel awful.", posture: "Head back, shoulder blades back" },
+        { ss: "2", ord: "2A", ex: "Kettlebell Swings", rp: "40 sec", note: "Hips, not arms - snap the hips through and let the bell float to chest height. Light bell, clean reps: this is a breathing station, not a strength one. Stop the set the second the low back starts doing the lifting." },
+        { ss: "3", ord: "3A", ex: "Step-Ups (fast tempo) OR Sled Push", brace: true, rp: "40 sec / 20 yds", note: "Knee-high box, quick feet, alternate legs, whole foot on the step. Take the sled instead if it's free and you'd rather push than step." },
+        { ss: "4", ord: "4A", ex: "Med Ball Slams", link: "https://www.youtube.com/watch?v=EsAhU1jHpiQ", rp: "30 sec", note: "Full overhead, full effort down, catch and reset. Thirty seconds is plenty - this is the station that spikes the heart rate, so don't pace it." },
+        { ss: "5", ord: "5A", ex: "Easy Bike, Row or Incline Walk", rp: "2 min", note: "The reset, and it counts as part of the round. Keep walking or spinning until you can talk again, then go. If two minutes isn't enough, take three - starting round 2 still gasping only makes round 2 worse." }
+      ]},
+      { name: "Cool down", sub: "Three easy minutes, then two on the floor", rows: [
+        { ss: "1", ord: "1A", ex: "Easy Bike, Row or Incline Walk", rp: "3 min", note: "The circuit already ends easy, so this is short. Keep moving until your breathing is back to normal." },
+        { ss: "2", ord: "2A", ex: "Recovery Breathing", rp: "2 min", note: "Sit or lie down. In through the nose for 4, out through the mouth for 6. Note the bell weight and the box height you used - that's how this one gets harder, before the clock does." }
+      ]}
+    ]
   }
 ];
 
 // Which days show up, and in what order, per program. Key order is switcher order.
 // Pre-Golf is its own program rather than a tab tacked onto the end of the other
 // two - it isn't a training day, and it was the one tab that meant something
-// different from every tab beside it.
+// different from every tab beside it. VO2 Max sits apart for the same reason: it
+// isn't a fourth day in a rotation, it's three interchangeable sessions you drop in
+// whenever you want one, so it gets its own switcher slot and its days are picked
+// by feel rather than run in order.
 const PROGRAMS = {
   "split": { label: "Upper / Lower", days: ["lower-a", "upper-a", "lower-b", "upper-b"] },
   "full-body": { label: "Full Body", days: ["full-body-a", "full-body-b", "full-body-c"] },
+  "vo2": { label: "VO2 Max", days: ["vo2-intervals", "vo2-bursts", "vo2-circuit"] },
   "golf": { label: "Golf", days: ["pre-golf"] }
 };
 const DEFAULT_PROGRAM = "split";

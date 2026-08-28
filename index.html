@@ -152,8 +152,10 @@
     padding: 3px; border-radius: 11px;
     background: var(--line-2); border: 1px solid var(--line);
   }
+  /* Width came down from 44px when the fourth (VO2) segment landed - four at 44 plus
+     the menu button crowded the wordmark on a 375px screen. */
   .program-btn {
-    flex: none; width: 44px; height: 33px;
+    flex: none; width: 38px; height: 33px;
     display: grid; place-items: center;
     padding: 0; border: none; background: none; border-radius: 8px;
     color: var(--ink-3); cursor: pointer; -webkit-tap-highlight-color: transparent;
@@ -436,7 +438,12 @@ function exRowHtml(r) {
 function groupHtml(group, key) {
   const on = STATE[key] ? " done" : "";
   const isSS = group.length > 1;
-  const tag = isSS ? `<div class="grp-tag">${group.length >= 4 ? "Giant set" : group.length === 3 ? "Tri-set" : "Superset"}</div>` : "";
+  // The auto label describes how the group is performed together, which is right for
+  // strength work and wrong for a cardio round - a hard block plus its easy spin isn't
+  // a superset. A `tag` on the group's first row overrides it.
+  const auto = isSS ? (group.length >= 4 ? "Giant set" : group.length === 3 ? "Tri-set" : "Superset") : "";
+  const label = group[0].tag || auto;
+  const tag = label ? `<div class="grp-tag">${label}</div>` : "";
   const rows = group.map(exRowHtml).join("");
   return `<div class="grp${on}">
     <div class="grp-main">${tag}${rows}</div>
@@ -522,6 +529,7 @@ function buildUI() {
 const PROGRAM_ICONS = {
   "split": '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2.9"/><rect x="7.4" y="9.6" width="9.2" height="4.6" rx="2"/><rect x="7.4" y="16.6" width="9.2" height="4.6" rx="2"/></svg>',
   "full-body": '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2.9"/><rect x="7.4" y="9.6" width="9.2" height="11.6" rx="3"/></svg>',
+  "vo2": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5h3.4l2-5.5 3.2 11 2.4-5.5H21"/></svg>',
   "golf": '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3a1 1 0 0 1 1 1v16.2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1z"/><path d="M9.4 4.5h7.9a.7.7 0 0 1 .53 1.16l-2.2 2.52 2.2 2.53a.7.7 0 0 1-.53 1.16H9.4z"/></svg>'
 };
 
