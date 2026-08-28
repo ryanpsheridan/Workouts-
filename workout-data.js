@@ -264,6 +264,7 @@ const ALL_DAYS = [
   },
   {
     id: "vo2-intervals", label: "Intervals", focus: "Four hard blocks on one machine - the classic VO2 max session",
+    kit: ["Bike, rower or treadmill"], kitNote: "pick one and stay on it - the whole session is on that machine",
     color: "#dc2626", soft: "#fde8e8",
     phases: [
       { name: "Ramp up", sub: "Eight minutes of on-ramp - the one part of an interval day you never skip", rows: [
@@ -287,6 +288,7 @@ const ALL_DAYS = [
   },
   {
     id: "vo2-bursts", label: "30/30s", focus: "Twenty short bursts - the least intimidating way to touch top-end",
+    kit: ["Bike or rower"], kitNote: "bike is easiest - a treadmill belt can't change speed fast enough for 30 sec on, 30 sec off",
     color: "#ea580c", soft: "#fdece0",
     phases: [
       { name: "Ramp up", sub: "The bursts start fast, so nothing here should", rows: [
@@ -308,6 +310,7 @@ const ALL_DAYS = [
   },
   {
     id: "vo2-circuit", label: "Circuit", focus: "Five stations, three rounds - nothing to pace, everything gets moving",
+    kit: ["Rower or bike", "Kettlebell", "Knee-high box", "Med ball"], kitNote: "set them up next to each other before you start - the walking is what kills a circuit",
     color: "#db2777", soft: "#fce7f1",
     phases: [
       { name: "Ramp up", sub: "Short - the first round is half a warm-up anyway", rows: [

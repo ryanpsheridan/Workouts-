@@ -219,6 +219,21 @@
   .day-hero h2 { font-size: 27px; font-weight: 800; letter-spacing: -0.03em; }
   .day-hero .focus { font-size: 16.5px; color: var(--ink-2); margin-top: 5px; font-weight: 400; line-height: 1.35; }
 
+  /* Sits between the focus line and the progress bar, so what you need is settled
+     before you decide to start. Accent-tinted like the posture/brace cues rather
+     than a new colour - it's the same category of thing, a note attached to the day.
+     The hint is where a choice gets explained ("pick one", "a treadmill won't do"),
+     which is the part a bare list of equipment always loses. */
+  .day-kit { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 13px; }
+  .kit-label { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+  .kit-item {
+    display: inline-flex; align-items: center; padding: 5px 11px; border-radius: 8px;
+    background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 38%, var(--surface));
+    font-size: 11px; font-weight: 400; letter-spacing: 0.02em; color: var(--ink);
+  }
+  .kit-hint { flex-basis: 100%; font-size: 12px; color: var(--ink-3); line-height: 1.4; }
+
   .progress { display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12.5px; color: var(--ink-3); font-weight: 400; }
   .progress .bar { position: relative; flex: 1; height: 4px; border-radius: 3px; background: var(--line); max-width: 150px; }
   .progress .bar > i.fill { display: block; height: 100%; width: 0; border-radius: 3px; background: var(--done); transition: width 0.25s ease; }
@@ -469,6 +484,17 @@ function sectionHtml(secId, num, title, sub, rows, prefix) {
   </section>`;
 }
 
+// What to grab before you start. Only the cardio days carry it so far - a strength
+// day happens wherever its rack is and you find the equipment as you go, but a
+// circuit is a list of stations you either have or don't, and it's worth knowing
+// which before you're standing in the gym committed to it.
+function kitHtml(d) {
+  if (!d.kit || !d.kit.length) return "";
+  const items = d.kit.map(k => `<span class="kit-item">${k}</span>`).join("");
+  const hint = d.kitNote ? `<span class="kit-hint">${d.kitNote}</span>` : "";
+  return `<div class="day-kit"><span class="kit-label">Kit</span>${items}${hint}</div>`;
+}
+
 function buildUI() {
   const nav = document.getElementById("day-nav");
   nav.classList.toggle("hidden", DAYS.length < 2);
@@ -499,6 +525,7 @@ function buildUI() {
         <span class="day-rule"></span>
         <h2>${d.label}</h2>
         <div class="focus">${d.focus}</div>
+        ${kitHtml(d)}
         <div class="progress">
           <span id="pg-${d.id}">0 / 0 done</span>
           <span class="bar"><i class="fill" id="bar-${d.id}"></i>${ticks}</span>
