@@ -268,7 +268,7 @@ const ALL_DAYS = [
     phases: [
       { name: "Ramp up", sub: "Eight minutes of on-ramp - the one part of an interval day you never skip", rows: [
         { ss: "1", ord: "1A", ex: "Easy Bike, Row or Incline Walk", rp: "5 min", note: "Pick one machine and stay on it for the whole session - swapping halfway throws away the pacing you just learned. Conversational the entire five minutes: full sentences, no strain." },
-        { ss: "2", ord: "2A", ex: "Pick-Ups", rp: "3 x 20 sec", note: "Same machine. Lift to roughly the effort the hard blocks will ask for, hold 20 sec, drop back to easy for 40. Three of them. This is what keeps the first interval from feeling like a wall." }
+        { ss: "2", ord: "2A", ex: "Pick-Ups (short bursts)", rp: "3 x 20 sec", note: "Short bursts inside the warm-up, same machine. Pick the pace up for 20 sec, then drop back to easy for 40. Three of them, three minutes total. Brisk - roughly what the hard blocks will feel like - not a sprint. Your body needs a couple of minutes to get oxygen delivery up to speed, and these do that in advance, which is what keeps the first interval from feeling like a wall. You should finish them ready, not tired: if they wore you out, they were too hard." }
       ]},
       { name: "The intervals", sub: "4 rounds - 3 min hard, 3 min easy. Grow the hard block to 4 min before you add rounds.", rows: [
         { ss: "1", ord: "1A", tag: "Round 1", ex: "Hard Block", rp: "3 min", note: "Same machine you ramped up on. Hard means three or four words out, not a sentence. If you could hold a conversation it's too easy; if you can't say anything by minute two you went out too fast. On a watch it's roughly 85-90% of max heart rate. Pick a pace you believe you can repeat four times and hold exactly that - round 4 is the one that earns the adaptation, and going out hot is how you lose it." },
@@ -291,7 +291,7 @@ const ALL_DAYS = [
     phases: [
       { name: "Ramp up", sub: "The bursts start fast, so nothing here should", rows: [
         { ss: "1", ord: "1A", ex: "Easy Bike, Row or Incline Walk", rp: "5 min", note: "One machine for the whole session. Conversational, full sentences - all this does is get blood into the legs." },
-        { ss: "2", ord: "2A", ex: "Pick-Ups", rp: "3 x 20 sec", note: "Lift to roughly burst pace for 20 sec, back to easy for 40, three times. Half the point is rehearsing the gear change you're about to make forty times." }
+        { ss: "2", ord: "2A", ex: "Pick-Ups (short bursts)", rp: "3 x 20 sec", note: "Short bursts inside the warm-up, same machine. Pick the pace up for 20 sec, then back to easy for 40. Three of them. Brisk, not a sprint. Half the point is rehearsing the gear change you're about to make forty times; the other half is that oxygen delivery takes a couple of minutes to come up to speed, and you'd rather spend those minutes here than in burst 1." }
       ]},
       { name: "The bursts", sub: "Two blocks of 10. New to this? One block is a full session - come back and add the second.", rows: [
         { ss: "1", ord: "1A", tag: "Block 1", ex: "30 Seconds Hard", rp: "10 rounds", note: "Harder than the interval day - 30 seconds is short enough to push into can't-talk territory. Not a sprint off the line though: the first two find the gear, the last two defend it. Burst 10 should look like burst 1. If bursts 8, 9 and 10 fall apart, the first ones were too fast." },
@@ -312,7 +312,7 @@ const ALL_DAYS = [
     phases: [
       { name: "Ramp up", sub: "Short - the first round is half a warm-up anyway", rows: [
         { ss: "1", ord: "1A", ex: "Easy Bike, Row or Incline Walk", rp: "5 min", note: "Conversational. Set the stations up while you're catching your breath between rounds, not now." },
-        { ss: "2", ord: "2A", ex: "Pick-Ups", rp: "2 x 20 sec", note: "Two is enough here - the circuit builds its own ramp across round 1." }
+        { ss: "2", ord: "2A", ex: "Pick-Ups (short bursts)", rp: "2 x 20 sec", note: "Short bursts inside the warm-up: pick the pace up for 20 sec, then back to easy for 40. Brisk, not a sprint. Two is enough here - the circuit builds its own ramp across round 1." }
       ]},
       { name: "The circuit", sub: "3 rounds, straight through the five. New to this? Two rounds is a session.", rows: [
         { ss: "1", ord: "1A", ex: "Rower OR Bike", rp: "60 sec", note: "Moderate-hard, not your best 60 seconds - this station sets the tone for the round. On the rower it's legs, then back, then arms; pulling with the arms first is what makes rowing feel awful.", posture: "Head back, shoulder blades back" },
