@@ -65,7 +65,7 @@
     min-height: 100vh;
     max-width: 640px;
     margin: 0 auto;
-    padding-bottom: 3rem;
+    padding-bottom: calc(3rem + var(--nav-space, 0px));
     -webkit-text-size-adjust: 100%;
   }
 
@@ -91,10 +91,10 @@
   /* ---------- Header ---------- */
   /* Positioned + z-index'd above .app-menu so the header (fully transparent except its
      own text/icon glyphs) stays on top when the menu opens, with no seam against it. */
-  /* Bottom padding, not the nav's top padding, sets the gap down to the tabs - the
-     nav's own padding is also what you see when it's pinned, so widening that would
-     fatten the sticky bar on scroll rather than just open up the resting layout. */
-  .app-header { position: relative; z-index: 41; padding: calc(1.6rem + env(safe-area-inset-top)) 1.25rem 1.4rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  /* Bottom padding used to set the gap down to the day tabs. They're docked at the
+     bottom of the screen now, so this only has to separate the wordmark from the
+     day hero, and the hero brings 1.55rem of its own. */
+  .app-header { position: relative; z-index: 41; padding: calc(1.6rem + env(safe-area-inset-top)) 1.25rem 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
   .app-header h1 { font-size: 22px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; text-transform: lowercase; }
   .menu-toggle {
     flex: none; width: 38px; height: 38px; border: none; background: none; color: var(--ink);
@@ -166,26 +166,34 @@
   .program-btn.active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.45); }
   .program-switch.veiled { opacity: 0; pointer-events: none; transition: opacity 0.18s ease; }
 
-  /* ---------- Sticky day nav ---------- */
-  /* Pins BELOW the safe-area inset rather than padding up into it. Carrying that
-     inset in the padding meant a standalone-PWA notch (~59px) sat in the resting
-     layout as dead space between the switcher and the tabs, even though it only
-     does any work once the bar is pinned. .safe-cap paints that strip instead. */
+  /* ---------- Docked day nav ---------- */
+  /* Docked to the bottom rather than pinned to the top: this gets used one-handed
+     in a gym, and the bottom third is the only part of a phone screen a thumb
+     reaches without regripping. It also stops the tabs competing with the browser
+     chrome and the notch at the top of the screen.
+     Fixed to the content column, not the viewport - body is capped at 640px, so a
+     full-bleed bar would strand the pills at the left edge on a desktop window.
+     The bottom padding carries the home-indicator inset; it collapses to the base
+     11px anywhere there's no inset. */
   .day-nav {
-    position: sticky; top: env(safe-area-inset-top); z-index: 20;
+    position: fixed; z-index: 20;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; max-width: 640px;
     display: flex; gap: 7px;
-    padding: 11px 1.25rem;
+    padding: 11px 1.25rem calc(11px + env(safe-area-inset-bottom));
     overflow-x: auto; scrollbar-width: none;
     background: var(--nav-bg);
     -webkit-backdrop-filter: saturate(180%) blur(12px);
     backdrop-filter: saturate(180%) blur(12px);
-    border-bottom: 1px solid var(--line);
+    border-top: 1px solid var(--line);
   }
   .day-nav::-webkit-scrollbar { display: none; }
   /* Holds the status-bar strip in standalone PWA mode, where black-translucent lets
      the page scroll under the clock and notch. Always mounted: it collapses to 0
-     height wherever there's no inset (any desktop browser, Safari tabs), and at rest
-     it only ever covers the header's own top padding. */
+     height wherever there's no inset (any desktop browser, Safari tabs). With the
+     tabs docked at the bottom this is the only thing left covering the top inset,
+     so it now matters more than it did, not less - and its measured height is how
+     the scroll helpers below find the inset. */
   .safe-cap {
     position: fixed; top: 0; left: 0; right: 0; z-index: 21;
     height: env(safe-area-inset-top);
@@ -540,6 +548,8 @@ function buildUI() {
     </div>`;
   }).join("");
 
+  syncNavSpace();
+
   // Everything starts collapsed; the "Get started" button opens the first one.
   DAYS.forEach(d => {
     const panel = document.getElementById("s-" + d.id);
@@ -670,9 +680,6 @@ function updateProgress(dayId) {
   if (reset) reset.style.display = panel.querySelectorAll(".ck.done").length > 0 ? "" : "none";
 }
 
-// The nav now pins at top: env(safe-area-inset-top) rather than 0, so a scroll
-// target has to clear the inset as well as the bar itself. Hidden nav (Golf) gives
-// height 0 and still clears the inset, which is what you want under a notch.
 // CSS scroll-behavior doesn't reach scrollTo({behavior}), so the reduced-motion
 // preference has to be checked here too. Read live rather than cached - the OS
 // setting can change while the page is open.
@@ -680,12 +687,29 @@ function scrollMode() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 }
 
-function stickyNavOffset() {
-  const nav = document.getElementById("day-nav");
-  if (!nav) return 72;
-  const inset = parseFloat(getComputedStyle(nav).top) || 0;
-  return nav.getBoundingClientRect().height + inset + 12;
+// With the tabs docked at the bottom, nothing pins at the top any more, so a scroll
+// target only has to clear the status-bar inset. .safe-cap is exactly that inset
+// made measurable - env() isn't readable from JS, and the cap is already mounted
+// for its own reasons.
+function topInset() {
+  const cap = document.querySelector(".safe-cap");
+  return cap ? cap.getBoundingClientRect().height : 0;
 }
+
+function scrollOffset() {
+  return topInset() + 16;
+}
+
+// The docked bar floats over the page, so the last section would sit under it
+// without this. Measured rather than hard-coded: the bar's height moves with the
+// home-indicator inset, and it collapses to nothing on a one-day program (Golf),
+// where the padding should come back off.
+function syncNavSpace() {
+  const nav = document.getElementById("day-nav");
+  const h = nav && !nav.classList.contains("hidden") ? nav.offsetHeight : 0;
+  document.documentElement.style.setProperty("--nav-space", h + "px");
+}
+window.addEventListener("resize", syncNavSpace);
 
 function setCk(ck, on) {
   ck.classList.toggle("done", on);
@@ -707,7 +731,7 @@ function autoAdvance(sec) {
       // while sec is still tall and the page keeps shifting after we land,
       // making the snap overshoot past nxt's header.
       setTimeout(() => {
-        const y = nxt.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
+        const y = nxt.getBoundingClientRect().top + window.scrollY - scrollOffset();
         window.scrollTo({ top: y, behavior: scrollMode() });
       }, 270);
     }
@@ -723,7 +747,7 @@ function scrollToNextGroup(ck, sec) {
     .find(g => !g.classList.contains("done"));
   if (!nxt) return;
   setTimeout(() => {
-    const y = nxt.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
+    const y = nxt.getBoundingClientRect().top + window.scrollY - scrollOffset();
     window.scrollTo({ top: y, behavior: scrollMode() });
   }, 380);
 }
@@ -826,8 +850,12 @@ document.addEventListener("click", e => {
     setTimeout(() => {
       const grps = [...target.querySelectorAll(".grp")];
       const nextGrp = grps.find(g => !g.classList.contains("done"));
-      const el = nextGrp || target;
-      const y = el.getBoundingClientRect().top + window.scrollY - stickyNavOffset();
+      // Starting at the top of a section, scroll to the section itself so its name
+      // stays on screen - with the tabs docked at the bottom, nothing else up here
+      // says which one you're in. Resuming further down, the group wins: at that
+      // point you want the work, not the label.
+      const el = (!nextGrp || nextGrp === grps[0]) ? target : nextGrp;
+      const y = el.getBoundingClientRect().top + window.scrollY - scrollOffset();
       window.scrollTo({ top: y, behavior: scrollMode() });
     }, 270);
     return;
