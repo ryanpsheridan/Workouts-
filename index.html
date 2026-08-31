@@ -205,9 +205,12 @@
   /* A one-day program (Golf) has nothing to switch between - a lone tab is a dead
      control, so the bar comes out and the day hero carries the title on its own. */
   .day-nav.hidden { display: none; }
+  /* 13.5px of vertical padding puts the pill at 44px tall - the Apple HIG and
+     WCAG 2.5.5 minimum touch target. It was 39.5px as a secondary bar under the
+     header; as the primary nav in the thumb zone it has to clear the floor. */
   .day-pill {
     flex: 1 0 auto; min-width: 74px;
-    padding: 11px 13px; border-radius: 10px;
+    padding: 13.5px 13px; border-radius: 10px;
     border: 1px solid var(--line); background: var(--surface);
     font-family: inherit; cursor: pointer; text-align: center; line-height: 1.15;
     font-size: 13.5px; font-weight: 400; color: var(--ink); letter-spacing: -0.01em;
