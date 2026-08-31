@@ -65,7 +65,7 @@
     min-height: 100vh;
     max-width: 640px;
     margin: 0 auto;
-    padding-bottom: calc(3rem + var(--bar-space, 0px));
+    padding-bottom: 3rem;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -140,44 +140,31 @@
   .menu-item-app { font-size: 21px; color: var(--ink-2); gap: 13px; }
   .menu-item-app svg { width: 22px; height: 22px; flex: none; }
 
-  /* ---------- Program tab bar ---------- */
-  /* Docked to the bottom, the way a native tab bar is: these are the app's
-     top-level destinations, which is exactly what the Apple HIG reserves a tab bar
-     for. Up in the header they were a 38px icon-only segmented control squeezed
-     beside the wordmark - the least reachable corner of the screen, spent on the
-     one control that can't fit a label there.
-     Fixed to the content column, not the viewport: body is capped at 640px, so a
-     full-bleed bar would strand four tabs against the left edge on a desktop
-     window. Bottom padding carries the home-indicator inset and collapses to its
-     base anywhere there isn't one. */
+  /* ---------- Program switcher ---------- */
+  /* Lives in the header, where the service icons used to sit. It rides the header
+     out of view on scroll while the day tabs pin - same behaviour as before, now
+     without spending a whole row on it.
+     Grouped track (one container, segments inside) rather than the separately
+     bordered day pills below, so the two read as different tiers; the selected
+     segment stays neutral so the accent colour keeps meaning "current day". */
   .program-switch {
-    position: fixed; z-index: 20;
-    bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 100%; max-width: 640px;
-    display: flex;
-    padding: 7px 0.5rem calc(5px + env(safe-area-inset-bottom));
-    background: var(--nav-bg);
-    -webkit-backdrop-filter: saturate(180%) blur(12px);
-    backdrop-filter: saturate(180%) blur(12px);
-    border-top: 1px solid var(--line);
+    flex: none; display: flex; gap: 2px;
+    padding: 3px; border-radius: 11px;
+    background: var(--line-2); border: 1px solid var(--line);
   }
-  /* Icon over label, four across. The label is the point of the move: icon-only
-     nav asks you to recall what an abstract glyph meant, and two of these four
-     (a stacked block vs. an unbroken one) only mean anything in comparison. */
+  /* Width came down from 44px when the fourth (VO2) segment landed - four at 44 plus
+     the menu button crowded the wordmark on a 375px screen. */
   .program-btn {
-    flex: 1; min-width: 0; min-height: 48px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
-    padding: 4px 2px; border: none; background: none; border-radius: 10px;
-    font-family: inherit; font-size: 10.5px; font-weight: 400; letter-spacing: -0.01em;
-    line-height: 1.2; white-space: nowrap;
+    flex: none; width: 38px; height: 33px;
+    display: grid; place-items: center;
+    padding: 0; border: none; background: none; border-radius: 8px;
     color: var(--ink-3); cursor: pointer; -webkit-tap-highlight-color: transparent;
-    transition: color 0.18s ease, transform 0.12s ease;
+    transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease;
   }
-  .program-btn svg { width: 23px; height: 23px; }
+  .program-btn svg { width: 20px; height: 20px; }
   .program-btn:active { transform: scale(0.94); }
-  /* Current tab goes white against grey rather than picking up a tint - the accent
-     colours in this app all mean "which day", and the tab bar isn't about days. */
-  .program-btn.active { color: var(--ink); }
+  .program-btn.active { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.45); }
+  .program-switch.veiled { opacity: 0; pointer-events: none; transition: opacity 0.18s ease; }
 
   /* ---------- Sticky day nav ---------- */
   /* Pins BELOW the safe-area inset rather than padding up into it. Carrying that
@@ -380,6 +367,7 @@
 <header class="app-header">
   <h1>gympro</h1>
   <div class="header-right">
+    <div class="program-switch" id="program-switch" role="radiogroup" aria-label="Program"></div>
     <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-haspopup="true" aria-expanded="false">
       <span class="menu-toggle-bars" aria-hidden="true"><span></span><span></span></span>
     </button>
@@ -406,8 +394,6 @@
 <nav class="day-nav" id="day-nav" role="tablist" aria-label="Training days"></nav>
 
 <main id="content"></main>
-
-<nav class="program-switch" id="program-switch" role="radiogroup" aria-label="Program"></nav>
 
 <script src="workout-data.js"></script>
 <script>
@@ -563,10 +549,10 @@ function buildUI() {
   });
 }
 
-// The icons carry a visible label in the tab bar now, so they no longer have to
-// survive on their own. Split still reads as two blocks with a gap and full body as
-// one unbroken block - that comparison is what makes them legible at a glance once
-// you know the labels.
+// Icon-only, so the label rides along as aria-label (screen readers) and title
+// (hover on desktop). Split reads as two blocks with a gap, full body as one
+// unbroken block - the pair is always on screen together, so it's a comparison
+// rather than something to recall cold.
 const PROGRAM_ICONS = {
   "split": '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2.9"/><rect x="7.4" y="9.6" width="9.2" height="4.6" rx="2"/><rect x="7.4" y="16.6" width="9.2" height="4.6" rx="2"/></svg>',
   "full-body": '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="2.9"/><rect x="7.4" y="9.6" width="9.2" height="11.6" rx="3"/></svg>',
@@ -578,8 +564,7 @@ function renderProgramSwitch() {
   document.getElementById("program-switch").innerHTML = Object.keys(PROGRAMS).map(id => {
     const on = id === currentProgram;
     const label = PROGRAMS[id].label;
-    const icon = PROGRAM_ICONS[id] || "";
-    return `<button class="program-btn${on ? " active" : ""}" role="radio" aria-checked="${on}" data-program="${id}">${icon}<span>${label}</span></button>`;
+    return `<button class="program-btn${on ? " active" : ""}" role="radio" aria-checked="${on}" aria-label="${label}" title="${label}" data-program="${id}">${PROGRAM_ICONS[id] || label}</button>`;
   }).join("");
 }
 
@@ -592,13 +577,6 @@ function setProgram(id) {
   buildUI();
   setDay(DAYS[0].id);
 }
-
-// The bar floats over the page, so the last card would sit under it without this.
-function syncBarSpace() {
-  const bar = document.getElementById("program-switch");
-  document.documentElement.style.setProperty("--bar-space", (bar ? bar.offsetHeight : 0) + "px");
-}
-window.addEventListener("resize", syncBarSpace);
 
 function sectionEl(secId) { return document.getElementById("sec-" + secId); }
 
@@ -877,19 +855,20 @@ document.addEventListener("click", e => {
 });
 
 // ---------- Hamburger menu ----------
-// The switcher used to need veiling here: it lived in the header, and the header
-// sits above the menu overlay by design, so it would have floated over an
-// aria-modal dialog still tappable. Out of the header and down in its own bar it
-// is simply under the overlay, like the rest of the page.
+// The header sits above the menu overlay by design, which would leave the
+// switcher floating over an aria-modal dialog and still tappable. It steps
+// aside while the menu is open; the X and the wordmark stay.
 function openMenu() {
   document.getElementById("app-menu").classList.add("open");
   document.getElementById("menu-toggle").classList.add("open");
   document.getElementById("menu-toggle").setAttribute("aria-expanded", "true");
+  document.getElementById("program-switch").classList.add("veiled");
 }
 function closeMenu() {
   document.getElementById("app-menu").classList.remove("open");
   document.getElementById("menu-toggle").classList.remove("open");
   document.getElementById("menu-toggle").setAttribute("aria-expanded", "false");
+  document.getElementById("program-switch").classList.remove("veiled");
 }
 function toggleMenu() {
   const open = document.getElementById("app-menu").classList.contains("open");
@@ -897,7 +876,6 @@ function toggleMenu() {
 }
 
 renderProgramSwitch();
-syncBarSpace();
 buildUI();
 setDay(activeId);
 </script>
