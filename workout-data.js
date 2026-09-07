@@ -1,28 +1,21 @@
 const WARMUPS = {
-  "full-body-a": [ // squat + horizontal press/pull day
+  "full-body-upper": [ // squat maintenance + pull-up giant set + press day
     { ss: "1", ord: "1A", ex: "Toe Rockback to Deep Squat", rp: "8 reps", note: "Kneel, toes tucked, hands down. Rock back onto heels into a deep squat, then forward - stretches ankles back, low back down." },
     { ss: "2", ord: "2A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation. Chest tall, hips do the work. Sit up on a block or a plate if you can't stay upright hands-free - elevating the hips beats fighting for the position. Extra reps on the tighter side." },
     { ss: "3", ord: "3A", ex: "90/90 Lead Hip Internal Rotation Lift-Off", rp: "6 / side", note: "Same 90/90 position, but lift the lead-side shin off the floor and hold. Trains internal rotation strength, not just range - the impact position needs both." },
     { ss: "4", ord: "4A", ex: "Wall Angels", rp: "10 reps", note: "Back to the wall, low back flat. Slide arms overhead and back down, keeping wrists and elbows on the wall as long as they'll stay. Puts the head back over the shoulders and gets the blades moving before you press and pull.", posture: "Head back, shoulder blades back" },
     { ss: "5", ord: "5A", ex: "Band Pull-Aparts", rp: "12 reps", note: "Rear delts + mid-back on before anything pushes or pulls.", posture: "Shoulder blades back" },
-    { ss: "6", ord: "6A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
-    { ss: "7", ord: "7A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
+    { ss: "6", ord: "6A", ex: "Upper Trap + Levator Stretch", link: "https://www.youtube.com/watch?v=UIQud2Uak-g", rp: "30 sec / side", note: "Sit on one hand so the shoulder can't ride up. Ear toward the opposite shoulder for the upper trap; then turn the nose down toward the armpit for the levator. Light pull with the free hand, no cranking - these are the ones that bark during the pull-up giant set." },
+    { ss: "7", ord: "7A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, pre-stretch the lats for the giant set. If the neck is sore, hang active - shoulders pulled down away from the ears." },
+    { ss: "8", ord: "8A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
+    { ss: "9", ord: "9A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
   ],
-  "full-body-b": [ // hinge + incline press/carry day
+  "full-body-lower": [ // hinge + unilateral legs + carry day
     { ss: "1", ord: "1A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "10 / side", note: "One foot down forces each side to work full before the session's hinging." },
     { ss: "2", ord: "2A", ex: "90/90 Lead Hip Internal Rotation Lift-Off", rp: "6 / side", note: "90/90 seated position, lift the lead-side shin off the floor and hold. Builds internal rotation strength for the impact position before you hinge and press." },
     { ss: "3", ord: "3A", ex: "Wide-Legged Standing Forward Fold", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "60 sec/day", note: "Feet wide, hands clasped behind the back, fold forward - releases tight hamstrings before the step-ups and RDLs." },
     { ss: "4", ord: "4A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the chest and upper back before pressing." },
     { ss: "5", ord: "5A", ex: "Reverse Tabletop Hip Lifts", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "30 reps", note: "Reverse plank pulses - lift the hips up and down. Strengthens the core and relaxes the lower back before pressing." },
-    { ss: "6", ord: "6A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
-    { ss: "7", ord: "7A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
-  ],
-  "full-body-c": [ // unilateral legs + pull-up giant set day
-    { ss: "1", ord: "1A", ex: "Squat Rock (Deep Squat to Hands-Behind Roll)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps/day", note: "Deep squat, feet flat, hands planted flat on the floor behind the hips - rock/roll the knees forward while keeping the hands down, bear-crawl style, then back to the squat. Great warm-up and activation for the belly pooch/core." },
-    { ss: "2", ord: "2A", ex: "90/90 Lead Hip Internal Rotation Lift-Off", rp: "6 / side", note: "90/90 seated position, lift the lead-side shin off the floor and hold. Internal rotation strength for the impact position, not just mobility." },
-    { ss: "3", ord: "3A", ex: "Upper Trap + Levator Stretch", link: "https://www.youtube.com/watch?v=UIQud2Uak-g", rp: "30 sec / side", note: "Sit on one hand so the shoulder can't ride up. Ear toward the opposite shoulder for the upper trap; then turn the nose down toward the armpit for the levator. Light pull with the free hand, no cranking - these are the ones that bark during hangs and carries." },
-    { ss: "4", ord: "4A", ex: "Dead Hang", rp: "30-60 sec", note: "Decompress the spine, pre-stretch the lats for the giant set. If the neck is sore, hang active - shoulders pulled down away from the ears." },
-    { ss: "5", ord: "5A", ex: "Wall Hip Flexor Stretch", rp: "30 sec / side", note: "Opens hip flexors before the single-leg work." },
     { ss: "6", ord: "6A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
     { ss: "7", ord: "7A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
   ],
@@ -81,7 +74,7 @@ const WARMUPS = {
 // Every day object, keyed once. PROGRAMS below decides which subset + order shows up in the nav.
 const ALL_DAYS = [
   {
-    id: "full-body-a", label: "Full Body A", focus: "Squat power, horizontal press & pull, rotation",
+    id: "full-body-upper", label: "Full Body – Upper Favor", focus: "Squat maintenance, pull-up giant set, press & arms",
     color: "#2563eb", soft: "#eef4ff",
     phases: [
       { name: "Core Priority & Lead-Hip Power", sub: "Golf tomorrow? Skip the jumps, keep the RDL and core work light", rows: [
@@ -93,17 +86,19 @@ const ALL_DAYS = [
         { ss: "",  ord: "3B", ex: "GHD Reverse Hyperextension", rp: "12-15", note: "Legs to parallel, squeeze the glutes at the top - not the low back. Slow, no momentum." }
       ]},
       { name: "Strength & Conditioning", sub: "Superset pairs, 15-20 sec rest between exercises - keep the heart rate up without adding spinal load. Golf tomorrow? First two groups only, same weight - cut sets, never load", rows: [
-        { ss: "1", ord: "1A", ex: "Goblet Box Squats (bench height)", brace: true, rp: "4 x 8", note: "Squat back to a bench or box at or just above knee height, DB or KB held at the chest. No axial bar load, sit-back pattern keeps the spine out of it. Keep the lead knee tracking over your toes." },
+        { ss: "1", ord: "1A", ex: "Goblet Box Squats (bench height)", brace: true, rp: "3 x 8", note: "Squat back to a bench or box at or just above knee height, DB or KB held at the chest. Maintenance dose today - the lower-favor day carries the leg volume. No axial bar load, sit-back pattern keeps the spine out of it." },
         { ss: "",  ord: "1B", ex: "Lateral Band Walks", rp: "15 steps / side" },
-        { ss: "2", ord: "2A", ex: "Chin-Ups", rp: "3 x AMRAP", note: "Underhand grip, your most bicep-dominant pull - placed early while strong. Band-assist for honest reps.", posture: "Head back, shoulder blades back" },
+        { ss: "2", ord: "2A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups - that's where the biceps drive. Loop a light band under a foot to push past the first few reps.", posture: "Head back, shoulder blades back" },
         { ss: "",  ord: "2B", ex: "Hanging TRX Row", rp: "3 x 10", note: "Straps are right there - pull the chest to the handles.", posture: "Head back, shoulder blades back" },
         { ss: "3", ord: "3A", ex: "Half-Kneeling Landmine Press", brace: true, link: "https://www.youtube.com/watch?v=LN1zCeoIfbE", rp: "3 x 8 / side", note: "Half-kneel forces core + anti-lean - golf-friendly overhead strength. Angled path, not strict vertical. Press with the arm on the same side as your down (kneeling) knee." },
-        { ss: "",  ord: "3B", ex: "Standing Band Raises", rp: "3 x 12-15", note: "Side delts - the head that gets the least work when everything else is pressing forward. Light band, no swing, stop the moment the traps start doing it.", posture: "Shoulder blades back" }
+        { ss: "",  ord: "3B", ex: "Standing Band Raises", rp: "3 x 12-15", note: "Side delts - the head that gets the least work when everything else is pressing forward. Light band, no swing, stop the moment the traps start doing it.", posture: "Shoulder blades back" },
+        { ss: "4", ord: "4A", ex: "Feet-Elevated Push-Ups (feet on box)", brace: true, rp: "3 x 10-12", note: "Loads the upper chest and front delts." },
+        { ss: "",  ord: "4B", ex: "Overhead Tricep Extension (rope)", brace: true, rp: "3 x 12", note: "Pull then push, no wasted rest. Elbows tucked, full stretch overhead." }
       ]}
     ]
   },
   {
-    id: "full-body-b", label: "Full Body B", focus: "Hinge strength, incline press & carries",
+    id: "full-body-lower", label: "Full Body – Lower Favor", focus: "Unilateral legs, hinge power, carries & press maintenance",
     color: "#7c3aed", soft: "#f1ecfe",
     phases: [
       { name: "Core Priority & Lead-Hip Power", sub: "Golf tomorrow? Skip the jumps, keep the RDL and core work light", rows: [
@@ -117,29 +112,12 @@ const ALL_DAYS = [
       { name: "Strength & Conditioning", sub: "Superset pairs, 15-20 sec rest between exercises - keep the heart rate up without adding spinal load. Golf tomorrow? First two groups only, same weight - cut sets, never load", rows: [
         { ss: "1", ord: "1A", ex: "Offset Step-Ups", brace: true, rp: "4 x 6 / side", note: "Push through heel on the way up." },
         { ss: "",  ord: "1B", ex: "Walking Lunges", brace: true, rp: "25 yds", note: "Stay low and smooth off the step-ups. Keep the lead knee tracking over your toes." },
-        { ss: "2", ord: "2A", ex: "TRX Y-Fly OR Prone Y Raise", link: "https://www.youtube.com/watch?v=YsJ3QUfzU48", rp: "3 x 12", note: "Arms overhead in a Y, thumbs up, drive from below the shoulder blades - no shrug, neck stays long. Should burn below the shoulder blades; if it lands at the top of the shoulders, ease off until it doesn't.", posture: "Shoulder blades back" },
-        { ss: "",  ord: "2B", ex: "Alternating Incline Curl-to-Press", brace: true, rp: "3 x 8 / side", note: "One arm at a time: curl from a full stretch, keep it moving into an angled incline press. Lower the same path, then switch. Press quality is the point, so keep the load honest." },
-        { ss: "3", ord: "3A", ex: "Farmer's Carry", brace: true, rp: "45s / 3 x 30 yds", note: "Set them down the moment posture changes, even at 20 yds. Once the neck is quiet, add a second day or more weight - never longer trips.", posture: "Head back, shoulder blades back" }
-      ]}
-    ]
-  },
-  {
-    id: "full-body-c", label: "Full Body C", focus: "Unilateral legs, pull-up giant set & conditioning",
-    color: "#059669", soft: "#dff5ec",
-    phases: [
-      { name: "Core Priority & Lead-Hip Power", rows: [
-        { ss: "1", ord: "1A", ex: "Med Ball Slams", link: "https://www.youtube.com/watch?v=EsAhU1jHpiQ", rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep - heart rate up before you touch a weight." },
-        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", rp: "2 x 5", note: "Push hard enough to leave the floor - land soft into the next rep." },
-        { ss: "2", ord: "2A", ex: "Half-Kneeling Cable Chop (High-to-Low)", brace: true, link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect." },
-        { ss: "",  ord: "2B", ex: "TRX Fallout OR GHD Sit-Ups", link: "https://www.youtube.com/watch?v=3X8UHOVMXuQ", rp: "8-10", note: "Straps in hand, arms out in front, lean forward and let the arms travel overhead - same anti-extension job as an ab wheel. Squeeze the glutes and tuck the pelvis first; the moment the low back arches you've gone too far." }
-      ]},
-      { name: "Strength & Conditioning", sub: "Superset pairs, 15-20 sec rest between exercises - keep the heart rate up without adding spinal load", rows: [
-        { ss: "1", ord: "1A", ex: "Single-Leg Press (Machine)", rp: "3 x 10-12 / side", note: "Press through the toes - quad focus. Seated and supported, no spinal loading." },
-        { ss: "",  ord: "1B", ex: "Calf Raises OR Lateral Band Walks", rp: "15 reps / 15 steps" },
-        { ss: "2", ord: "2A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups - that's where the biceps drive. Loop a light band under a foot to push past the first few reps.", posture: "Head back, shoulder blades back" },
-        { ss: "",  ord: "2B", ex: "Overhead Tricep Extension (rope)", brace: true, rp: "3 x 12", note: "Pull then push, no wasted rest. Elbows tucked, full stretch overhead." },
-        { ss: "3", ord: "3A", ex: "Feet-Elevated Push-Ups (feet on box)", brace: true, rp: "3 x 10-12", note: "Loads the upper chest and front delts." },
-        { ss: "",  ord: "3B", ex: "Heavy Sled Push OR Weighted Step-Ups (fast tempo)", brace: true, rp: "20 yds", note: "Conditioning finisher - load it up and grind, forward only. Swap to step-ups if the sled's taken." }
+        { ss: "2", ord: "2A", ex: "Single-Leg Press (Machine)", rp: "3 x 10-12 / side", note: "Press through the toes - quad focus. Seated and supported, no spinal loading." },
+        { ss: "",  ord: "2B", ex: "Calf Raises OR Lateral Band Walks", rp: "15 reps / 15 steps" },
+        { ss: "3", ord: "3A", ex: "TRX Y-Fly OR Prone Y Raise", link: "https://www.youtube.com/watch?v=YsJ3QUfzU48", rp: "3 x 12", note: "Arms overhead in a Y, thumbs up, drive from below the shoulder blades - no shrug, neck stays long. Maintenance dose today - the upper-favor day carries the pressing/pulling volume.", posture: "Shoulder blades back" },
+        { ss: "",  ord: "3B", ex: "Alternating Incline Curl-to-Press", brace: true, rp: "3 x 8 / side", note: "One arm at a time: curl from a full stretch, keep it moving into an angled incline press. Lower the same path, then switch." },
+        { ss: "4", ord: "4A", ex: "Farmer's Carry", brace: true, rp: "45s / 3 x 30 yds", note: "Set them down the moment posture changes, even at 20 yds. Once the neck is quiet, add a second day or more weight - never longer trips.", posture: "Head back, shoulder blades back" },
+        { ss: "",  ord: "4B", ex: "Heavy Sled Push OR Weighted Step-Ups (fast tempo)", brace: true, rp: "20 yds", note: "Conditioning finisher - load it up and grind, forward only. Swap to step-ups if the sled's taken." }
       ]}
     ]
   },
@@ -339,9 +317,9 @@ const ALL_DAYS = [
 // whenever you want one, so it gets its own switcher slot and its days are picked
 // by feel rather than run in order.
 const PROGRAMS = {
+  "full-body": { label: "Full Body", days: ["full-body-upper", "full-body-lower"] },
   "split": { label: "Upper / Lower", days: ["lower-a", "upper-a", "lower-b", "upper-b"] },
-  "full-body": { label: "Full Body", days: ["full-body-a", "full-body-b", "full-body-c"] },
   "vo2": { label: "VO2 Max", days: ["vo2-intervals", "vo2-bursts", "vo2-circuit"] },
   "golf": { label: "Golf", days: ["pre-golf"] }
 };
-const DEFAULT_PROGRAM = "split";
+const DEFAULT_PROGRAM = "full-body";
