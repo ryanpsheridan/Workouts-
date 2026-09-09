@@ -117,7 +117,8 @@ const ALL_DAYS = [
         { ss: "3", ord: "3A", ex: "TRX Y-Fly OR Prone Y Raise", link: "https://www.youtube.com/watch?v=YsJ3QUfzU48", rp: "3 x 12", note: "Arms overhead in a Y, thumbs up, drive from below the shoulder blades - no shrug, neck stays long. Maintenance dose today - the upper-favor day carries the pressing/pulling volume.", posture: "Shoulder blades back" },
         { ss: "",  ord: "3B", ex: "Alternating Incline Curl-to-Press", brace: true, rp: "3 x 8 / side", note: "One arm at a time: curl from a full stretch, keep it moving into an angled incline press. Lower the same path, then switch." },
         { ss: "4", ord: "4A", ex: "Farmer's Carry", brace: true, rp: "45s / 3 x 30 yds", note: "Set them down the moment posture changes, even at 20 yds. Once the neck is quiet, add a second day or more weight - never longer trips.", posture: "Head back, shoulder blades back" },
-        { ss: "",  ord: "4B", ex: "Heavy Sled Push OR Weighted Step-Ups (fast tempo)", brace: true, rp: "20 yds", note: "Conditioning finisher - load it up and grind, forward only. Swap to step-ups if the sled's taken." }
+        { ss: "",  ord: "4B", ex: "Heavy Sled Push OR Weighted Step-Ups (fast tempo)", brace: true, rp: "20 yds", note: "Conditioning finisher - load it up and grind, forward only. Swap to step-ups if the sled's taken." },
+        { ss: "5", ord: "5A", ex: "Glute Drive (Machine)", rp: "3 x 12-15", note: "Feet planted, drive through the heels and squeeze the glutes hard at the top - stop the rep there, don't hyperextend the low back." }
       ]}
     ]
   },
