@@ -14,7 +14,7 @@ const WARMUPS = {
     { ss: "1", ord: "1A", ex: "Single-Leg Glute Bridge (2 sec hold)", rp: "10 / side", note: "One foot down forces each side to work full before the session's hinging." },
     { ss: "2", ord: "2A", ex: "90/90 Lead Hip Internal Rotation Lift-Off", rp: "6 / side", note: "90/90 seated position, lift the lead-side shin off the floor and hold. Builds internal rotation strength for the impact position before you hinge and press." },
     { ss: "3", ord: "3A", ex: "Wide-Legged Standing Forward Fold", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "60 sec/day", note: "Feet wide, hands clasped behind the back, fold forward - releases tight hamstrings before the step-ups and RDLs." },
-    { ss: "4", ord: "4A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the chest and upper back before pressing." },
+    { ss: "4", ord: "4A", ex: "Bretzles", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the chest and upper back before pressing." },
     { ss: "5", ord: "5A", ex: "Reverse Tabletop Hip Lifts", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "30 reps", note: "Reverse plank pulses - lift the hips up and down. Strengthens the core and relaxes the lower back before pressing." },
     { ss: "6", ord: "6A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
     { ss: "7", ord: "7A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
@@ -36,7 +36,7 @@ const WARMUPS = {
     { ss: "6", ord: "6A", ex: "Child's Pose (Hands Clasped Behind Head)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "hold daily", note: "Kneeling forward fold, elbows pointing down, opening the upper back. Opens the thoracic spine and corrects rounded shoulders." }
   ],
   "lower-b": [ // prior: Upper A (press day) -> chest, front delts, triceps, traps
-    { ss: "1", ord: "1A", ex: "Open Books", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the chest/upper back tight from yesterday's presses." },
+    { ss: "1", ord: "1A", ex: "Bretzles", link: "https://www.youtube.com/watch?v=rDviWORCWEw", rp: "8 / side", note: "Opens the chest/upper back tight from yesterday's presses." },
     { ss: "2", ord: "2A", ex: "Hip Internal Rotation Stretch", rp: "30 sec / side", note: "Rotate the shin inward, sink into the back of the hip - the range golf hammers. Right side is the restricted one: run it 2:1, two holds right for every one left." },
     { ss: "3", ord: "3A", ex: "Cossack Squats", link: "https://www.youtube.com/watch?v=j-595dZdDkA", rp: "6 / side", note: "Slow and controlled - lateral hip and ankle mobility." },
     { ss: "4", ord: "4A", ex: "Wide-Legged Standing Forward Fold", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "60 sec/day", note: "Feet wide, hands clasped behind the back, fold forward - releases tight hamstrings before the step-ups and RDLs." },
