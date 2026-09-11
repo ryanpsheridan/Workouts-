@@ -86,7 +86,7 @@ const ALL_DAYS = [
         { ss: "",  ord: "3B", ex: "GHD Reverse Hyperextension", rp: "12-15", note: "Legs to parallel, squeeze the glutes at the top - not the low back. Slow, no momentum." }
       ]},
       { name: "Strength & Conditioning", sub: "Superset pairs, 15-20 sec rest between exercises - keep the heart rate up without adding spinal load. Golf tomorrow? First two groups only, same weight - cut sets, never load", rows: [
-        { ss: "1", ord: "1A", ex: "Goblet Box Squats (bench height)", brace: true, rp: "3 x 8", note: "Squat back to a bench or box at or just above knee height, DB or KB held at the chest. Maintenance dose today - the lower-favor day carries the leg volume. No axial bar load, sit-back pattern keeps the spine out of it." },
+        { ss: "1", ord: "1A", ex: "Kettlebell Deadlift", link: "https://www.youtube.com/watch?v=MJPGkNqAXzg", brace: true, rp: "3 x 8", note: "Slight knee bend, hinge back and let the bell drip straight down between the feet until it taps the floor, then stand back up. Maintenance dose today - the lower-favor day carries the leg volume. Short range, no axial bar load, keeps the spine out of it." },
         { ss: "",  ord: "1B", ex: "Lateral Band Walks", rp: "15 steps / side" },
         { ss: "2", ord: "2A", ex: "Pull-Up Giant Set", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups - that's where the biceps drive. Loop a light band under a foot to push past the first few reps.", posture: "Head back, shoulder blades back" },
         { ss: "",  ord: "2B", ex: "Hanging TRX Row", rp: "3 x 10", note: "Straps are right there - pull the chest to the handles.", posture: "Head back, shoulder blades back" },
