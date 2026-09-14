@@ -19,6 +19,16 @@ const WARMUPS = {
     { ss: "6", ord: "6A", ex: "Seated Spinal Twist (Arms Raised Overhead)", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "20 reps", note: "One leg bent in front, rotate the torso, hands clasped up high. Fixes pelvic tilt and relieves back pain." },
     { ss: "7", ord: "7A", ex: "Lying Leg Crossover (or Supine Crossover Stretch)", rp: "30 sec / side", note: "Lying on your back, arms out in a T, cross one bent knee over the body toward the floor while keeping both shoulders pinned down. Stretches the low back, glutes, and IT band." }
   ],
+  "full-body-hips": [ // deep hip-opening warm-up ahead of an evenly split upper/lower day
+    { ss: "1", ord: "1A", ex: "Toe Rockback to Deep Squat", rp: "8 reps", note: "Kneel, toes tucked, hands down. Rock back onto heels into a deep squat, then forward - stretches ankles back, low back down." },
+    { ss: "2", ord: "2A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "10 / side", note: "Internal + external hip rotation. Chest tall, hips do the work. Sit up on a block or a plate if you can't stay upright hands-free - elevating the hips beats fighting for the position. Extra reps on the tighter side." },
+    { ss: "3", ord: "3A", ex: "90/90 Lead Hip Internal Rotation Lift-Off", link: "https://www.youtube.com/watch?v=sLWSmo0uk2E", rp: "8 / side", note: "Same 90/90 position, but lift the lead-side shin off the floor and hold. Trains internal rotation strength, not just range." },
+    { ss: "4", ord: "4A", ex: "Hip Internal Rotation Stretch", rp: "30-45 sec / side", note: "Rotate the shin inward, sink into the back of the hip - the range that's tightest. Right side is the restricted one: run it 2:1, two holds right for every one left." },
+    { ss: "5", ord: "5A", ex: "Couch Stretch", rp: "30-45 sec / side", note: "Back knee down, shin up a bench behind you, drive the hips forward - opens the hip flexor and quad before anything loads them." },
+    { ss: "6", ord: "6A", ex: "Cossack Squats", link: "https://www.youtube.com/watch?v=j-595dZdDkA", rp: "8 / side", note: "Slow and controlled - lateral hip and groin mobility, the range that's easy to skip." },
+    { ss: "7", ord: "7A", ex: "Adductor Rocks", rp: "10 / side", note: "Wide kneeling stance, rock the weight side to side - opens the inner hip before the split squats and thrusts." },
+    { ss: "8", ord: "8A", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top - the last stop before the hips get loaded." }
+  ],
   "lower-a": [ // prior: Upper B (pull day) -> lats, upper back, biceps, forearms
     { ss: "1", ord: "1A", ex: "Toe Rockback to Deep Squat", rp: "8 reps", note: "Kneel, toes tucked, hands down. Rock back onto heels into a deep squat, then forward - stretches ankles back, low back down." },
     { ss: "2", ord: "2A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation. Chest tall, hips do the work. Sit up on a block or a plate if you can't stay upright hands-free - elevating the hips beats fighting for the position. Extra reps on the tighter side." },
@@ -118,6 +128,33 @@ const ALL_DAYS = [
         { ss: "",  ord: "3B", ex: "Alternating Incline Curl-to-Press", brace: true, rp: "3 x 8 / side", note: "One arm at a time: curl from a full stretch, keep it moving into an angled incline press. Lower the same path, then switch." },
         { ss: "4", ord: "4A", ex: "Farmer's Carry", brace: true, rp: "45s / 3 x 30 yds", note: "Set them down the moment posture changes, even at 20 yds. Once the neck is quiet, add a second day or more weight - never longer trips.", posture: "Head back, shoulder blades back" },
         { ss: "",  ord: "4B", ex: "Heavy Sled Push OR Weighted Step-Ups (fast tempo)", brace: true, rp: "20 yds", note: "Conditioning finisher - load it up and grind, forward only. Swap to step-ups if the sled's taken." }
+      ]}
+    ]
+  },
+  {
+    id: "full-body-hips", label: "Full Body – Hip Reset", focus: "Even upper/lower split, built around opening super tight hips",
+    color: "#be185d", soft: "#fce4ef",
+    phases: [
+      { name: "Lower Strength", sub: "Superset pairs, 15-20 sec rest between exercises", rows: [
+        { ss: "1", ord: "1A", ex: "Bulgarian Split Squat", brace: true, rp: "3 x 8 / side", note: "Rear foot up on a bench - the back leg sinks into a deep hip-flexor stretch under load, the exact range golf's finish keeps asking for." },
+        { ss: "",  ord: "1B", ex: "Copenhagen Plank", rp: "3 x 20-30 sec / side", note: "Top foot on a bench, hips lifted - adductor strength through the range the 90/90s just opened." },
+        { ss: "2", ord: "2A", ex: "Single-Leg DB RDL with Rotational Drive", brace: true, link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Hinge, then drive the standing foot into the floor and snap the hips back to standing with a slight trailing rotation. DB in the hand opposite the working leg." },
+        { ss: "",  ord: "2B", ex: "Lateral Band Walks", rp: "15 steps / side" },
+        { ss: "3", ord: "3A", ex: "Barbell Hip Thrust", brace: true, rp: "3 x 10-12", note: "Full hip extension, squeeze the glutes hard at the top - the lockout position tight hip flexors fight the most." },
+        { ss: "",  ord: "3B", ex: "Goblet Cossack Squats", link: "https://www.youtube.com/watch?v=j-595dZdDkA", rp: "3 x 8 / side", note: "Loaded lateral lunge, sit deep into the bent side and feel the opposite groin stretch. Slow down, own the bottom." }
+      ]},
+      { name: "Upper Strength", sub: "Superset pairs, 15-20 sec rest between exercises", rows: [
+        { ss: "1", ord: "1A", ex: "Half-Kneeling Landmine Press", brace: true, link: "https://www.youtube.com/watch?v=LN1zCeoIfbE", rp: "3 x 8 / side", note: "Half-kneel forces core + anti-lean, and the down-knee side gets another hip-flexor stretch while you press. Press with the arm on the same side as your down (kneeling) knee." },
+        { ss: "",  ord: "1B", ex: "Hanging TRX Row", rp: "3 x 10", note: "Straps are right there - pull the chest to the handles.", posture: "Head back, shoulder blades back" },
+        { ss: "2", ord: "2A", ex: "Feet-Elevated Push-Ups (feet on box)", brace: true, rp: "3 x 10-12", note: "Loads the upper chest and front delts." },
+        { ss: "",  ord: "2B", ex: "Standing Band Raises", rp: "3 x 12-15", note: "Side delts - the head that gets the least work when everything else is pressing forward. Light band, no swing, stop the moment the traps start doing it.", posture: "Shoulder blades back" },
+        { ss: "3", ord: "3A", ex: "Chin-Ups", rp: "3 x AMRAP", note: "Underhand grip, your most bicep-dominant pull. Band-assist for honest reps.", posture: "Head back, shoulder blades back" },
+        { ss: "",  ord: "3B", ex: "Overhead Tricep Extension (rope)", brace: true, rp: "3 x 12", note: "Pull then push, no wasted rest. Elbows tucked, full stretch overhead." }
+      ]},
+      { name: "Hip-Focused Core & Finisher", sub: "EMOM x 3 rounds - one exercise per minute, rest is whatever's left of it", rows: [
+        { ss: "1", ord: "1A", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "8 / side", note: "Press out, hold 3 sec, resist the pull. Anti-rotation core built from stable hips." },
+        { ss: "",  ord: "1B", ex: "Standing Figure-4 Stretch", rp: "20 sec / side", note: "Ankle on the opposite knee, sit back into a mini squat - opens the glute and hip external rotators between rounds without letting the heart rate drop." },
+        { ss: "",  ord: "1C", ex: "Sled Push (Forward + Backward) OR Heavy Kettlebell Swings", brace: true, rp: "40 yds", note: "The conditioning is the density here, not a separate machine. Forward drives the quads, backward is knee-friendly. Swap in KB swings if the sled's taken." }
       ]}
     ]
   },
@@ -317,7 +354,7 @@ const ALL_DAYS = [
 // whenever you want one, so it gets its own switcher slot and its days are picked
 // by feel rather than run in order.
 const PROGRAMS = {
-  "full-body": { label: "Full Body", days: ["full-body-upper", "full-body-lower"] },
+  "full-body": { label: "Full Body", days: ["full-body-upper", "full-body-lower", "full-body-hips"] },
   "split": { label: "Upper / Lower", days: ["lower-a", "upper-a", "lower-b", "upper-b"] },
   "vo2": { label: "VO2 Max", days: ["vo2-intervals", "vo2-bursts", "vo2-circuit"] },
   "golf": { label: "Golf", days: ["pre-golf"] }
