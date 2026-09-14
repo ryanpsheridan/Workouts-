@@ -684,7 +684,7 @@ function stickyNavOffset() {
   const nav = document.getElementById("day-nav");
   if (!nav) return 72;
   const inset = parseFloat(getComputedStyle(nav).top) || 0;
-  return nav.getBoundingClientRect().height + inset + 12;
+  return nav.getBoundingClientRect().height + inset + 12 + 32;
 }
 
 function setCk(ck, on) {
