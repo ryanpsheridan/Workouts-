@@ -136,9 +136,9 @@ const ALL_DAYS = [
     color: "#be185d", soft: "#fce4ef",
     phases: [
       { name: "Lower Strength", sub: "Superset pairs, 15-20 sec rest between exercises", rows: [
-        { ss: "1", ord: "1A", ex: "Bulgarian Split Squat", link: "https://www.youtube.com/watch?v=A7-JNSgtsE4", brace: true, rp: "3 x 8 / side", note: "Rear foot up on a bench - the back leg sinks into a deep hip-flexor stretch under load, the exact range golf's finish keeps asking for." },
-        { ss: "",  ord: "1B", ex: "Copenhagen Plank", link: "https://www.youtube.com/watch?v=5cTh21BfXzI", rp: "3 x 20-30 sec / side", note: "Top foot on a bench, hips lifted - adductor strength through the range the 90/90s just opened." },
-        { ss: "2", ord: "2A", ex: "Single-Leg DB RDL with Rotational Drive", brace: true, link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Hinge, then drive the standing foot into the floor and snap the hips back to standing with a slight trailing rotation. DB in the hand opposite the working leg." },
+        { ss: "1", ord: "1A", ex: "Bulgarian Split Squat", link: "https://www.youtube.com/watch?v=A7-JNSgtsE4", brace: true, rp: "3 x 8 / side", note: "Rear foot up on a box - the back leg sinks into a deep hip-flexor stretch under load, the exact range golf's finish keeps asking for." },
+        { ss: "",  ord: "1B", ex: "Single-Leg DB RDL with Rotational Drive", brace: true, link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", rp: "3 x 8 / side", note: "Hinge, then drive the standing foot into the floor and snap the hips back to standing with a slight trailing rotation. DB in the hand opposite the working leg." },
+        { ss: "2", ord: "2A", ex: "Copenhagen Plank", link: "https://www.youtube.com/watch?v=5cTh21BfXzI", rp: "3 x 20-30 sec / side", note: "Top foot on a bench, hips lifted - adductor strength through the range the 90/90s just opened." },
         { ss: "",  ord: "2B", ex: "Lateral Band Walks", link: "https://www.youtube.com/watch?v=A12uKYg-Kuo", rp: "15 steps / side" },
         { ss: "3", ord: "3A", ex: "Barbell Hip Thrust", link: "https://www.youtube.com/watch?v=tvIHDvTdYUc", brace: true, rp: "3 x 10-12", note: "Full hip extension, squeeze the glutes hard at the top - the lockout position tight hip flexors fight the most." },
         { ss: "",  ord: "3B", ex: "Goblet Cossack Squats", link: "https://www.youtube.com/watch?v=j-595dZdDkA", rp: "3 x 8 / side", note: "Loaded lateral lunge, sit deep into the bent side and feel the opposite groin stretch. Slow down, own the bottom." }
