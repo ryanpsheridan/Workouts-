@@ -24,9 +24,9 @@ const WARMUPS = {
     { ss: "2", ord: "2A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "10 / side", note: "Internal + external hip rotation. Chest tall, hips do the work. Sit up on a block or a plate if you can't stay upright hands-free - elevating the hips beats fighting for the position. Extra reps on the tighter side." },
     { ss: "3", ord: "3A", ex: "90/90 Lead Hip Internal Rotation Lift-Off", link: "https://www.youtube.com/watch?v=sLWSmo0uk2E", rp: "8 / side", note: "Same 90/90 position, but lift the lead-side shin off the floor and hold. Trains internal rotation strength, not just range." },
     { ss: "4", ord: "4A", ex: "Hip Internal Rotation Stretch", rp: "30-45 sec / side", note: "Rotate the shin inward, sink into the back of the hip - the range that's tightest. Right side is the restricted one: run it 2:1, two holds right for every one left." },
-    { ss: "5", ord: "5A", ex: "Couch Stretch", rp: "30-45 sec / side", note: "Back knee down, shin up a bench behind you, drive the hips forward - opens the hip flexor and quad before anything loads them." },
+    { ss: "5", ord: "5A", ex: "Couch Stretch", link: "https://www.youtube.com/watch?v=-rsIS-wl-ig", rp: "30-45 sec / side", note: "Back knee down, shin up a bench behind you, drive the hips forward - opens the hip flexor and quad before anything loads them." },
     { ss: "6", ord: "6A", ex: "Cossack Squats", link: "https://www.youtube.com/watch?v=j-595dZdDkA", rp: "8 / side", note: "Slow and controlled - lateral hip and groin mobility, the range that's easy to skip." },
-    { ss: "7", ord: "7A", ex: "Adductor Rocks", rp: "10 / side", note: "Wide kneeling stance, rock the weight side to side - opens the inner hip before the split squats and thrusts." },
+    { ss: "7", ord: "7A", ex: "Adductor Rocks", link: "https://www.youtube.com/watch?v=FkxBaLFrlSE", rp: "10 / side", note: "Wide kneeling stance, rock the weight side to side - opens the inner hip before the split squats and thrusts." },
     { ss: "8", ord: "8A", ex: "World's Greatest Stretch", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top - the last stop before the hips get loaded." }
   ],
   "lower-a": [ // prior: Upper B (pull day) -> lats, upper back, biceps, forearms
@@ -265,7 +265,7 @@ const ALL_DAYS = [
       ]},
       { name: "Hamstrings", sub: "Tight from golf", rows: [
         { ss: "1", ord: "1A", ex: "Foam Roll Hamstrings", rp: "60 sec / leg", note: "Slow rolls to release what the round will keep asking from these." },
-        { ss: "2", ord: "2A", ex: "Couch Stretch", rp: "30-45 sec / side", note: "Back knee down, shin up a bench behind you, drive the hips forward - opens the hip flexor and quad before you play." },
+        { ss: "2", ord: "2A", ex: "Couch Stretch", link: "https://www.youtube.com/watch?v=-rsIS-wl-ig", rp: "30-45 sec / side", note: "Back knee down, shin up a bench behind you, drive the hips forward - opens the hip flexor and quad before you play." },
         { ss: "3", ord: "3A", ex: "Leg Swings (Front-to-Back)", rp: "10 / leg", note: "Dynamic range to get blood moving before the static holds settle in." },
         { ss: "4", ord: "4A", ex: "Banded Hamstring Pulls OR Light RDL (bar only)", rp: "2 x 10", note: "Slow and controlled - stop well short of anything pulling on the back." }
       ]},
