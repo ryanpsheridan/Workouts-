@@ -36,19 +36,15 @@ const WARMUPS = {
 // `type` drives the colour family and the rotation on the home screen.
 const ALL_DAYS = [
   {
-    id: "lower-a", label: "Lower A", focus: "Power, rotation & the GHD core block",
+    id: "lower-a", label: "Lower A", focus: "Quads, rotation & the GHD core block",
     type: "lower", color: "#C8F25A",
     phases: [
-      { name: "Power & prime", sub: "Golf tomorrow? Skip this block - the landings cost the most", rows: [
-        { ss: "1", ord: "1A", ex: "Box Jumps", link: "https://www.youtube.com/watch?v=YLPQsdRDmB0", rp: "3 x 4", note: "Done first, while fresh. Step down every rep, land soft and quiet - control over height." },
-        { ss: "",  ord: "1B", ex: "Med Ball Rotational Slam OR Cable Rotational Chop", link: "https://www.youtube.com/watch?v=W_4eq6r00zw", rp: "3 x 5 / side", note: "Load the trail hip, fire through with full rotation. Explosive - spikes the heart rate early." }
-      ]},
-      { name: "Strength", sub: "Golf tomorrow? First two groups only, same weight - cut sets, never load", rows: [
+      { name: "Strength", sub: "Keep moving: no rest inside a superset, about 60 sec between rounds - the pace is the conditioning. Golf tomorrow? First two groups only, same weight", rows: [
         { ss: "1", ord: "1A", ex: "Smith Machine Lunges OR Hack Squat", link: "https://www.youtube.com/watch?v=73CD40T-III", brace: true, rp: "6, 4, 2, 1", note: "Heavy quad strength. Keep the lead knee tracking over your toes, don't let it cave inward." },
         { ss: "",  ord: "1B", ex: "Lateral Band Walks", link: "https://www.youtube.com/watch?v=A12uKYg-Kuo", rp: "15 steps / side" },
         { ss: "2", ord: "2A", ex: "Twisting Lunges with 45 lb plate", brace: true, link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", rp: "4 x 8 / side", note: "Rotate the plate over the front leg - rotation under load. Keep the lead knee tracking over your toes." },
         { ss: "",  ord: "2B", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "30-40 sec / side", note: "Same anti-lean core the carry was here for, with nothing hanging off the shoulders. Stack the hips, don't let them sag back. Carries now live on Upper A only." },
-        { ss: "3", ord: "3A", ex: "Half-Kneeling Cable Chop (High-to-Low)", brace: true, link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect. Single-Leg RDLs used to sit here; they run on Lower B only now, so the deepest hamstring stretch of the week happens once instead of twice. Reverse hypers in the core block still cover the posterior chain today." }
+        { ss: "",  ord: "2C", ex: "Half-Kneeling Cable Chop (High-to-Low)", brace: true, link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect. Single-Leg RDLs used to sit here; they run on Lower B only now, so the deepest hamstring stretch of the week happens once instead of twice. Reverse hypers in the core block still cover the posterior chain today." }
       ]},
       { name: "Core & finisher", sub: "EMOM x 3 rounds - one exercise per minute, rest is whatever's left of it", rows: [
         { ss: "1", ord: "1A", ex: "GHD Sit-Ups", link: "https://www.youtube.com/watch?v=pMS2dU0FuPk", rp: "12-15", note: "Same machine as the reverse hypers - flow straight between the two." },
@@ -61,11 +57,7 @@ const ALL_DAYS = [
     id: "upper-a", label: "Upper A", focus: "Press, carries & arms in motion",
     type: "upper", color: "#7CC4FF",
     phases: [
-      { name: "Power & prime", rows: [
-        { ss: "1", ord: "1A", ex: "Med Ball Perpendicular Throw", link: "https://www.youtube.com/watch?v=D3puZb7vzjQ", rp: "3 x 6 / side", note: "Stand sideways to the wall, load the trail hip, throw through the ball - feet, hips, torso, arms." },
-        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", link: "https://www.youtube.com/watch?v=Tkq6lxpUmRE", rp: "2 x 5", note: "Leave the floor, land soft - upper-body power while fresh." }
-      ]},
-      { name: "Strength", rows: [
+      { name: "Strength", sub: "Keep moving: no rest inside a superset, about 60 sec between rounds - the pace is the conditioning.", rows: [
         { ss: "1", ord: "1A", ex: "Chin-Ups", link: "https://www.youtube.com/watch?v=53kV7Ou7oZo", rp: "3 x AMRAP", note: "Underhand grip, your most bicep-dominant pull - placed early while strong. Band-assist for honest reps.", posture: "Head back, shoulder blades back" },
         { ss: "",  ord: "1B", ex: "Alternating Incline Curl-to-Press", link: "https://www.youtube.com/shorts/R7JUCbdlHew", brace: true, rp: "3 x 8 / side", note: "One arm at a time: curl from a full stretch, keep it moving into a straight overhead press. Lower the same path, then switch. Up here it gets your fresh shoulders instead of leftovers - press quality is the point, so keep the load honest." },
         { ss: "2", ord: "2A", ex: "Half-Kneeling Landmine Press", brace: true, link: "https://www.youtube.com/watch?v=LN1zCeoIfbE", rp: "3 x 8 / side", note: "Half-kneel forces core + anti-lean - golf-friendly overhead strength. Press with the arm on the same side as your down (kneeling) knee." },
@@ -82,14 +74,10 @@ const ALL_DAYS = [
     ]
   },
   {
-    id: "lower-b", label: "Lower B", focus: "Unilateral, sprint & the heavy sled",
+    id: "lower-b", label: "Lower B", focus: "Single-leg strength & the heavy sled",
     type: "lower", color: "#C8F25A",
     phases: [
-      { name: "Power & prime", sub: "Golf tomorrow? Skip this block - the landings cost the most", rows: [
-        { ss: "1", ord: "1A", ex: "Broad Jumps", link: "https://www.youtube.com/watch?v=GR5JVcHHS_Q", rp: "3 x 4", note: "Fresh legs first. Stick and hold each landing - control beats distance." },
-        { ss: "",  ord: "1B", ex: "Skater Bounds", link: "https://www.youtube.com/watch?v=G5tsTOqrkec", rp: "3 x 5 / side", note: "Lateral bound, stick the landing on one leg - balance and athleticism." }
-      ]},
-      { name: "Strength", sub: "Golf tomorrow? First two groups only, same weight - cut sets, never load", rows: [
+      { name: "Strength", sub: "Keep moving: no rest inside a superset, about 60 sec between rounds - the pace is the conditioning. Golf tomorrow? First two groups only, same weight", rows: [
         { ss: "1", ord: "1A", ex: "Offset Step-Ups", link: "https://www.youtube.com/watch?v=FvxWcvNyUuI", brace: true, rp: "4 x 6 / side", note: "Push through heel on the way up." },
         { ss: "",  ord: "1B", ex: "Walking Lunges", link: "https://www.youtube.com/watch?v=2MbSPOB24XQ", brace: true, rp: "25 yds", note: "Stay low and smooth off the step-ups. Keep the lead knee tracking over your toes." },
         { ss: "2", ord: "2A", ex: "Single-Leg Press (Machine)", link: "https://www.youtube.com/watch?v=ZYDTJaAM-gE", rp: "3 x 10-12 / side", note: "Press through the toes - quad focus." },
@@ -109,11 +97,7 @@ const ALL_DAYS = [
     id: "upper-b", label: "Upper B", focus: "Pull-biased, TRX & the pull-up giant set",
     type: "upper", color: "#7CC4FF",
     phases: [
-      { name: "Power & prime", rows: [
-        { ss: "1", ord: "1A", ex: "Med Ball Slams", link: "https://www.youtube.com/watch?v=EsAhU1jHpiQ", rp: "3 x 6", note: "Explosive overhead slam, full effort down, reset each rep - heart rate up before you touch a weight." },
-        { ss: "",  ord: "1B", ex: "Explosive / Plyo Push-Ups", link: "https://www.youtube.com/watch?v=Tkq6lxpUmRE", rp: "2 x 5", note: "Push hard enough to leave the floor - land soft into the next rep." }
-      ]},
-      { name: "Strength", rows: [
+      { name: "Strength", sub: "Keep moving: no rest inside a superset, about 60 sec between rounds - the pace is the conditioning.", rows: [
         { ss: "1", ord: "1A", ex: "Pull-Up Giant Set", link: "https://www.youtube.com/watch?v=UA5J55gATzo", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups - that's where the biceps drive. Loop a light band under a foot to push past the first few reps.", posture: "Head back, shoulder blades back" },
         { ss: "",  ord: "1B", ex: "Overhead Tricep Extension (rope)", link: "https://www.youtube.com/watch?v=SLYwsE_W1eM", brace: true, rp: "3 x 12", note: "Pull then push, no wasted rest. Elbows tucked, full stretch overhead." },
         { ss: "",  ord: "1C", ex: "Hanging Leg or Knee Raise", link: "https://www.youtube.com/watch?v=Pr1ieGZ5atk", rp: "3 x 10-12", note: "Same bar you're already hanging from - straight legs or bent knees, whichever you can control. Slow on the way down, no swing." },
