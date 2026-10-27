@@ -1,32 +1,33 @@
-// Warm-ups are five moves each; every day has its own so nothing repeats.
+// Warm-ups follow the rotation: the day after a lower session the warm-up opens up
+// the lower body (and just primes the upper), and the other way round. Five moves each.
 const WARMUPS = {
   "lower-a": [
-    { ss: "1",ord: "1A",ex: "Knee-to-Wall Ankle Rocks",link: "https://www.youtube.com/results?search_query=Knee-to-Wall+Ankle+Rocks",rp: "10 / side",note: "Foot flat, drive the knee over the toes to the wall without the heel lifting. Opens the ankles before anything heavy." },
-    { ss: "2",ord: "2A",ex: "Frog Stretch Rocks",link: "https://www.youtube.com/results?search_query=Frog+Stretch+Rocks",rp: "10 reps",note: "Knees wide, forearms down, rock the hips back toward the heels. Opens the groin and hips." },
-    { ss: "3",ord: "3A",ex: "Lateral Lunge Reach",link: "https://www.youtube.com/results?search_query=Lateral+Lunge+Reach",rp: "6 / side",note: "Sit back into one hip, other leg straight, reach across. Hips and adductors, no load." },
-    { ss: "4",ord: "4A",ex: "Glute Bridge March",link: "https://www.youtube.com/results?search_query=Glute+Bridge+March",rp: "10 / side",note: "Hips high and level, march the knees without letting the pelvis drop. Wakes the glutes up." },
-    { ss: "5",ord: "5A",ex: "World's Greatest Stretch",link: "https://www.youtube.com/watch?v=-CiWQ2IvY34",rp: "5 / side",note: "Full hip opener with a thoracic reach at the top." }
+    { ss: "1", ord: "1A", ex: "Cat-Cow", link: "https://www.youtube.com/results?search_query=Cat-Cow", rp: "10 reps", note: "Slow, full range. Gets the spine moving again after yesterday's pulling." },
+    { ss: "2", ord: "2A", ex: "Child's Pose Lat Reach", link: "https://www.youtube.com/results?search_query=Child's+Pose+Lat+Reach", rp: "30 sec / side", note: "Knees wide, walk both hands to one side and sink the hips back. Opens the lats yesterday's pull-ups tightened." },
+    { ss: "3", ord: "3A", ex: "Thread the Needle", link: "https://www.youtube.com/results?search_query=Thread+the+Needle", rp: "8 / side", note: "From all fours, slide one arm under the body and rotate, then reach to the ceiling. Mid-back rotation." },
+    { ss: "4", ord: "4A", ex: "Wrist & Forearm Flexor Stretch", link: "https://www.youtube.com/results?search_query=Wrist+%26+Forearm+Flexor+Stretch", rp: "30 sec / side", note: "Arm out, palm up, gently pull the fingers back. Releases the forearms and biceps tendon after the curls and hangs." },
+    { ss: "5", ord: "5A", ex: "Knee-to-Wall Ankle Rocks", link: "https://www.youtube.com/results?search_query=Knee-to-Wall+Ankle+Rocks", rp: "10 / side", note: "Foot flat, drive the knee over the toes to the wall without the heel lifting. The one lower-body prep before squatting." }
   ],
   "upper-a": [
-    { ss: "1",ord: "1A",ex: "Cat-Cow",link: "https://www.youtube.com/results?search_query=Cat-Cow",rp: "10 reps",note: "Slow, full range - the spine moves in both directions before you hang and pull." },
-    { ss: "2",ord: "2A",ex: "Thread the Needle",link: "https://www.youtube.com/results?search_query=Thread+the+Needle",rp: "8 / side",note: "From all fours, slide one arm under the body and rotate, then reach to the ceiling. Mid-back rotation." },
-    { ss: "3",ord: "3A",ex: "Scap Push-Ups",link: "https://www.youtube.com/results?search_query=Scap+Push-Ups",rp: "12 reps",note: "Arms locked, only the shoulder blades move. Primes the shoulders for rowing and pressing.",posture: "Shoulder blades back" },
-    { ss: "4",ord: "4A",ex: "Prone Y-T-W Raises",link: "https://www.youtube.com/results?search_query=Prone+Y-T-W+Raises",rp: "6 each",note: "Face down, light or no weight, thumbs up. Y, then T, then W - lift from below the shoulder blades.",posture: "Head back, shoulder blades back" },
-    { ss: "5",ord: "5A",ex: "Band Shoulder Dislocates",link: "https://www.youtube.com/results?search_query=Band+Shoulder+Dislocates",rp: "10 reps",note: "Wide grip, arms straight, band over the head and behind. Narrow the grip as it gets easy." }
+    { ss: "1", ord: "1A", ex: "Wall Hip Flexor Stretch", link: "https://www.youtube.com/results?search_query=Wall+Hip+Flexor+Stretch", rp: "30 sec / side", note: "Back knee down against the wall, squeeze the glute and drive the hips forward. Opens the hip flexors and quads from the lunges and step-ups." },
+    { ss: "2", ord: "2A", ex: "Frog Stretch Rocks", link: "https://www.youtube.com/results?search_query=Frog+Stretch+Rocks", rp: "10 reps", note: "Knees wide, forearms down, rock the hips back toward the heels. Opens the groin and hips." },
+    { ss: "3", ord: "3A", ex: "Supine Figure-4 Stretch", link: "https://www.youtube.com/results?search_query=Supine+Figure-4+Stretch", rp: "30 sec / side", note: "On your back, ankle over the opposite knee, pull the thigh in. Glutes and outer hip." },
+    { ss: "4", ord: "4A", ex: "Foam Roll Quads", link: "https://www.youtube.com/results?search_query=Foam+Roll+Quads", rp: "60 sec / leg", note: "Face down, slow rolls from hip to just above the knee, pause on anything tender." },
+    { ss: "5", ord: "5A", ex: "Scap Push-Ups", link: "https://www.youtube.com/results?search_query=Scap+Push-Ups", rp: "12 reps", note: "Arms locked, only the shoulder blades move. The one upper-body prep before pulling.", posture: "Shoulder blades back" }
   ],
   "lower-b": [
-    { ss: "1",ord: "1A",ex: "Hip CARs",link: "https://www.youtube.com/results?search_query=Hip+CARs",rp: "5 / side",note: "Slow, big circles with the knee, rest of the body still. Find the edge of the hip range and sit there." },
-    { ss: "2",ord: "2A",ex: "Deep Squat Pry",link: "https://www.youtube.com/results?search_query=Deep+Squat+Pry",rp: "45 sec",note: "Sink into a deep squat, elbows push the knees out, rock gently side to side." },
-    { ss: "3",ord: "3A",ex: "Fire Hydrants",link: "https://www.youtube.com/results?search_query=Fire+Hydrants",rp: "10 / side",note: "On all fours, lift the knee out to the side, hips square. Glute med before the single-leg work." },
-    { ss: "4",ord: "4A",ex: "Walking Lunges (bodyweight)",link: "https://www.youtube.com/watch?v=2MbSPOB24XQ",rp: "10 / side",note: "No weight, just groove the pattern and warm the hips before the loaded lunges." },
-    { ss: "5",ord: "5A",ex: "Supine Figure-4 Stretch",link: "https://www.youtube.com/results?search_query=Supine+Figure-4+Stretch",rp: "30 sec / side",note: "On your back, ankle over the opposite knee, pull the thigh in. Glutes and outer hip." }
+    { ss: "1", ord: "1A", ex: "Open Books", link: "https://www.youtube.com/results?search_query=Open+Books", rp: "8 / side", note: "On your side, knees stacked, open the top arm and chest to the ceiling and follow it with your eyes." },
+    { ss: "2", ord: "2A", ex: "Doorway Pec Stretch", link: "https://www.youtube.com/results?search_query=Doorway+Pec+Stretch", rp: "30 sec / side", note: "Forearm on the frame, step through. Opens the chest after the pressing." },
+    { ss: "3", ord: "3A", ex: "Overhead Triceps Stretch", link: "https://www.youtube.com/results?search_query=Overhead+Triceps+Stretch", rp: "30 sec / side", note: "Elbow up, hand down the back, other hand gently pulls the elbow. Triceps and lats." },
+    { ss: "4", ord: "4A", ex: "Band Shoulder Dislocates", link: "https://www.youtube.com/results?search_query=Band+Shoulder+Dislocates", rp: "10 reps", note: "Wide grip, arms straight, band over the head and behind. Narrow the grip as it gets easy." },
+    { ss: "5", ord: "5A", ex: "Walking Lunges (bodyweight)", link: "https://www.youtube.com/watch?v=2MbSPOB24XQ", rp: "10 / side", note: "No weight, just groove the pattern and warm the hips before the loaded lunges." }
   ],
   "upper-b": [
-    { ss: "1",ord: "1A",ex: "Open Books",link: "https://www.youtube.com/results?search_query=Open+Books",rp: "8 / side",note: "On your side, knees stacked, open the top arm and chest to the ceiling and follow it with your eyes." },
-    { ss: "2",ord: "2A",ex: "Doorway Pec Stretch",link: "https://www.youtube.com/results?search_query=Doorway+Pec+Stretch",rp: "30 sec / side",note: "Forearm on the frame, step through. Opens the chest that the desk and the pressing close." },
-    { ss: "3",ord: "3A",ex: "Band Face Pulls",link: "https://www.youtube.com/results?search_query=Band+Face+Pulls",rp: "12 reps",note: "Pull to the face with the elbows high, rear delts and mid-back. Pause at the end.",posture: "Head back, shoulder blades back" },
-    { ss: "4",ord: "4A",ex: "Dead Bug",link: "https://www.youtube.com/results?search_query=Dead+Bug",rp: "8 / side",note: "Low back pressed into the floor, opposite arm and leg lower slowly. Core on before the hanging work." },
-    { ss: "5",ord: "5A",ex: "Bear Crawl Shoulder Taps",link: "https://www.youtube.com/results?search_query=Bear+Crawl+Shoulder+Taps",rp: "20 taps",note: "Hands under shoulders, knees an inch off the floor, hips don't rock. Shoulders and trunk together." }
+    { ss: "1", ord: "1A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal and external hip rotation. Chest tall, sit up on a block or a plate if you can't stay upright." },
+    { ss: "2", ord: "2A", ex: "Wide-Legged Standing Forward Fold", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "45 sec", note: "Feet wide, hands clasped behind the back, fold forward. Releases hamstrings and calves from yesterday." },
+    { ss: "3", ord: "3A", ex: "Foam Roll Glutes & Quads", link: "https://www.youtube.com/results?search_query=Foam+Roll+Glutes+%26+Quads", rp: "60 sec", note: "Slow rolls through the glutes, then the quads. Pause on anything tight." },
+    { ss: "4", ord: "4A", ex: "Lying Leg Crossover (or Supine Crossover Stretch)", link: "https://www.youtube.com/watch?v=1pefHMI9R6I", rp: "30 sec / side", note: "Lying on your back, arms out in a T, cross one bent knee over the body toward the floor while keeping both shoulders pinned down. Stretches the low back, glutes, and IT band." },
+    { ss: "5", ord: "5A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" }
   ]
 };
 
