@@ -203,7 +203,15 @@
     position: relative; width: 34px; height: 34px; border-radius: 50%; margin-top: 1px;
     display: grid; place-items: center; font-size: 12.5px; font-weight: 600; color: var(--ink-2);
     background: var(--s2); box-shadow: inset 0 0 0 1px var(--line-2);
+    transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
   }
+  .ex-idx:active { transform: scale(0.88); }
+  .ex-idx svg { display: none; width: 16px; height: 16px; }
+  .ex.done .ex-idx { background: var(--a); color: var(--on-a); box-shadow: none; animation: pop 0.26s var(--ease); }
+  .ex.done .ex-idx span { display: none; }
+  .ex.done .ex-idx svg { display: block; }
+  .ex.done .ex-main { opacity: 0.4; }
+  @keyframes pop { 50% { transform: scale(1.14); } }
   .ex-main { min-width: 0; transition: opacity 0.2s ease; }
   .ex-top { display: flex; gap: 10px; align-items: flex-start; }
   .ex-name { flex: 1; min-width: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; padding-top: 6px; }
@@ -322,6 +330,10 @@ function today() { return ymd(new Date()); }
 // One entry per finished session. Nothing else is required: checking moves off
 // and it only drives the "Next" badge on the home screen.
 let LOG = store.get("gp2-log", []);
+
+let MARKS = store.get("gp2-marks", { date: "", on: {} });
+function freshMarks() { if (MARKS.date !== today()) MARKS = { date: today(), on: {} }; }
+freshMarks();
 
 function loggedToday(id) { return LOG.some(e => e.d === today() && e.id === id); }
 function lastDone(id) { for (let i = LOG.length - 1; i >= 0; i--) if (LOG[i].id === id) return LOG[i].d; return null; }
@@ -470,15 +482,16 @@ function braceCue() { return BRACE_CUES[Math.floor(Date.now() / 864e5) % BRACE_C
 
 function fmtReps(rp) { return rp.replace(/(\d)\s*x\s*/gi, "$1 × "); }
 
-function exHtml(r, label) {
+function exHtml(r, label, key) {
   const [main, ...alts] = r.ex.split(/\s+OR\s+/);
   const alt = alts.length ? `<span class="ex-alt">or ${alts.join(" or ")}</span>` : "";
   const play = r.link ? `<a class="play" href="${r.link}" target="_blank" rel="noopener" aria-label="Demo: ${main}">${I.play}</a>` : "";
   const cues = [r.brace && braceCue(), r.posture].filter(Boolean).map(c => `<span class="cue">${c}</span>`).join("");
   const reps = r.rp ? `<span class="reps">${fmtReps(r.rp)}</span>` : "";
   const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
-  return `<div class="ex">
-    <div class="ex-idx"><span>${label}</span></div>
+  const on = MARKS.on[key] ? " done" : "";
+  return `<div class="ex${on}" data-key="${key}">
+    <button class="ex-idx" aria-label="Mark ${main} done" aria-pressed="${!!on}"><span>${label}</span>${I.check}</button>
     <div class="ex-main">
       <div class="ex-top"><div class="ex-name">${main}${alt}</div>${play}</div>
       ${reps || cues ? `<div class="ex-meta">${reps}${cues}</div>` : ""}
@@ -495,11 +508,12 @@ function sessionHtml(d) {
     const groups = groupRows(s.rows);
     let inner;
     if (s.warm) {
-      inner = `<div class="grp warm">${s.rows.map((r, ri) => exHtml(r, String(ri + 1))).join("")}</div>`;
+      inner = `<div class="grp warm">${s.rows.map((r, ri) => exHtml(r, String(ri + 1), `${d.id}:${si}:${ri}`)).join("")}</div>`;
     } else {
+      let ri = 0;
       inner = groups.map((g, gi) => {
         const multi = g.length > 1;
-        const rows = g.map((r, k) => exHtml(r, (gi + 1) + (multi ? "ABCDEFG"[k] : ""))).join("");
+        const rows = g.map((r, k) => exHtml(r, (gi + 1) + (multi ? "ABCDEFG"[k] : ""), `${d.id}:${si}:${ri++}`)).join("");
         return `<div class="grp${multi ? " multi" : ""}">${rows}</div>`;
       }).join("");
     }
@@ -515,7 +529,7 @@ function sessionHtml(d) {
     <header class="topbar" id="topbar"><div class="topbar-in">
       <button class="back" data-back aria-label="Back">${I.back}Today</button>
       <div class="tb-title">${d.label}</div>
-      <div class="tb-right"></div>
+      <div class="tb-right num" id="tb-count"></div>
     </div></header>
     <div class="s-glow"></div>
     <div class="s-hero">
@@ -530,6 +544,14 @@ function sessionHtml(d) {
       <button class="finish" id="finish"></button>
     </div></div>
   </div>`;
+}
+
+function updateCount() {
+  const el = document.getElementById("tb-count");
+  if (!el) return;
+  const all = document.querySelectorAll(".ex").length;
+  const done = document.querySelectorAll(".ex.done").length;
+  el.textContent = done ? `${done} / ${all}` : "";
 }
 
 function updateFinish() {
@@ -669,7 +691,7 @@ function render() {
     app.innerHTML = sessionHtml(DAY[id]);
     activeChip = 0;
     window.scrollTo(0, 0);
-    updateFinish(); renderTimer();
+    updateCount(); updateFinish(); renderTimer();
     keepAwake(true);
   } else {
     app.innerHTML = homeHtml();
@@ -720,6 +742,19 @@ document.addEventListener("click", e => {
   if (dayLink) { e.preventDefault(); haptic(); openDay(dayLink.getAttribute("href").slice(1)); return; }
   if (t.closest("[data-back]")) { goHome(); return; }
 
+  const idx = t.closest(".ex-idx");
+  if (idx) {
+    const ex = idx.closest(".ex");
+    const on = !ex.classList.contains("done");
+    ex.classList.toggle("done", on);
+    idx.setAttribute("aria-pressed", String(on));
+    freshMarks();
+    if (on) MARKS.on[ex.dataset.key] = 1; else delete MARKS.on[ex.dataset.key];
+    store.set("gp2-marks", MARKS);
+    if (on) haptic();
+    updateCount();
+    return;
+  }
   const note = t.closest(".ex-note");
   if (note) { note.classList.toggle("open"); return; }
 
@@ -745,6 +780,8 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet()
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState !== "visible") return;
   if (route()) keepAwake(true);
+  // Came back the next morning with the app still open: clear yesterday's ticks
+  if (MARKS.date !== today()) { freshMarks(); store.set("gp2-marks", MARKS); render(); }
   renderTimer();
 });
 
