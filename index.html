@@ -35,6 +35,7 @@
     --lower: #c8f25a;
     --upper: #7cc4ff;
     --golf: #f2c46d;
+    --go-green: #34d96b;
     --a: var(--lower);        /* accent of whatever is on screen */
     --on-a: #0a0b0c;
     --r-lg: 24px;
@@ -150,6 +151,7 @@
   .back svg { width: 24px; height: 24px; }
   .tb-title { flex: 1; text-align: center; font-size: 16px; font-weight: 600; letter-spacing: -0.02em; opacity: 0; transform: translateY(6px); transition: opacity 0.2s ease, transform 0.2s var(--ease); }
   .topbar.titled .tb-title { opacity: 1; transform: none; }
+  .cnt { font-weight: 700; transition: color 0.25s ease; }
   .tb-right { flex: none; min-width: 78px; text-align: right; padding-right: 10px; font-size: 13px; color: var(--ink-2); }
 
   .session { padding: var(--top-h) 0 calc(env(safe-area-inset-bottom) + 120px); position: relative; }
@@ -551,7 +553,9 @@ function updateCount() {
   if (!el) return;
   const all = document.querySelectorAll(".ex").length;
   const done = document.querySelectorAll(".ex.done").length;
-  el.textContent = done ? `${done} / ${all}` : "";
+  // The current count starts white and turns green as the session fills up
+  const pct = all ? Math.round(done / all * 100) : 0;
+  el.innerHTML = done ? `<b class="cnt" style="color:color-mix(in srgb, var(--go-green) ${pct}%, #fff)">${done}</b> / ${all}` : "";
 }
 
 function updateFinish() {
