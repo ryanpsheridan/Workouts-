@@ -39,73 +39,82 @@ const WARMUPS = {
 // `type` drives the colour family and the rotation on the home screen.
 const ALL_DAYS = [
   {
-    id: "lower-a", label: "Lower A", focus: "Squat, step-up & the GHD block",
+    id: "lower-a", label: "Lower A", focus: "Legs, core & a little arms and delts",
     type: "lower", color: "#C8F25A",
     phases: [
       { name: "Workout", sub: "No rest inside a superset, about 60 sec between rounds. The pace is the conditioning. Golf tomorrow? First two groups only, same weight.", rows: [
-        { ss: "1",ord: "1A",ex: "Smith Machine Lunges OR Hack Squat",link: "https://www.youtube.com/watch?v=73CD40T-III",brace: true,rp: "6, 4, 2, 1",note: "Heavy quad strength. Keep the lead knee tracking over your toes, don't let it cave inward." },
-        { ss: "",ord: "1B",ex: "GHD Reverse Hyperextension",link: "https://www.youtube.com/watch?v=3vmbvoT2m-U",rp: "3 x 12-15",note: "Legs to parallel, squeeze the glutes at the top - not the low back. Slow, no momentum." },
-        { ss: "",ord: "1C",ex: "Side Plank (top leg raised)",link: "https://www.youtube.com/watch?v=PAD7sMmIgts",rp: "30-40 sec / side",note: "Anti-lean core. Stack the hips, don't let them sag back." },
-        { ss: "2",ord: "2A",ex: "Offset Step-Ups",link: "https://www.youtube.com/watch?v=FvxWcvNyUuI",brace: true,rp: "4 x 6 / side",note: "Push through heel on the way up." },
-        { ss: "",ord: "2B",ex: "Half-Kneeling Cable Chop (High-to-Low)",link: "https://www.youtube.com/watch?v=tKmTgQ_YajY",brace: true,rp: "3 x 10 / side",note: "Golf downswing pattern - drive with hips and core, arms just connect." },
-        { ss: "",ord: "2C",ex: "Lateral Band Walks",link: "https://www.youtube.com/watch?v=A12uKYg-Kuo",rp: "15 steps / side" },
-        { ss: "3",ord: "3A",ex: "Goblet Reverse Lunge to Knee Drive",link: "https://www.youtube.com/results?search_query=Goblet+Reverse+Lunge+to+Knee+Drive",brace: true,rp: "3 x 8 / side",note: "Goblet hold, step back, then drive the rear knee up to hip height and balance a beat. Single-leg strength with a balance finish." },
-        { ss: "",ord: "3B",ex: "Sled Push (Forward + Backward) OR Heavy Kettlebell Swings",link: "https://www.youtube.com/watch?v=3KWK7SIdPz4",brace: true,rp: "40 yds",note: "Forward drives the quads, backward is knee-friendly. Swap in KB swings if the sled's taken." },
-        { ss: "",ord: "3C",ex: "Dead Bug",link: "https://www.youtube.com/results?search_query=dead+bug+exercise",rp: "3 x 8 / side",note: "Low back glued to the floor, opposite arm and leg lower slowly. Anti-extension core." }
+        { ss: "1", ord: "1A", ex: "Smith Machine Lunges OR Hack Squat", link: "https://www.youtube.com/watch?v=73CD40T-III", brace: true, rp: "6, 4, 2, 1", note: "Heavy quad strength. Keep the lead knee tracking over your toes, don't let it cave inward." },
+        { ss: "", ord: "1B", ex: "GHD Reverse Hyperextension", link: "https://www.youtube.com/watch?v=3vmbvoT2m-U", rp: "3 x 12-15", note: "Legs to parallel, squeeze the glutes at the top - not the low back. Slow, no momentum." },
+        { ss: "", ord: "1C", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "30-40 sec / side", note: "Anti-lean core. Stack the hips, don't let them sag back." },
+        { ss: "2", ord: "2A", ex: "Offset Step-Ups", link: "https://www.youtube.com/watch?v=FvxWcvNyUuI", brace: true, rp: "4 x 6 / side", note: "Push through heel on the way up." },
+        { ss: "", ord: "2B", ex: "Half-Kneeling Cable Chop (High-to-Low)", link: "https://www.youtube.com/watch?v=tKmTgQ_YajY", brace: true, rp: "3 x 10 / side", note: "Golf downswing pattern - drive with hips and core, arms just connect." },
+        { ss: "", ord: "2C", ex: "Lateral Band Walks", link: "https://www.youtube.com/watch?v=A12uKYg-Kuo", rp: "15 steps / side" },
+        { ss: "3", ord: "3A", ex: "Goblet Reverse Lunge to Knee Drive", link: "https://www.youtube.com/results?search_query=Goblet+Reverse+Lunge+to+Knee+Drive", brace: true, rp: "3 x 8 / side", note: "Goblet hold, step back, then drive the rear knee up to hip height and balance a beat. Single-leg strength with a balance finish." },
+        { ss: "", ord: "3B", ex: "Sled Push (Forward + Backward) OR Heavy Kettlebell Swings", link: "https://www.youtube.com/watch?v=3KWK7SIdPz4", brace: true, rp: "40 yds", note: "Forward drives the quads, backward is knee-friendly. Swap in KB swings if the sled's taken." },
+        { ss: "", ord: "3C", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=dead+bug+exercise", rp: "3 x 8 / side", note: "Low back glued to the floor, opposite arm and leg lower slowly. Anti-extension core." },
+        { ss: "4", ord: "4A", ex: "Alternating Hammer Curls", link: "https://www.youtube.com/results?search_query=alternating+hammer+curls", rp: "3 x 12", note: "Dumbbells, elbows pinned, one arm at a time. Arms stay in the week even on a leg day." },
+        { ss: "", ord: "4B", ex: "Standing Band Raises", link: "https://www.youtube.com/watch?v=iQlrRrZTrBs", rp: "3 x 12-15", note: "Stand on the band, arms out to the sides to shoulder height, slow on the way down. Light band, no swing, stop the moment the traps start doing it.", posture: "Shoulder blades back" },
+        { ss: "", ord: "4C", ex: "GHD Sit-Ups", link: "https://www.youtube.com/watch?v=pMS2dU0FuPk", rp: "3 x 12-15", note: "Same machine as the reverse hypers. Squeeze the abs, don't yank with the hip flexors." }
       ]}
     ]
   },
   {
-    id: "upper-a", label: "Upper A", focus: "Pull, press & arms",
+    id: "upper-a", label: "Upper A", focus: "Arms, shoulders & abs, pull-led",
     type: "upper", color: "#7CC4FF",
     phases: [
       { name: "Workout", sub: "No rest inside a superset, about 60 sec between rounds. The pace is the conditioning.", rows: [
-        { ss: "1",ord: "1A",ex: "Hanging TRX Row",link: "https://www.youtube.com/watch?v=N_14s8zFOms",rp: "Heavy / 3 x 10",note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder.",posture: "Head back, shoulder blades back" },
-        { ss: "",ord: "1B",ex: "Incline Dumbbell Press",link: "https://www.youtube.com/results?search_query=incline+dumbbell+press",rp: "3 x 8-10",note: "Low incline, pressing up and slightly back at an angle - no overhead lockout, so the low back stays quiet.",posture: "Shoulder blades back" },
-        { ss: "",ord: "1C",ex: "Pallof Press (with hold)",link: "https://www.youtube.com/watch?v=HXrLaqNIkTs",rp: "3 x 8 / side",note: "Press out, hold 3 sec, resist the pull - anti-rotation core for the swing." },
-        { ss: "2",ord: "2A",ex: "Chin-Ups",link: "https://www.youtube.com/watch?v=53kV7Ou7oZo",rp: "3 x AMRAP",note: "Underhand grip, your most bicep-dominant pull - placed early while strong. Band-assist for honest reps.",posture: "Head back, shoulder blades back" },
-        { ss: "",ord: "2B",ex: "Hammer Curls",link: "https://www.youtube.com/watch?v=FAKh_gifviY",rp: "3 x 12",note: "Forearm and bicep, nothing left to set up." },
-        { ss: "",ord: "2C",ex: "Hanging Leg Raise",link: "https://www.youtube.com/watch?v=Pr1ieGZ5atk",rp: "3 x 10-12",note: "Straight or bent knees - control the descent, no swing." },
-        { ss: "3",ord: "3A",ex: "Cable Face Pull (rope)",link: "https://www.youtube.com/results?search_query=Cable+Face+Pull+(rope)",rp: "3 x 15",note: "Rope at head height, pull to the face and split the ends, elbows high. Rear delts and mid-back.",posture: "Head back, shoulder blades back" },
-        { ss: "",ord: "3B",ex: "Rope Tricep Pushdown",link: "https://www.youtube.com/results?search_query=rope+tricep+pushdown",brace: true,rp: "3 x 12",note: "Pull then push, no wasted rest. Elbows tucked, split the rope at the bottom." },
-        { ss: "",ord: "3C",ex: "Lying Plate Pass",link: "https://www.youtube.com/watch?v=y-y-EKnieNA",rp: "3 x 10",note: "Lower the plate behind your head, lift and pass it onto your shins, lower the legs, reverse. Low back glued to the floor." },
-        { ss: "4",ord: "4A",ex: "Wide Grip Barbell Curl (squat rack)",link: "https://www.youtube.com/results?search_query=wide+grip+barbell+curl",rp: "3 x 10",note: "Set the bar in the squat rack at hip height so you can lift it out clean. Hands wider than shoulders, elbows pinned, no swing.",posture: "Head back, shoulder blades back" },
-        { ss: "",ord: "4B",ex: "Reverse Grip Pulley Curl",link: "https://www.youtube.com/results?search_query=reverse+grip+cable+curl",rp: "3 x 12",note: "Low pulley, overhand grip, elbows pinned. Hits the brachioradialis and forearms." },
-        { ss: "",ord: "4C",ex: "Standing Band Raises",link: "https://www.youtube.com/watch?v=iQlrRrZTrBs",rp: "3 x 12-15",note: "Stand on the band, arms out to the sides to shoulder height, slow on the way down. Light band, no swing, stop the moment the traps start doing it.",posture: "Shoulder blades back" }
+        { ss: "1", ord: "1A", ex: "Hanging TRX Row", link: "https://www.youtube.com/watch?v=N_14s8zFOms", rp: "Heavy / 3 x 10", note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "1B", ex: "Incline Dumbbell Press", link: "https://www.youtube.com/results?search_query=incline+dumbbell+press", rp: "3 x 8-10", note: "Low incline, pressing up and slightly back at an angle - no overhead lockout, so the low back stays quiet.", posture: "Shoulder blades back" },
+        { ss: "", ord: "1C", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull - anti-rotation core for the swing." },
+        { ss: "2", ord: "2A", ex: "Chin-Ups", link: "https://www.youtube.com/watch?v=53kV7Ou7oZo", rp: "3 x AMRAP", note: "Underhand grip, your most bicep-dominant pull - placed early while strong. Band-assist for honest reps.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "2B", ex: "Hammer Curls", link: "https://www.youtube.com/watch?v=FAKh_gifviY", rp: "3 x 12", note: "Forearm and bicep, nothing left to set up." },
+        { ss: "", ord: "2C", ex: "Hanging Leg Raise", link: "https://www.youtube.com/watch?v=Pr1ieGZ5atk", rp: "3 x 10-12", note: "Straight or bent knees - control the descent, no swing." },
+        { ss: "3", ord: "3A", ex: "Cable Face Pull (rope)", link: "https://www.youtube.com/results?search_query=Cable+Face+Pull+(rope)", rp: "3 x 15", note: "Rope at head height, pull to the face and split the ends, elbows high. Rear delts and mid-back.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "3B", ex: "Rope Tricep Pushdown", link: "https://www.youtube.com/results?search_query=rope+tricep+pushdown", brace: true, rp: "3 x 12", note: "Pull then push, no wasted rest. Elbows tucked, split the rope at the bottom." },
+        { ss: "", ord: "3C", ex: "Lying Plate Pass", link: "https://www.youtube.com/watch?v=y-y-EKnieNA", rp: "3 x 10", note: "Lower the plate behind your head, lift and pass it onto your shins, lower the legs, reverse. Low back glued to the floor." },
+        { ss: "4", ord: "4A", ex: "Wide Grip Barbell Curl (squat rack)", link: "https://www.youtube.com/results?search_query=wide+grip+barbell+curl", rp: "3 x 10", note: "Set the bar in the squat rack at hip height so you can lift it out clean. Hands wider than shoulders, elbows pinned, no swing.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "4B", ex: "Dumbbell Lateral Raise", link: "https://www.youtube.com/results?search_query=Dumbbell+Lateral+Raise", rp: "3 x 12-15", note: "Slight lean forward, lead with the elbows, stop at shoulder height. Light and strict - side delts are the width you're building.", posture: "Shoulder blades back" },
+        { ss: "", ord: "4C", ex: "Kneeling Cable Crunch", link: "https://www.youtube.com/results?search_query=Kneeling+Cable+Crunch", rp: "3 x 12-15", note: "Rope behind the head, round the spine down toward the hips, abs do the work, hips stay put. Loaded abs." }
       ]}
     ]
   },
   {
-    id: "lower-b", label: "Lower B", focus: "Single-leg, rotation & glutes",
+    id: "lower-b", label: "Lower B", focus: "Single-leg, glutes, core & posture",
     type: "lower", color: "#C8F25A",
     phases: [
       { name: "Workout", sub: "No rest inside a superset, about 60 sec between rounds. The pace is the conditioning. Golf tomorrow? First two groups only, same weight.", rows: [
-        { ss: "1",ord: "1A",ex: "Twisting Lunges with 45 lb plate",link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==",brace: true,rp: "3 x 8 / side",note: "Plate held at the chest. Lunge forward and rotate the upper body toward the lead leg at the bottom, then drive back up and switch sides. Rotation under load." },
-        { ss: "",ord: "1B",ex: "Lying Plate Pass (25 lb)",link: "https://www.youtube.com/watch?v=y-y-EKnieNA",rp: "3 x 10",note: "On your back, plate overhead, pass it onto your shins, straighten the legs and send it back the other way. Low back glued to the floor." },
-        { ss: "",ord: "1C",ex: "Calf Raises OR Lateral Band Walks",link: "https://www.youtube.com/watch?v=A12uKYg-Kuo",rp: "15 reps / 15 steps" },
-        { ss: "2",ord: "2A",ex: "Rear-Foot Elevated Box Lunge",link: "https://www.youtube.com/results?search_query=rear+foot+elevated+split+squat",brace: true,rp: "3 x 8 / side",note: "Back foot up on the box, weight held in one arm, drop deep. Keep the lead knee tracking over your toes, don't let it cave inward." },
-        { ss: "",ord: "2B",ex: "Single-Leg RDL (Kettlebell)",link: "https://www.youtube.com/watch?v=Zfr6wizR8rs",brace: true,rp: "3 x 8 / side",note: "Almost-straight working leg, hinge forward and lower the bell toward the floor, then stand back up. Hamstring, glute and balance in one." },
-        { ss: "",ord: "2C",ex: "Side Plank (top leg raised)",link: "https://www.youtube.com/watch?v=PAD7sMmIgts",rp: "30 sec / side",note: "Anti-lean core. Stack the hips, don't let them sag back." },
-        { ss: "3",ord: "3A",ex: "Belted Glute Press (Machine)",link: "https://www.youtube.com/results?search_query=machine+hip+thrust+belt",rp: "3 x 12",note: "On your back with the belt across the hips, drive up and squeeze the glutes at the top. Pause, then lower under control." },
-        { ss: "",ord: "3B",ex: "Slider Hamstring Curl",link: "https://www.youtube.com/results?search_query=slider+hamstring+curl",rp: "3 x 10",note: "On your back, heels on sliders or towels, bridge up and slide the heels out and back. Hamstrings working hard without loading the low back." },
-        { ss: "",ord: "3C",ex: "Pallof Press (with hold)",link: "https://www.youtube.com/watch?v=HXrLaqNIkTs",rp: "3 x 8 / side",note: "Press out, hold 3 sec, resist the pull - anti-rotation core for the swing." }
+        { ss: "1", ord: "1A", ex: "Twisting Lunges with 45 lb plate", link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", brace: true, rp: "3 x 8 / side", note: "Plate held at the chest. Lunge forward and rotate the upper body toward the lead leg at the bottom, then drive back up and switch sides. Rotation under load." },
+        { ss: "", ord: "1B", ex: "Lying Plate Pass (25 lb)", link: "https://www.youtube.com/watch?v=y-y-EKnieNA", rp: "3 x 10", note: "On your back, plate overhead, pass it onto your shins, straighten the legs and send it back the other way. Low back glued to the floor." },
+        { ss: "", ord: "1C", ex: "Calf Raises OR Lateral Band Walks", link: "https://www.youtube.com/watch?v=A12uKYg-Kuo", rp: "15 reps / 15 steps" },
+        { ss: "2", ord: "2A", ex: "Rear-Foot Elevated Box Lunge", link: "https://www.youtube.com/results?search_query=rear+foot+elevated+split+squat", brace: true, rp: "3 x 8 / side", note: "Back foot up on the box, weight held in one arm, drop deep. Keep the lead knee tracking over your toes, don't let it cave inward." },
+        { ss: "", ord: "2B", ex: "Single-Leg RDL (Kettlebell)", link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", brace: true, rp: "3 x 8 / side", note: "Almost-straight working leg, hinge forward and lower the bell toward the floor, then stand back up. Hamstring, glute and balance in one." },
+        { ss: "", ord: "2C", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "30 sec / side", note: "Anti-lean core. Stack the hips, don't let them sag back." },
+        { ss: "3", ord: "3A", ex: "Belted Glute Press (Machine)", link: "https://www.youtube.com/results?search_query=machine+hip+thrust+belt", rp: "3 x 12", note: "On your back with the belt across the hips, drive up and squeeze the glutes at the top. Pause, then lower under control." },
+        { ss: "", ord: "3B", ex: "Slider Hamstring Curl", link: "https://www.youtube.com/results?search_query=slider+hamstring+curl", rp: "3 x 10", note: "On your back, heels on sliders or towels, bridge up and slide the heels out and back. Hamstrings working hard without loading the low back." },
+        { ss: "", ord: "3C", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull - anti-rotation core for the swing." },
+        { ss: "4", ord: "4A", ex: "Prone Y Raise", link: "https://www.youtube.com/results?search_query=Prone+Y+Raise", rp: "3 x 12", note: "Face down on the bench or floor, thumbs up, lift from below the shoulder blades. Posture and shoulders in one move.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "4B", ex: "Incline Dumbbell Curl", link: "https://www.youtube.com/results?search_query=incline+dumbbell+curl", rp: "3 x 10-12", note: "Back on a low incline, arms hanging behind the body, full stretch at the bottom. Long-head biceps." },
+        { ss: "", ord: "4C", ex: "Reverse Crunch", link: "https://www.youtube.com/results?search_query=reverse+crunch", rp: "3 x 12-15", note: "On your back, curl the hips off the floor toward the ribs. Lower abs, slow on the way down, no swing." }
       ]}
     ]
   },
   {
-    id: "upper-b", label: "Upper B", focus: "Pull-biased, TRX & the pull-up giant set",
+    id: "upper-b", label: "Upper B", focus: "Back, rear delts, posture & core",
     type: "upper", color: "#7CC4FF",
     phases: [
       { name: "Workout", sub: "No rest inside a superset, about 60 sec between rounds. The pace is the conditioning.", rows: [
-        { ss: "1",ord: "1A",ex: "Single-Arm Dumbbell Row (supported)",link: "https://www.youtube.com/results?search_query=Single-Arm+Dumbbell+Row+(supported)",rp: "3 x 10 / side",note: "One hand and one knee on the bench, pull the bell to the hip. Back flat, no twist.",posture: "Head back, shoulder blades back" },
-        { ss: "",ord: "1B",ex: "Feet-Elevated Push-Ups (feet on box)",link: "https://www.youtube.com/watch?v=4aUUcfwyfE0",brace: true,rp: "3 x 10-12",note: "Box sits under the TRX - loads the upper chest and front delts." },
-        { ss: "",ord: "1C",ex: "TRX Fallout OR GHD Sit-Ups",link: "https://www.youtube.com/watch?v=3X8UHOVMXuQ",rp: "3 x 8-10",note: "Arms out in front, lean forward and let the arms travel overhead - anti-extension, same job as an ab wheel. Squeeze the glutes and tuck the pelvis first; the moment the low back arches you've gone too far." },
-        { ss: "2",ord: "2A",ex: "Pull-Up Giant Set",link: "https://www.youtube.com/watch?v=UA5J55gATzo",rp: "1 set each variation",note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups - that's where the biceps drive. Loop a light band under a foot to push past the first few reps.",posture: "Head back, shoulder blades back" },
-        { ss: "",ord: "2B",ex: "Rope Tricep Pushdown",link: "https://www.youtube.com/results?search_query=rope+tricep+pushdown",brace: true,rp: "3 x 12",note: "Pull then push, no wasted rest. Elbows tucked, split the rope at the bottom." },
-        { ss: "",ord: "2C",ex: "Hanging Leg or Knee Raise",link: "https://www.youtube.com/watch?v=Pr1ieGZ5atk",rp: "3 x 10-12",note: "Same bar you're already hanging from - straight legs or bent knees, whichever you can control. Slow on the way down, no swing." },
-        { ss: "3",ord: "3A",ex: "Hanging TRX Row",link: "https://www.youtube.com/watch?v=N_14s8zFOms",rp: "Heavy / 3 x 10",note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder.",posture: "Head back, shoulder blades back" },
-        { ss: "",ord: "3B",ex: "TRX Bicep Curl",link: "https://www.youtube.com/watch?v=Pa8Mls8saXc",rp: "3 x 12-15",note: "Lean back, elbows high, curl your body up. Straps are already set from the rows." },
-        { ss: "",ord: "3C",ex: "Swimming Circles",link: "https://www.youtube.com/watch?v=6fPl70d17sY",rp: "3 x 10",note: "Face down, lift chest and legs, small circles with the arms - the extension side of the trunk, and a posture reset for the laptop hours.",posture: "Head back, shoulder blades back" }
+        { ss: "1", ord: "1A", ex: "Single-Arm Dumbbell Row (supported)", link: "https://www.youtube.com/results?search_query=Single-Arm+Dumbbell+Row+(supported)", rp: "3 x 10 / side", note: "One hand and one knee on the bench, pull the bell to the hip. Back flat, no twist.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "1B", ex: "Feet-Elevated Push-Ups (feet on box)", link: "https://www.youtube.com/watch?v=4aUUcfwyfE0", brace: true, rp: "3 x 10-12", note: "Box sits under the TRX - loads the upper chest and front delts." },
+        { ss: "", ord: "1C", ex: "TRX Fallout OR GHD Sit-Ups", link: "https://www.youtube.com/watch?v=3X8UHOVMXuQ", rp: "3 x 8-10", note: "Arms out in front, lean forward and let the arms travel overhead - anti-extension, same job as an ab wheel. Squeeze the glutes and tuck the pelvis first; the moment the low back arches you've gone too far." },
+        { ss: "2", ord: "2A", ex: "Pull-Up Giant Set", link: "https://www.youtube.com/watch?v=UA5J55gATzo", rp: "1 set each variation", note: "Standard / Chin-Up / Wide / Neutral, back to back. Lean into the Chin-Ups - that's where the biceps drive. Loop a light band under a foot to push past the first few reps.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "2B", ex: "Rope Tricep Pushdown", link: "https://www.youtube.com/results?search_query=rope+tricep+pushdown", brace: true, rp: "3 x 12", note: "Pull then push, no wasted rest. Elbows tucked, split the rope at the bottom." },
+        { ss: "", ord: "2C", ex: "Hanging Leg or Knee Raise", link: "https://www.youtube.com/watch?v=Pr1ieGZ5atk", rp: "3 x 10-12", note: "Same bar you're already hanging from - straight legs or bent knees, whichever you can control. Slow on the way down, no swing." },
+        { ss: "3", ord: "3A", ex: "Hanging TRX Row", link: "https://www.youtube.com/watch?v=N_14s8zFOms", rp: "Heavy / 3 x 10", note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "3B", ex: "TRX Bicep Curl", link: "https://www.youtube.com/watch?v=Pa8Mls8saXc", rp: "3 x 12-15", note: "Lean back, elbows high, curl your body up. Straps are already set from the rows." },
+        { ss: "", ord: "3C", ex: "Swimming Circles", link: "https://www.youtube.com/watch?v=6fPl70d17sY", rp: "3 x 10", note: "Face down, lift chest and legs, small circles with the arms - the extension side of the trunk, and a posture reset for the laptop hours.", posture: "Head back, shoulder blades back" },
+        { ss: "4", ord: "4A", ex: "Bent-Over Rear Delt Fly", link: "https://www.youtube.com/results?search_query=Bent-Over+Rear+Delt+Fly", rp: "3 x 15", note: "Chest on an incline bench or hinged over, light dumbbells, sweep out to the sides with the elbows slightly bent. Rear delts pull the shoulders back.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "4B", ex: "Single-Arm Cable Lateral Raise", link: "https://www.youtube.com/results?search_query=single+arm+cable+lateral+raise", rp: "3 x 12 / side", note: "Low pulley across the body, lead with the elbow to shoulder height. Constant tension on the side delt.", posture: "Shoulder blades back" },
+        { ss: "", ord: "4C", ex: "Hollow Body Hold", link: "https://www.youtube.com/results?search_query=hollow+body+hold", rp: "3 x 30 sec", note: "Low back pressed down, ribs pulled to the hips, arms and legs extended just off the floor. Bend the knees to make it easier." }
       ]}
     ]
   },
