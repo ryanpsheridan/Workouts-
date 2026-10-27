@@ -93,7 +93,7 @@
   /* Up-next hero: the one thing the home screen exists to answer */
   .hero {
     position: relative; display: block; overflow: hidden; isolation: isolate;
-    border-radius: 28px; padding: 22px 22px 20px; min-height: 236px;
+    border-radius: 28px; padding: 22px 22px 20px; min-height: 200px;
     background: var(--s1); border: 1px solid var(--line);
     transition: transform 0.18s var(--ease);
   }
@@ -112,10 +112,7 @@
   .kicker i { width: 6px; height: 6px; border-radius: 50%; background: var(--a); box-shadow: 0 0 10px var(--a); }
   .hero-title { font-size: 46px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; margin-top: 14px; }
   .hero-focus { font-size: 15px; color: var(--ink-2); margin-top: 8px; max-width: 78%; line-height: 1.35; }
-  .hero-foot { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 26px; gap: 12px; }
-  .hero-stats { display: flex; gap: 18px; }
-  .stat b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
-  .stat span { font-size: 11.5px; color: var(--ink-3); letter-spacing: 0.02em; }
+  .hero-foot { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 18px; gap: 12px; }
   .go {
     flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
     background: var(--a); color: var(--on-a); box-shadow: 0 8px 28px color-mix(in srgb, var(--a) 35%, transparent);
@@ -146,14 +143,14 @@
   .group-h span { font-size: 12.5px; color: var(--ink-3); }
   .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .card {
-    position: relative; overflow: hidden; display: flex; flex-direction: column; min-height: 176px;
-    padding: 16px; border-radius: var(--r-lg); background: var(--s1); border: 1px solid var(--line);
+    position: relative; overflow: hidden; display: flex; flex-direction: column; min-height: 132px;
+    padding: 14px; border-radius: var(--r-lg); background: var(--s1); border: 1px solid var(--line);
     transition: transform 0.16s var(--ease), background-color 0.16s ease;
   }
   .card:active { transform: scale(0.97); background: var(--s2); }
-  .card-letter { font-size: 52px; font-weight: 700; letter-spacing: -0.06em; line-height: 0.9; color: var(--a); }
-  .card-focus { font-size: 13px; color: var(--ink-2); line-height: 1.35; margin-top: 12px; flex: 1; }
-  .card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; font-size: 11.5px; color: var(--ink-3); }
+  .card-letter { font-size: 44px; font-weight: 700; letter-spacing: -0.06em; line-height: 0.9; color: var(--a); }
+  .card-focus { font-size: 13px; color: var(--ink-2); line-height: 1.35; margin-top: 8px; flex: 1; }
+  .card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 11.5px; color: var(--ink-3); }
   .badge { font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 8px; border-radius: 99px; background: var(--a); color: var(--on-a); }
   .card.golf { flex-direction: row; align-items: center; gap: 14px; min-height: 0; padding: 16px; }
   .golf-ico { flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: color-mix(in srgb, var(--a) 16%, transparent); color: var(--a); }
@@ -205,7 +202,6 @@
   .s-hero { padding: 12px 20px 6px; }
   .s-title { font-size: 44px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; margin-top: 10px; }
   .s-focus { font-size: 16px; color: var(--ink-2); margin-top: 8px; line-height: 1.35; }
-  .s-stats { display: flex; gap: 22px; margin-top: 20px; }
 
   /* Section jump bar: sticky under the top bar, follows the scroll */
   .jump {
@@ -227,20 +223,21 @@
   .sec-n { font-size: 13px; font-weight: 600; color: var(--a); font-variant-numeric: tabular-nums; }
   .sec-h h3 { flex: 1; font-size: 22px; font-weight: 650; letter-spacing: -0.035em; }
   .sec-c { font-size: 12.5px; color: var(--ink-3); }
-  .sec-sub {
-    margin: 10px 4px 0; padding: 10px 12px; border-radius: 12px; font-size: 13px; line-height: 1.4; color: var(--ink-2);
-    background: color-mix(in srgb, var(--a) 7%, var(--s1)); border: 1px solid color-mix(in srgb, var(--a) 16%, transparent);
-  }
-  .grps { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
-  .grp { border-radius: var(--r-md); background: var(--s1); border: 1px solid var(--line); padding: 4px 0; position: relative; }
-  .grp-tag { display: flex; align-items: center; gap: 8px; padding: 12px 16px 2px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
-  .grp-tag::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .sec-sub { margin: 6px 4px 0; font-size: 13px; line-height: 1.4; color: var(--ink-3); }
+  /* One card per section; supersets are the bubbles + rail inside it, split by a hairline */
+  .grps { margin-top: 12px; border-radius: var(--r-md); background: var(--s1); border: 1px solid var(--line); overflow: hidden; }
+  .grp { position: relative; padding: 4px 0; }
+  .grp + .grp { border-top: 1px solid var(--line-2); }
   /* Rail linking the A/B/C bubbles of a superset so it reads as one unit */
   .grp.multi .ex:not(:last-child) .ex-idx::after {
     content: ""; position: absolute; left: 50%; top: 100%; width: 1.5px; height: 400px; transform: translateX(-50%);
     background: linear-gradient(var(--line-2), var(--line-2)); z-index: -1;
   }
   .grp.multi .ex { overflow: hidden; }
+  .grp.multi .ex:not(:first-child) .ex-idx::before {
+    content: ""; position: absolute; left: 50%; bottom: 100%; width: 1.5px; height: 14px; transform: translateX(-50%);
+    background: var(--line-2); z-index: -1;
+  }
 
   .ex { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 12px 14px 14px 14px; position: relative; isolation: isolate; }
   .ex + .ex { border-top: 1px solid transparent; }
@@ -413,7 +410,6 @@ function groupRows(rows) {
   rows.forEach(r => { if (r.ss !== "" || !groups.length) groups.push([r]); else groups[groups.length - 1].push(r); });
   return groups;
 }
-function workCount(d) { return d.phases.reduce((n, p) => n + p.rows.length, 0); }
 
 // ---------------------------------------------------------------------------
 // Small device niceties
@@ -484,11 +480,7 @@ function homeHtml() {
       <div class="hero-focus">${next.focus}</div>
       ${doneLine}
       <div class="hero-foot">
-        <div class="hero-stats">
-          <div class="stat"><b class="num">${workCount(next)}</b><span>moves</span></div>
-          <div class="stat"><b class="num">${next.phases.length}</b><span>blocks</span></div>
-          <div class="stat"><b class="num">${(WARMUPS[nextId] || []).length}</b><span>warm-up</span></div>
-        </div>
+        <span></span>
         <span class="go" aria-hidden="true">${I.arrow}</span>
       </div>
     </a>`;
@@ -605,11 +597,8 @@ function sessionHtml(d) {
       let ri = 0;
       inner = groups.map((g, gi) => {
         const multi = g.length > 1;
-        const auto = multi ? (g.length >= 4 ? "Giant set" : g.length === 3 ? "Tri-set" : "Superset") : "";
-        const tagText = g[0].tag || auto;
-        const tag = tagText ? `<div class="grp-tag">${tagText}</div>` : "";
         const rows = g.map((r, k) => exHtml(r, (gi + 1) + (multi ? "ABCDEFG"[k] : ""), `${d.id}:${si}:${ri++}`)).join("");
-        return `<div class="grp${multi ? " multi" : ""}">${tag}${rows}</div>`;
+        return `<div class="grp${multi ? " multi" : ""}">${rows}</div>`;
       }).join("");
     }
     const count = s.rows.length;
@@ -620,7 +609,6 @@ function sessionHtml(d) {
     </section>`;
   }).join("");
 
-  const wu = (WARMUPS[d.id] || []).length;
   return `<div class="session" style="--a:var(--${d.type})" data-day="${d.id}">
     <header class="topbar" id="topbar"><div class="topbar-in">
       <button class="back" data-back aria-label="Back">${I.back}Today</button>
@@ -632,12 +620,6 @@ function sessionHtml(d) {
       <div class="kicker"><i></i>${d.type === "golf" ? "Before the round" : TYPE_NAME[d.type] + " body"}</div>
       <h1 class="s-title" id="s-title">${d.label}</h1>
       <div class="s-focus">${d.focus}</div>
-      <div class="s-stats">
-        <div class="stat"><b class="num">${workCount(d)}</b><span>moves</span></div>
-        <div class="stat"><b class="num">${d.phases.length}</b><span>blocks</span></div>
-        ${wu ? `<div class="stat"><b class="num">${wu}</b><span>warm-up</span></div>` : ""}
-        <div class="stat"><b>${agoText(lastDone(d.id))}</b><span>last done</span></div>
-      </div>
     </div>
     <nav class="jump" id="jump" aria-label="Sections">${chips}</nav>
     ${body}
