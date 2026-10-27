@@ -90,53 +90,27 @@
   .h-date { font-size: 13px; color: var(--ink-3); letter-spacing: 0.01em; }
   .h-greet { font-size: 40px; font-weight: 700; letter-spacing: -0.045em; line-height: 1; margin: 26px 0 18px; }
 
-  /* Up-next hero: the one thing the home screen exists to answer */
-  .hero {
-    position: relative; display: block; overflow: hidden; isolation: isolate;
-    border-radius: 28px; padding: 22px 22px 20px; min-height: 200px;
-    background: var(--s1); border: 1px solid var(--line);
-    transition: transform 0.18s var(--ease);
-  }
-  .hero:active { transform: scale(0.985); }
-  .hero::before {
-    content: ""; position: absolute; inset: -40% -30% auto auto; width: 120%; aspect-ratio: 1; z-index: -1;
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--a) 34%, transparent), transparent 72%);
-    filter: blur(8px); opacity: 0.85;
-  }
-  .hero::after {
-    content: attr(data-letter); position: absolute; right: -6px; bottom: -42px; z-index: -1;
-    font-size: 210px; font-weight: 800; letter-spacing: -0.08em; line-height: 1;
-    color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--a) 40%, transparent);
-  }
-  .kicker { display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--a); }
-  .kicker i { width: 6px; height: 6px; border-radius: 50%; background: var(--a); box-shadow: 0 0 10px var(--a); }
-  .hero-title { font-size: 46px; font-weight: 700; letter-spacing: -0.05em; line-height: 1; margin-top: 14px; }
-  .hero-focus { font-size: 15px; color: var(--ink-2); margin-top: 8px; max-width: 78%; line-height: 1.35; }
-  .hero-foot { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 18px; gap: 12px; }
-  .go {
-    flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
-    background: var(--a); color: var(--on-a); box-shadow: 0 8px 28px color-mix(in srgb, var(--a) 35%, transparent);
-  }
-  .go svg { width: 22px; height: 22px; }
-  .hero-done { margin-top: 10px; font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 6px; }
-  .hero-done svg { width: 15px; height: 15px; color: var(--a); }
-
-  /* Session grid */
+  /* Session rows */
   .group-h { display: flex; align-items: baseline; justify-content: space-between; margin: 30px 4px 10px; }
   .group-h h2 { font-size: 22px; font-weight: 650; letter-spacing: -0.035em; }
   .group-h span { font-size: 12.5px; color: var(--ink-3); }
-  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rows { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
   .card {
-    position: relative; overflow: hidden; display: flex; flex-direction: column; min-height: 132px;
-    padding: 14px; border-radius: var(--r-lg); background: var(--s1); border: 1px solid var(--line);
+    position: relative; display: flex; align-items: center; gap: 16px;
+    padding: 16px; border-radius: var(--r-lg); background: var(--s1); border: 1px solid var(--line);
     transition: transform 0.16s var(--ease), background-color 0.16s ease;
   }
-  .card:active { transform: scale(0.97); background: var(--s2); }
-  .card-letter { font-size: 44px; font-weight: 700; letter-spacing: -0.06em; line-height: 0.9; color: var(--a); }
-  .card-focus { font-size: 13px; color: var(--ink-2); line-height: 1.35; margin-top: 8px; flex: 1; }
-  .card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; font-size: 11.5px; color: var(--ink-3); }
+  .card:active { transform: scale(0.98); background: var(--s2); }
+  .card-letter {
+    flex: none; width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center;
+    font-size: 26px; font-weight: 700; letter-spacing: -0.04em; color: var(--on-a); background: var(--a);
+  }
+  .card-body { flex: 1; min-width: 0; }
+  .card-title { font-size: 19px; font-weight: 650; letter-spacing: -0.03em; line-height: 1.15; }
+  .card-focus { font-size: 13.5px; color: var(--ink-2); line-height: 1.35; margin-top: 3px; }
+  .card-when { font-size: 12px; color: var(--ink-3); margin-top: 5px; }
   .badge { font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 8px; border-radius: 99px; background: var(--a); color: var(--on-a); }
-  .card.golf { flex-direction: row; align-items: center; gap: 14px; min-height: 0; padding: 16px; }
+  .card.golf { gap: 14px; }
   .golf-ico { flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: color-mix(in srgb, var(--a) 16%, transparent); color: var(--a); }
   .golf-ico svg { width: 24px; height: 24px; }
   .golf-txt { flex: 1; min-width: 0; }
@@ -439,37 +413,18 @@ function homeHtml() {
   const weekday = now.toLocaleDateString("en-US", { weekday: "long" });
   const dateStr = now.toLocaleDateString("en-US", { month: "short", day: "numeric" });
   const nextId = upNext();
-  const next = DAY[nextId];
-  const doneToday = LOG.filter(e => e.d === today()).map(e => DAY[e.id]).filter(Boolean);
-  const letter = next.label.slice(-1);
-
-  const doneLine = doneToday.length
-    ? `<div class="hero-done">${I.check}${doneToday.map(d => d.label).join(" + ")} done today</div>` : "";
-
-  const hero = `
-    <a class="hero" href="#${nextId}" data-letter="${letter}" style="--a:var(--${next.type})">
-      <div class="kicker"><i></i>${doneToday.length ? "Up next" : "Today"}</div>
-      <div class="hero-title">${next.label}</div>
-      <div class="hero-focus">${next.focus}</div>
-      ${doneLine}
-      <div class="hero-foot">
-        <span></span>
-        <span class="go" aria-hidden="true">${I.arrow}</span>
-      </div>
-    </a>`;
-
   const card = id => {
     const d = DAY[id];
-    const isNext = id === nextId;
     return `<a class="card" href="#${id}" style="--a:var(--${d.type})">
       <div class="card-letter">${d.label.slice(-1)}</div>
-      <div class="card-focus">${d.focus}</div>
-      <div class="card-foot"><span>${agoText(lastDone(id))}</span>${isNext ? '<span class="badge">Next</span>' : ""}</div>
+      <div class="card-body">
+        <div class="card-title">${d.label}</div>
+        <div class="card-focus">${d.focus}</div>
+        <div class="card-when">${agoText(lastDone(id))}</div>
+      </div>
+      ${id === nextId ? '<span class="badge">Next</span>' : I.chev}
     </a>`;
   };
-  const group = (type, sub) => `
-    <div class="group-h"><h2>${TYPE_NAME[type]}</h2><span>${sub}</span></div>
-    <div class="pair">${ROTATION.filter(id => DAY[id].type === type).map(card).join("")}</div>`;
 
   const golf = DAY["pre-golf"];
   const golfCard = `
@@ -490,12 +445,10 @@ function homeHtml() {
       <a class="li" href="https://open.spotify.com" target="_blank" rel="noopener"><span class="li-ico">${I.spotify}</span><span>Spotify</span>${I.chev}</a>
     </div>`;
 
-  return `<div class="home" style="--a:var(--${next.type})">
+  return `<div class="home">
     <div class="h-top"><span class="wordmark">gym<b>pro</b></span><span class="h-date">${dateStr}</span></div>
     <h1 class="h-greet">${weekday}</h1>
-    ${hero}
-    ${group("lower", "Legs, power, sled")}
-    ${group("upper", "Press, pull, arms")}
+    <div class="rows">${ROTATION.map(card).join("")}</div>
     ${golfCard}
     ${links}
   </div>`;
