@@ -121,22 +121,6 @@
   .hero-done { margin-top: 10px; font-size: 13px; color: var(--ink-2); display: flex; align-items: center; gap: 6px; }
   .hero-done svg { width: 15px; height: 15px; color: var(--a); }
 
-  /* Week strip */
-  .week { margin-top: 14px; padding: 16px 16px 14px; border-radius: var(--r-lg); background: var(--s1); border: 1px solid var(--line); }
-  .week-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-  .label { font-size: 11.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
-  .week-count { font-size: 13px; color: var(--ink-2); }
-  .week-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
-  .wd { display: flex; flex-direction: column; align-items: center; gap: 7px; font-size: 11px; color: var(--ink-3); }
-  .wd-dot {
-    width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
-    background: var(--s2); font-size: 12px; font-weight: 700; color: var(--on-a);
-  }
-  .wd.today { color: var(--ink); }
-  .wd.today .wd-dot { box-shadow: inset 0 0 0 1.5px var(--ink-2); }
-  .wd.future .wd-dot { background: transparent; box-shadow: inset 0 0 0 1px var(--line-2); }
-  .wd.on .wd-dot { box-shadow: none; }
-
   /* Session grid */
   .group-h { display: flex; align-items: baseline; justify-content: space-between; margin: 30px 4px 10px; }
   .group-h h2 { font-size: 22px; font-weight: 650; letter-spacing: -0.035em; }
@@ -245,15 +229,7 @@
     position: relative; width: 34px; height: 34px; border-radius: 50%; margin-top: 1px;
     display: grid; place-items: center; font-size: 12.5px; font-weight: 600; color: var(--ink-2);
     background: var(--s2); box-shadow: inset 0 0 0 1px var(--line-2);
-    transition: background-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
   }
-  .ex-idx:active { transform: scale(0.88); }
-  .ex-idx svg { display: none; width: 16px; height: 16px; }
-  .ex.done .ex-idx { background: var(--a); color: var(--on-a); box-shadow: none; animation: pop 0.26s var(--ease); }
-  .ex.done .ex-idx span { display: none; }
-  .ex.done .ex-idx svg { display: block; }
-  .ex.done .ex-main { opacity: 0.4; }
-  @keyframes pop { 50% { transform: scale(1.14); } }
   .ex-main { min-width: 0; transition: opacity 0.2s ease; }
   .ex-top { display: flex; gap: 10px; align-items: flex-start; }
   .ex-name { flex: 1; min-width: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; padding-top: 6px; }
@@ -370,11 +346,8 @@ function ymd(dt) {
 function today() { return ymd(new Date()); }
 
 // One entry per finished session. Nothing else is required: checking moves off
-// along the way is optional, and a day's ticks clear themselves overnight.
+// and it only drives the "Next" badge on the home screen.
 let LOG = store.get("gp2-log", []);
-let MARKS = store.get("gp2-marks", { date: "", on: {} });
-function freshMarks() { if (MARKS.date !== today()) MARKS = { date: today(), on: {} }; }
-freshMarks();
 
 function loggedToday(id) { return LOG.some(e => e.d === today() && e.id === id); }
 function lastDone(id) { for (let i = LOG.length - 1; i >= 0; i--) if (LOG[i].id === id) return LOG[i].d; return null; }
@@ -485,27 +458,6 @@ function homeHtml() {
       </div>
     </a>`;
 
-  // Monday-first week strip
-  const monday = new Date(now); monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
-  let weekCount = 0;
-  const cells = [...Array(7)].map((_, i) => {
-    const dt = new Date(monday); dt.setDate(monday.getDate() + i);
-    const key = ymd(dt);
-    const entry = [...LOG].reverse().find(e => e.d === key && DAY[e.id]);
-    if (entry) weekCount++;
-    const isToday = key === today();
-    const cls = ["wd", isToday && "today", key > today() && "future", entry && "on"].filter(Boolean).join(" ");
-    const dot = entry
-      ? `<span class="wd-dot" style="background:var(--${DAY[entry.id].type})">${DAY[entry.id].type === "golf" ? "G" : DAY[entry.id].label.slice(-1)}</span>`
-      : `<span class="wd-dot"></span>`;
-    return `<div class="${cls}">${"MTWTFSS"[i]}${dot}</div>`;
-  }).join("");
-  const week = `
-    <div class="week">
-      <div class="week-head"><span class="label">This week</span><span class="week-count">${weekCount} ${weekCount === 1 ? "session" : "sessions"}</span></div>
-      <div class="week-row">${cells}</div>
-    </div>`;
-
   const card = id => {
     const d = DAY[id];
     const isNext = id === nextId;
@@ -542,7 +494,6 @@ function homeHtml() {
     <div class="h-top"><span class="wordmark">gym<b>pro</b></span><span class="h-date">${dateStr}</span></div>
     <h1 class="h-greet">${weekday}</h1>
     ${hero}
-    ${week}
     ${group("lower", "Legs, power, sled")}
     ${group("upper", "Press, pull, arms")}
     ${golfCard}
@@ -566,16 +517,15 @@ function braceCue() { return BRACE_CUES[Math.floor(Date.now() / 864e5) % BRACE_C
 
 function fmtReps(rp) { return rp.replace(/(\d)\s*x\s*/gi, "$1 × "); }
 
-function exHtml(r, label, key) {
+function exHtml(r, label) {
   const [main, ...alts] = r.ex.split(/\s+OR\s+/);
   const alt = alts.length ? `<span class="ex-alt">or ${alts.join(" or ")}</span>` : "";
   const play = r.link ? `<a class="play" href="${r.link}" target="_blank" rel="noopener" aria-label="Demo: ${main}">${I.play}</a>` : "";
   const cues = [r.brace && braceCue(), r.posture].filter(Boolean).map(c => `<span class="cue">${c}</span>`).join("");
   const reps = r.rp ? `<span class="reps">${fmtReps(r.rp)}</span>` : "";
   const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
-  const on = MARKS.on[key] ? " done" : "";
-  return `<div class="ex${on}" data-key="${key}">
-    <button class="ex-idx" aria-label="Mark ${main} done" aria-pressed="${!!on}"><span>${label}</span>${I.check}</button>
+  return `<div class="ex">
+    <div class="ex-idx"><span>${label}</span></div>
     <div class="ex-main">
       <div class="ex-top"><div class="ex-name">${main}${alt}</div>${play}</div>
       ${reps || cues ? `<div class="ex-meta">${reps}${cues}</div>` : ""}
@@ -592,12 +542,11 @@ function sessionHtml(d) {
     const groups = groupRows(s.rows);
     let inner;
     if (s.warm) {
-      inner = `<div class="grp warm">${s.rows.map((r, ri) => exHtml(r, String(ri + 1), `${d.id}:${si}:${ri}`)).join("")}</div>`;
+      inner = `<div class="grp warm">${s.rows.map((r, ri) => exHtml(r, String(ri + 1))).join("")}</div>`;
     } else {
-      let ri = 0;
       inner = groups.map((g, gi) => {
         const multi = g.length > 1;
-        const rows = g.map((r, k) => exHtml(r, (gi + 1) + (multi ? "ABCDEFG"[k] : ""), `${d.id}:${si}:${ri++}`)).join("");
+        const rows = g.map((r, k) => exHtml(r, (gi + 1) + (multi ? "ABCDEFG"[k] : ""))).join("");
         return `<div class="grp${multi ? " multi" : ""}">${rows}</div>`;
       }).join("");
     }
@@ -613,7 +562,7 @@ function sessionHtml(d) {
     <header class="topbar" id="topbar"><div class="topbar-in">
       <button class="back" data-back aria-label="Back">${I.back}Today</button>
       <div class="tb-title">${d.label}</div>
-      <div class="tb-right num" id="tb-count"></div>
+      <div class="tb-right"></div>
     </div></header>
     <div class="s-glow"></div>
     <div class="s-hero">
@@ -628,14 +577,6 @@ function sessionHtml(d) {
       <button class="finish" id="finish"></button>
     </div></div>
   </div>`;
-}
-
-function updateCount() {
-  const el = document.getElementById("tb-count");
-  if (!el) return;
-  const all = document.querySelectorAll(".ex").length;
-  const done = document.querySelectorAll(".ex.done").length;
-  el.textContent = done ? `${done} / ${all}` : "";
 }
 
 function updateFinish() {
@@ -775,7 +716,7 @@ function render() {
     app.innerHTML = sessionHtml(DAY[id]);
     activeChip = 0;
     window.scrollTo(0, 0);
-    updateCount(); updateFinish(); renderTimer();
+    updateFinish(); renderTimer();
     keepAwake(true);
   } else {
     app.innerHTML = homeHtml();
@@ -826,19 +767,6 @@ document.addEventListener("click", e => {
   if (dayLink) { e.preventDefault(); haptic(); openDay(dayLink.getAttribute("href").slice(1)); return; }
   if (t.closest("[data-back]")) { goHome(); return; }
 
-  const idx = t.closest(".ex-idx");
-  if (idx) {
-    const ex = idx.closest(".ex");
-    const on = !ex.classList.contains("done");
-    ex.classList.toggle("done", on);
-    idx.setAttribute("aria-pressed", String(on));
-    freshMarks();
-    if (on) MARKS.on[ex.dataset.key] = 1; else delete MARKS.on[ex.dataset.key];
-    store.set("gp2-marks", MARKS);
-    if (on) haptic();
-    updateCount();
-    return;
-  }
   const note = t.closest(".ex-note");
   if (note) { note.classList.toggle("open"); return; }
 
@@ -864,8 +792,6 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet()
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState !== "visible") return;
   if (route()) keepAwake(true);
-  // Came back the next morning with the app still open: clear yesterday's ticks
-  if (MARKS.date !== today()) { freshMarks(); store.set("gp2-marks", MARKS); render(); }
   renderTimer();
 });
 
