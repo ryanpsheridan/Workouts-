@@ -11,7 +11,7 @@ const WARMUPS = {
   ],
   "upper-a": [ // first 3 loosen yesterday's lower day, last 3 prep the pulling
     { ss: "1", ord: "1A", ex: "Wall Hip Flexor Stretch", link: "https://www.youtube.com/results?search_query=Wall+Hip+Flexor+Stretch", rp: "30 sec / side", note: "Back knee down against the wall, squeeze the glute and drive the hips forward. Opens the hip flexors and quads from the lunges and step-ups." },
-    { ss: "2", ord: "2A", ex: "Supine Figure-4 Stretch", link: "https://www.youtube.com/results?search_query=Supine+Figure-4+Stretch", rp: "30 sec / side", note: "On your back, ankle over the opposite knee, pull the thigh in. Glutes and outer hip." },
+    { ss: "2", ord: "2A", ex: "Pigeon Pose", link: "https://www.youtube.com/results?search_query=pigeon+pose+stretch", rp: "45 sec / side", note: "Front knee bent with the shin angled across, back leg straight behind, hips square to the floor. Fold forward over the front leg to go deeper. Tight hips? Put a block or towel under the front hip. Deep glute and outer hip release." },
     { ss: "3", ord: "3A", ex: "Foam Roll Quads", link: "https://www.youtube.com/results?search_query=Foam+Roll+Quads", rp: "60 sec / leg", note: "Face down, slow rolls from hip to just above the knee, pause on anything tender." },
     { ss: "4", ord: "4A", ex: "Thread the Needle", link: "https://www.youtube.com/results?search_query=Thread+the+Needle", rp: "8 / side", note: "From all fours, slide one arm under the body and rotate, then reach to the ceiling. Mid-back rotation." },
     { ss: "5", ord: "5A", ex: "Scap Push-Ups", link: "https://www.youtube.com/results?search_query=Scap+Push-Ups", rp: "12 reps", note: "Arms locked, only the shoulder blades move. The one upper-body prep before pulling.", posture: "Shoulder blades back" },
@@ -27,7 +27,7 @@ const WARMUPS = {
   ],
   "upper-b": [ // first 3 loosen yesterday's lower day, last 3 prep the pulling
     { ss: "1", ord: "1A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal and external hip rotation. Chest tall, sit up on a block or a plate if you can't stay upright." },
-    { ss: "2", ord: "2A", ex: "Wide-Legged Standing Forward Fold", link: "https://x.com/smartpostures/status/2089006502413840469?s=46", rp: "45 sec", note: "Feet wide, hands clasped behind the back, fold forward. Releases hamstrings and calves from yesterday." },
+    { ss: "2", ord: "2A", ex: "Pigeon Pose", link: "https://www.youtube.com/results?search_query=pigeon+pose+stretch", rp: "45 sec / side", note: "Front knee bent with the shin angled across, back leg straight behind, hips square to the floor. Fold forward over the front leg to go deeper. Tight hips? Put a block or towel under the front hip. Deep glute and outer hip release." },
     { ss: "3", ord: "3A", ex: "Foam Roll Glutes & Quads", link: "https://www.youtube.com/results?search_query=Foam+Roll+Glutes+%26+Quads", rp: "60 sec", note: "Slow rolls through the glutes, then the quads. Pause on anything tight." },
     { ss: "4", ord: "4A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" },
     { ss: "5", ord: "5A", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=Dead+Bug", rp: "8 / side", note: "Low back pressed into the floor, opposite arm and leg lower slowly. Core on before the hanging work." },
@@ -35,7 +35,7 @@ const WARMUPS = {
   ],
   "recovery": [ // first 3 ease the legs, last 3 wake up the upper body and trunk
     { ss: "1", ord: "1A", ex: "Wall Hip Flexor Stretch", link: "https://www.youtube.com/results?search_query=Wall+Hip+Flexor+Stretch", rp: "30 sec / side", note: "Back knee down against the wall, squeeze the glute and drive the hips forward. Opens the hip flexors and quads from the lunges and step-ups." },
-    { ss: "2", ord: "2A", ex: "Supine Figure-4 Stretch", link: "https://www.youtube.com/results?search_query=Supine+Figure-4+Stretch", rp: "30 sec / side", note: "On your back, ankle over the opposite knee, pull the thigh in. Glutes and outer hip." },
+    { ss: "2", ord: "2A", ex: "Pigeon Pose", link: "https://www.youtube.com/results?search_query=pigeon+pose+stretch", rp: "45 sec / side", note: "Front knee bent with the shin angled across, back leg straight behind, hips square to the floor. Fold forward over the front leg to go deeper. Tight hips? Put a block or towel under the front hip. Deep glute and outer hip release." },
     { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
     { ss: "4", ord: "4A", ex: "Cat-Cow", link: "https://www.youtube.com/results?search_query=Cat-Cow", rp: "10 reps", note: "Slow, full range. Gets the spine moving again after yesterday's pulling." },
     { ss: "5", ord: "5A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" },
@@ -147,7 +147,7 @@ const ALL_DAYS = [
       { name: "Cool-down", sub: "Slow and easy on the legs.", rows: [
         { ss: "1", ord: "1A", ex: "Foam Roll Quads", link: "https://www.youtube.com/results?search_query=Foam+Roll+Quads", rp: "60 sec / leg", note: "Face down, slow rolls from hip to just above the knee, pause on anything tender." },
         { ss: "2", ord: "2A", ex: "Foam Roll Hamstrings", link: "https://www.youtube.com/watch?v=fwDNdgKnTsY", rp: "60 sec / leg", note: "Slow rolls to release what the round will keep asking from these." },
-        { ss: "3", ord: "3A", ex: "Butterfly Stretch", link: "https://www.youtube.com/watch?v=bfvj51pOgF8", rp: "30-45 sec hold", note: "Feet together, knees out, ease the knees toward the floor - opens the hips while the back rests between rolls." }
+        { ss: "3", ord: "3A", ex: "Pigeon Pose", link: "https://www.youtube.com/results?search_query=pigeon+pose+stretch", rp: "45 sec / side", note: "Front knee bent with the shin angled across, back leg straight behind, hips square to the floor. Fold forward over the front leg to go deeper. Tight hips? Put a block or towel under the front hip. Deep glute and outer hip release." }
       ]}
     ]
   },
