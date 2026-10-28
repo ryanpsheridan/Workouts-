@@ -35,6 +35,7 @@
     --lower: #c8f25a;
     --upper: #7cc4ff;
     --golf: #f2c46d;
+    --recovery: #b79cff;
     --go-green: #34d96b;
     --a: var(--lower);        /* accent of whatever is on screen */
     --on-a: #0a0b0c;
@@ -316,7 +317,7 @@
 // ---------------------------------------------------------------------------
 const ROTATION = PROGRAMS.split.days;
 const DAY = Object.fromEntries(ALL_DAYS.map(d => [d.id, d]));
-const TYPE_NAME = { lower: "Lower", upper: "Upper", golf: "Golf" };
+const TYPE_NAME = { lower: "Lower", upper: "Upper", golf: "Golf", recovery: "Recovery" };
 
 const store = {
   get(k, fallback) { try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? fallback : v; } catch (e) { return fallback; } },
@@ -430,7 +431,7 @@ function homeHtml() {
   const card = id => {
     const d = DAY[id];
     return `<a class="card" href="#${id}" style="--a:var(--${d.type})">
-      <div class="card-letter">${d.label.slice(-1)}</div>
+      <div class="card-letter">${d.tile || d.label.slice(-1)}</div>
       <div class="card-body">
         <div class="card-title">${d.label}</div>
         <div class="card-focus">${d.focus}</div>
@@ -439,6 +440,10 @@ function homeHtml() {
       ${id === nextId ? '<span class="badge">Next</span>' : I.chev}
     </a>`;
   };
+
+  const recovery = `
+    <div class="group-h"><h2>Optional</h2><span>${agoText(lastDone("recovery"))}</span></div>
+    ${card("recovery")}`;
 
   const golf = DAY["pre-golf"];
   const golfCard = `
@@ -463,6 +468,7 @@ function homeHtml() {
     <div class="h-top"><span class="wordmark">gym<b>pro</b></span><span class="h-date">${dateStr}</span></div>
     <h1 class="h-greet">${weekday}</h1>
     <div class="rows">${ROTATION.map(card).join("")}</div>
+    ${recovery}
     ${golfCard}
     ${links}
   </div>`;
@@ -535,7 +541,7 @@ function sessionHtml(d) {
     </div></header>
     <div class="s-glow"></div>
     <div class="s-hero">
-      <div class="kicker"><i></i>${d.type === "golf" ? "Before the round" : TYPE_NAME[d.type] + " body"}</div>
+      <div class="kicker"><i></i>${d.type === "golf" ? "Before the round" : d.type === "recovery" ? "Optional day" : TYPE_NAME[d.type] + " body"}</div>
       <h1 class="s-title" id="s-title">${d.label}</h1>
       <div class="s-focus">${d.focus}</div>
     </div>

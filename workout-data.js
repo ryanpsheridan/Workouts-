@@ -32,6 +32,14 @@ const WARMUPS = {
     { ss: "4", ord: "4A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" },
     { ss: "5", ord: "5A", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=Dead+Bug", rp: "8 / side", note: "Low back pressed into the floor, opposite arm and leg lower slowly. Core on before the hanging work." },
     { ss: "6", ord: "6A", ex: "Bear Crawl Shoulder Taps", link: "https://www.youtube.com/results?search_query=Bear+Crawl+Shoulder+Taps", rp: "20 taps", note: "Hands under shoulders, knees an inch off the floor, hips don't rock. Shoulders and trunk together." }
+  ],
+  "recovery": [ // first 3 ease the legs, last 3 wake up the upper body and trunk
+    { ss: "1", ord: "1A", ex: "Wall Hip Flexor Stretch", link: "https://www.youtube.com/results?search_query=Wall+Hip+Flexor+Stretch", rp: "30 sec / side", note: "Back knee down against the wall, squeeze the glute and drive the hips forward. Opens the hip flexors and quads from the lunges and step-ups." },
+    { ss: "2", ord: "2A", ex: "Supine Figure-4 Stretch", link: "https://www.youtube.com/results?search_query=Supine+Figure-4+Stretch", rp: "30 sec / side", note: "On your back, ankle over the opposite knee, pull the thigh in. Glutes and outer hip." },
+    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
+    { ss: "4", ord: "4A", ex: "Cat-Cow", link: "https://www.youtube.com/results?search_query=Cat-Cow", rp: "10 reps", note: "Slow, full range. Gets the spine moving again after yesterday's pulling." },
+    { ss: "5", ord: "5A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" },
+    { ss: "6", ord: "6A", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=dead+bug+exercise", rp: "3 x 8 / side", note: "Low back glued to the floor, opposite arm and leg lower slowly. Anti-extension core." }
   ]
 };
 
@@ -119,6 +127,31 @@ const ALL_DAYS = [
     ]
   },
   {
+    id: "recovery", label: "Recovery", tile: "R", focus: "Easy cardio, light arms, shoulders & core - legs stay out of it",
+    type: "recovery", color: "#B79CFF", optional: true,
+    phases: [
+      { name: "Cardio", sub: "Conversational pace the whole way. If you can't talk, back off.", rows: [
+        { ss: "1", ord: "1A", ex: "Easy Bike or Incline Walk", link: "https://www.youtube.com/results?search_query=zone+2+cardio+bike+incline+walk", rp: "20-25 min", note: "Zone 2: you can hold a full conversation. No intervals, no pushing. Bike or incline walk both skip the lowering phase that keeps sore legs sore, and the blood flow helps them recover." }
+      ]},
+      { name: "Workout", sub: "Light and smooth, about 2 to 3 rounds each. Nothing loads the legs, nothing close to failure.", rows: [
+        { ss: "1", ord: "1A", ex: "Hanging TRX Row", link: "https://www.youtube.com/watch?v=N_14s8zFOms", rp: "2-3 x 10", note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "1B", ex: "Cable Face Pull (rope)", link: "https://www.youtube.com/results?search_query=Cable+Face+Pull+(rope)", rp: "2-3 x 15", note: "Rope at head height, pull to the face and split the ends, elbows high. Rear delts and mid-back.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "1C", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=dead+bug+exercise", rp: "2-3 x 8 / side", note: "Low back glued to the floor, opposite arm and leg lower slowly. Anti-extension core." },
+        { ss: "2", ord: "2A", ex: "Dumbbell Lateral Raise", link: "https://www.youtube.com/results?search_query=Dumbbell+Lateral+Raise", rp: "2-3 x 12-15", note: "Slight lean forward, lead with the elbows, stop at shoulder height. Light and strict - side delts are the width you're building.", posture: "Shoulder blades back" },
+        { ss: "", ord: "2B", ex: "Alternating Hammer Curls", link: "https://www.youtube.com/results?search_query=alternating+hammer+curls", rp: "2-3 x 12", note: "Dumbbells, elbows pinned, one arm at a time. Arms stay in the week even on a leg day." },
+        { ss: "", ord: "2C", ex: "Lying Leg Raise OR Bicycle Crunches", link: "https://www.youtube.com/results?search_query=lying+leg+raise", rp: "2-3 x 12-15", note: "Flat on your back, hands under the hips, legs straight, lower slowly and stop just above the floor. Low back stays pressed down. Swap in bicycle crunches (slow, elbow to opposite knee) if the low back lifts." },
+        { ss: "3", ord: "3A", ex: "Rope Tricep Pushdown", link: "https://www.youtube.com/results?search_query=rope+tricep+pushdown", rp: "2-3 x 12", note: "Pull then push, no wasted rest. Elbows tucked, split the rope at the bottom." },
+        { ss: "", ord: "3B", ex: "Bent-Over Rear Delt Fly", link: "https://www.youtube.com/results?search_query=Bent-Over+Rear+Delt+Fly", rp: "2-3 x 15", note: "Chest on an incline bench or hinged over, light dumbbells, sweep out to the sides with the elbows slightly bent. Rear delts pull the shoulders back.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "3C", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "2 x 30 sec / side", note: "Anti-lean core. Stack the hips, don't let them sag back." }
+      ]},
+      { name: "Cool-down", sub: "Slow and easy on the legs.", rows: [
+        { ss: "1", ord: "1A", ex: "Foam Roll Quads", link: "https://www.youtube.com/results?search_query=Foam+Roll+Quads", rp: "60 sec / leg", note: "Face down, slow rolls from hip to just above the knee, pause on anything tender." },
+        { ss: "2", ord: "2A", ex: "Foam Roll Hamstrings", link: "https://www.youtube.com/watch?v=fwDNdgKnTsY", rp: "60 sec / leg", note: "Slow rolls to release what the round will keep asking from these." },
+        { ss: "3", ord: "3A", ex: "Butterfly Stretch", link: "https://www.youtube.com/watch?v=bfvj51pOgF8", rp: "30-45 sec hold", note: "Feet together, knees out, ease the knees toward the floor - opens the hips while the back rests between rolls." }
+      ]}
+    ]
+  },
+  {
     id: "pre-golf", label: "Pre-Golf", focus: "Unloaded mobility only - no heavy work, no overhead load before you play",
     type: "golf", color: "#F2C46D",
     phases: [
@@ -150,6 +183,7 @@ const ALL_DAYS = [
 // Pre-Golf sits apart - it isn't a training day, it's mobility before a round.
 const PROGRAMS = {
   "split": { label: "Upper / Lower", days: ["lower-a", "upper-a", "lower-b", "upper-b"] },
+  "recovery": { label: "Recovery", days: ["recovery"] },
   "golf": { label: "Golf", days: ["pre-golf"] }
 };
 const DEFAULT_PROGRAM = "split";
