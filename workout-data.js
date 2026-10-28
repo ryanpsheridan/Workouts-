@@ -127,21 +127,22 @@ const ALL_DAYS = [
     ]
   },
   {
-    id: "recovery", label: "Recovery", tile: "R", focus: "Easy cardio, light arms, shoulders & core - legs stay out of it",
+    id: "recovery", label: "Recovery", tile: "R", focus: "Easy cardio, a full-body circuit, arms & calves - no heavy legs",
     type: "recovery", color: "#B79CFF", optional: true,
     phases: [
-      { name: "Cardio", sub: "Conversational pace the whole way. If you can't talk, back off.", rows: [
-        { ss: "1", ord: "1A", ex: "Easy Bike or Incline Walk", link: "https://www.youtube.com/results?search_query=zone+2+cardio+bike+incline+walk", rp: "20-25 min", note: "Zone 2: you can hold a full conversation. No intervals, no pushing. Bike or incline walk both skip the lowering phase that keeps sore legs sore, and the blood flow helps them recover." }
+      { name: "Cardio", sub: "Conversational on the bike, then a few moderate-but-easy rounds. If your legs are screaming, stay easy.", rows: [
+        { ss: "1", ord: "1A", ex: "Easy Bike or Incline Walk", link: "https://www.youtube.com/results?search_query=zone+2+cardio+bike+incline+walk", rp: "15 min", note: "Zone 2: you can hold a full conversation. No intervals, no pushing. Bike or incline walk both skip the lowering phase that keeps sore legs sore, and the blood flow helps them recover." },
+        { ss: "2", ord: "2A", ex: "Easy Rower or Bike Intervals", link: "https://www.youtube.com/results?search_query=rower+intervals+easy", rp: "6 x 1 min / 1 min", note: "One minute moderate, one minute easy, six rounds. Light on the legs: spin or row at a pace that feels like a push, not a grind. Full-body heart rate without the load." }
       ]},
-      { name: "Workout", sub: "Light and smooth, about 2 to 3 rounds each. Nothing loads the legs, nothing close to failure.", rows: [
+      { name: "Workout", sub: "Light and smooth, about 2 to 3 rounds each, keep it flowing. Nothing loads the legs hard, nothing close to failure.", rows: [
         { ss: "1", ord: "1A", ex: "Hanging TRX Row", link: "https://www.youtube.com/watch?v=N_14s8zFOms", rp: "2-3 x 10", note: "Straps set short, squeeze the shoulder blades. Walk the feet forward to make it harder.", posture: "Head back, shoulder blades back" },
-        { ss: "", ord: "1B", ex: "Cable Face Pull (rope)", link: "https://www.youtube.com/results?search_query=Cable+Face+Pull+(rope)", rp: "2-3 x 15", note: "Rope at head height, pull to the face and split the ends, elbows high. Rear delts and mid-back.", posture: "Head back, shoulder blades back" },
-        { ss: "", ord: "1C", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=dead+bug+exercise", rp: "2-3 x 8 / side", note: "Low back glued to the floor, opposite arm and leg lower slowly. Anti-extension core." },
-        { ss: "2", ord: "2A", ex: "Dumbbell Lateral Raise", link: "https://www.youtube.com/results?search_query=Dumbbell+Lateral+Raise", rp: "2-3 x 12-15", note: "Slight lean forward, lead with the elbows, stop at shoulder height. Light and strict - side delts are the width you're building.", posture: "Shoulder blades back" },
+        { ss: "", ord: "1B", ex: "Push-Ups (hands elevated)", link: "https://www.youtube.com/results?search_query=incline+push+ups", rp: "2-3 x 10-12", note: "Hands on a bench or the rack, body in one line from head to heels, ribs down. Chest, shoulders and triceps with the body weight taking care of the core." },
+        { ss: "", ord: "1C", ex: "Slow Bear Crawl", link: "https://www.youtube.com/results?search_query=bear+crawl+exercise", rp: "2-3 x 20 sec", note: "Hands and knees an inch off the floor, crawl forward and back slowly. Shoulders, core and a gentle full-body burn. Keep the hips level." },
+        { ss: "2", ord: "2A", ex: "Standing Calf Raises", link: "https://www.youtube.com/results?search_query=standing+calf+raise", rp: "3 x 15", note: "Slow: two seconds up, a full pause at the top, three seconds down. Use bodyweight or a light dumbbell. Calves are fine to work when the quads and glutes are sore." },
         { ss: "", ord: "2B", ex: "Alternating Hammer Curls", link: "https://www.youtube.com/results?search_query=alternating+hammer+curls", rp: "2-3 x 12", note: "Dumbbells, elbows pinned, one arm at a time. Arms stay in the week even on a leg day." },
-        { ss: "", ord: "2C", ex: "Lying Leg Raise OR Bicycle Crunches", link: "https://www.youtube.com/results?search_query=lying+leg+raise", rp: "2-3 x 12-15", note: "Flat on your back, hands under the hips, legs straight, lower slowly and stop just above the floor. Low back stays pressed down. Swap in bicycle crunches (slow, elbow to opposite knee) if the low back lifts." },
+        { ss: "", ord: "2C", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=dead+bug+exercise", rp: "2-3 x 8 / side", note: "Low back glued to the floor, opposite arm and leg lower slowly. Anti-extension core." },
         { ss: "3", ord: "3A", ex: "Rope Tricep Pushdown", link: "https://www.youtube.com/results?search_query=rope+tricep+pushdown", rp: "2-3 x 12", note: "Pull then push, no wasted rest. Elbows tucked, split the rope at the bottom." },
-        { ss: "", ord: "3B", ex: "Bent-Over Rear Delt Fly", link: "https://www.youtube.com/results?search_query=Bent-Over+Rear+Delt+Fly", rp: "2-3 x 15", note: "Chest on an incline bench or hinged over, light dumbbells, sweep out to the sides with the elbows slightly bent. Rear delts pull the shoulders back.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "3B", ex: "Single-Leg Calf Raise", link: "https://www.youtube.com/results?search_query=single+leg+calf+raise", rp: "2-3 x 12 / side", note: "Hold the rack for balance, full range, slow on the way down. Straight knee for the gastrocnemius." },
         { ss: "", ord: "3C", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "2 x 30 sec / side", note: "Anti-lean core. Stack the hips, don't let them sag back." }
       ]},
       { name: "Cool-down", sub: "Slow and easy on the legs.", rows: [
