@@ -22,7 +22,7 @@ const WARMUPS = {
     { ss: "2", ord: "2A", ex: "Doorway Pec Stretch", link: "https://www.youtube.com/results?search_query=Doorway+Pec+Stretch", rp: "30 sec / side", note: "Forearm on the frame, step through. Opens the chest after the pressing." },
     { ss: "3", ord: "3A", ex: "Overhead Triceps Stretch", link: "https://www.youtube.com/results?search_query=Overhead+Triceps+Stretch", rp: "30 sec / side", note: "Elbow up, hand down the back, other hand gently pulls the elbow. Triceps and lats." },
     { ss: "4", ord: "4A", ex: "Hip CARs", link: "https://www.youtube.com/results?search_query=Hip+CARs", rp: "5 / side", note: "Slow, big circles with the knee, rest of the body still. Find the edge of the hip range and sit there." },
-    { ss: "5", ord: "5A", ex: "Fire Hydrants", link: "https://www.youtube.com/results?search_query=Fire+Hydrants", rp: "10 / side", note: "On all fours, lift the knee out to the side, hips square. Glute med before the single-leg work." },
+    { ss: "5", ord: "5A", ex: "Bird-Dogs", link: "https://www.youtube.com/results?search_query=bird+dog+exercise", rp: "8 / side", note: "On all fours, reach the opposite arm and leg out long and pause 2 sec, then switch. Ribs down, belly tight, hips level - no arching and no rocking. Core and lower back stability." },
     { ss: "6", ord: "6A", ex: "Walking Lunges (bodyweight)", link: "https://www.youtube.com/watch?v=2MbSPOB24XQ", rp: "10 / side", note: "No weight, just groove the pattern and warm the hips before the loaded lunges." }
   ],
   "upper-b": [ // first 3 loosen yesterday's lower day, last 3 prep the pulling
@@ -30,7 +30,7 @@ const WARMUPS = {
     { ss: "2", ord: "2A", ex: "Pigeon Pose", link: "https://www.youtube.com/results?search_query=pigeon+pose+stretch", rp: "45 sec / side", note: "Front knee bent with the shin angled across, back leg straight behind, hips square to the floor. Fold forward over the front leg to go deeper. Tight hips? Put a block or towel under the front hip. Deep glute and outer hip release." },
     { ss: "3", ord: "3A", ex: "Foam Roll Glutes & Quads", link: "https://www.youtube.com/results?search_query=Foam+Roll+Glutes+%26+Quads", rp: "60 sec", note: "Slow rolls through the glutes, then the quads. Pause on anything tight." },
     { ss: "4", ord: "4A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" },
-    { ss: "5", ord: "5A", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=Dead+Bug", rp: "8 / side", note: "Low back pressed into the floor, opposite arm and leg lower slowly. Core on before the hanging work." },
+    { ss: "5", ord: "5A", ex: "Bird-Dogs", link: "https://www.youtube.com/results?search_query=bird+dog+exercise", rp: "8 / side", note: "On all fours, reach the opposite arm and leg out long and pause 2 sec, then switch. Ribs down, belly tight, hips level - no arching and no rocking. Core and lower back stability." },
     { ss: "6", ord: "6A", ex: "Bear Crawl Shoulder Taps", link: "https://www.youtube.com/results?search_query=Bear+Crawl+Shoulder+Taps", rp: "20 taps", note: "Hands under shoulders, knees an inch off the floor, hips don't rock. Shoulders and trunk together." }
   ],
   "recovery": [ // first 3 ease the legs, last 3 wake up the upper body and trunk
@@ -39,7 +39,7 @@ const WARMUPS = {
     { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
     { ss: "4", ord: "4A", ex: "Cat-Cow", link: "https://www.youtube.com/results?search_query=Cat-Cow", rp: "10 reps", note: "Slow, full range. Gets the spine moving again after yesterday's pulling." },
     { ss: "5", ord: "5A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" },
-    { ss: "6", ord: "6A", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=dead+bug+exercise", rp: "3 x 8 / side", note: "Low back glued to the floor, opposite arm and leg lower slowly. Anti-extension core." }
+    { ss: "6", ord: "6A", ex: "Bird-Dogs", link: "https://www.youtube.com/results?search_query=bird+dog+exercise", rp: "8 / side", note: "On all fours, reach the opposite arm and leg out long and pause 2 sec, then switch. Ribs down, belly tight, hips level - no arching and no rocking. Core and lower back stability." }
   ]
 };
 
