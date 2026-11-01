@@ -74,7 +74,8 @@
   @keyframes vt-in-l { from { transform: translateX(-10%); opacity: 0; } }
   @keyframes vt-out-r { to { transform: translateX(28%); opacity: 0; } }
   .enter { animation: enter 0.32s var(--ease); }
-  @keyframes enter { from { opacity: 0; transform: translateY(8px); } }
+  /* Opacity only: a transform on .session makes iOS Safari anchor the fixed dock to it instead of the viewport */
+  @keyframes enter { from { opacity: 0; } }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after, ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) {
@@ -249,6 +250,8 @@
     padding: 18px 16px calc(env(safe-area-inset-bottom) + 12px);
     background: linear-gradient(to top, #000 55%, rgba(0,0,0,0));
     pointer-events: none;
+    /* Own compositing layer so iOS keeps it pinned to the viewport during URL bar collapse and rubber-banding */
+    -webkit-transform: translateZ(0); transform: translateZ(0);
   }
   .dock-in { max-width: 528px; margin: 0 auto; display: flex; gap: 10px; pointer-events: auto; }
   .timer-btn {
