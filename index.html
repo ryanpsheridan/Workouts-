@@ -93,6 +93,14 @@
   .h-date { font-size: 13px; color: var(--ink-3); letter-spacing: 0.01em; }
   .h-greet { font-size: 40px; font-weight: 700; letter-spacing: -0.045em; line-height: 1; margin: 26px 0 18px; }
 
+  /* Motivation banner */
+  .banner {
+    display: flex; align-items: center; gap: 12px; margin: -4px 0 18px; padding: 14px 16px; border-radius: var(--r-md);
+    background: color-mix(in srgb, var(--lower) 12%, var(--s1)); border: 1px solid color-mix(in srgb, var(--lower) 28%, transparent);
+    font-size: 15px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--lower);
+  }
+  .banner::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--lower); box-shadow: 0 0 12px var(--lower); }
+
   /* Session rows */
   .group-h { display: flex; align-items: baseline; justify-content: space-between; margin: 30px 4px 10px; }
   .group-h h2 { font-size: 22px; font-weight: 650; letter-spacing: -0.035em; }
@@ -470,6 +478,7 @@ function homeHtml() {
   return `<div class="home">
     <div class="h-top"><span class="wordmark">gym<b>pro</b></span><span class="h-date">${dateStr}</span></div>
     <h1 class="h-greet">${weekday}</h1>
+    <div class="banner">Train with intensity</div>
     <div class="rows">${ROTATION.map(card).join("")}</div>
     ${recovery}
     ${golfCard}
