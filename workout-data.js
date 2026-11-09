@@ -87,22 +87,22 @@ const ALL_DAYS = [
     ]
   },
   {
-    id: "lower-b", label: "Lower B", focus: "Single-leg, glutes, core & posture",
+    id: "lower-b", label: "Lower B", focus: "Sled, single-leg, glutes & core",
     type: "lower", color: "#C8F25A",
     phases: [
       { name: "Workout", sub: "No rest inside a superset, about 60 sec between rounds. The pace is the conditioning. Golf tomorrow? First two groups only, same weight.", rows: [
-        { ss: "1", ord: "1A", ex: "Twisting Lunges with 45 lb plate", link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", brace: true, rp: "3 x 8 / side", note: "Plate held at the chest. Lunge forward and rotate the upper body toward the lead leg at the bottom, then drive back up and switch sides. Rotation under load." },
-        { ss: "", ord: "1B", ex: "Lying Plate Pass (25 lb)", link: "https://www.youtube.com/watch?v=y-y-EKnieNA", rp: "3 x 10", note: "On your back, plate overhead, pass it onto your shins, straighten the legs and send it back the other way. Low back glued to the floor." },
-        { ss: "", ord: "1C", ex: "Calf Raises OR Lateral Band Walks", link: "https://www.youtube.com/watch?v=A12uKYg-Kuo", rp: "15 reps / 15 steps" },
+        { ss: "1", ord: "1A", ex: "Sled Push + Pull", link: "https://www.youtube.com/results?search_query=sled+push+and+pull", brace: true, rp: "3 x 1 trip", note: "Push the sled down the turf, then grab the handles or strap and pull it back. One trip each way is a set. Low and driving through the legs on the push, short quick steps on the pull." },
+        { ss: "", ord: "1B", ex: "Bicycle Crunches", link: "https://www.youtube.com/results?search_query=bicycle+crunches", rp: "3 x 50", note: "Elbow to the opposite knee, fully extend the other leg. Count both sides. Low back stays pressed into the floor, rotate through the ribs, don't yank the neck." },
+        { ss: "", ord: "1C", ex: "Boat Rows", link: "https://www.youtube.com/results?search_query=boat+pose+row+core+exercise", rp: "3 x 10", note: "Balance on the sit bones in a boat hold, lean back and extend the legs, then pull the knees in as the arms row back. Chest tall, don't round the low back." },
         { ss: "2", ord: "2A", ex: "Rear-Foot Elevated Box Lunge", link: "https://www.youtube.com/results?search_query=rear+foot+elevated+split+squat", brace: true, rp: "3 x 8 / side", note: "Back foot up on the box, weight held in one arm, drop deep. Keep the lead knee tracking over your toes, don't let it cave inward." },
         { ss: "", ord: "2B", ex: "Single-Leg RDL (Kettlebell)", link: "https://www.youtube.com/watch?v=Zfr6wizR8rs", brace: true, rp: "3 x 8 / side", note: "Almost-straight working leg, hinge forward and lower the bell toward the floor, then stand back up. Hamstring, glute and balance in one." },
         { ss: "", ord: "2C", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "30 sec / side", note: "Anti-lean core. Stack the hips, don't let them sag back." },
         { ss: "3", ord: "3A", ex: "Belted Glute Press (Machine)", link: "https://www.youtube.com/results?search_query=machine+hip+thrust+belt", rp: "3 x 12", note: "On your back with the belt across the hips, drive up and squeeze the glutes at the top. Pause, then lower under control." },
-        { ss: "", ord: "3B", ex: "GHD Reverse Hyperextension", link: "https://www.youtube.com/watch?v=3vmbvoT2m-U", brace: true, rp: "3 x 12-15", note: "Ribs down and belly tight, tuck the pelvis before you lift. Squeeze the glutes to raise the legs and stop at parallel - if the low back arches or the legs swing past the body, you have gone too high. Slow up, slower down. Lower back and core strength, not height." },
-        { ss: "", ord: "3C", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull - anti-rotation core for the swing." },
-        { ss: "4", ord: "4A", ex: "Prone Y Raise", link: "https://www.youtube.com/results?search_query=Prone+Y+Raise", rp: "3 x 12", note: "Face down on the bench or floor, thumbs up, lift from below the shoulder blades. Posture and shoulders in one move.", posture: "Head back, shoulder blades back" },
-        { ss: "", ord: "4B", ex: "Incline Dumbbell Curl", link: "https://www.youtube.com/results?search_query=incline+dumbbell+curl", rp: "3 x 10-12", note: "Back on a low incline, arms hanging behind the body, full stretch at the bottom. Long-head biceps." },
-        { ss: "", ord: "4C", ex: "Reverse Crunch", link: "https://www.youtube.com/results?search_query=reverse+crunch", rp: "3 x 12-15", note: "On your back, curl the hips off the floor toward the ribs. Lower abs, slow on the way down, no swing." }
+        { ss: "", ord: "3B", ex: "Dumbbell Lateral Raise", link: "https://www.youtube.com/results?search_query=Dumbbell+Lateral+Raise", rp: "3 x 12-15", note: "Slight lean forward, lead with the elbows, stop at shoulder height. Light and strict - side delts are the width you're building.", posture: "Shoulder blades back" },
+        { ss: "4", ord: "4A", ex: "Leg Extension", link: "https://www.youtube.com/results?search_query=leg+extension+machine", rp: "3 x 12", note: "Pad just above the ankles, knee lined up with the machine's pivot. Squeeze the quads at the top for a beat, lower slowly." },
+        { ss: "5", ord: "5A", ex: "45° Back Extension", link: "https://www.youtube.com/results?search_query=45+degree+back+extension", rp: "3 x 12", note: "Hips on the pad, hinge down with a flat back, then squeeze the glutes to come up to a straight line. Stop there, no arching past neutral." },
+        { ss: "", ord: "5B", ex: "GHD Sit-Ups", link: "https://www.youtube.com/watch?v=pMS2dU0FuPk", rp: "3 x 12-15", note: "Squeeze the abs, don't yank with the hip flexors." },
+        { ss: "", ord: "5C", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Press out, hold 3 sec, resist the pull - anti-rotation core for the swing." }
       ]}
     ]
   },
