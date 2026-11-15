@@ -91,7 +91,7 @@ const ALL_DAYS = [
     type: "lower", color: "#C8F25A",
     phases: [
       { name: "Workout", sub: "No rest inside a superset, about 60 sec between rounds. The pace is the conditioning. Golf tomorrow? First two groups only, same weight.", rows: [
-        { ss: "1", ord: "1A", ex: "Twisting Lunges with 45 lb plate", link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", brace: true, rp: "3 x 8 / side", note: "Plate held at the chest. Lunge forward and rotate the upper body toward the lead leg at the bottom, then drive back up and switch sides. Rotation under load." },
+        { ss: "1", ord: "1A", ex: "Reverse Twisting Lunges with 45 lb plate", link: "https://www.instagram.com/reel/DZS4JCpSqFh/?igsh=MTFtZms4b2N6ZjRnNA==", brace: true, rp: "3 x 8 / side", note: "Plate held at the chest. Step back into the lunge and rotate the upper body toward the front leg at the bottom, then drive back up and switch sides. Rotation under load." },
         { ss: "", ord: "1B", ex: "Lying Plate Pass (25 lb)", link: "https://www.youtube.com/watch?v=y-y-EKnieNA", rp: "3 x 10", note: "On your back, plate overhead, pass it onto your shins, straighten the legs and send it back the other way. Low back glued to the floor." },
         { ss: "", ord: "1C", ex: "Calf Raises OR Lateral Band Walks", link: "https://www.youtube.com/watch?v=A12uKYg-Kuo", rp: "15 reps / 15 steps" },
         { ss: "2", ord: "2A", ex: "Rear-Foot Elevated Box Lunge", link: "https://www.youtube.com/results?search_query=rear+foot+elevated+split+squat", brace: true, rp: "3 x 8 / side", note: "Back foot up on the box, weight held in one arm, drop deep. Keep the lead knee tracking over your toes, don't let it cave inward." },
