@@ -63,6 +63,9 @@ const ALL_DAYS = [
         { ss: "4", ord: "4A", ex: "Alternating Hammer Curls", link: "https://www.youtube.com/results?search_query=alternating+hammer+curls", rp: "3 x 12", note: "Dumbbells, elbows pinned, one arm at a time. Arms stay in the week even on a leg day." },
         { ss: "", ord: "4B", ex: "Standing Band Raises", link: "https://www.youtube.com/watch?v=iQlrRrZTrBs", rp: "3 x 12-15", note: "Stand on the band, arms out to the sides to shoulder height, slow on the way down. Light band, no swing, stop the moment the traps start doing it.", posture: "Shoulder blades back" },
         { ss: "", ord: "4C", ex: "GHD Sit-Ups", link: "https://www.youtube.com/watch?v=pMS2dU0FuPk", rp: "3 x 12-15", note: "Same machine as the reverse hypers. Squeeze the abs, don't yank with the hip flexors." }
+      ]},
+      { name: "Sauna", sub: "Finish the session here.", rows: [
+        { ss: "1", ord: "1A", ex: "Sauna", rp: "10 min", note: "Easy heat, sit and breathe. Hydrate before and after." }
       ]}
     ]
   },
@@ -83,6 +86,9 @@ const ALL_DAYS = [
         { ss: "4", ord: "4A", ex: "Wide Grip Barbell Curl (squat rack)", link: "https://www.youtube.com/results?search_query=wide+grip+barbell+curl", rp: "3 x 10", note: "Set the bar in the squat rack at hip height so you can lift it out clean. Hands wider than shoulders, elbows pinned, no swing.", posture: "Head back, shoulder blades back" },
         { ss: "", ord: "4B", ex: "Dumbbell Lateral Raise", link: "https://www.youtube.com/results?search_query=Dumbbell+Lateral+Raise", rp: "3 x 12-15", note: "Slight lean forward, lead with the elbows, stop at shoulder height. Light and strict - side delts are the width you're building.", posture: "Shoulder blades back" },
         { ss: "", ord: "4C", ex: "Kneeling Cable Crunch", link: "https://www.youtube.com/results?search_query=Kneeling+Cable+Crunch", rp: "3 x 12-15", note: "Rope behind the head, round the spine down toward the hips, abs do the work, hips stay put. Loaded abs." }
+      ]},
+      { name: "Sauna", sub: "Finish the session here.", rows: [
+        { ss: "1", ord: "1A", ex: "Sauna", rp: "10 min", note: "Easy heat, sit and breathe. Hydrate before and after." }
       ]}
     ]
   },
@@ -103,6 +109,9 @@ const ALL_DAYS = [
         { ss: "4", ord: "4A", ex: "Prone Y Raise", link: "https://www.youtube.com/results?search_query=Prone+Y+Raise", rp: "3 x 12", note: "Face down on the bench or floor, thumbs up, lift from below the shoulder blades. Posture and shoulders in one move.", posture: "Head back, shoulder blades back" },
         { ss: "", ord: "4B", ex: "Incline Dumbbell Curl", link: "https://www.youtube.com/results?search_query=incline+dumbbell+curl", rp: "3 x 10-12", note: "Back on a low incline, arms hanging behind the body, full stretch at the bottom. Long-head biceps." },
         { ss: "", ord: "4C", ex: "Reverse Crunch", link: "https://www.youtube.com/results?search_query=reverse+crunch", rp: "3 x 12-15", note: "On your back, curl the hips off the floor toward the ribs. Lower abs, slow on the way down, no swing." }
+      ]},
+      { name: "Sauna", sub: "Finish the session here.", rows: [
+        { ss: "1", ord: "1A", ex: "Sauna", rp: "10 min", note: "Easy heat, sit and breathe. Hydrate before and after." }
       ]}
     ]
   },
@@ -123,6 +132,9 @@ const ALL_DAYS = [
         { ss: "4", ord: "4A", ex: "Bent-Over Rear Delt Fly", link: "https://www.youtube.com/results?search_query=Bent-Over+Rear+Delt+Fly", rp: "3 x 15", note: "Chest on an incline bench or hinged over, light dumbbells, sweep out to the sides with the elbows slightly bent. Rear delts pull the shoulders back.", posture: "Head back, shoulder blades back" },
         { ss: "", ord: "4B", ex: "Single-Arm Cable Lateral Raise", link: "https://www.youtube.com/results?search_query=single+arm+cable+lateral+raise", rp: "3 x 12 / side", note: "Low pulley across the body, lead with the elbow to shoulder height. Constant tension on the side delt.", posture: "Shoulder blades back" },
         { ss: "", ord: "4C", ex: "Hollow Body Hold", link: "https://www.youtube.com/results?search_query=hollow+body+hold", rp: "3 x 30 sec", note: "Low back pressed down, ribs pulled to the hips, arms and legs extended just off the floor. Bend the knees to make it easier." }
+      ]},
+      { name: "Sauna", sub: "Finish the session here.", rows: [
+        { ss: "1", ord: "1A", ex: "Sauna", rp: "10 min", note: "Easy heat, sit and breathe. Hydrate before and after." }
       ]}
     ]
   },
@@ -149,6 +161,9 @@ const ALL_DAYS = [
         { ss: "1", ord: "1A", ex: "Foam Roll Quads", link: "https://www.youtube.com/results?search_query=Foam+Roll+Quads", rp: "60 sec / leg", note: "Face down, slow rolls from hip to just above the knee, pause on anything tender." },
         { ss: "2", ord: "2A", ex: "Foam Roll Hamstrings", link: "https://www.youtube.com/watch?v=fwDNdgKnTsY", rp: "60 sec / leg", note: "Slow rolls to release what the round will keep asking from these." },
         { ss: "3", ord: "3A", ex: "Pigeon Pose", link: "https://www.youtube.com/results?search_query=pigeon+pose+stretch", rp: "45 sec / side", note: "Front knee bent with the shin angled across, back leg straight behind, hips square to the floor. Fold forward over the front leg to go deeper. Tight hips? Put a block or towel under the front hip. Deep glute and outer hip release." }
+      ]},
+      { name: "Sauna", sub: "Finish the session here.", rows: [
+        { ss: "1", ord: "1A", ex: "Sauna", rp: "10 min", note: "Easy heat, sit and breathe. Hydrate before and after." }
       ]}
     ]
   },
