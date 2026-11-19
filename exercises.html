@@ -199,6 +199,14 @@
   }
   .ex-demo::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 4px 0 4px 6.5px; border-color: transparent transparent transparent var(--link); }
   .ex-demo:active { background: var(--link-soft-active); }
+  .ex-ig {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px 4px 8px; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--field); font-size: 10.5px; font-weight: 400; letter-spacing: 0.02em;
+    color: var(--ink-2); text-decoration: none; -webkit-tap-highlight-color: transparent;
+  }
+  .ex-ig svg { width: 13px; height: 13px; flex: none; }
+  .ex-ig:active { background: var(--s2); }
 
   .empty-state { padding: 3rem 1.25rem; text-align: center; color: var(--ink-3); font-size: 14px; }
 </style>
@@ -417,11 +425,12 @@ function buildLibrary() {
     const key = r.ex;
     let entry = byName.get(key);
     if (!entry) {
-      entry = { name: r.ex, note: r.note || "", link: r.link || "", reps: new Set(), type: EX_TYPE[r.ex] || "core" };
+      entry = { name: r.ex, note: r.note || "", link: r.link || "", ig: r.ig || "", reps: new Set(), type: EX_TYPE[r.ex] || "core" };
       byName.set(key, entry);
     }
     if (!entry.note && r.note) entry.note = r.note;
     if (!entry.link && r.link) entry.link = r.link;
+    if (!entry.ig && r.ig) entry.ig = r.ig;
     if (r.rp) entry.reps.add(r.rp);
   }
 
@@ -440,13 +449,14 @@ let query = "";
 function exCardHtml(item, showTag) {
   const reps = [...item.reps].slice(0, 2).map(r => `<span class="ex-reps">${r}</span>`).join("");
   const demo = item.link ? `<a class="ex-demo" href="${item.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Demo</a>` : "";
+  const ig = item.ig ? `<a class="ex-ig" href="${item.ig}" target="_blank" rel="noopener" aria-label="Instagram demo: ${item.name}" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>Instagram</a>` : "";
   const t = TYPE_BY_ID[item.type];
   const tag = showTag ? `<span class="ex-tag" style="background:${t.color}">${t.label}</span>` : "";
   const note = item.note ? `<div class="ex-card-note">${item.note}</div>` : "";
   return `<div class="ex-card" data-note-toggle>
     <div class="ex-card-name">${item.name}</div>
     ${note}
-    <div class="ex-card-meta">${reps}${tag}${demo}</div>
+    <div class="ex-card-meta">${reps}${tag}${demo}${ig}</div>
   </div>`;
 }
 

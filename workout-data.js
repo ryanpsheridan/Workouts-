@@ -26,7 +26,7 @@ const WARMUPS = {
     { ss: "6", ord: "6A", ex: "Walking Lunges (bodyweight)", link: "https://www.youtube.com/watch?v=2MbSPOB24XQ", rp: "10 / side", note: "No weight, just groove the pattern and warm the hips before the loaded lunges." }
   ],
   "upper-b": [ // first 3 loosen yesterday's lower day, last 3 prep the pulling
-    { ss: "1", ord: "1A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal and external hip rotation. Chest tall, sit up on a block or a plate if you can't stay upright." },
+    { ss: "1", ord: "1A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", ig: "https://www.instagram.com/reel/De9jBonxDXf/?jplx=MTdzcXJhcXpmcmJ1Nw==", rp: "8 / side", note: "Internal and external hip rotation. Chest tall, sit up on a block or a plate if you can't stay upright." },
     { ss: "2", ord: "2A", ex: "Pigeon Pose", link: "https://www.youtube.com/results?search_query=pigeon+pose+stretch", rp: "45 sec / side", note: "Front knee bent with the shin angled across, back leg straight behind, hips square to the floor. Fold forward over the front leg to go deeper. Tight hips? Put a block or towel under the front hip. Deep glute and outer hip release." },
     { ss: "3", ord: "3A", ex: "Foam Roll Glutes & Quads", link: "https://www.youtube.com/results?search_query=Foam+Roll+Glutes+%26+Quads", rp: "60 sec", note: "Slow rolls through the glutes, then the quads. Pause on anything tight." },
     { ss: "4", ord: "4A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" },
@@ -36,7 +36,7 @@ const WARMUPS = {
   "recovery": [ // first 3 ease the legs, last 3 wake up the upper body and trunk
     { ss: "1", ord: "1A", ex: "Wall Hip Flexor Stretch", link: "https://www.youtube.com/results?search_query=Wall+Hip+Flexor+Stretch", rp: "30 sec / side", note: "Back knee down against the wall, squeeze the glute and drive the hips forward. Opens the hip flexors and quads from the lunges and step-ups." },
     { ss: "2", ord: "2A", ex: "Pigeon Pose", link: "https://www.youtube.com/results?search_query=pigeon+pose+stretch", rp: "45 sec / side", note: "Front knee bent with the shin angled across, back leg straight behind, hips square to the floor. Fold forward over the front leg to go deeper. Tight hips? Put a block or towel under the front hip. Deep glute and outer hip release." },
-    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
+    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", ig: "https://www.instagram.com/reel/De9jBonxDXf/?jplx=MTdzcXJhcXpmcmJ1Nw==", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
     { ss: "4", ord: "4A", ex: "Cat-Cow", link: "https://www.youtube.com/results?search_query=Cat-Cow", rp: "10 reps", note: "Slow, full range. Gets the spine moving again after yesterday's pulling." },
     { ss: "5", ord: "5A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" },
     { ss: "6", ord: "6A", ex: "Bird-Dogs", link: "https://www.youtube.com/results?search_query=bird+dog+exercise", rp: "8 / side", note: "On all fours, reach the opposite arm and leg out long and pause 2 sec, then switch. Ribs down, belly tight, hips level - no arching and no rocking. Core and lower back stability." }
@@ -187,7 +187,7 @@ const ALL_DAYS = [
         { ss: "4", ord: "4A", ex: "Banded Hamstring Pulls OR Light RDL (bar only)", link: "https://www.youtube.com/watch?v=MCpaZNAqDAw", rp: "2 x 10", note: "Slow and controlled - stop well short of anything pulling on the back." }
       ]},
       { name: "Finish", sub: "Loosen & open the hips for the round", rows: [
-        { ss: "1", ord: "1A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
+        { ss: "1", ord: "1A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", ig: "https://www.instagram.com/reel/De9jBonxDXf/?jplx=MTdzcXJhcXpmcmJ1Nw==", rp: "8 / side", note: "Internal + external hip rotation - the range golf demands." },
         { ss: "2", ord: "2A", ex: "Walking Lunges with a Twist", link: "https://www.youtube.com/watch?v=HCFUgYtIXlE", rp: "10 / side", note: "Add a slow twist over the front leg to open the t-spine before you play. Keep the lead knee tracking over your toes, don't let it cave inward." },
         { ss: "3", ord: "3A", ex: "Easy Bike or Rower", rp: "5 min", note: "Just enough to get blood flowing - conversational pace, not a warm-up sweat." }
       ]}

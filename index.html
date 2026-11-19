@@ -234,6 +234,7 @@
   }
   .play:active { transform: scale(0.9); background: var(--s3); }
   .play svg { width: 13px; height: 13px; margin-left: 2px; }
+  .play.ig svg { width: 16px; height: 16px; margin-left: 0; }
   .ex-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 6px; }
   .reps { font-size: 15px; font-weight: 600; color: var(--a); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; margin-right: 2px; }
   .cue { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 99px; font-size: 11.5px; color: var(--ink-2); background: var(--s2); white-space: nowrap; }
@@ -418,6 +419,7 @@ function toast(html) {
 
 const I = {
   arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  insta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>',
   back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
   chev: '<svg class="chev-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
@@ -506,6 +508,7 @@ function exHtml(r, label, key) {
   const [main, ...alts] = r.ex.split(/\s+OR\s+/);
   const alt = alts.length ? `<span class="ex-alt">or ${alts.join(" or ")}</span>` : "";
   const play = r.link ? `<a class="play" href="${r.link}" target="_blank" rel="noopener" aria-label="Demo: ${main}">${I.play}</a>` : "";
+  const ig = r.ig ? `<a class="play ig" href="${r.ig}" target="_blank" rel="noopener" aria-label="Instagram demo: ${main}">${I.insta}</a>` : "";
   const cues = [r.brace && braceCue(), r.posture].filter(Boolean).map(c => `<span class="cue">${c}</span>`).join("");
   const reps = r.rp ? `<span class="reps">${fmtReps(r.rp)}</span>` : "";
   const note = r.note ? `<div class="ex-note">${r.note}</div>` : "";
@@ -513,7 +516,7 @@ function exHtml(r, label, key) {
   return `<div class="ex${on}" data-key="${key}">
     <button class="ex-idx" aria-label="Mark ${main} done" aria-pressed="${!!on}"><span>${label}</span>${I.check}</button>
     <div class="ex-main">
-      <div class="ex-top"><div class="ex-name">${main}${alt}</div>${play}</div>
+      <div class="ex-top"><div class="ex-name">${main}${alt}</div>${play}${ig}</div>
       ${reps || cues ? `<div class="ex-meta">${reps}${cues}</div>` : ""}
       ${note}
     </div>
