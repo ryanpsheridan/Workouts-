@@ -36,6 +36,7 @@
     --upper: #7cc4ff;
     --golf: #f2c46d;
     --recovery: #b79cff;
+    --full: #ff8a5c;
     --go-green: #34d96b;
     --a: var(--lower);        /* accent of whatever is on screen */
     --on-a: #0a0b0c;
@@ -329,7 +330,7 @@
 // ---------------------------------------------------------------------------
 const ROTATION = PROGRAMS.split.days;
 const DAY = Object.fromEntries(ALL_DAYS.map(d => [d.id, d]));
-const TYPE_NAME = { lower: "Lower", upper: "Upper", golf: "Golf", recovery: "Recovery" };
+const TYPE_NAME = { lower: "Lower", upper: "Upper", golf: "Golf", recovery: "Recovery", full: "Full" };
 
 const store = {
   get(k, fallback) { try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? fallback : v; } catch (e) { return fallback; } },
@@ -467,6 +468,10 @@ function homeHtml() {
       ${I.chev}
     </a>`;
 
+  const full = `
+    <div class="group-h"><h2>Full Body</h2><span>${agoText(lastDone("full-body"))}</span></div>
+    ${card("full-body")}`;
+
   const links = `
     <div class="group-h"><h2>More</h2></div>
     <div class="list">
@@ -484,6 +489,7 @@ function homeHtml() {
     <div class="rows">${ROTATION.map(card).join("")}</div>
     ${recovery}
     ${golfCard}
+    ${full}
     ${links}
   </div>`;
 }

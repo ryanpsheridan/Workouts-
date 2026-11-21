@@ -40,6 +40,14 @@ const WARMUPS = {
     { ss: "4", ord: "4A", ex: "Cat-Cow", link: "https://www.youtube.com/results?search_query=Cat-Cow", rp: "10 reps", note: "Slow, full range. Gets the spine moving again after yesterday's pulling." },
     { ss: "5", ord: "5A", ex: "Band Face Pulls", link: "https://www.youtube.com/results?search_query=Band+Face+Pulls", rp: "12 reps", note: "Pull to the face with the elbows high, rear delts and mid-back. The one upper-body prep before the pulling.", posture: "Head back, shoulder blades back" },
     { ss: "6", ord: "6A", ex: "Bird-Dogs", link: "https://www.youtube.com/results?search_query=bird+dog+exercise", rp: "8 / side", note: "On all fours, reach the opposite arm and leg out long and pause 2 sec, then switch. Ribs down, belly tight, hips level - no arching and no rocking. Core and lower back stability." }
+  ],
+  "full-body": [ // first 3 open the spine and hips, last 3 prep every pattern the session hits
+    { ss: "1", ord: "1A", ex: "Cat-Cow", link: "https://www.youtube.com/results?search_query=Cat-Cow", rp: "10 reps", note: "Slow, full range. Wakes the spine up, especially after a travel day or a night in a hotel bed." },
+    { ss: "2", ord: "2A", ex: "World's Greatest Stretch", link: "https://www.youtube.com/watch?v=-CiWQ2IvY34", rp: "5 / side", note: "Full hip opener with a thoracic reach at the top. One move that touches everything." },
+    { ss: "3", ord: "3A", ex: "90/90 Hip Switches", link: "https://www.youtube.com/watch?v=qq_Z7sAmVrA", ig: "https://www.instagram.com/reel/De9jBonxDXf/?jplx=MTdzcXJhcXpmcmJ1Nw==", rp: "8 / side", note: "Internal and external hip rotation. Chest tall, sit up on a block or a plate if you can't stay upright." },
+    { ss: "4", ord: "4A", ex: "Glute Bridge March", link: "https://www.youtube.com/results?search_query=Glute+Bridge+March", rp: "10 / side", note: "Hips high and level, march the knees without letting the pelvis drop. Wakes the glutes up before the squats and hinges." },
+    { ss: "5", ord: "5A", ex: "Air Squats", link: "https://www.youtube.com/results?search_query=bodyweight+air+squat", rp: "12 reps", note: "Slow, sit between the heels, knees track over the toes. Grooves the squat before you load it." },
+    { ss: "6", ord: "6A", ex: "Scap Push-Ups", link: "https://www.youtube.com/results?search_query=Scap+Push-Ups", rp: "12 reps", note: "Arms locked, only the shoulder blades move. Primes the shoulders for the pressing and rowing.", posture: "Shoulder blades back" }
   ]
 };
 
@@ -192,14 +200,39 @@ const ALL_DAYS = [
         { ss: "3", ord: "3A", ex: "Easy Bike or Rower", rp: "5 min", note: "Just enough to get blood flowing - conversational pace, not a warm-up sweat." }
       ]}
     ]
+  },
+  {
+    id: "full-body", label: "Full Body", tile: "F", focus: "Legs, push, pull & core in one hit - for short weeks and travel",
+    type: "full", color: "#FF8A5C",
+    phases: [
+      { name: "Workout", sub: "No rest inside a superset, about 60 sec between rounds. Built for a hotel gym: dumbbells and a bench cover almost all of it, with a bodyweight swap where a machine might be missing. Short on time? First three groups only.", rows: [
+        { ss: "1", ord: "1A", ex: "Goblet Squat", link: "https://www.youtube.com/results?search_query=goblet+squat", brace: true, rp: "3 x 8-10", note: "One dumbbell or kettlebell at the chest, elbows inside the knees at the bottom. Sit between the heels, knees track over the toes. The main lower-body strength move of the day." },
+        { ss: "", ord: "1B", ex: "Single-Arm Dumbbell Row (supported)", link: "https://www.youtube.com/results?search_query=Single-Arm+Dumbbell+Row+(supported)", rp: "3 x 10 / side", note: "One hand and one knee on the bench, pull the bell to the hip. Back flat, no twist.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "1C", ex: "Dead Bug", link: "https://www.youtube.com/results?search_query=dead+bug+exercise", rp: "3 x 8 / side", note: "Low back glued to the floor, opposite arm and leg lower slowly. Anti-extension core." },
+        { ss: "2", ord: "2A", ex: "Dumbbell Romanian Deadlift", link: "https://www.youtube.com/results?search_query=dumbbell+romanian+deadlift", brace: true, rp: "3 x 10", note: "Soft knees, push the hips back and slide the bells down the thighs to mid-shin. Back stays flat the whole way: stop the moment it wants to round. Hamstrings and glutes, not the low back." },
+        { ss: "", ord: "2B", ex: "Incline Dumbbell Press OR Push-Ups", link: "https://www.youtube.com/results?search_query=incline+dumbbell+press", rp: "3 x 8-12", note: "Low incline, press up and slightly back, no overhead lockout. No bench? Push-ups, feet up on the bench or a box to make them harder.", posture: "Shoulder blades back" },
+        { ss: "", ord: "2C", ex: "Side Plank (top leg raised)", link: "https://www.youtube.com/watch?v=PAD7sMmIgts", rp: "30 sec / side", note: "Anti-lean core. Stack the hips, don't let them sag back." },
+        { ss: "3", ord: "3A", ex: "Dumbbell Reverse Lunge", link: "https://www.youtube.com/results?search_query=dumbbell+reverse+lunge", brace: true, rp: "3 x 8 / side", note: "Bells at the sides, step back and drop the rear knee toward the floor. Keep the lead knee tracking over your toes, don't let it cave inward. Single-leg strength and balance for the swing." },
+        { ss: "", ord: "3B", ex: "Chin-Ups OR Lat Pulldown", link: "https://www.youtube.com/watch?v=53kV7Ou7oZo", rp: "3 x 8-10", note: "Underhand grip if there's a bar, band-assist for honest reps. No bar? Lat pulldown with the same underhand grip, or TRX rows if the straps travel with you.", posture: "Head back, shoulder blades back" },
+        { ss: "", ord: "3C", ex: "Pallof Press (with hold)", link: "https://www.youtube.com/watch?v=HXrLaqNIkTs", rp: "3 x 8 / side", note: "Cable or a band anchored to the rack. Press out, hold 3 sec, resist the pull - anti-rotation core for the swing." },
+        { ss: "4", ord: "4A", ex: "Alternating Hammer Curls", link: "https://www.youtube.com/results?search_query=alternating+hammer+curls", rp: "3 x 12", note: "Dumbbells, elbows pinned, one arm at a time. Arms stay in the week even when the week is short." },
+        { ss: "", ord: "4B", ex: "Dumbbell Lateral Raise", link: "https://www.youtube.com/results?search_query=Dumbbell+Lateral+Raise", rp: "3 x 12-15", note: "Slight lean forward, lead with the elbows, stop at shoulder height. Light and strict.", posture: "Shoulder blades back" },
+        { ss: "", ord: "4C", ex: "Farmer's Carry", link: "https://www.youtube.com/results?search_query=farmers+carry", brace: true, rp: "3 x 40 yds", note: "Heaviest bells you can hold without leaning. Tall, shoulders down and back, slow steps. Grip, traps and the whole trunk in one finisher.", posture: "Head back, shoulder blades back" }
+      ]},
+      { name: "Sauna", sub: "Finish here if there's one where you're staying. No sauna? Five easy minutes of Pigeon Pose and the couch stretch instead.", rows: [
+        { ss: "1", ord: "1A", ex: "Sauna", rp: "10 min", note: "Easy heat, sit and breathe. Hydrate before and after." }
+      ]}
+    ]
   }
 ];
 
 // Upper/Lower is the default rotation: Lower A -> Upper A -> Lower B -> Upper B.
 // Pre-Golf sits apart - it isn't a training day, it's mobility before a round.
+// Full Body sits apart too - one session that covers both halves for short weeks and travel.
 const PROGRAMS = {
   "split": { label: "Upper / Lower", days: ["lower-a", "upper-a", "lower-b", "upper-b"] },
   "recovery": { label: "Recovery", days: ["recovery"] },
-  "golf": { label: "Golf", days: ["pre-golf"] }
+  "golf": { label: "Golf", days: ["pre-golf"] },
+  "full": { label: "Full Body", days: ["full-body"] }
 };
 const DEFAULT_PROGRAM = "split";
